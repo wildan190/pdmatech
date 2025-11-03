@@ -59,6 +59,24 @@
       "description": "An abstract image of glowing network connections, representing technology and communication.",
       "imageUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0ZWNobm9sb2d5JTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYzOTM2ODc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "technology abstract"
+    },
+    {
+      "id": "company-hero",
+      "description": "A modern, bright office space with people collaborating, representing a forward-thinking company.",
+      "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c710?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3NjIyMzEwMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "team collaboration"
+    },
+    {
+      "id": "company-vision",
+      "description": "A person looking out at a futuristic city skyline, symbolizing a forward-looking vision.",
+      "imageUrl": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwdGVjaG5vbG9neXxlbnwwfHx8fDE3NjQwMDgwMDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "futuristic technology"
+    },
+    {
+      "id": "company-mission",
+      "description": "Hands of diverse people working together on a complex puzzle, representing a collaborative mission.",
+      "imageUrl": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb2xsYWJvcmF0aW9uJTIwYnVzaW5lc3N8ZW58MHx8fHwxNzY0MDA4MDU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "business collaboration"
     }
   ]
 }

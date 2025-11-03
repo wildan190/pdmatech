@@ -6,13 +6,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, ShieldCheck, Zap, Goal } from "lucide-react";
+import { CheckCircle, Shield, Zap, Goal, Target, Eye } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 
 const whyChooseUsData = [
   {
-    icon: <ShieldCheck className="w-8 h-8 text-primary" />,
+    icon: <Shield className="w-8 h-8 text-primary" />,
     title: "Proven Experience",
     description: "With over a decade of experience, we've powered major operations across Indonesia, delivering robust and reliable ICT solutions."
   },
@@ -34,6 +35,10 @@ const whyChooseUsData = [
 ];
 
 export default function CompanyPage() {
+    const heroImage = PlaceHolderImages.find(p => p.id === 'company-hero');
+    const visionImage = PlaceHolderImages.find(p => p.id === 'company-vision');
+    const missionImage = PlaceHolderImages.find(p => p.id === 'company-mission');
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <Header />
@@ -51,7 +56,7 @@ export default function CompanyPage() {
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
-                        <BreadcrumbLink>About Us</BreadcrumbLink>
+                        <BreadcrumbLink asChild><Link href="/about/company">About Us</Link></BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
@@ -63,18 +68,22 @@ export default function CompanyPage() {
         </section>
 
         {/* Hero */}
-        <section className="relative h-[50vh] flex items-center justify-center text-white">
-          <Image
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c710?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3NjIyMzEwMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Our Team"
-            fill
-            className="object-cover"
-            data-ai-hint="team collaboration"
-          />
+        <section className="relative h-[60vh] flex items-center">
+            {heroImage && (
+                <Image
+                    src={heroImage.imageUrl}
+                    alt={heroImage.description}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={heroImage.imageHint}
+                />
+            )}
           <div className="absolute inset-0 bg-black/60" />
-          <div className="relative z-10 text-center container">
-            <h1 className="text-4xl md:text-5xl font-bold font-headline">About Micro Padma Nusantara</h1>
-            <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">Driving Technological Innovation for Business Excellence</p>
+          <div className="relative z-10 container text-left text-white">
+            <h1 className="text-4xl md:text-5xl font-bold font-headline">Forging the Future of Technology, Together.</h1>
+            <p className="mt-4 text-lg md:text-xl max-w-3xl">
+              We are Micro Padma Nusantara, a team of innovators and problem-solvers dedicated to delivering transformative ICT and IoT solutions. We partner with businesses to navigate the complexities of the digital landscape, driving growth, efficiency, and sustainable success.
+            </p>
           </div>
         </section>
 
@@ -88,7 +97,7 @@ export default function CompanyPage() {
                   Founded on the principle of innovation and partnership, Micro Padma Nusantara began its journey to bridge the technology gap for businesses in Indonesia. Over the years, we have grown into a trusted ICT and IoT solutions provider, known for our commitment to quality, reliability, and client success. Our story is one of continuous evolution, driven by a passion for technology and a dedication to empowering our clients.
                 </p>
               </div>
-              <div className="relative h-80 rounded-lg overflow-hidden">
+              <div className="relative h-80 rounded-lg overflow-hidden shadow-lg">
                 <Image
                   src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwbGFifGVufDB8fHx8MTc2MjI0MzQwMXww&ixlib=rb-4.1.0&q=80&w=1080"
                   alt="Technology Lab"
@@ -103,37 +112,74 @@ export default function CompanyPage() {
 
         {/* Vision & Mission */}
         <section className="py-20 lg:py-24 bg-secondary/50">
-          <div className="container">
-            <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <h3 className="text-2xl font-bold font-headline mb-3">Our Vision</h3>
-                <p className="text-muted-foreground">To be the leading partner for businesses in Indonesia, pioneering innovative and sustainable technology solutions that drive digital transformation and create lasting value.</p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold font-headline mb-3">Our Mission</h3>
-                <p className="text-muted-foreground">To empower businesses with cutting-edge ICT and IoT solutions, delivered with exceptional service and a focus on strategic partnership, enabling them to thrive in the digital economy.</p>
-              </div>
+          <div className="container space-y-20">
+            {/* Vision */}
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="relative h-80 rounded-lg overflow-hidden shadow-lg order-last md:order-first">
+                    {visionImage && (
+                        <Image
+                        src={visionImage.imageUrl}
+                        alt={visionImage.description}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={visionImage.imageHint}
+                        />
+                    )}
+                </div>
+                <div className="text-left md:text-right">
+                    <div className="inline-flex items-center gap-3">
+                        <h3 className="text-3xl font-bold font-headline">Our Vision</h3>
+                        <Eye className="w-10 h-10 text-primary"/>
+                    </div>
+                    <p className="text-muted-foreground mt-4 text-lg">To be the leading partner for businesses in Indonesia, pioneering innovative and sustainable technology solutions that drive digital transformation and create lasting value.</p>
+                </div>
+            </div>
+            {/* Mission */}
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="text-left">
+                    <div className="inline-flex items-center gap-3">
+                        <Target className="w-10 h-10 text-primary"/>
+                        <h3 className="text-3xl font-bold font-headline">Our Mission</h3>
+                    </div>
+                    <p className="text-muted-foreground mt-4 text-lg">To empower businesses with cutting-edge ICT and IoT solutions, delivered with exceptional service and a focus on strategic partnership, enabling them to thrive in the digital economy.</p>
+                </div>
+                <div className="relative h-80 rounded-lg overflow-hidden shadow-lg">
+                    {missionImage && (
+                        <Image
+                        src={missionImage.imageUrl}
+                        alt={missionImage.description}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={missionImage.imageHint}
+                        />
+                    )}
+                </div>
             </div>
           </div>
         </section>
         
         {/* Why Choose Us */}
-        <section className="py-20 lg:py-24">
+        <section className="py-20 lg:py-24 bg-background">
           <div className="container">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold font-headline">Why Partner With Us?</h2>
-              <p className="text-muted-foreground mt-4 text-lg">We deliver more than just technology; we deliver a partnership built on trust, expertise, and a shared vision for success.</p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {whyChooseUsData.map((item, index) => (
-                <Card key={index} className="text-center p-6 border-0 shadow-lg hover:shadow-primary/20 transition-shadow">
-                  <CardContent className="flex flex-col items-center gap-4">
-                    {item.icon}
-                    <h3 className="font-bold text-xl">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="grid lg:grid-cols-3 gap-12 items-center">
+               <div className="lg:col-span-1 space-y-4">
+                  <p className="font-semibold text-primary">VALUE PROPOSITION</p>
+                  <h2 className="text-3xl md:text-4xl font-bold font-headline">Why Partner With Us?</h2>
+                  <p className="text-muted-foreground text-lg">We deliver more than just technology; we deliver a partnership built on trust, expertise, and a shared vision for success.</p>
+              </div>
+              <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+                {whyChooseUsData.map((item, index) => (
+                  <Card key={index} className="p-6 border-0 shadow-lg hover:shadow-primary/20 transition-shadow bg-secondary/30">
+                    <CardContent className="flex flex-col items-start gap-4 p-0">
+                      <div className="bg-primary/10 p-3 rounded-full">
+                        {item.icon}
+                      </div>
+                      <h3 className="font-bold text-xl">{item.title}</h3>
+                      <p className="text-muted-foreground text-sm">{item.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -153,5 +199,3 @@ export default function CompanyPage() {
     </div>
   );
 }
-
-    
