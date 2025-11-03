@@ -13,7 +13,7 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
   const dictionary = await getDictionary(lang);
   
   return (
-      <main className="flex-grow">
+      <main className="flex-grow overflow-x-hidden">
         <Hero dictionary={dictionary.homePage.hero} lang={lang} />
         <Experience dictionary={dictionary.homePage.experience} />
         <ClimateBanner dictionary={dictionary.homePage.climateBanner} lang={lang} />
@@ -24,5 +24,3 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
       </main>
   );
 }
-
-    

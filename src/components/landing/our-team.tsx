@@ -11,7 +11,7 @@ type OurTeamProps = {
 
 const OurTeam = ({ dictionary, lang }: OurTeamProps) => {
   return (
-    <section id="our-team" className="py-20 lg:py-32 bg-secondary/50">
+    <section id="our-team" className="py-20 lg:py-32 bg-secondary/50 animate-in fade-in slide-in-from-bottom-12 duration-1000">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
           <div className="relative aspect-square rounded-lg overflow-hidden">

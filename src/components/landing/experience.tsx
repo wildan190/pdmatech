@@ -28,7 +28,7 @@ const Experience = ({ dictionary }: { dictionary: any }) => {
     ];
 
   return (
-    <section id="experience" className="py-12 lg:py-16 bg-background">
+    <section id="experience" className="py-12 lg:py-16 bg-background animate-in fade-in slide-in-from-bottom-12 duration-1000">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {experienceData.map((item, index) => (

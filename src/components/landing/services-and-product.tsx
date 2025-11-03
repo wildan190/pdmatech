@@ -30,7 +30,7 @@ const ServicesAndProduct = ({ dictionary, lang }: ServicesAndProductProps) => {
   ];
 
   return (
-    <section id="services" className="py-12 lg:py-16">
+    <section id="services" className="py-12 lg:py-16 animate-in fade-in slide-in-from-bottom-12 duration-1000">
       <div className="container mx-auto px-4">
         <div className="text-left mb-12">
           <p className="font-semibold text-primary">{dictionary.title}</p>

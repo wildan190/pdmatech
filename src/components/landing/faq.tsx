@@ -22,7 +22,7 @@ type FaqProps = {
 
 const Faq = ({ dictionary }: FaqProps) => {
   return (
-    <section id="faq" className="py-20 lg:py-24 bg-background">
+    <section id="faq" className="py-20 lg:py-24 bg-background animate-in fade-in slide-in-from-bottom-12 duration-1000">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <p className="font-semibold text-primary">{dictionary.pretitle}</p>
@@ -51,5 +51,3 @@ const Faq = ({ dictionary }: FaqProps) => {
 };
 
 export default Faq;
-
-    

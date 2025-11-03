@@ -10,7 +10,7 @@ type ClimateBannerProps = {
 
 const ClimateBanner = ({ dictionary, lang }: ClimateBannerProps) => {
   return (
-    <section className="bg-primary/10 py-8">
+    <section className="bg-primary/10 py-8 animate-in fade-in slide-in-from-bottom-12 duration-1000">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-6 rounded-lg bg-background p-8 shadow-md">
             <div className="flex items-center gap-4">
