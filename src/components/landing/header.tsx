@@ -30,6 +30,11 @@ const aboutUsComponents: { title: string; href: string; description: string }[] 
 
 const ictSolutionsComponents: { title: string; href: string; description: string }[] = [
     {
+        title: 'IoT Solutions',
+        href: '/ict-solutions/iot',
+        description: 'Intelligent solutions for a connected world.',
+    },
+    {
         title: 'Enterprise Solutions',
         href: '/ict-solutions/enterprise',
         description: 'Scalable solutions for large businesses.',
@@ -213,5 +218,3 @@ ListItem.displayName = "ListItem"
 
 
 export default Header;
-
-    

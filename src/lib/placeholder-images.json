@@ -123,7 +123,7 @@
     {
       "id": "service-hotel",
       "description": "A luxurious and modern hotel lobby, representing the hospitality industry.",
-      "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGxvYmJ5fGVufDB8fHx8MTc2NDA0NjcwOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGxvYmJ5fGVufDB8fHx8MTc2NDA0NjcwOXww&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "hotel lobby"
     },
     {
@@ -143,6 +143,36 @@
       "description": "Tumpukan kertas dan buku catatan yang berantakan di atas meja, melambangkan tantangan administratif bagi UMKM.",
       "imageUrl": "https://images.unsplash.com/photo-1494366222322-387658a1a976?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZXNzeSUyMGRlc2t8ZW58MHx8fHwxNzY0NDgxMjU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "messy desk"
+    },
+    {
+      "id": "iot-hero",
+      "description": "A futuristic cityscape with glowing data streams connecting buildings, representing a smart city powered by IoT.",
+      "imageUrl": "https://images.unsplash.com/photo-1518621336496-3d47a0a19490?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFydCUyMGNpdHklMjBuZXR3b3JrfGVufDB8fHx8MTc2NDg4ODUwNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smart city"
+    },
+    {
+      "id": "iot-feature-1",
+      "description": "Close-up of a sophisticated sensor monitoring industrial machinery.",
+      "imageUrl": "https://images.unsplash.com/photo-1633488481415-3921b7a2b96e?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwc2Vuc29yfGVufDB8fHx8MTc2NDg4ODU1Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "industrial sensor"
+    },
+    {
+      "id": "iot-feature-2",
+      "description": "A drone flying over a vast farm, symbolizing smart agriculture and precision farming.",
+      "imageUrl": "https://images.unsplash.com/photo-1621921101903-8c439a334d40?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFydCUyMGFncmljdWx0dXJlfGVufDB8fHx8MTc2NDg4ODU5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smart agriculture"
+    },
+    {
+      "id": "iot-feature-3",
+      "description": "A delivery truck on a map interface, showing real-time asset tracking and logistics management.",
+      "imageUrl": "https://images.unsplash.com/photo-1582994254566-3b9a939222a7?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsb2dpc3RpY3MlMjB0cmFja2luZ3xlbnwwfHx8fDE3NjQ4ODg2NTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "logistics tracking"
+    },
+    {
+      "id": "iot-feature-4",
+      "description": "An engineer interacting with a dashboard of real-time data from IoT devices.",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjBhbmFseXRpY3N8ZW58MHx8fHwxNzY0ODg4NzMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dashboard analytics"
     }
   ]
 }

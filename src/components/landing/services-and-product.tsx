@@ -11,7 +11,7 @@ const solutions = [
     id: 'iot-solutions',
     title: 'IoT Solutions',
     description: 'Comprehensive IoT solutions to connect your assets and drive data-driven insights.',
-    href: '/ict-solutions/umkm',
+    href: '/ict-solutions/iot',
     imageId: 'solution-iot'
   },
   {
