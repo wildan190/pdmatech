@@ -39,6 +39,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link href="/about/company" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
               <li><Link href="/#services" className="text-muted-foreground hover:text-primary transition-colors">Services</Link></li>
+              <li><Link href="/career" className="text-muted-foreground hover:text-primary transition-colors">Career</Link></li>
               <li><Link href="/insight/news" className="text-muted-foreground hover:text-primary transition-colors">Insight</Link></li>
               <li><Link href="/#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
               <li><Link href="/about/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
@@ -61,3 +62,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+    

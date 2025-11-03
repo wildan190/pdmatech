@@ -173,6 +173,12 @@
       "description": "An engineer interacting with a dashboard of real-time data from IoT devices.",
       "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjBhbmFseXRpY3N8ZW58MHx8fHwxNzY0ODg4NzMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dashboard analytics"
+    },
+    {
+      "id": "career-hero",
+      "description": "A diverse group of smiling professionals in a modern office, looking collaboratively at a screen.",
+      "imageUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbm5vdmF0aXZlJTIwdGVhbXxlbnwwfHx8fDE3NjUwNjc0ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "innovative team"
     }
   ]
 }
