@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Image, { ImageProps } from 'next/image';
-import { cn } from '@/lib/utils';
 
 type ParallaxImageProps = Omit<ImageProps, 'className' | 'style'> & {
   speed?: number;
@@ -22,7 +21,8 @@ const ParallaxImage = ({ src, alt, speed = 0.2, ...props }: ParallaxImageProps) 
     };
   }, []);
 
-  const yPos = -(offset * speed);
+  // Use positive value for yPos to make the image move down (lag behind)
+  const yPos = offset * speed;
 
   return (
     <Image
