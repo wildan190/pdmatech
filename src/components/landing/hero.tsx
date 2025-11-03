@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight } from 'lucide-react';
@@ -13,6 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import React from 'react';
+import ParallaxImage from '../shared/parallax-image';
 
 type HeroProps = {
     dictionary: any;
@@ -49,11 +49,9 @@ const Hero = ({ dictionary, lang }: HeroProps) => {
   return (
     <section id="hero" className="relative w-full h-[80vh] min-h-[600px] flex items-center justify-center text-center overflow-hidden">
       {heroImage && (
-        <Image
+        <ParallaxImage
           src={heroImage.imageUrl}
           alt={heroImage.description}
-          fill
-          className="object-cover"
           priority
           data-ai-hint={heroImage.imageHint}
         />

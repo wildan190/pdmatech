@@ -9,6 +9,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Metadata } from 'next';
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionaries";
+import ParallaxImage from "@/components/shared/parallax-image";
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/about/company';
@@ -130,12 +131,10 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
       </section>
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center">
-          <Image
+      <section className="relative h-[60vh] flex items-center overflow-hidden">
+          <ParallaxImage
               src="/assets/img/home/company.jpg"
               alt="A modern, bright office space with people collaborating, representing a forward-thinking company."
-              fill
-              className="object-cover"
           />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 container text-left text-white">

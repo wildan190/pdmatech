@@ -9,6 +9,7 @@ import { ArrowRight, Cpu, Layers, Store, Globe, Shield, CheckCircle, Zap, Goal }
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import PrintButton from '@/components/brochure/print-button';
+import ParallaxImage from '@/components/shared/parallax-image';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/brochure';
@@ -129,12 +130,10 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
       </section>
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-center text-center">
-          <Image
+      <section className="relative h-[60vh] flex items-center justify-center text-center overflow-hidden">
+          <ParallaxImage
               src="/assets/img/home/tech.jpg"
               alt={pageDict.hero.imageAlt}
-              fill
-              className="object-cover"
               data-ai-hint="abstract technology"
               priority
           />

@@ -9,6 +9,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import ParallaxImage from '@/components/shared/parallax-image';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/enterprise';
@@ -134,12 +135,10 @@ const whyChooseUsData = [
       </section>
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-start text-left">
-          <Image
+      <section className="relative h-[60vh] flex items-center justify-start text-left overflow-hidden">
+          <ParallaxImage
               src="/assets/img/ict/enterprise.jpg"
               alt="A bustling, modern data center with rows of servers, symbolizing robust enterprise infrastructure."
-              fill
-              className="object-cover"
               data-ai-hint="data center"
           />
         <div className="absolute inset-0 bg-black/60" />

@@ -1,4 +1,4 @@
-import Header from '@/components/landing/header';
+
 import Hero from '@/components/landing/hero';
 import Experience from '@/components/landing/experience';
 import ClimateBanner from '@/components/landing/climate-banner';
@@ -6,7 +6,6 @@ import ServicesAndProduct from '@/components/landing/services-and-product';
 import OurTeam from '@/components/landing/our-team';
 import Faq from '@/components/landing/faq';
 import Contact from '@/components/landing/contact';
-import Footer from '@/components/landing/footer';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 

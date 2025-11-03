@@ -1,6 +1,5 @@
 
 import { Metadata } from 'next';
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
@@ -9,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/shared/contact-form';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import ParallaxImage from '@/components/shared/parallax-image';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/contact';
@@ -97,12 +97,10 @@ export default async function ContactPage({ params: { lang } }: { params: { lang
       </section>
 
       {/* Hero */}
-      <section className="relative h-[50vh] flex items-center">
-          <Image
+      <section className="relative h-[50vh] flex items-center overflow-hidden">
+          <ParallaxImage
               src="/assets/img/contactus/contactus.jpg"
               alt="A person's hands typing on a laptop, signifying communication and getting in touch."
-              fill
-              className="object-cover"
               data-ai-hint="contact communication"
           />
         <div className="absolute inset-0 bg-black/60" />

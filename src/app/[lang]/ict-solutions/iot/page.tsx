@@ -9,6 +9,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import ParallaxImage from '@/components/shared/parallax-image';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/iot';
@@ -119,12 +120,10 @@ const processSteps = [
       </section>
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-start text-left">
-          <Image
+      <section className="relative h-[60vh] flex items-center justify-start text-left overflow-hidden">
+          <ParallaxImage
               src="/assets/img/ict/iot.jpg"
               alt="A futuristic cityscape with glowing data streams connecting buildings, representing a smart city powered by IoT."
-              fill
-              className="object-cover"
               data-ai-hint="smart city"
           />
         <div className="absolute inset-0 bg-black/60" />

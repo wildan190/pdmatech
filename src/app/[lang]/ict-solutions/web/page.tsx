@@ -8,6 +8,7 @@ import { ArrowRight, CheckCircle, Code, Search, ShoppingBag, Redo, Scaling, User
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import ParallaxImage from '@/components/shared/parallax-image';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/web';
@@ -121,12 +122,10 @@ const whyChooseUsData = [
       </section>
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-start text-left">
-          <Image
+      <section className="relative h-[60vh] flex items-center justify-start text-left overflow-hidden">
+          <ParallaxImage
               src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGFic3RyYWN0fGVufDB8fHx8MTc2NDg4NDYyOHww&ixlib=rb-4.1.0&q=80&w=1080"
               alt="Abstract image representing modern web design with clean lines and vibrant colors."
-              fill
-              className="object-cover"
               data-ai-hint="web development abstract"
           />
         <div className="absolute inset-0 bg-black/60" />

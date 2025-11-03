@@ -9,6 +9,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import ParallaxImage from '@/components/shared/parallax-image';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/umkm';
@@ -115,13 +116,11 @@ const advantages = [
       </section>
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-start text-left">
+      <section className="relative h-[60vh] flex items-center justify-start text-left overflow-hidden">
           {heroImage && (
-              <Image
+              <ParallaxImage
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
-                  fill
-                  className="object-cover"
                   data-ai-hint={heroImage.imageHint}
               />
           )}

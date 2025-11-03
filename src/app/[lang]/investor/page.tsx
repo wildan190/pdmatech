@@ -1,13 +1,13 @@
 
 import { Metadata } from 'next';
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BarChart, FileText, Mail, Building, Users, Lightbulb, TrendingUp, CheckCircle, SearchX } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { BarChart, FileText, Mail, Building, Users, Lightbulb, TrendingUp, SearchX } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import ParallaxImage from '@/components/shared/parallax-image';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/investor';
@@ -94,12 +94,10 @@ export default async function InvestorPage({ params: { lang } }: { params: { lan
       </section>
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-start text-left">
-          <Image
+      <section className="relative h-[60vh] flex items-center justify-start text-left overflow-hidden">
+          <ParallaxImage
               src="/assets/img/investor/investor.jpg"
               alt="Business professionals shaking hands, symbolizing a partnership or investment deal."
-              fill
-              className="object-cover"
               data-ai-hint="business agreement"
           />
         <div className="absolute inset-0 bg-black/60" />
