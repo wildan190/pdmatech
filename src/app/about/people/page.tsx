@@ -6,34 +6,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import Experience from "@/components/landing/experience";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ArrowRight, Briefcase } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const leaders = [
     {
         name: "Wildan J. Belfiore",
         title: "President Director",
-        imageId: "team-wildan",
-        experiences: [
-            { role: "President Director", company: "PT Micro Padma Nusantara", period: "2023 - Present" },
-            { role: "Chief Technology Officer", company: "Huntr.id", period: "2023 - Present" },
-            { role: "Fullstack Engineer", company: "British Technologies Global Group", period: "2022 - 2023" },
-            { role: "Fullstack Engineer", company: "Lumoshive", period: "2022 - 2023" },
-            { role: "Fullstack Engineer", company: "Biro Klasifikasi Indonesia", period: "2022 - 2023" },
-            { role: "Fullstack Engineer", company: "Xapiens", period: "2022 - 2023" },
-        ]
+        image: "/assets/img/about/me.png",
+        bio: "Wildan is a visionary technologist with a rich background in full-stack engineering. Since 2022, he has honed his skills across diverse industries, contributing to complex projects at renowned organizations such as Xapiens, Biro Klasifikasi Indonesia, Lumoshive, and the British Technologies Global Group. His passion for innovation and leadership led him to co-found Micro Padma Nusantara in 2023, where he serves as President Director. Concurrently, he holds the position of Chief Technology Officer at Huntr.id, driving the technological vision for both companies and pioneering solutions that shape the future."
     },
     {
         name: "Raihan Firdaus",
         title: "Business Solutions Manager",
-        imageId: "team-raihan",
-        experiences: [
-            { role: "Business Solution Manager", company: "PT Micro Padma Nusantara", period: "2023 - Present" },
-            { role: "Staff", company: "KCIC (Kereta Cepat Indonesia China)", period: "2022 - Present" },
-            { role: "Staff", company: "BPS (Badan Pusat Statistik)", period: "2022" },
-        ]
+        image: "/assets/img/about/rei.jpg",
+        bio: "Raihan brings a unique blend of public sector experience and strategic business acumen to the team. His journey began in 2022 with a foundational role at BPS (Badan Pusat Statistik), which provided him with deep analytical insights. He then transitioned to a staff position at KCIC (Kereta Cepat Indonesia China), where he continues to contribute to one of the nation's key infrastructure projects. Since 2023, Raihan has simultaneously taken on the role of Business Solutions Manager at Micro Padma Nusantara, where he excels at bridging client needs with powerful, effective technology solutions."
     }
 ];
 
@@ -89,37 +76,23 @@ export default function PeoplePage() {
                 </div>
                 <div className="space-y-24">
                     {leaders.map((leader, index) => {
-                        const image = PlaceHolderImages.find(p => p.id === leader.imageId);
                         const isOdd = index % 2 !== 0;
                         return (
                              <div key={leader.name} className="grid md:grid-cols-2 gap-12 items-center">
                                 <div className={`relative h-96 rounded-lg overflow-hidden shadow-xl ${isOdd ? 'md:order-last' : ''}`}>
-                                    {image && (
-                                        <Image
-                                            src={image.imageUrl}
-                                            alt={`Portrait of ${leader.name}`}
-                                            fill
-                                            className="object-cover object-top"
-                                            data-ai-hint={image.imageHint}
-                                        />
-                                    )}
+                                    <Image
+                                        src={leader.image}
+                                        alt={`Portrait of ${leader.name}`}
+                                        fill
+                                        className="object-cover object-top"
+                                    />
                                 </div>
                                 <div className={`${isOdd ? 'md:text-right' : 'md:text-left'}`}>
                                     <h3 className="text-3xl font-bold font-headline">{leader.name}</h3>
                                     <p className="text-primary font-semibold text-lg mt-1">{leader.title}</p>
-                                    <div className="mt-6 space-y-4">
-                                        {leader.experiences.map((exp) => (
-                                            <div key={`${exp.company}-${exp.role}`} className={`flex items-start gap-4 ${isOdd ? 'md:justify-end' : 'md:justify-start'}`}>
-                                                <div className="bg-primary/10 p-2 rounded-full mt-1">
-                                                     <Briefcase className="w-5 h-5 text-primary"/>
-                                                </div>
-                                                <div>
-                                                    <p className="font-semibold">{exp.role}</p>
-                                                    <p className="text-muted-foreground text-sm">{exp.company} &middot; {exp.period}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                    <p className="mt-6 text-muted-foreground leading-relaxed">
+                                        {leader.bio}
+                                    </p>
                                 </div>
                              </div>
                         );
