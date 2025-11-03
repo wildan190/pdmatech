@@ -319,5 +319,3 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
-
-    
