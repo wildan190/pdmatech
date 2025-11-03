@@ -10,20 +10,30 @@ function getLocale(request: NextRequest): string | undefined {
   const locales: string[] = i18n.locales.map(String);
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
 
-  const locale = matchLocale(languages, locales, i18n.defaultLocale);
-  return locale;
+  try {
+    const locale = matchLocale(languages, locales, i18n.defaultLocale);
+    return locale;
+  } catch (e) {
+    return i18n.defaultLocale;
+  }
 }
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  // Check if the request is for a static file in the `public` directory
   if (
+    pathname.startsWith('/assets') ||
+    pathname.startsWith('/images') ||
+    pathname.startsWith('/svg') ||
     [
-      '/assets',
+      '/sitemap.xml',
+      '/robots.txt',
+      '/favicon.ico',
       '/logo.png',
       '/og-image.jpg',
       '/twitter-image.jpg'
-    ].some((p) => pathname.startsWith(p))
+    ].includes(pathname)
   ) {
     return;
   }
@@ -34,12 +44,16 @@ export function middleware(request: NextRequest) {
 
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
-    return NextResponse.redirect(
-      new URL(`/${locale}/${pathname}`, request.url)
-    );
+    
+    // Preserve search parameters during redirect
+    const newUrl = new URL(`/${locale}${pathname}`, request.url);
+    newUrl.search = request.nextUrl.search;
+    
+    return NextResponse.redirect(newUrl);
   }
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  // Matcher ignoring `/_next/` and `/api/`
+  matcher: ['/((?!api|_next/static|_next/image|.*\\..*).*)'],
 };

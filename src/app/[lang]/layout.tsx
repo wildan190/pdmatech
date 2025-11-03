@@ -119,7 +119,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       images: ['/assets/img/home/twitter-image.jpg'],
     },
     other: {
-        'ld+json': JSON.stringify([localBusinessSchema, websiteSchema])
+        'ld+json': JSON.stringify([localBusinessSchema, websiteSchema]),
     }
   };
 }
