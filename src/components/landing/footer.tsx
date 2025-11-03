@@ -2,7 +2,7 @@ import { Github, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="border-t bg-secondary/50">
+    <footer className="border-t bg-card">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center space-x-2">
@@ -12,7 +12,7 @@ const Footer = () => {
               <path d="M168,88.9,104,128l64,39.1a8,8,0,0,0,8-13.8L121.5,128l54.5-25.3a8,8,0,1,0-8-13.8Z" fill="currentColor"></path>
             </svg>
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              &copy; {new Date().getFullYear()} PadmaTech Solutions (Micro Padma Nusantara).
+              &copy; {new Date().getFullYear()} Micro Padma Nusantara.
             </p>
           </div>
           <div className="flex space-x-4">
