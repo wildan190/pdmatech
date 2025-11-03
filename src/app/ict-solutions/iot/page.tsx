@@ -15,13 +15,15 @@ const services = [
         icon: <Cpu className="w-8 h-8 text-primary" />,
         title: "Smart Monitoring & Control",
         description: "Remotely monitor and control your assets in real-time, from industrial machinery to environmental conditions, for proactive maintenance and optimized performance.",
-        imageId: "iot-feature-1"
+        imageId: "iot-feature-1",
+        imagePath: "/assets/img/ict/smartmonitoring.jpg"
     },
     {
         icon: <Map className="w-8 h-8 text-primary" />,
         title: "Asset Tracking & Logistics",
         description: "Gain complete visibility over your supply chain with our advanced tracking solutions, optimizing routes, reducing loss, and ensuring timely delivery.",
-        imageId: "iot-feature-3"
+        imageId: "iot-feature-3",
+        imagePath: "/assets/img/ict/logistics.jpg"
     },
     {
         icon: <Factory className="w-8 h-8 text-primary" />,
@@ -33,7 +35,8 @@ const services = [
         icon: <Leaf className="w-8 h-8 text-primary" />,
         title: "Smart Agriculture",
         description: "Leverage IoT to monitor soil conditions, automate irrigation, and track crop health, maximizing yields and promoting sustainable farming practices.",
-        imageId: "iot-feature-2"
+        imageId: "iot-feature-2",
+        imagePath: "/assets/img/ict/agriculture.jpg"
     }
 ];
 
@@ -126,8 +129,15 @@ export default function IotPage() {
                  const image = PlaceHolderImages.find(p => p.id === service.imageId);
                  return(
                 <Card key={service.title} className="group overflow-hidden flex flex-col">
-                     {image && (
-                        <div className="relative h-48 w-full overflow-hidden">
+                    <div className="relative h-48 w-full overflow-hidden">
+                        {service.imagePath ? (
+                            <Image
+                                src={service.imagePath}
+                                alt={service.description}
+                                fill
+                                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                        ) : image && (
                             <Image
                                 src={image.imageUrl}
                                 alt={image.description}
@@ -135,8 +145,8 @@ export default function IotPage() {
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                                 data-ai-hint={image.imageHint}
                             />
-                        </div>
-                    )}
+                        )}
+                    </div>
                     <CardHeader>
                         <div className="flex items-start gap-4">
                             <div className="bg-primary/10 p-3 rounded-full flex-shrink-0 mt-1">
