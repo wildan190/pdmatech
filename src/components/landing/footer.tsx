@@ -1,4 +1,4 @@
-import { Facebook, Instagram } from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -18,19 +18,30 @@ const Footer = () => {
             </p>
           </div>
           <div>
+            <h3 className="font-semibold mb-4">Contact Us</h3>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+                <li className="flex items-start gap-3">
+                    <MapPin className="h-4 w-4 mt-1 shrink-0 text-primary" />
+                    <span>Jl. Profesor Dr. Insinyur Soetami, Kp. Malangnengah, Cijoro Pasir, Rangkasbitung, Lebak, Banten 42316</span>
+                </li>
+                 <li className="flex items-start gap-3">
+                    <Mail className="h-4 w-4 mt-1 shrink-0 text-primary" />
+                    <a href="mailto:micropadmanusantara@gmail.com" className="hover:text-primary transition-colors">micropadmanusantara@gmail.com</a>
+                </li>
+                 <li className="flex items-start gap-3">
+                    <Phone className="h-4 w-4 mt-1 shrink-0 text-primary" />
+                    <a href="tel:+62811144793" className="hover:text-primary transition-colors">+62811144793</a>
+                </li>
+            </ul>
+          </div>
+           <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link href="/about/company" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
               <li><Link href="/#services" className="text-muted-foreground hover:text-primary transition-colors">Services</Link></li>
               <li><Link href="/insight/news" className="text-muted-foreground hover:text-primary transition-colors">Insight</Link></li>
               <li><Link href="/#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2">
               <li><Link href="/about/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
           <div>
