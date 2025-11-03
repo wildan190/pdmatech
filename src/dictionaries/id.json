@@ -101,6 +101,29 @@
             "subheadline": "Terdiri dari para profesional ICT yang bersemangat, berpengalaman, dan bersertifikat dengan fokus kuat untuk membantu klien maju.",
             "cta": "Kenali kami"
         },
+        "faq": {
+            "pretitle": "FAQ",
+            "title": "Pertanyaan yang Sering Diajukan",
+            "description": "Punya pertanyaan? Kami punya jawabannya. Jika Anda tidak menemukan apa yang Anda cari, jangan ragu untuk menghubungi kami.",
+            "items": [
+                {
+                    "question": "Jenis bisnis apa yang Anda layani?",
+                    "answer": "Kami melayani berbagai jenis bisnis, mulai dari perusahaan skala besar hingga usaha mikro, kecil, dan menengah (UMKM) di berbagai sektor seperti ritel, perhotelan, manufaktur, dan lainnya. Solusi kami disesuaikan untuk memenuhi kebutuhan spesifik setiap klien."
+                },
+                {
+                    "question": "Bagaimana Anda memulai proyek dengan klien baru?",
+                    "answer": "Proses kami dimulai dengan konsultasi gratis untuk memahami tantangan dan tujuan bisnis Anda. Dari sana, kami mengembangkan proposal dan peta jalan proyek yang disesuaikan. Kami percaya pada pendekatan kolaboratif, bekerja sama dengan Anda dari konsep hingga penerapan dan seterusnya."
+                },
+                {
+                    "question": "Apa yang membedakan solusi IoT Anda?",
+                    "answer": "Solusi IoT kami bersifat end-to-end, artinya kami menangani semuanya mulai dari integrasi perangkat keras dan pengembangan platform hingga penerapan dan dukungan berkelanjutan. Kami fokus pada penciptaan solusi praktis berbasis data yang memberikan ROI nyata dengan meningkatkan efisiensi dan memungkinkan kemampuan baru."
+                },
+                {
+                    "question": "Apakah Anda menawarkan dukungan setelah proyek selesai?",
+                    "answer": "Tentu saja. Kami memandang klien kami sebagai mitra jangka panjang. Kami menawarkan berbagai paket dukungan dan pemeliharaan untuk memastikan solusi digital Anda terus berjalan lancar dan efektif, memungkinkan Anda untuk fokus pada bisnis inti Anda."
+                }
+            ]
+        },
         "contact": {
             "headline": "Apakah Anda Punya Proyek?",
             "subheadline": "Kami Siap Membantu",
@@ -533,3 +556,5 @@
         "learnMore": "Pelajari Lebih Lanjut"
     }
 }
+
+    

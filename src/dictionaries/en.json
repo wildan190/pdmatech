@@ -101,6 +101,29 @@
             "subheadline": "Comprises passionate, experienced, and certified ICT professionals with a strong focus on helping clients advance.",
             "cta": "Get to know us"
         },
+        "faq": {
+            "pretitle": "FAQ",
+            "title": "Frequently Asked Questions",
+            "description": "Have questions? We have answers. If you can't find what you're looking for, feel free to contact us.",
+            "items": [
+                {
+                    "question": "What kind of businesses do you serve?",
+                    "answer": "We serve a wide range of businesses, from large-scale enterprises to small and medium-sized businesses (UMKM) in various sectors such as retail, hospitality, manufacturing, and more. Our solutions are tailored to meet the specific needs of each client."
+                },
+                {
+                    "question": "How do you start a project with a new client?",
+                    "answer": "Our process begins with a free consultation to understand your business challenges and goals. From there, we develop a tailored proposal and project roadmap. We believe in a collaborative approach, working closely with you from concept to deployment and beyond."
+                },
+                {
+                    "question": "What makes your IoT solutions different?",
+                    "answer": "Our IoT solutions are end-to-end, meaning we handle everything from hardware integration and platform development to deployment and ongoing support. We focus on creating practical, data-driven solutions that provide tangible ROI by improving efficiency and enabling new capabilities."
+                },
+                {
+                    "question": "Do you offer support after the project is completed?",
+                    "answer": "Absolutely. We view our clients as long-term partners. We offer various support and maintenance packages to ensure your digital solutions continue to run smoothly and effectively, allowing you to focus on your core business."
+                }
+            ]
+        },
         "contact": {
             "headline": "Do You Have a Project?",
             "subheadline": "We’re Here To Help",
@@ -533,3 +556,5 @@
         "learnMore": "Learn More"
     }
 }
+
+    
