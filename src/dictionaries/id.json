@@ -184,6 +184,24 @@
                 "description": "Kami melampaui perbaikan cepat. Kami berkolaborasi dengan Anda untuk mengidentifikasi dan memecahkan masalah yang tepat, memanfaatkan teknologi untuk manfaat yang berdampak dan bertahan lama."
             }
         },
+        "ourProgram": {
+            "title": "Program Kami",
+            "description": "Kami berkomitmen untuk memberikan dampak positif di luar bisnis, melalui inisiatif yang mendukung lingkungan dan masyarakat.",
+            "items": {
+                "goGreen": {
+                    "title": "GoGreen",
+                    "description": "Inisiatif untuk mempromosikan keberlanjutan lingkungan melalui teknologi, mengurangi jejak karbon dalam operasi dan solusi kami."
+                },
+                "socialTech": {
+                    "title": "Edukasi Teknologi Sosial",
+                    "description": "Memberikan pendidikan teknologi dan literasi digital gratis untuk masyarakat, memberdayakan generasi inovator berikutnya."
+                },
+                "environment": {
+                    "title": "Kebersihan Lingkungan",
+                    "description": "Mengkampanyekan dan bertindak untuk lingkungan yang lebih bersih, mengorganisir program pengelolaan sampah dan daur ulang berbasis masyarakat."
+                }
+            }
+        },
         "cta": {
             "title": "Siap Memulai Transformasi Digital Anda?",
             "description": "Mari diskusikan bagaimana solusi kami dapat disesuaikan untuk memenuhi tantangan dan tujuan bisnis unik Anda.",

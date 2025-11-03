@@ -184,6 +184,24 @@
                 "description": "We go beyond quick fixes. We collaborate with you to identify and solve the right problems, leveraging technology for impactful and lasting benefits."
             }
         },
+        "ourProgram": {
+            "title": "Our Program",
+            "description": "We are committed to making a positive impact beyond business, through initiatives that support the environment and society.",
+            "items": {
+                "goGreen": {
+                    "title": "GoGreen",
+                    "description": "An initiative to promote environmental sustainability through technology, reducing carbon footprint in our operations and solutions."
+                },
+                "socialTech": {
+                    "title": "Social Tech Education",
+                    "description": "Providing free technology education and digital literacy for communities, empowering the next generation of innovators."
+                },
+                "environment": {
+                    "title": "Environmental Cleanliness",
+                    "description": "Campaigning and acting for a cleaner environment, organizing community-based waste management and recycling programs."
+                }
+            }
+        },
         "cta": {
             "title": "Ready to Start Your Digital Transformation?",
             "description": "Let's discuss how our solutions can be tailored to meet your unique business challenges and goals.",

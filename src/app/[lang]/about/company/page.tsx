@@ -2,8 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, Shield, Zap, Goal, Target, Eye, MapPin } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle, Shield, Zap, Goal, Target, Eye, MapPin, Leaf, GraduationCap, Recycle } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Metadata } from 'next';
@@ -71,6 +71,24 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
         title: pageDict.whyChooseUs.item4.title,
         description: pageDict.whyChooseUs.item4.description
       }
+    ];
+
+    const programData = [
+        {
+            icon: <Leaf className="w-8 h-8 text-primary" />,
+            title: pageDict.ourProgram.items.goGreen.title,
+            description: pageDict.ourProgram.items.goGreen.description,
+        },
+        {
+            icon: <GraduationCap className="w-8 h-8 text-primary" />,
+            title: pageDict.ourProgram.items.socialTech.title,
+            description: pageDict.ourProgram.items.socialTech.description,
+        },
+        {
+            icon: <Recycle className="w-8 h-8 text-primary" />,
+            title: pageDict.ourProgram.items.environment.title,
+            description: pageDict.ourProgram.items.environment.description,
+        }
     ];
 
     const visionImage = PlaceHolderImages.find(p => p.id === 'company-vision');
@@ -215,6 +233,33 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
           </div>
         </div>
       </section>
+      
+      {/* Our Program Section */}
+      <section className="py-20 lg:py-24 bg-secondary/50">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.ourProgram.title}</h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+              {pageDict.ourProgram.description}
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+            {programData.map((program) => (
+              <Card key={program.title} className="group overflow-hidden flex flex-col text-center items-center p-6 border-0 shadow-lg hover:shadow-primary/20 transition-shadow bg-background">
+                  <CardHeader className="p-0">
+                      <div className="bg-primary/10 p-4 rounded-full mb-4">
+                          {program.icon}
+                      </div>
+                      <CardTitle className="text-xl">{program.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-0 mt-4">
+                      <p className="text-muted-foreground text-sm">{program.description}</p>
+                  </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Google Maps Embed */}
       <section className="py-20 lg:py-24 bg-secondary/50">
@@ -254,5 +299,3 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
-
-    
