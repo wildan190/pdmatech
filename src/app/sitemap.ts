@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { i18n } from '@/i18n.config';
 
 const URL = 'https://mpnsolutions.my.id';
 
@@ -18,10 +19,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/insight/brochure',
   ];
 
-  return routes.map((route) => ({
-    url: `${URL}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: route === '' ? 1 : 0.8,
-  }));
+  const sitemapEntries: MetadataRoute.Sitemap = [];
+
+  routes.forEach((route) => {
+    i18n.locales.forEach((locale) => {
+      sitemapEntries.push({
+        url: `${URL}/${locale}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: route === '' ? 1 : 0.8,
+      });
+    });
+  });
+
+  return sitemapEntries;
 }

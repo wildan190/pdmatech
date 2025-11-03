@@ -29,7 +29,11 @@ const formSchema = z.object({
   }),
 });
 
-const Contact = () => {
+type ContactProps = {
+  dictionary: any;
+}
+
+const Contact = ({ dictionary }: ContactProps) => {
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -47,8 +51,8 @@ const Contact = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values); // In a real app, you would send this to a server
     toast({
-      title: 'Message Sent!',
-      description: "Thank you for contacting us. We'll get back to you shortly.",
+      title: dictionary.form.successTitle,
+      description: dictionary.form.successDescription,
     });
     form.reset();
   }
@@ -64,9 +68,9 @@ const Contact = () => {
       <div className="absolute inset-0 bg-black/70"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight text-white">Do You Have a Project?</h2>
+          <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight text-white">{dictionary.headline}</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-white/80">
-            We’re Here To Help
+            {dictionary.subheadline}
           </p>
         </div>
         <Card className="max-w-2xl mx-auto bg-background/80 backdrop-blur-sm">
@@ -79,9 +83,9 @@ const Contact = () => {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name</FormLabel>
+                          <FormLabel>{dictionary.form.name}</FormLabel>
                           <FormControl>
-                            <Input placeholder="John Doe" {...field} />
+                            <Input placeholder={dictionary.form.namePlaceholder} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -92,9 +96,9 @@ const Contact = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email Address</FormLabel>
+                          <FormLabel>{dictionary.form.email}</FormLabel>
                           <FormControl>
-                            <Input placeholder="you@example.com" {...field} />
+                            <Input placeholder={dictionary.form.emailPlaceholder} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -105,9 +109,9 @@ const Contact = () => {
                       name="company"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Company</FormLabel>
+                          <FormLabel>{dictionary.form.company}</FormLabel>
                           <FormControl>
-                            <Input placeholder="Your Company" {...field} />
+                            <Input placeholder={dictionary.form.companyPlaceholder} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -118,9 +122,9 @@ const Contact = () => {
                       name="industry"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Industry</FormLabel>
+                          <FormLabel>{dictionary.form.industry}</FormLabel>
                           <FormControl>
-                            <Input placeholder="e.g., Technology, Finance" {...field} />
+                            <Input placeholder={dictionary.form.industryPlaceholder} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -132,9 +136,9 @@ const Contact = () => {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Your Message</FormLabel>
+                        <FormLabel>{dictionary.form.message}</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="Tell us about your project..." className="min-h-[120px]" {...field} />
+                          <Textarea placeholder={dictionary.form.messagePlaceholder} className="min-h-[120px]" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -153,14 +157,14 @@ const Contact = () => {
                         </FormControl>
                         <div className="space-y-1 leading-none">
                             <FormLabel className="text-xs text-muted-foreground">
-                                I agree to provide my personal data to Micro Padma Nusantara and have read Micro Padma Nusantara's Privacy Policy. Furthermore, I am willing to be contacted by Micro Padma Nusantara through my personal communication media in accordance with the information I provide.
+                               {dictionary.form.agreement}
                             </FormLabel>
                              <FormMessage />
                         </div>
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full" size="lg">Start Your Transformation</Button>
+                  <Button type="submit" className="w-full" size="lg">{dictionary.form.submit}</Button>
                 </form>
               </Form>
             </CardContent>

@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight } from 'lucide-react';
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -15,28 +14,33 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import React from 'react';
 
-const heroSlides = [
-    {
-        id: "slide1",
-        headline: "Pioneering Future-Ready ICT & IoT Solutions",
-        subheadline: "We are Micro Padma Nusantara, empowering businesses with innovative technology for a connected and intelligent world.",
-        cta1: "Explore Our Solutions",
-        cta2: "Get a Quote",
-        cta1Link: "#services",
-        cta2Link: "#contact",
-    },
-    {
-        id: "slide2",
-        headline: "Simplify Process. Maximize Productivity",
-        subheadline: "Micro Padma Nusantara delivers tailored IT solutions, software, and strategic support—to help your business scale confidently.",
-        cta1: "Discover Our Services",
-        cta2: "Contact Us",
-        cta1Link: "#services",
-        cta2Link: "#contact",
-    },
-];
+type HeroProps = {
+    dictionary: any;
+    lang: string;
+}
 
-const Hero = () => {
+const Hero = ({ dictionary, lang }: HeroProps) => {
+  const heroSlides = [
+      {
+          id: "slide1",
+          headline: dictionary.slide1.headline,
+          subheadline: dictionary.slide1.subheadline,
+          cta1: dictionary.slide1.cta1,
+          cta2: dictionary.slide1.cta2,
+          cta1Link: `#services`,
+          cta2Link: `#contact`,
+      },
+      {
+          id: "slide2",
+          headline: dictionary.slide2.headline,
+          subheadline: dictionary.slide2.subheadline,
+          cta1: dictionary.slide2.cta1,
+          cta2: dictionary.slide2.cta2,
+          cta1Link: `#services`,
+          cta2Link: `#contact`,
+      },
+  ];
+
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
   const plugin = React.useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true })
@@ -95,5 +99,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-    

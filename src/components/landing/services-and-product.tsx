@@ -1,37 +1,42 @@
 'use client';
-import { Card, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight } from 'lucide-react';
 
-const solutions = [
-  {
-    id: 'iot-solutions',
-    title: 'IoT Solutions',
-    description: 'Comprehensive IoT solutions to connect your assets and drive data-driven insights.',
-    href: '/ict-solutions/iot',
-    imageId: 'solution-iot'
-  },
-  {
-    id: 'enterprise-solutions',
-    title: 'Enterprise Solutions',
-    description: 'Scalable and robust solutions for large-scale enterprise needs, from cloud to security.',
-    href: '/ict-solutions/enterprise',
-    imageId: 'solution-enterprise'
-  },
-];
+type ServicesAndProductProps = {
+    dictionary: any;
+    lang: string;
+}
 
-const ServicesAndProduct = () => {
+const ServicesAndProduct = ({ dictionary, lang }: ServicesAndProductProps) => {
+  const solutions = [
+    {
+      id: 'iot-solutions',
+      title: dictionary.iotTitle,
+      description: dictionary.iotDescription,
+      href: `/${lang}/ict-solutions/iot`,
+      imageId: 'solution-iot'
+    },
+    {
+      id: 'enterprise-solutions',
+      title: dictionary.enterpriseTitle,
+      description: dictionary.enterpriseDescription,
+      href: `/${lang}/ict-solutions/enterprise`,
+      imageId: 'solution-enterprise'
+    },
+  ];
+
   return (
     <section id="services" className="py-12 lg:py-16">
       <div className="container mx-auto px-4">
         <div className="text-left mb-12">
-          <p className="font-semibold text-primary">Services and Product</p>
-          <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight">Solutions that Power Your Business</h2>
+          <p className="font-semibold text-primary">{dictionary.title}</p>
+          <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight">{dictionary.headline}</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-            From everyday essentials to cutting-edge innovations — we build, customize, and secure your digital ecosystem.
+            {dictionary.subheadline}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -54,7 +59,7 @@ const ServicesAndProduct = () => {
                       <p className="text-white/80 text-sm mb-4">{solution.description}</p>
                       <Button variant="secondary" asChild>
                           <Link href={solution.href}>
-                              Find Out More <ArrowRight className="ml-2 h-4 w-4" />
+                              {dictionary.findOutMore} <ArrowRight className="ml-2 h-4 w-4" />
                           </Link>
                       </Button>
                   </div>

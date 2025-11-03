@@ -2,88 +2,92 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 import React from 'react';
 import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
+type HeaderProps = {
+    dictionary: any;
+    lang: string;
+}
 
-const aboutUsComponents: { title: string; href: string; description: string }[] = [
-  {
-    title: 'Our Company',
-    href: '/about/company',
-    description: 'Learn about our history, mission, and values.',
-  },
-  {
-    title: 'Our People',
-    href: '/about/people',
-    description: 'Meet the team behind our success.',
-  },
-  {
-    title: 'Privacy Policy',
-    href: '/about/privacy',
-    description: 'How we protect your data and privacy.',
-  },
-];
+const Header = ({ dictionary, lang }: HeaderProps) => {
 
-const ictSolutionsComponents: { title: string; href: string; description: string }[] = [
+  const aboutUsComponents = [
     {
-        title: 'IoT Solutions',
-        href: '/ict-solutions/iot',
-        description: 'Intelligent solutions for a connected world.',
+      title: dictionary.aboutUsSubMenu.company.title,
+      href: `/${lang}/about/company`,
+      description: dictionary.aboutUsSubMenu.company.description,
     },
     {
-        title: 'Enterprise Solutions',
-        href: '/ict-solutions/enterprise',
-        description: 'Scalable solutions for large businesses.',
+      title: dictionary.aboutUsSubMenu.people.title,
+      href: `/${lang}/about/people`,
+      description: dictionary.aboutUsSubMenu.people.description,
     },
     {
-        title: 'UMKM Solutions',
-        href: '/ict-solutions/umkm',
-        description: 'Affordable and effective solutions for small and medium businesses.',
+      title: dictionary.aboutUsSubMenu.privacy.title,
+      href: `/${lang}/about/privacy`,
+      description: dictionary.aboutUsSubMenu.privacy.description,
     },
-    {
-        title: 'Web Solutions',
-        href: '/ict-solutions/web',
-        description: 'Modern and responsive web design and development.',
-    },
-];
+  ];
 
-const insightComponents: { title: string; href: string; description: string }[] = [
-    {
-        title: 'News',
-        href: '/insight/news',
-        description: 'Latest news and updates from our company.',
-    },
-    {
-        title: 'Article',
-        href: '/insight/article',
-        description: 'In-depth articles about technology and business.',
-    },
-    {
-        title: 'Brochure',
-        href: '/insight/brochure',
-        description: 'Download our company brochure.',
-    },
-];
+  const ictSolutionsComponents = [
+      {
+          title: dictionary.ictSolutionsSubMenu.iot.title,
+          href: `/${lang}/ict-solutions/iot`,
+          description: dictionary.ictSolutionsSubMenu.iot.description,
+      },
+      {
+          title: dictionary.ictSolutionsSubMenu.enterprise.title,
+          href: `/${lang}/ict-solutions/enterprise`,
+          description: dictionary.ictSolutionsSubMenu.enterprise.description,
+      },
+      {
+          title: dictionary.ictSolutionsSubMenu.umkm.title,
+          href: `/${lang}/ict-solutions/umkm`,
+          description: dictionary.ictSolutionsSubMenu.umkm.description,
+      },
+      {
+          title: dictionary.ictSolutionsSubMenu.web.title,
+          href: `/${lang}/ict-solutions/web`,
+          description: dictionary.ictSolutionsSubMenu.web.description,
+      },
+  ];
 
+  const insightComponents = [
+      {
+          title: dictionary.insightSubMenu.news.title,
+          href: `/${lang}/insight/news`,
+          description: dictionary.insightSubMenu.news.description,
+      },
+      {
+          title: dictionary.insightSubMenu.article.title,
+          href: `/${lang}/insight/article`,
+          description: dictionary.insightSubMenu.article.description,
+      },
+      {
+          title: dictionary.insightSubMenu.brochure.title,
+          href: `/${lang}/insight/brochure`,
+          description: dictionary.insightSubMenu.brochure.description,
+      },
+  ];
 
-const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 items-center justify-between px-4">
-        <Link href="/" className="flex items-start">
+      <div className="container flex h-20 items-center justify-between">
+        <Link href={`/${lang}`} className="flex items-start">
           <div>
             <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
-            <div className="text-sm text-muted-foreground">Your Business Partner</div>
+            <div className="text-sm text-muted-foreground">{dictionary.header.tagline}</div>
           </div>
         </Link>
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>About Us</NavigationMenuTrigger>
+              <NavigationMenuTrigger>{dictionary.navigation.aboutUs}</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] lg:grid-cols-2">
                   {aboutUsComponents.map((component) => (
@@ -99,7 +103,7 @@ const Header = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>ICT Solutions</NavigationMenuTrigger>
+              <NavigationMenuTrigger>{dictionary.navigation.ictSolutions}</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] lg:grid-cols-2">
                   {ictSolutionsComponents.map((component) => (
@@ -115,7 +119,7 @@ const Header = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Insight</NavigationMenuTrigger>
+              <NavigationMenuTrigger>{dictionary.navigation.insight}</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] lg:grid-cols-2">
                   {insightComponents.map((component) => (
@@ -132,7 +136,7 @@ const Header = () => {
             </NavigationMenuItem>
              <NavigationMenuItem>
               <Button asChild>
-                <Link href="/#contact">Contact Us</Link>
+                <Link href={`/${lang}/#contact`}>{dictionary.navigation.contactUs}</Link>
               </Button>
             </NavigationMenuItem>
           </NavigationMenuList>
@@ -146,18 +150,18 @@ const Header = () => {
                     </Button>
                 </SheetTrigger>
                 <SheetContent side="right">
-                    <SheetHeader>
-                        <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
+                    <SheetHeader className="sr-only">
+                        <SheetTitle>Mobile Menu</SheetTitle>
                     </SheetHeader>
-                    <Link href="/" className="flex items-start mb-6">
+                    <Link href={`/${lang}`} className="flex items-start mb-6">
                         <div>
                             <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
-                            <div className="text-sm text-muted-foreground">Your Business Partner</div>
+                            <div className="text-sm text-muted-foreground">{dictionary.header.tagline}</div>
                         </div>
                     </Link>
                     <Accordion type="single" collapsible className="w-full">
                       <AccordionItem value="about-us">
-                        <AccordionTrigger className="text-base font-medium">About Us</AccordionTrigger>
+                        <AccordionTrigger className="text-base font-medium">{dictionary.navigation.aboutUs}</AccordionTrigger>
                         <AccordionContent className="pl-4">
                           <div className="grid gap-3">
                             {aboutUsComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">{item.title}</Link>)}
@@ -165,7 +169,7 @@ const Header = () => {
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="ict-solutions">
-                        <AccordionTrigger className="text-base font-medium">ICT Solutions</AccordionTrigger>
+                        <AccordionTrigger className="text-base font-medium">{dictionary.navigation.ictSolutions}</AccordionTrigger>
                         <AccordionContent className="pl-4">
                           <div className="grid gap-3">
                           {ictSolutionsComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">{item.title}</Link>)}
@@ -173,7 +177,7 @@ const Header = () => {
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="insight">
-                        <AccordionTrigger className="text-base font-medium">Insight</AccordionTrigger>
+                        <AccordionTrigger className="text-base font-medium">{dictionary.navigation.insight}</AccordionTrigger>
                         <AccordionContent className="pl-4">
                           <div className="grid gap-3">
                             {insightComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">{item.title}</Link>)}
@@ -182,7 +186,7 @@ const Header = () => {
                       </AccordionItem>
                     </Accordion>
                     <Button asChild className="w-full mt-6">
-                        <Link href="/#contact">Contact Us</Link>
+                        <Link href={`/${lang}/#contact`}>{dictionary.navigation.contactUs}</Link>
                     </Button>
                 </SheetContent>
              </Sheet>

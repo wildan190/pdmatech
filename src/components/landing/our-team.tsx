@@ -4,7 +4,12 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const OurTeam = () => {
+type OurTeamProps = {
+    dictionary: any;
+    lang: string;
+}
+
+const OurTeam = ({ dictionary, lang }: OurTeamProps) => {
   return (
     <section id="our-team" className="py-20 lg:py-32 bg-secondary/50">
       <div className="container mx-auto px-4">
@@ -18,12 +23,12 @@ const OurTeam = () => {
              />
           </div>
           <div>
-            <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight">Driven by Talent. Built on Experience.</h2>
+            <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight">{dictionary.headline}</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Comprises passionate, experienced, and certified ICT professionals with a strong focus on helping clients advance.
+              {dictionary.subheadline}
             </p>
             <Button asChild size="lg" className="mt-8">
-              <Link href="/about/people">Get to know us</Link>
+              <Link href={`/${lang}/about/people`}>{dictionary.cta}</Link>
             </Button>
           </div>
         </div>

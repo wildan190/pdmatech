@@ -1,30 +1,32 @@
+'use client'
+
 import { Users, Calendar, Lightbulb, FolderKanban } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
-const experienceData = [
-    {
-        icon: <Users className="h-10 w-10 text-primary mx-auto" />,
-        value: "10+",
-        label: "Top Tier Clients"
-    },
-    {
-        icon: <Calendar className="h-10 w-10 text-primary mx-auto" />,
-        value: "5+",
-        label: "Years of Experience"
-    },
-    {
-        icon: <Lightbulb className="h-10 w-10 text-primary mx-auto" />,
-        value: "10+",
-        label: "Technology Talents"
-    },
-    {
-        icon: <FolderKanban className="h-10 w-10 text-primary mx-auto" />,
-        value: "30+",
-        label: "Projects in Indonesia"
-    }
-];
+const Experience = ({ dictionary }: { dictionary: any }) => {
+    const experienceData = [
+        {
+            icon: <Users className="h-10 w-10 text-primary mx-auto" />,
+            value: "10+",
+            label: dictionary.clients
+        },
+        {
+            icon: <Calendar className="h-10 w-10 text-primary mx-auto" />,
+            value: "5+",
+            label: dictionary.years
+        },
+        {
+            icon: <Lightbulb className="h-10 w-10 text-primary mx-auto" />,
+            value: "10+",
+            label: dictionary.talents
+        },
+        {
+            icon: <FolderKanban className="h-10 w-10 text-primary mx-auto" />,
+            value: "30+",
+            label: dictionary.projects
+        }
+    ];
 
-const Experience = () => {
   return (
     <section id="experience" className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4">
