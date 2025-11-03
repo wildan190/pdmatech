@@ -10,6 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -30,6 +32,7 @@ const formSchema = z.object({
 
 const Contact = () => {
   const { toast } = useToast();
+  const contactImage = PlaceHolderImages.find(p => p.id === 'contact-background');
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -53,15 +56,25 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-secondary/50">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="relative py-20 lg:py-32">
+       {contactImage && (
+        <Image
+          src={contactImage.imageUrl}
+          alt={contactImage.description}
+          fill
+          className="object-cover"
+          data-ai-hint={contactImage.imageHint}
+        />
+      )}
+      <div className="absolute inset-0 bg-black/70"></div>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight">Do You Have a Project?</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight text-white">Do You Have a Project?</h2>
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-white/80">
             We’re Here To Help
           </p>
         </div>
-        <Card className="max-w-2xl mx-auto">
+        <Card className="max-w-2xl mx-auto bg-background/80 backdrop-blur-sm">
             <CardContent className="pt-6">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

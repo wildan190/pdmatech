@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,14 +10,14 @@ const solutions = [
     id: 'iot-solutions',
     title: 'IoT Solutions',
     description: 'Comprehensive IoT solutions to connect your assets and drive data-driven insights.',
-    href: '/ict-solutions/umkm', // Placeholder link
+    href: '/ict-solutions/umkm',
     imageId: 'solution-iot'
   },
   {
     id: 'enterprise-solutions',
     title: 'Enterprise Solutions',
     description: 'Scalable and robust solutions for large-scale enterprise needs, from cloud to security.',
-    href: '/ict-solutions/enterprise', // Placeholder link
+    href: '/ict-solutions/enterprise',
     imageId: 'solution-enterprise'
   },
 ];
@@ -26,10 +26,10 @@ const ServicesAndProduct = () => {
   return (
     <section id="services" className="py-20 lg:py-32">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-left mb-12 max-w-2xl">
           <p className="font-semibold text-primary">Services and Product</p>
           <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight">Solutions that Power Your Business</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+          <p className="mt-4 text-lg text-muted-foreground">
             From everyday essentials to cutting-edge innovations — we build, customize, and secure your digital ecosystem.
           </p>
         </div>
