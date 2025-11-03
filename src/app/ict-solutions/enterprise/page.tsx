@@ -15,37 +15,43 @@ const services = [
         icon: <Layers className="w-8 h-8 text-primary" />,
         title: "ERP (Enterprise Resource Planning)",
         description: "Integrate all your core business processes into a single, unified system for enhanced efficiency and real-time data visibility.",
-        imageId: "service-erp"
+        imageId: "service-erp",
+        imagePath: null
     },
     {
         icon: <Users className="w-8 h-8 text-primary" />,
         title: "CRM (Customer Relationship Management)",
         description: "Build and manage stronger customer relationships with a centralized platform for sales, marketing, and service.",
-        imageId: "service-crm"
+        imageId: "service-crm",
+        imagePath: null
     },
     {
         icon: <Code className="w-8 h-8 text-primary" />,
         title: "Custom Software House",
         description: "Leverage our expert developers to build bespoke software solutions perfectly tailored to your unique operational needs.",
-        imageId: "service-software-house"
+        imageId: "service-software-house",
+        imagePath: null
     },
     {
         icon: <Building className="w-8 h-8 text-primary" />,
         title: "POS (Point of Sale)",
         description: "Modernize your retail or F&B operations with our intuitive and powerful Point of Sale systems for seamless transactions.",
-        imageId: "service-pos"
+        imageId: "service-pos",
+        imagePath: "/assets/img/ict/pos.jpg"
     },
     {
         icon: <Hotel className="w-8 h-8 text-primary" />,
         title: "Hotel Management System",
         description: "Streamline your hospitality operations, from reservations to guest services, with our comprehensive hotel management software.",
-        imageId: "service-hotel"
+        imageId: "service-hotel",
+        imagePath: null
     },
     {
         icon: <Ticket className="w-8 h-8 text-primary" />,
         title: "Ticketing System",
         description: "Manage events, attractions, or transport services efficiently with a robust and user-friendly ticketing platform.",
-        imageId: "service-ticketing"
+        imageId: "service-ticketing",
+        imagePath: null
     }
 ];
 
@@ -69,7 +75,6 @@ const whyChooseUsData = [
 ];
 
 export default function EnterprisePage() {
-    const heroImage = PlaceHolderImages.find(p => p.id === 'enterprise-hero');
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
@@ -95,15 +100,13 @@ export default function EnterprisePage() {
 
         {/* Hero */}
         <section className="relative h-[60vh] flex items-center justify-center text-center">
-            {heroImage && (
-                <Image
-                    src={heroImage.imageUrl}
-                    alt={heroImage.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={heroImage.imageHint}
-                />
-            )}
+            <Image
+                src="/assets/img/ict/enterprise.jpg"
+                alt="A bustling, modern data center with rows of servers, symbolizing robust enterprise infrastructure."
+                fill
+                className="object-cover"
+                data-ai-hint="data center"
+            />
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 container text-white">
             <h1 className="text-4xl md:text-5xl font-bold font-headline">Powering Your Enterprise with Robust ICT Solutions</h1>
@@ -141,7 +144,14 @@ export default function EnterprisePage() {
                 return (
                     <Card key={service.title} className="group overflow-hidden flex flex-col">
                         <div className="relative h-56 w-full overflow-hidden">
-                           {image && (
+                           {service.imagePath ? (
+                                <Image
+                                    src={service.imagePath}
+                                    alt={service.description}
+                                    fill
+                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                />
+                            ) : image && (
                                 <Image
                                     src={image.imageUrl}
                                     alt={image.description}
