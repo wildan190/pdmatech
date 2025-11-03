@@ -38,8 +38,8 @@ const ServicesAndProduct = () => {
           {solutions.map((solution) => {
             const image = PlaceHolderImages.find(p => p.id === solution.imageId);
             return (
-              <Card key={solution.title} className="group overflow-hidden rounded-lg shadow-lg flex flex-col">
-                <div className="relative h-80 w-full">
+              <Card key={solution.title} className="group overflow-hidden rounded-lg shadow-lg flex flex-col relative">
+                <div className="relative h-96 w-full">
                     {image && (
                         <Image
                             src={image.imageUrl}
@@ -50,8 +50,8 @@ const ServicesAndProduct = () => {
                         />
                     )}
                 </div>
-                <CardHeader>
-                    <CardTitle>{solution.title}</CardTitle>
+                <CardHeader className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                    <CardTitle className="text-white">{solution.title}</CardTitle>
                 </CardHeader>
                 <div className="absolute inset-0 bg-background/90 backdrop-blur-sm flex flex-col justify-center items-center text-center p-6 text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="mb-4 text-base">{solution.description}</p>
