@@ -1,10 +1,8 @@
 import { MetadataRoute } from 'next';
-import { i18n } from '@/i18n.config';
 
 const URL = 'https://mpnsolutions.my.id';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Exclude under-construction pages from the sitemap
   const routes = [
     '',
     '/about/company',
@@ -15,6 +13,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/ict-solutions/umkm',
     '/ict-solutions/web',
     '/career',
+    '/insight/news',
+    '/insight/article',
+    '/insight/brochure'
   ];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];
@@ -25,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: route === '' ? 1 : 0.8,
-      alternates: {
+       alternates: {
         languages: {
           'x-default': `${URL}/en${route}`,
           en: `${URL}/en${route}`,
@@ -33,12 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     });
-     sitemapEntries.push({
+    sitemapEntries.push({
       url: `${URL}/id${route}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: route === '' ? 1 : 0.8,
-      alternates: {
+       alternates: {
         languages: {
           'x-default': `${URL}/en${route}`,
           en: `${URL}/en${route}`,
