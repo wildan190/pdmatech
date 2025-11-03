@@ -169,28 +169,6 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
         </div>
       </section>
 
-      {/* Founder's Quote */}
-      <section className="py-20 lg:py-24 bg-primary text-primary-foreground">
-        <div className="container">
-            <div className="max-w-4xl mx-auto text-center">
-                <Image
-                    src="/assets/img/about/me.png"
-                    alt={`Portrait of ${peopleDict.leaders.wildan.name}`}
-                    width={100}
-                    height={100}
-                    className="rounded-full mx-auto mb-6 border-4 border-primary-foreground/50"
-                />
-                <blockquote className="text-2xl md:text-3xl font-medium font-headline">
-                    <p>"{pageDict.founderQuote.text}"</p>
-                </blockquote>
-                <div className="mt-6">
-                    <p className="font-semibold text-lg">{peopleDict.leaders.wildan.name}</p>
-                    <p className="text-sm opacity-80">{peopleDict.leaders.wildan.title}</p>
-                </div>
-            </div>
-        </div>
-      </section>
-
       {/* Vision & Mission */}
       <section className="py-20 lg:py-24 bg-secondary/50">
         <div className="container space-y-20">
@@ -262,6 +240,23 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Founder's Quote */}
+      <section className="relative py-20 lg:py-24 text-white overflow-hidden">
+        <ParallaxImage src="/assets/img/home/company.jpg" alt="Team collaboration" />
+        <div className="absolute inset-0 bg-black/70" />
+        <div className="relative z-10 container">
+            <div className="max-w-4xl mx-auto text-center">
+                <blockquote className="text-2xl md:text-3xl font-medium font-headline">
+                    <p>"{pageDict.founderQuote.text}"</p>
+                </blockquote>
+                <div className="mt-6">
+                    <p className="font-semibold text-lg">{peopleDict.leaders.wildan.name}</p>
+                    <p className="text-sm opacity-80">{peopleDict.leaders.wildan.title}</p>
+                </div>
+            </div>
         </div>
       </section>
       
@@ -341,5 +336,3 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
-
-    
