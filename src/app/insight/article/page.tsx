@@ -1,10 +1,18 @@
-'use client';
-
+import { Metadata } from 'next';
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
 import { Wrench } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
+
+export const metadata: Metadata = {
+  title: 'Insight Articles - On Construction',
+  description: 'Our articles page is currently under construction. Please check back soon for in-depth analysis on ICT, IoT, and business technology trends.',
+  robots: {
+    index: false,
+    follow: true,
+  }
+};
 
 export default function ArticlePage() {
   return (

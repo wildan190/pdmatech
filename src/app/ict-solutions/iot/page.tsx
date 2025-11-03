@@ -1,5 +1,4 @@
-'use client';
-
+import { Metadata } from 'next';
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
 import Image from "next/image";
@@ -9,6 +8,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, Cpu, Map, Leaf, Factory } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+
+export const metadata: Metadata = {
+  title: 'Intelligent IoT Solutions',
+  description: 'Transform your business with our end-to-end IoT solutions. From smart monitoring and asset tracking to industrial automation, we connect your world for enhanced efficiency.',
+  keywords: ['IoT solutions', 'Internet of Things', 'smart monitoring', 'asset tracking', 'industrial automation', 'smart agriculture', 'IIoT', 'connected devices'],
+  openGraph: {
+    title: 'Intelligent IoT Solutions',
+    description: 'Transform your business with our end-to-end IoT solutions for enhanced efficiency.',
+    url: '/ict-solutions/iot',
+  },
+  twitter: {
+    title: 'Intelligent IoT Solutions',
+    description: 'Transform your business with our end-to-end IoT solutions for enhanced efficiency.',
+  },
+};
 
 const services = [
     {

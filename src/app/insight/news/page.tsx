@@ -1,10 +1,18 @@
-'use client';
-
+import { Metadata } from 'next';
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
 import { Wrench } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
+
+export const metadata: Metadata = {
+  title: 'Company News - On Construction',
+  description: 'Our news section is being updated with the latest stories and updates from Micro Padma Nusantara. Please check back soon.',
+  robots: {
+    index: false,
+    follow: true,
+  }
+};
 
 export default function NewsPage() {
   return (

@@ -1,5 +1,4 @@
-'use client';
-
+import { Metadata } from 'next';
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
 import Image from "next/image";
@@ -9,6 +8,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Building, CheckCircle, Code, Layers, Ticket, Hotel, Users } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+
+export const metadata: Metadata = {
+  title: 'Enterprise ICT Solutions',
+  description: 'Scalable and robust ICT solutions for large organizations, including ERP, CRM, custom software, POS, and more. Power your enterprise with Micro Padma Nusantara.',
+  keywords: ['enterprise solutions', 'ERP', 'CRM', 'custom software', 'point of sale', 'hotel management', 'ticketing system', 'ICT for enterprise'],
+  openGraph: {
+    title: 'Enterprise ICT Solutions',
+    description: 'Scalable and robust ICT solutions for large organizations, including ERP, CRM, and custom software.',
+    url: '/ict-solutions/enterprise',
+  },
+  twitter: {
+    title: 'Enterprise ICT Solutions',
+    description: 'Scalable and robust ICT solutions for large organizations, including ERP, CRM, and custom software.',
+  },
+};
 
 const services = [
     {

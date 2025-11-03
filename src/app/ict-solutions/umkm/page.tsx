@@ -1,5 +1,4 @@
-'use client';
-
+import { Metadata } from 'next';
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
 import Image from "next/image";
@@ -9,6 +8,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, Globe, ShoppingCart, MessageSquare, AppWindow } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+
+export const metadata: Metadata = {
+  title: 'Digital Solutions for UMKM',
+  description: 'Empowering small and medium enterprises (UMKM) in Indonesia with affordable and effective digital solutions, including websites, POS Lite, and social media management.',
+  keywords: ['UMKM solutions', 'digital UMKM', 'website UMKM', 'POS UMKM', 'social media management', 'bisnis kecil', 'Indonesia'],
+  openGraph: {
+    title: 'Digital Solutions for UMKM',
+    description: 'Empowering Indonesian UMKM with affordable and effective digital solutions.',
+    url: '/ict-solutions/umkm',
+  },
+  twitter: {
+    title: 'Digital Solutions for UMKM',
+    description: 'Empowering Indonesian UMKM with affordable and effective digital solutions.',
+  },
+};
 
 const solutions = [
     {

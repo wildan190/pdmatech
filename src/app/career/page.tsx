@@ -1,5 +1,4 @@
-'use client';
-
+import { Metadata } from 'next';
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
 import Image from "next/image";
@@ -10,6 +9,22 @@ import { ArrowRight, Heart, Lightbulb, TrendingUp, SearchX, Send } from "lucide-
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Users } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: 'Career at Micro Padma Nusantara',
+  description: 'Join our team of innovators at Micro Padma Nusantara. Explore career opportunities and become part of our mission to shape the future of technology in Indonesia.',
+  keywords: ['career', 'jobs', 'tech jobs', 'ICT jobs', 'IoT careers', 'Micro Padma Nusantara careers', 'job openings'],
+  openGraph: {
+    title: 'Career at Micro Padma Nusantara',
+    description: 'Join our team of innovators and help shape the future of technology in Indonesia.',
+    url: '/career',
+  },
+  twitter: {
+    title: 'Career at Micro Padma Nusantara',
+    description: 'Join our team of innovators and help shape the future of technology in Indonesia.',
+  },
+};
+
 
 const companyValues = [
     {
@@ -142,5 +157,3 @@ export default function CareerPage() {
     </div>
   );
 }
-
-    

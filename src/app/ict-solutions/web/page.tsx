@@ -1,5 +1,4 @@
-'use client';
-
+import { Metadata } from 'next';
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
 import Image from "next/image";
@@ -9,6 +8,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, Code, Search, ShoppingBag, Redo, Scaling, Users, Palette, MonitorSmartphone } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+
+export const metadata: Metadata = {
+  title: 'Modern Web Solutions',
+  description: 'Crafting captivating and high-performance digital experiences. We build custom websites, e-commerce stores, and web applications using modern technologies like Next.js and React.',
+  keywords: ['web development', 'web design', 'e-commerce', 'custom website', 'Next.js developer', 'React developer', 'SEO optimization'],
+  openGraph: {
+    title: 'Modern Web Solutions',
+    description: 'Crafting captivating and high-performance digital experiences for your brand.',
+    url: '/ict-solutions/web',
+  },
+  twitter: {
+    title: 'Modern Web Solutions',
+    description: 'Crafting captivating and high-performance digital experiences for your brand.',
+  },
+};
 
 const services = [
     {

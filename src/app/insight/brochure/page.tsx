@@ -1,10 +1,18 @@
-'use client';
-
+import { Metadata } from 'next';
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
 import { Wrench } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
+
+export const metadata: Metadata = {
+  title: 'Company Brochure - On Construction',
+  description: 'Our company brochure is being prepared and will be available for download soon. Please check back later.',
+  robots: {
+    index: false,
+    follow: true,
+  }
+};
 
 export default function BrochurePage() {
   return (
