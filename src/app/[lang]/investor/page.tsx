@@ -96,7 +96,7 @@ export default async function InvestorPage({ params: { lang } }: { params: { lan
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center justify-start text-left">
           <Image
-              src="https://images.unsplash.com/photo-1556761175-b413da4b248a?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGFncmVlbWVudHxlbnwwfHx8fDE3NjU0MjMyMTF8MA&ixlib=rb-4.1.0&q=80&w=1080"
+              src="/assets/img/investor/investor.jpg"
               alt="Business professionals shaking hands, symbolizing a partnership or investment deal."
               fill
               className="object-cover"
