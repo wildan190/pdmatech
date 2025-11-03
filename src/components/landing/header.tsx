@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 import React from 'react';
 import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 const aboutUsComponents: { title: string; href: string; description: string }[] = [
   {
@@ -78,7 +80,7 @@ const Header = () => {
             <NavigationMenuItem>
               <NavigationMenuTrigger>About Us</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] lg:grid-cols-2">
                   {aboutUsComponents.map((component) => (
                     <ListItem
                       key={component.title}
@@ -94,7 +96,7 @@ const Header = () => {
             <NavigationMenuItem>
               <NavigationMenuTrigger>ICT Solutions</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] lg:grid-cols-2">
                   {ictSolutionsComponents.map((component) => (
                     <ListItem
                       key={component.title}
@@ -110,7 +112,7 @@ const Header = () => {
             <NavigationMenuItem>
               <NavigationMenuTrigger>Insight</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] lg:grid-cols-2">
                   {insightComponents.map((component) => (
                     <ListItem
                       key={component.title}
@@ -138,27 +140,42 @@ const Header = () => {
                         <span className="sr-only">Open menu</span>
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="left">
-                    <div className="grid gap-4 py-6">
-                        <Link href="/" className="flex items-start mb-4">
-                            <div>
-                                <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
-                                <div className="text-sm text-muted-foreground">Your Business Partner</div>
-                            </div>
-                        </Link>
-                        <Link href="/about/company" className="font-medium">Our Company</Link>
-                        <Link href="/about/people" className="font-medium">Our People</Link>
-                        <Link href="/about/privacy" className="font-medium">Privacy Policy</Link>
-                        <Link href="/ict-solutions/enterprise" className="font-medium">Enterprise Solutions</Link>
-                        <Link href="/ict-solutions/umkm" className="font-medium">UMKM Solutions</Link>
-                        <Link href="/ict-solutions/web" className="font-medium">Web Solutions</Link>
-                        <Link href="/insight/news" className="font-medium">News</Link>
-                        <Link href="/insight/article" className="font-medium">Articles</Link>
-                        <Link href="/insight/brochure" className="font-medium">Brochure</Link>
-                        <Button asChild className="mt-4">
-                            <Link href="/#contact">Contact Us</Link>
-                        </Button>
-                    </div>
+                <SheetContent side="right">
+                    <Link href="/" className="flex items-start mb-6">
+                        <div>
+                            <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
+                            <div className="text-sm text-muted-foreground">Your Business Partner</div>
+                        </div>
+                    </Link>
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="about-us">
+                        <AccordionTrigger className="text-base font-medium">About Us</AccordionTrigger>
+                        <AccordionContent className="pl-4">
+                          <div className="grid gap-3">
+                            {aboutUsComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">{item.title}</Link>)}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="ict-solutions">
+                        <AccordionTrigger className="text-base font-medium">ICT Solutions</AccordionTrigger>
+                        <AccordionContent className="pl-4">
+                          <div className="grid gap-3">
+                          {ictSolutionsComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">{item.title}</Link>)}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="insight">
+                        <AccordionTrigger className="text-base font-medium">Insight</AccordionTrigger>
+                        <AccordionContent className="pl-4">
+                          <div className="grid gap-3">
+                            {insightComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">{item.title}</Link>)}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                    <Button asChild className="w-full mt-6">
+                        <Link href="/#contact">Contact Us</Link>
+                    </Button>
                 </SheetContent>
              </Sheet>
         </div>
@@ -196,3 +213,5 @@ ListItem.displayName = "ListItem"
 
 
 export default Header;
+
+    
