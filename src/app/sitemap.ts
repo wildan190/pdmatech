@@ -30,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   }));
 
+  // Adding the Indonesian routes separately to ensure alternates are correct
   routes.forEach((route) => {
     sitemapEntries.push({
       url: `${URL}/id${route}`,
@@ -46,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  // Ensure unique URLs to avoid duplication issues
+  // Ensure unique URLs to avoid duplication issues, which can happen with this approach
   const uniqueUrls = new Map<string, MetadataRoute.Sitemap[0]>();
   sitemapEntries.forEach(entry => {
     if (!uniqueUrls.has(entry.url)) {
