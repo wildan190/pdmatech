@@ -8,10 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import Link from 'next/link';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -35,7 +33,6 @@ type ContactFormProps = {
 }
 
 const ContactForm = ({ dictionary }: ContactFormProps) => {
-  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,11 +47,22 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values); // In a real app, you would send this to a server
-    toast({
-      title: dictionary.form.successTitle,
-      description: dictionary.form.successDescription,
-    });
+    const phoneNumber = '62811144793';
+    const messageText = `
+*New Inquiry from Website*
+
+*Name:* ${values.name}
+*Email:* ${values.email}
+*Company:* ${values.company || '-'}
+*Industry:* ${values.industry || '-'}
+
+*Message:*
+${values.message}
+    `.trim();
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+    
+    window.open(whatsappUrl, '_blank');
     form.reset();
   }
 
