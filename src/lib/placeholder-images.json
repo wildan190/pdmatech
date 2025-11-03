@@ -89,6 +89,48 @@
       "description": "Professional portrait of Raihan Firdaus.",
       "imageUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtYWxlJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyMDc3NzEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "male portrait"
+    },
+    {
+      "id": "enterprise-hero",
+      "description": "A bustling, modern data center with rows of servers, symbolizing robust enterprise infrastructure.",
+      "imageUrl": "https://images.unsplash.com/photo-1629188888019-a1b3b249b6b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxkYXRhJTIwY2VudGVyfGVufDB8fHx8MTc2NDA0NjQwNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data center"
+    },
+    {
+      "id": "service-erp",
+      "description": "A tablet displaying complex business analytics and charts for an ERP system.",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhbmFseXRpY3MlMjBkYXNoYm9hcmR8ZW58MHx8fHwxNzY0MDQ2NDk2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "analytics dashboard"
+    },
+    {
+      "id": "service-crm",
+      "description": "A diverse group of people icons connected in a network, representing customer relationship management.",
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjdXN0b21lciUyMHJlbGF0aW9uc2hpcHxlbnwwfHx8fDE3NjQwNDY1NDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "customer relationship"
+    },
+    {
+      "id": "service-software-house",
+      "description": "A team of software developers collaborating and writing code on multiple screens.",
+      "imageUrl": "https://images.unsplash.com/photo-1542744095-291d1f67b221?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRldmVsb3BtZW50fGVufDB8fHx8MTc2NDA0NjYxMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "software development"
+    },
+    {
+      "id": "service-pos",
+      "description": "A modern point-of-sale terminal in a chic retail store environment.",
+      "imageUrl": "https://images.unsplash.com/photo-1582719202042-094037508a46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb2ludCUyMG9mJTIwc2FsZXxlbnwwfHx8fDE3NjQwNDY2NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "point sale"
+    },
+    {
+      "id": "service-hotel",
+      "description": "A luxurious and modern hotel lobby, representing the hospitality industry.",
+      "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGxvYmJ5fGVufDB8fHx8MTc2NDA0NjcwOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel lobby"
+    },
+    {
+      "id": "service-ticketing",
+      "description": "A person holding a smartphone with a digital ticket QR code ready for scanning at an event.",
+      "imageUrl": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxldmVudCUyMHRpY2tldHN8ZW58MHx8fHwxNzY0MDQ2NzU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "event tickets"
     }
   ]
 }
