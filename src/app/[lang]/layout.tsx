@@ -118,8 +118,14 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       creator: '@micropadma',
       images: ['/assets/img/home/twitter-image.jpg'],
     },
-    other: {
-        'ld+json': JSON.stringify([localBusinessSchema, websiteSchema]),
+    // Menggunakan properti 'script' untuk menyisipkan JSON-LD adalah praktik terbaik
+    script: {
+      'application/ld+json': {
+        type: 'application/ld+json',
+        dangerouslySetInnerHTML: {
+          __html: JSON.stringify([localBusinessSchema, websiteSchema]),
+        }
+      },
     }
   };
 }
