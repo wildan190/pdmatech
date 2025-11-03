@@ -1,7 +1,60 @@
+
 'use client'
 
 import { Users, Calendar, Lightbulb, FolderKanban } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useState, useEffect, useRef } from 'react';
+
+const AnimatedNumber = ({ value }: { value: string }) => {
+    const target = parseInt(value, 10);
+    const [current, setCurrent] = useState(0);
+    const ref = useRef<HTMLParagraphElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    let start = 0;
+                    const duration = 2000; // 2 seconds
+                    const startTime = performance.now();
+
+                    const animate = (currentTime: number) => {
+                        const elapsedTime = currentTime - startTime;
+                        const progress = Math.min(elapsedTime / duration, 1);
+                        start = Math.floor(progress * target);
+                        setCurrent(start);
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        }
+                    };
+
+                    requestAnimationFrame(animate);
+                    observer.disconnect();
+                }
+            },
+            {
+                threshold: 0.1,
+            }
+        );
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => {
+            if (ref.current) {
+                observer.unobserve(ref.current);
+            }
+        };
+    }, [target]);
+
+    return (
+        <p ref={ref} className="text-4xl font-bold mt-4">
+            {current}{value.includes('+') ? '+' : ''}
+        </p>
+    );
+};
+
 
 const Experience = ({ dictionary }: { dictionary: any }) => {
     const experienceData = [
@@ -35,7 +88,7 @@ const Experience = ({ dictionary }: { dictionary: any }) => {
             <Card key={index} className="text-center shadow-lg hover:shadow-xl transition-shadow">
               <CardContent className="flex flex-col justify-center items-center p-6">
                 {item.icon}
-                <p className="text-4xl font-bold mt-4">{item.value}</p>
+                <AnimatedNumber value={item.value} />
                 <p className="text-muted-foreground mt-1">{item.label}</p>
               </CardContent>
             </Card>
