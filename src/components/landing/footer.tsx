@@ -1,36 +1,50 @@
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { Github, Linkedin, Twitter, Instagram, Facebook } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="border-t bg-card">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center space-x-2">
-            <Link href="/" className="flex items-center">
+    <footer className="border-t bg-card text-foreground">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <Link href="/" className="flex items-start">
               <div>
-                <div className="font-bold font-headline text-sm">Micro Padma Nusantara</div>
-                <div className="text-xs text-muted-foreground">Your Business Partner</div>
+                <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
+                <div className="text-sm text-muted-foreground">Your Business Partner</div>
               </div>
             </Link>
-          </div>
-           <p className="text-sm text-muted-foreground text-center md:text-left">
-              &copy; {new Date().getFullYear()} Micro Padma Nusantara.
+             <p className="text-sm text-muted-foreground mt-4">
+              Pioneering future-ready ICT & IoT solutions to empower businesses in the digital era.
             </p>
-          <div className="flex space-x-4">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              <Twitter className="h-5 w-5" />
-              <span className="sr-only">Twitter</span>
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              <Github className="h-5 w-5" />
-              <span className="sr-only">GitHub</span>
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-              <Linkedin className="h-5 w-5" />
-              <span className="sr-only">LinkedIn</span>
-            </a>
           </div>
+          <div>
+            <h3 className="font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><Link href="/about/company" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
+              <li><Link href="/#services" className="text-muted-foreground hover:text-primary transition-colors">Services</Link></li>
+              <li><Link href="/insight/news" className="text-muted-foreground hover:text-primary transition-colors">Insight</Link></li>
+              <li><Link href="/#contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2">
+              <li><Link href="/about/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
+              <li><Link href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-4">Follow Us</h3>
+             <div className="flex space-x-4">
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Twitter className="h-5 w-5" /><span className="sr-only">Twitter</span></a>
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Facebook className="h-5 w-5" /><span className="sr-only">Facebook</span></a>
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="h-5 w-5" /><span className="sr-only">LinkedIn</span></a>
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Instagram className="h-5 w-5" /><span className="sr-only">Instagram</span></a>
+            </div>
+          </div>
+        </div>
+        <div className="border-t mt-8 pt-6 text-center text-sm text-muted-foreground">
+          &copy; {new Date().getFullYear()} Micro Padma Nusantara. All Rights Reserved.
         </div>
       </div>
     </footer>

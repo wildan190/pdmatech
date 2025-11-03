@@ -8,15 +8,15 @@
     },
     {
       "id": "solution-iot",
-      "description": "A smart city concept with interconnected devices.",
-      "imageUrl": "https://images.unsplash.com/photo-1569517669516-f994911b9e29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxpb3QlMjBjaXR5fGVufDB8fHx8MTc2MjE1NDMzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "A smart city concept with interconnected devices and network connections overlaid.",
+      "imageUrl": "https://images.unsplash.com/photo-1526666923127-b2970f64b422?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzbWFydCUyMGNpdHklMjBpb3R8ZW58MHx8fHwxNzYyMzE1NTcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "iot city"
     },
     {
-      "id": "solution-cloud",
-      "description": "Server racks in a data center representing cloud computing.",
-      "imageUrl": "https://images.unsplash.com/photo-1682559736721-c2e77ff4c650?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxkYXRhJTIwY2VudGVyfGVufDB8fHx8MTc2MjA3MzMwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "data center"
+      "id": "solution-enterprise",
+      "description": "Modern glass office building representing enterprise architecture.",
+      "imageUrl": "https://images.unsplash.com/photo-1487958449943-2429e8be8625?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmUlMjBtb2Rlcm58ZW58MHx8fHwxNzYyMzE1NjQyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern architecture"
     },
     {
       "id": "solution-security",

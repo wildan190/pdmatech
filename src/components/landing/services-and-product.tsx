@@ -1,17 +1,24 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { ArrowRight } from 'lucide-react';
 
 const solutions = [
   {
-    title: 'ICT Solutions',
-    description: 'Comprehensive ICT solutions to streamline your operations and drive growth.',
-    href: '/ict-solutions'
+    id: 'iot-solutions',
+    title: 'IoT Solutions',
+    description: 'Comprehensive IoT solutions to connect your assets and drive data-driven insights.',
+    href: '/ict-solutions/umkm', // Placeholder link
+    imageId: 'solution-iot'
   },
   {
-    title: 'Industry Solutions',
-    description: 'Tailored solutions for specific industry needs, from manufacturing to finance.',
-    href: '/industry-solutions'
+    id: 'enterprise-solutions',
+    title: 'Enterprise Solutions',
+    description: 'Scalable and robust solutions for large-scale enterprise needs, from cloud to security.',
+    href: '/ict-solutions/enterprise', // Placeholder link
+    imageId: 'solution-enterprise'
   },
 ];
 
@@ -27,24 +34,35 @@ const ServicesAndProduct = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {solutions.map((solution) => (
-            <Card key={solution.title} className="group relative overflow-hidden">
+          {solutions.map((solution) => {
+            const image = PlaceHolderImages.find(p => p.id === solution.imageId);
+            return (
+              <Card key={solution.title} className="group relative overflow-hidden rounded-lg shadow-lg">
+                {image && (
+                    <div className="relative h-60 w-full">
+                        <Image
+                            src={image.imageUrl}
+                            alt={image.description}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            data-ai-hint={image.imageHint}
+                        />
+                    </div>
+                )}
                 <CardHeader>
                     <CardTitle>{solution.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                    <CardDescription>{solution.description}</CardDescription>
-                </CardContent>
-                <CardFooter>
-                    <div className="absolute inset-0 bg-primary/90 flex flex-col justify-center items-center text-center p-6 text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <p className="mb-4">{solution.description}</p>
-                        <Button variant="secondary" asChild>
-                            <Link href={solution.href}>Find Out More</Link>
-                        </Button>
-                    </div>
-                </CardFooter>
-            </Card>
-          ))}
+                <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex flex-col justify-center items-center text-center p-6 text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="mb-4 text-base">{solution.description}</p>
+                    <Button variant="secondary" asChild>
+                        <Link href={solution.href}>
+                            Find Out More <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </Button>
+                </div>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </section>
