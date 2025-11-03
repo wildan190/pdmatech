@@ -66,14 +66,14 @@ const insightComponents: { title: string; href: string; description: string }[] 
 const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 max-w-screen-2xl items-center justify-between">
+      <div className="container flex h-20 items-center justify-between">
         <Link href="/" className="flex items-start">
           <div>
             <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
             <div className="text-sm text-muted-foreground">Your Business Partner</div>
           </div>
         </Link>
-        <NavigationMenu>
+        <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>About Us</NavigationMenuTrigger>
@@ -140,6 +140,12 @@ const Header = () => {
                 </SheetTrigger>
                 <SheetContent side="left">
                     <div className="grid gap-4 py-6">
+                        <Link href="/" className="flex items-start mb-4">
+                            <div>
+                                <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
+                                <div className="text-sm text-muted-foreground">Your Business Partner</div>
+                            </div>
+                        </Link>
                         <Link href="/about/company" className="font-medium">Our Company</Link>
                         <Link href="/about/people" className="font-medium">Our People</Link>
                         <Link href="/about/privacy" className="font-medium">Privacy Policy</Link>
@@ -149,7 +155,7 @@ const Header = () => {
                         <Link href="/insight/news" className="font-medium">News</Link>
                         <Link href="/insight/article" className="font-medium">Articles</Link>
                         <Link href="/insight/brochure" className="font-medium">Brochure</Link>
-                        <Button asChild>
+                        <Button asChild className="mt-4">
                             <Link href="/#contact">Contact Us</Link>
                         </Button>
                     </div>

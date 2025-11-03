@@ -30,7 +30,7 @@ const ServicesAndProduct = () => {
         <div className="text-left mb-12">
           <p className="font-semibold text-primary">Services and Product</p>
           <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tight">Solutions that Power Your Business</h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
             From everyday essentials to cutting-edge innovations — we build, customize, and secure your digital ecosystem.
           </p>
         </div>
@@ -39,7 +39,7 @@ const ServicesAndProduct = () => {
             const image = PlaceHolderImages.find(p => p.id === solution.imageId);
             return (
               <Card key={solution.title} className="group overflow-hidden rounded-lg shadow-lg flex flex-col">
-                <div className="relative h-60 w-full">
+                <div className="relative h-80 w-full">
                     {image && (
                         <Image
                             src={image.imageUrl}
@@ -50,18 +50,16 @@ const ServicesAndProduct = () => {
                         />
                     )}
                 </div>
-                <div className="relative flex flex-col flex-grow">
-                    <CardHeader>
-                        <CardTitle>{solution.title}</CardTitle>
-                    </CardHeader>
-                    <div className="absolute inset-0 bg-background/90 backdrop-blur-sm flex flex-col justify-center items-center text-center p-6 text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <p className="mb-4 text-base">{solution.description}</p>
-                        <Button variant="secondary" asChild>
-                            <Link href={solution.href}>
-                                Find Out More <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
-                        </Button>
-                    </div>
+                <CardHeader>
+                    <CardTitle>{solution.title}</CardTitle>
+                </CardHeader>
+                <div className="absolute inset-0 bg-background/90 backdrop-blur-sm flex flex-col justify-center items-center text-center p-6 text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="mb-4 text-base">{solution.description}</p>
+                    <Button variant="secondary" asChild>
+                        <Link href={solution.href}>
+                            Find Out More <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                    </Button>
                 </div>
               </Card>
             )
