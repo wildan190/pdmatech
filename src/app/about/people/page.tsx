@@ -14,13 +14,17 @@ const leaders = [
         name: "Wildan J. Belfiore",
         title: "President Director",
         image: "/assets/img/about/me.png",
-        bio: "Wildan is a visionary technologist with a rich background in full-stack engineering. Since 2022, he has honed his skills across diverse industries, contributing to complex projects at renowned organizations such as Xapiens, Biro Klasifikasi Indonesia, Lumoshive, and the British Technologies Global Group. His passion for innovation and leadership led him to co-found Micro Padma Nusantara in 2023, where he serves as President Director. Concurrently, he holds the position of Chief Technology Officer at Huntr.id, driving the technological vision for both companies and pioneering solutions that shape the future."
+        bio: "Wildan is a visionary technologist with a rich background in full-stack engineering. Since 2022, he has honed his skills across diverse industries, contributing to complex projects at renowned organizations such as Xapiens, Biro Klasifikasi Indonesia, Lumoshive, and the British Technologies Global Group. His passion for innovation and leadership led him to co-found Micro Padma Nusantara in 2023, where he serves as President Director. Concurrently, he holds the position of Chief Technology Officer at Huntr.id, driving the technological vision for both companies and pioneering solutions that shape the future.",
+        width: 800,
+        height: 800
     },
     {
         name: "Raihan Firdaus",
         title: "Business Solutions Manager",
         image: "/assets/img/about/rei.jpg",
-        bio: "Raihan brings a unique blend of public sector experience and strategic business acumen to the team. His journey began in 2022 with a foundational role at BPS (Badan Pusat Statistik), which provided him with deep analytical insights. He then transitioned to a staff position at KCIC (Kereta Cepat Indonesia China), where he continues to contribute to one of the nation's key infrastructure projects. Since 2023, Raihan has simultaneously taken on the role of Business Solutions Manager at Micro Padma Nusantara, where he excels at bridging client needs with powerful, effective technology solutions."
+        bio: "Raihan brings a unique blend of public sector experience and strategic business acumen to the team. His journey began in 2022 with a foundational role at BPS (Badan Pusat Statistik), which provided him with deep analytical insights. He then transitioned to a staff position at KCIC (Kereta Cepat Indonesia China), where he continues to contribute to one of the nation's key infrastructure projects. Since 2023, Raihan has simultaneously taken on the role of Business Solutions Manager at Micro Padma Nusantara, where he excels at bridging client needs with powerful, effective technology solutions.",
+        width: 800,
+        height: 1000
     }
 ];
 
@@ -79,12 +83,13 @@ export default function PeoplePage() {
                         const isOdd = index % 2 !== 0;
                         return (
                              <div key={leader.name} className="grid md:grid-cols-2 gap-12 items-center">
-                                <div className={`relative h-96 rounded-lg overflow-hidden shadow-xl ${isOdd ? 'md:order-last' : ''}`}>
+                                <div className={`relative w-full max-w-md mx-auto ${isOdd ? 'md:order-last' : ''}`}>
                                     <Image
                                         src={leader.image}
                                         alt={`Portrait of ${leader.name}`}
-                                        fill
-                                        className="object-cover object-top"
+                                        width={leader.width}
+                                        height={leader.height}
+                                        className="rounded-lg shadow-xl object-contain w-full h-auto"
                                     />
                                 </div>
                                 <div className={`${isOdd ? 'md:text-right' : 'md:text-left'}`}>
