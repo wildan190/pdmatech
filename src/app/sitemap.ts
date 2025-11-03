@@ -1,3 +1,4 @@
+
 import { MetadataRoute } from 'next';
 
 const URL = 'https://mpnsolutions.my.id';
@@ -15,28 +16,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/career'
   ];
 
-  const sitemapEntries: MetadataRoute.Sitemap = [];
+  const sitemapEntries: MetadataRoute.Sitemap = routes.map((route) => ({
+    url: `${URL}/en${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: route === '' ? 1 : 0.8,
+    alternates: {
+      languages: {
+        'x-default': `${URL}/en${route}`,
+        en: `${URL}/en${route}`,
+        id: `${URL}/id${route}`,
+      },
+    },
+  }));
 
   routes.forEach((route) => {
-    sitemapEntries.push({
-      url: `${URL}/en${route}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: route === '' ? 1 : 0.8,
-       alternates: {
-        languages: {
-          'x-default': `${URL}/en${route}`,
-          en: `${URL}/en${route}`,
-          id: `${URL}/id${route}`,
-        },
-      },
-    });
     sitemapEntries.push({
       url: `${URL}/id${route}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: route === '' ? 1 : 0.8,
-       alternates: {
+      alternates: {
         languages: {
           'x-default': `${URL}/en${route}`,
           en: `${URL}/en${route}`,
@@ -45,18 +45,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     });
   });
-  
-  // To avoid duplication, we'll use a Set to get unique URLs
-  const uniqueUrls = new Set(sitemapEntries.map(e => e.url));
-  const uniqueSitemap: MetadataRoute.Sitemap = [];
-  
-  uniqueUrls.forEach(url => {
-    // Find the first entry with this URL to keep its metadata
-    const entry = sitemapEntries.find(e => e.url === url);
-    if(entry) {
-      uniqueSitemap.push(entry);
+
+  // Ensure unique URLs to avoid duplication issues
+  const uniqueUrls = new Map<string, MetadataRoute.Sitemap[0]>();
+  sitemapEntries.forEach(entry => {
+    if (!uniqueUrls.has(entry.url)) {
+      uniqueUrls.set(entry.url, entry);
     }
   });
 
-  return uniqueSitemap;
+  return Array.from(uniqueUrls.values());
 }
