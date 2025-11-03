@@ -514,7 +514,8 @@
         "hero": {
             "title": "Discover Our Innovations",
             "description": "An overview of our mission, solutions, and commitment to driving your business forward through technology.",
-            "imageAlt": "Abstract technology background representing innovation"
+            "imageAlt": "Abstract technology background representing innovation",
+            "downloadButton": "Download Brochure"
         },
         "services": {
             "title": "Our Core Solutions",
@@ -532,5 +533,3 @@
         "learnMore": "Learn More"
     }
 }
-
-    

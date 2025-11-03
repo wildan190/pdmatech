@@ -514,7 +514,8 @@
         "hero": {
             "title": "Temukan Inovasi Kami",
             "description": "Gambaran umum tentang misi, solusi, dan komitmen kami untuk mendorong bisnis Anda maju melalui teknologi.",
-            "imageAlt": "Latar belakang teknologi abstrak yang merepresentasikan inovasi"
+            "imageAlt": "Latar belakang teknologi abstrak yang merepresentasikan inovasi",
+            "downloadButton": "Unduh Brosur"
         },
         "services": {
             "title": "Solusi Inti Kami",
@@ -532,5 +533,3 @@
         "learnMore": "Pelajari Lebih Lanjut"
     }
 }
-
-    

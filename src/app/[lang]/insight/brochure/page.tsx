@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Cpu, Layers, Store, Globe, Shield, CheckCircle, Zap, Goal } from "lucide-react";
+import { ArrowRight, Cpu, Layers, Store, Globe, Shield, CheckCircle, Zap, Goal, Download } from "lucide-react";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
@@ -128,7 +128,7 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
       </section>
 
       {/* Hero */}
-      <section className="relative h-[50vh] flex items-center justify-center text-center">
+      <section className="relative h-[60vh] flex items-center justify-center text-center">
           <Image
               src="/assets/img/home/tech.jpg"
               alt={pageDict.hero.imageAlt}
@@ -143,6 +143,12 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
           <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
             {pageDict.hero.description}
           </p>
+           <Button size="lg" className="mt-8" asChild>
+            <a href="mailto:micropadmanusantara@gmail.com?subject=Request for Company Brochure">
+                <Download className="mr-2 h-5 w-5" />
+                {pageDict.hero.downloadButton}
+            </a>
+          </Button>
         </div>
       </section>
 
@@ -243,5 +249,3 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
     </main>
   );
 }
-
-    
