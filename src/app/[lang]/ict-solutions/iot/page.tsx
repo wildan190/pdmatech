@@ -10,32 +10,36 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.ictSolutionsSubMenu.iot.title;
   const description = 'Transform your business with our end-to-end IoT solutions. From smart monitoring and asset tracking to industrial automation, we connect your world for enhanced efficiency.';
   const descriptionId = 'Ubah bisnis Anda dengan solusi IoT end-to-end kami. Dari pemantauan cerdas dan pelacakan aset hingga otomatisasi industri, kami menghubungkan dunia Anda untuk efisiensi yang lebih baik.';
 
+  const canonicalUrl = `${baseUrl}/${lang}/ict-solutions/iot`;
+
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
     keywords: ['IoT solutions', 'Internet of Things', 'smart monitoring', 'asset tracking', 'industrial automation', 'smart agriculture', 'IIoT', 'connected devices'],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/ict-solutions/iot`,
+        'id': `${baseUrl}/id/ict-solutions/iot`,
+        'x-default': `${baseUrl}/en/ict-solutions/iot`,
+      },
+    },
     openGraph: {
       title,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/ict-solutions/iot`,
+      url: canonicalUrl,
     },
     twitter: {
       title,
       description: lang === 'id' ? descriptionId : description,
-    },
-    alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/ict-solutions/iot`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/ict-solutions/iot',
-        'id': 'https://mpnsolutions.my.id/id/ict-solutions/iot',
-        'x-default': 'https://mpnsolutions.my.id/en/ict-solutions/iot',
-      },
     },
   };
 }
@@ -230,5 +234,7 @@ const processSteps = [
     </main>
   );
 }
+
+    
 
     

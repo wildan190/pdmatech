@@ -9,32 +9,36 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.ictSolutionsSubMenu.web.title;
   const description = 'Crafting captivating and high-performance digital experiences. We build custom websites, e-commerce stores, and web applications using modern technologies like Next.js and React.';
   const descriptionId = 'Menciptakan pengalaman digital yang menawan dan berkinerja tinggi. Kami membangun situs web khusus, toko e-niaga, dan aplikasi web menggunakan teknologi modern seperti Next.js dan React.';
 
+  const canonicalUrl = `${baseUrl}/${lang}/ict-solutions/web`;
+
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
     keywords: ['web development', 'web design', 'e-commerce', 'custom website', 'Next.js developer', 'React developer', 'SEO optimization'],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/ict-solutions/web`,
+        'id': `${baseUrl}/id/ict-solutions/web`,
+        'x-default': `${baseUrl}/en/ict-solutions/web`,
+      },
+    },
     openGraph: {
       title,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/ict-solutions/web`,
+      url: canonicalUrl,
     },
     twitter: {
       title,
       description: lang === 'id' ? descriptionId : description,
-    },
-    alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/ict-solutions/web`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/ict-solutions/web',
-        'id': 'https://mpnsolutions.my.id/id/ict-solutions/web',
-        'x-default': 'https://mpnsolutions.my.id/en/ict-solutions/web',
-      },
     },
   };
 }
@@ -221,5 +225,7 @@ const whyChooseUsData = [
     </main>
   );
 }
+
+    
 
     

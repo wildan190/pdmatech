@@ -6,11 +6,15 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.constructionPage.breadcrumb.article;
   const description = 'Our articles page is currently under construction. Please check back soon for in-depth analysis on ICT, IoT, and business technology trends.';
   const descriptionId = 'Halaman artikel kami sedang dalam pembangunan. Silakan periksa kembali segera untuk analisis mendalam tentang tren ICT, IoT, dan teknologi bisnis.';
+
+  const canonicalUrl = `${baseUrl}/${lang}/insight/article`;
 
   return {
     title: `${title} - On Construction`,
@@ -19,18 +23,18 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       index: false,
       follow: true,
     },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/insight/article`,
+        'id': `${baseUrl}/id/insight/article`,
+        'x-default': `${baseUrl}/en/insight/article`,
+      },
+    },
     openGraph: {
       title: `${title} - On Construction`,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/insight/article`,
-    },
-    alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/insight/article`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/insight/article',
-        'id': 'https://mpnsolutions.my.id/id/insight/article',
-        'x-default': 'https://mpnsolutions.my.id/en/insight/article',
-      },
+      url: canonicalUrl,
     },
   };
 }
@@ -71,5 +75,7 @@ export default async function ArticlePage({ params: { lang } }: { params: { lang
     </main>
   );
 }
+
+    
 
     

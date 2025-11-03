@@ -10,32 +10,36 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.ictSolutionsSubMenu.umkm.title;
   const description = 'Empowering small and medium enterprises (UMKM) in Indonesia with affordable and effective digital solutions, including websites, POS Lite, and social media management.';
   const descriptionId = 'Memberdayakan usaha kecil dan menengah (UMKM) di Indonesia dengan solusi digital yang terjangkau dan efektif, termasuk situs web, POS Lite, dan manajemen media sosial.';
 
+  const canonicalUrl = `${baseUrl}/${lang}/ict-solutions/umkm`;
+
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
     keywords: ['UMKM solutions', 'digital UMKM', 'website UMKM', 'POS UMKM', 'social media management', 'bisnis kecil', 'Indonesia'],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/ict-solutions/umkm`,
+        'id': `${baseUrl}/id/ict-solutions/umkm`,
+        'x-default': `${baseUrl}/en/ict-solutions/umkm`,
+      },
+    },
     openGraph: {
       title,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/ict-solutions/umkm`,
+      url: canonicalUrl,
     },
     twitter: {
       title,
       description: lang === 'id' ? descriptionId : description,
-    },
-    alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/ict-solutions/umkm`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/ict-solutions/umkm',
-        'id': 'https://mpnsolutions.my.id/id/ict-solutions/umkm',
-        'x-default': 'https://mpnsolutions.my.id/en/ict-solutions/umkm',
-      },
     },
   };
 }
@@ -217,5 +221,7 @@ const advantages = [
     </main>
   );
 }
+
+    
 
     

@@ -6,11 +6,15 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.constructionPage.breadcrumb.brochure;
   const description = 'Our company brochure is being prepared and will be available for download soon. Please check back later.';
   const descriptionId = 'Brosur perusahaan kami sedang disiapkan dan akan segera tersedia untuk diunduh. Silakan periksa kembali nanti.';
+
+  const canonicalUrl = `${baseUrl}/${lang}/insight/brochure`;
 
   return {
     title: `${title} - On Construction`,
@@ -19,18 +23,18 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       index: false,
       follow: true,
     },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/insight/brochure`,
+        'id': `${baseUrl}/id/insight/brochure`,
+        'x-default': `${baseUrl}/en/insight/brochure`,
+      },
+    },
     openGraph: {
       title: `${title} - On Construction`,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/insight/brochure`,
-    },
-    alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/insight/brochure`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/insight/brochure',
-        'id': 'https://mpnsolutions.my.id/id/insight/brochure',
-        'x-default': 'https://mpnsolutions.my.id/en/insight/brochure',
-      },
+      url: canonicalUrl,
     },
   };
 }
@@ -72,5 +76,7 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
     </main>
   );
 }
+
+    
 
     

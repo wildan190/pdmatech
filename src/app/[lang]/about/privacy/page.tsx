@@ -7,6 +7,8 @@ import { Metadata } from 'next';
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionaries";
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.privacyPage;
@@ -14,26 +16,28 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Read the Privacy Policy of Micro Padma Nusantara. We are committed to protecting your data and privacy when you use our services.';
   const descriptionId = 'Baca Kebijakan Privasi Micro Padma Nusantara. Kami berkomitmen untuk melindungi data dan privasi Anda saat Anda menggunakan layanan kami.';
 
+  const canonicalUrl = `${baseUrl}/${lang}/about/privacy`;
+
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
     keywords: ['privacy policy', 'data protection', 'user privacy', 'terms of service', 'data security'],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/about/privacy`,
+        'id': `${baseUrl}/id/about/privacy`,
+        'x-default': `${baseUrl}/en/about/privacy`,
+      },
+    },
     openGraph: {
       title: `${title} - Micro Padma Nusantara`,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/about/privacy`,
+      url: canonicalUrl,
     },
     twitter: {
       title: `${title} - Micro Padma Nusantara`,
       description: lang === 'id' ? descriptionId : description,
-    },
-    alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/about/privacy`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/about/privacy',
-        'id': 'https://mpnsolutions.my.id/id/about/privacy',
-        'x-default': 'https://mpnsolutions.my.id/en/about/privacy',
-      },
     },
   };
 }
@@ -143,5 +147,7 @@ export default async function PrivacyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
+
+    
 
     

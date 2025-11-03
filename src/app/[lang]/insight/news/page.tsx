@@ -6,11 +6,15 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.constructionPage.breadcrumb.news;
   const description = 'Our news section is being updated with the latest stories and updates from Micro Padma Nusantara. Please check back soon.';
   const descriptionId = 'Bagian berita kami sedang diperbarui dengan cerita dan pembaruan terbaru dari Micro Padma Nusantara. Silakan periksa kembali segera.';
+
+  const canonicalUrl = `${baseUrl}/${lang}/insight/news`;
 
   return {
     title: `${title} - On Construction`,
@@ -19,18 +23,18 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       index: false,
       follow: true,
     },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/insight/news`,
+        'id': `${baseUrl}/id/insight/news`,
+        'x-default': `${baseUrl}/en/insight/news`,
+      },
+    },
     openGraph: {
       title: `${title} - On Construction`,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/insight/news`,
-    },
-    alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/insight/news`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/insight/news',
-        'id': 'https://mpnsolutions.my.id/id/insight/news',
-        'x-default': 'https://mpnsolutions.my.id/en/insight/news',
-      },
+      url: canonicalUrl,
     },
   };
 }
@@ -71,5 +75,7 @@ export default async function NewsPage({ params: { lang } }: { params: { lang: L
     </main>
   );
 }
+
+    
 
     

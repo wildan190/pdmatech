@@ -10,32 +10,36 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.ictSolutionsSubMenu.enterprise.title;
   const description = 'Scalable and robust ICT solutions for large organizations, including ERP, CRM, custom software, POS, and more. Power your enterprise with Micro Padma Nusantara.';
   const descriptionId = 'Solusi ICT yang dapat diskalakan dan kuat untuk organisasi besar, termasuk ERP, CRM, perangkat lunak kustom, POS, dan lainnya. Berdayakan perusahaan Anda dengan Micro Padma Nusantara.';
 
+  const canonicalUrl = `${baseUrl}/${lang}/ict-solutions/enterprise`;
+
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
     keywords: ['enterprise solutions', 'ERP', 'CRM', 'custom software', 'point of sale', 'hotel management', 'ticketing system', 'ICT for enterprise'],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/ict-solutions/enterprise`,
+        'id': `${baseUrl}/id/ict-solutions/enterprise`,
+        'x-default': `${baseUrl}/en/ict-solutions/enterprise`,
+      },
+    },
     openGraph: {
       title,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/ict-solutions/enterprise`,
+      url: canonicalUrl,
     },
     twitter: {
       title,
       description: lang === 'id' ? descriptionId : description,
-    },
-    alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/ict-solutions/enterprise`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/ict-solutions/enterprise',
-        'id': 'https://mpnsolutions.my.id/id/ict-solutions/enterprise',
-        'x-default': 'https://mpnsolutions.my.id/en/ict-solutions/enterprise',
-      },
     },
   };
 }
@@ -246,5 +250,7 @@ const whyChooseUsData = [
     </main>
   );
 }
+
+    
 
     

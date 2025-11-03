@@ -9,6 +9,8 @@ import { Metadata } from 'next';
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionaries";
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.peoplePage;
@@ -16,26 +18,28 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Meet the talented team of leaders and innovators at Micro Padma Nusantara. Our experts are dedicated to driving your business success through technology.';
   const descriptionId = 'Temui tim pemimpin dan inovator berbakat di Micro Padma Nusantara. Para ahli kami berdedikasi untuk mendorong kesuksesan bisnis Anda melalui teknologi.';
 
+  const canonicalUrl = `${baseUrl}/${lang}/about/people`;
+
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
     keywords: ['our team', 'leadership', 'tech experts', 'ICT professionals', 'IoT experts', 'Micro Padma Nusantara team'],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/about/people`,
+        'id': `${baseUrl}/id/about/people`,
+        'x-default': `${baseUrl}/en/about/people`,
+      },
+    },
     openGraph: {
       title: `${title} - Micro Padma Nusantara`,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/about/people`,
+      url: canonicalUrl,
     },
     twitter: {
       title: `${title} - Micro Padma Nusantara`,
       description: lang === 'id' ? descriptionId : description,
-    },
-    alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/about/people`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/about/people',
-        'id': 'https://mpnsolutions.my.id/id/about/people',
-        'x-default': 'https://mpnsolutions.my.id/en/about/people',
-      },
     },
   };
 }
@@ -154,5 +158,7 @@ export default async function PeoplePage({ params: { lang } }: { params: { lang:
     </main>
   );
 }
+
+    
 
     

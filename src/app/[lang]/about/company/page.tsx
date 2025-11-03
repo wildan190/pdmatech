@@ -10,6 +10,8 @@ import { Metadata } from 'next';
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionaries";
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.companyPage;
@@ -17,26 +19,28 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Learn about the history, mission, and vision of Micro Padma Nusantara. We are dedicated to delivering transformative ICT and IoT solutions in Indonesia.';
   const descriptionId = 'Pelajari tentang sejarah, misi, dan visi Micro Padma Nusantara. Kami berdedikasi untuk memberikan solusi ICT dan IoT yang transformatif di Indonesia.';
   
+  const canonicalUrl = `${baseUrl}/${lang}/about/company`;
+
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
     keywords: ['about us', 'company profile', 'ICT company', 'IoT company', 'mission', 'vision', 'Micro Padma Nusantara'],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/about/company`,
+        'id': `${baseUrl}/id/about/company`,
+        'x-default': `${baseUrl}/en/about/company`,
+      },
+    },
     openGraph: {
       title: `${title} - Micro Padma Nusantara`,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/about/company`,
+      url: canonicalUrl,
     },
     twitter: {
       title: `${title} - Micro Padma Nusantara`,
       description: lang === 'id' ? descriptionId : description,
-    },
-     alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/about/company`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/about/company',
-        'id': 'https://mpnsolutions.my.id/id/about/company',
-        'x-default': 'https://mpnsolutions.my.id/en/about/company',
-      },
     },
   };
 }
@@ -224,5 +228,7 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
+
+    
 
     

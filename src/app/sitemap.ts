@@ -12,10 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/ict-solutions/enterprise',
     '/ict-solutions/umkm',
     '/ict-solutions/web',
-    '/career',
-    '/insight/news',
-    '/insight/article',
-    '/insight/brochure'
+    '/career'
   ];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];
@@ -49,11 +46,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
   
-  // To avoid duplication, we'll use a Set
+  // To avoid duplication, we'll use a Set to get unique URLs
   const uniqueUrls = new Set(sitemapEntries.map(e => e.url));
   const uniqueSitemap: MetadataRoute.Sitemap = [];
+  
   uniqueUrls.forEach(url => {
-    // find the first entry with this url
+    // Find the first entry with this URL to keep its metadata
     const entry = sitemapEntries.find(e => e.url === url);
     if(entry) {
       uniqueSitemap.push(entry);

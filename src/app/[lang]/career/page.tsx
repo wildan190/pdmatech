@@ -10,32 +10,36 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.careerPage.breadcrumb;
   const description = 'Join our team of innovators at Micro Padma Nusantara. Explore career opportunities and become part of our mission to shape the future of technology in Indonesia.';
   const descriptionId = 'Bergabunglah dengan tim inovator kami di Micro Padma Nusantara. Jelajahi peluang karir dan jadilah bagian dari misi kami untuk membentuk masa depan teknologi di Indonesia.';
 
+  const canonicalUrl = `${baseUrl}/${lang}/career`;
+
   return {
     title: `${title} at Micro Padma Nusantara`,
     description: lang === 'id' ? descriptionId : description,
     keywords: ['career', 'jobs', 'tech jobs', 'ICT jobs', 'IoT careers', 'Micro Padma Nusantara careers', 'job openings', 'lowongan kerja'],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en/career`,
+        'id': `${baseUrl}/id/career`,
+        'x-default': `${baseUrl}/en/career`,
+      },
+    },
     openGraph: {
       title: `${title} at Micro Padma Nusantara`,
       description: lang === 'id' ? descriptionId : description,
-      url: `https://mpnsolutions.my.id/${lang}/career`,
+      url: canonicalUrl,
     },
     twitter: {
       title: `${title} at Micro Padma Nusantara`,
       description: lang === 'id' ? descriptionId : description,
-    },
-    alternates: {
-      canonical: `https://mpnsolutions.my.id/${lang}/career`,
-      languages: {
-        'en': 'https://mpnsolutions.my.id/en/career',
-        'id': 'https://mpnsolutions.my.id/id/career',
-        'x-default': 'https://mpnsolutions.my.id/en/career',
-      },
     },
   };
 }
@@ -171,5 +175,7 @@ export default async function CareerPage({ params: { lang } }: { params: { lang:
     </main>
   );
 }
+
+    
 
     
