@@ -78,16 +78,25 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
             icon: <Leaf className="w-8 h-8 text-primary" />,
             title: pageDict.ourProgram.items.goGreen.title,
             description: pageDict.ourProgram.items.goGreen.description,
+            imageUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGxhbmRzY2FwZXxlbnwwfHx8fDE3NjUxMTAwMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+            imageAlt: "A beautiful green landscape representing the GoGreen initiative.",
+            imageHint: "green landscape"
         },
         {
             icon: <GraduationCap className="w-8 h-8 text-primary" />,
             title: pageDict.ourProgram.items.socialTech.title,
             description: pageDict.ourProgram.items.socialTech.description,
+            imageUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlZHVjYXRpb24lMjB3b3Jrc2hvcHxlbnwwfHx8fDE3NjUxMTAwNDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+            imageAlt: "Students learning in a collaborative workshop, representing social tech education.",
+            imageHint: "education workshop"
         },
         {
             icon: <Recycle className="w-8 h-8 text-primary" />,
             title: pageDict.ourProgram.items.environment.title,
             description: pageDict.ourProgram.items.environment.description,
+            imageUrl: "https://images.unsplash.com/photo-1599664223843-93498451d087?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBjbGVhbnVwfGVufDB8fHx8fDE3NjUxMTAwODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+            imageAlt: "Volunteers cleaning up a park, showing environmental action.",
+            imageHint: "community cleanup"
         }
     ];
 
@@ -245,14 +254,25 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
           </div>
           <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
             {programData.map((program) => (
-              <Card key={program.title} className="group overflow-hidden flex flex-col text-center items-center p-6 border-0 shadow-lg hover:shadow-primary/20 transition-shadow bg-background">
-                  <CardHeader className="p-0">
-                      <div className="bg-primary/10 p-4 rounded-full mb-4">
-                          {program.icon}
+              <Card key={program.title} className="group overflow-hidden flex flex-col shadow-lg hover:shadow-primary/20 transition-shadow bg-background border-0">
+                  <div className="relative h-56 w-full">
+                      <Image
+                          src={program.imageUrl}
+                          alt={program.imageAlt}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          data-ai-hint={program.imageHint}
+                      />
+                  </div>
+                  <CardHeader>
+                      <div className="flex items-center gap-4">
+                          <div className="bg-primary/10 p-3 rounded-full flex-shrink-0">
+                              {program.icon}
+                          </div>
+                          <CardTitle className="text-xl">{program.title}</CardTitle>
                       </div>
-                      <CardTitle className="text-xl">{program.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="p-0 mt-4">
+                  <CardContent className="flex-grow">
                       <p className="text-muted-foreground text-sm">{program.description}</p>
                   </CardContent>
               </Card>
@@ -262,7 +282,7 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
       </section>
 
       {/* Google Maps Embed */}
-      <section className="py-20 lg:py-24 bg-secondary/50">
+      <section className="py-20 lg:py-24 bg-background">
         <div className="container text-center">
             <div className="text-center mb-12">
                 <MapPin className="mx-auto h-12 w-12 text-primary mb-4" />
@@ -299,3 +319,5 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
+
+    
