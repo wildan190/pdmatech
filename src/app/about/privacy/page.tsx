@@ -102,7 +102,7 @@ export default function PrivacyPage() {
                         </p>
                         <div className="flex items-center gap-4 not-prose">
                             <Mail className="w-5 h-5 text-primary" />
-                            <a href="mailto:privacy@micropadmanusantara.example.com" className="text-primary hover:underline">privacy@micropadmanusantara.example.com</a>
+                            <a href="mailto:micropadmanusantara@gmail.com" className="text-primary hover:underline">micropadmanusantara@gmail.com</a>
                         </div>
                     </CardContent>
                 </Card>
