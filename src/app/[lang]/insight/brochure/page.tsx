@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import { Wrench } from "lucide-react";
 import Link from "next/link";
@@ -24,11 +25,11 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       url: `https://mpnsolutions.my.id/${lang}/insight/brochure`,
     },
     alternates: {
-      canonical: `/${lang}/insight/brochure`,
+      canonical: `https://mpnsolutions.my.id/${lang}/insight/brochure`,
       languages: {
-        'en': '/en/insight/brochure',
-        'id': '/id/insight/brochure',
-        'x-default': '/en/insight/brochure',
+        'en': 'https://mpnsolutions.my.id/en/insight/brochure',
+        'id': 'https://mpnsolutions.my.id/id/insight/brochure',
+        'x-default': 'https://mpnsolutions.my.id/en/insight/brochure',
       },
     },
   };
@@ -71,3 +72,5 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
     </main>
   );
 }
+
+    

@@ -34,9 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     });
-  });
-  
-  routes.forEach((route) => {
     sitemapEntries.push({
       url: `${URL}/id${route}`,
       lastModified: new Date(),
@@ -51,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     });
   });
-
+  
   // To avoid duplication, we'll use a Set
   const uniqueUrls = new Set(sitemapEntries.map(e => e.url));
   const uniqueSitemap: MetadataRoute.Sitemap = [];

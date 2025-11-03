@@ -12,7 +12,8 @@ import { getDictionary } from "@/lib/dictionaries";
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
-  const title = dictionary.aboutUsSubMenu.company.title;
+  const pageDict = dictionary.companyPage;
+  const title = pageDict.breadcrumb;
   const description = 'Learn about the history, mission, and vision of Micro Padma Nusantara. We are dedicated to delivering transformative ICT and IoT solutions in Indonesia.';
   const descriptionId = 'Pelajari tentang sejarah, misi, dan visi Micro Padma Nusantara. Kami berdedikasi untuk memberikan solusi ICT dan IoT yang transformatif di Indonesia.';
   
@@ -30,11 +31,11 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       description: lang === 'id' ? descriptionId : description,
     },
      alternates: {
-      canonical: `/${lang}/about/company`,
+      canonical: `https://mpnsolutions.my.id/${lang}/about/company`,
       languages: {
-        'en': '/en/about/company',
-        'id': '/id/about/company',
-        'x-default': '/en/about/company',
+        'en': 'https://mpnsolutions.my.id/en/about/company',
+        'id': 'https://mpnsolutions.my.id/id/about/company',
+        'x-default': 'https://mpnsolutions.my.id/en/about/company',
       },
     },
   };
@@ -223,3 +224,5 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
+
+    

@@ -11,7 +11,8 @@ import { getDictionary } from "@/lib/dictionaries";
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
-  const title = dictionary.aboutUsSubMenu.people.title;
+  const pageDict = dictionary.peoplePage;
+  const title = pageDict.breadcrumb;
   const description = 'Meet the talented team of leaders and innovators at Micro Padma Nusantara. Our experts are dedicated to driving your business success through technology.';
   const descriptionId = 'Temui tim pemimpin dan inovator berbakat di Micro Padma Nusantara. Para ahli kami berdedikasi untuk mendorong kesuksesan bisnis Anda melalui teknologi.';
 
@@ -29,11 +30,11 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       description: lang === 'id' ? descriptionId : description,
     },
     alternates: {
-      canonical: `/${lang}/about/people`,
+      canonical: `https://mpnsolutions.my.id/${lang}/about/people`,
       languages: {
-        'en': '/en/about/people',
-        'id': '/id/about/people',
-        'x-default': '/en/about/people',
+        'en': 'https://mpnsolutions.my.id/en/about/people',
+        'id': 'https://mpnsolutions.my.id/id/about/people',
+        'x-default': 'https://mpnsolutions.my.id/en/about/people',
       },
     },
   };
@@ -153,3 +154,5 @@ export default async function PeoplePage({ params: { lang } }: { params: { lang:
     </main>
   );
 }
+
+    

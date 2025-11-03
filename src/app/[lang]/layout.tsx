@@ -1,3 +1,4 @@
+
 import { getDictionary } from '@/lib/dictionaries';
 import { Locale } from '@/i18n.config';
 import WhatsAppButton from '@/components/landing/whatsapp-button';
@@ -5,8 +6,9 @@ import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
 import { Metadata } from 'next';
 
+const baseUrl = 'https://mpnsolutions.my.id';
+
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
-  const dictionary = await getDictionary(lang);
   const isEn = lang === 'en';
 
   const title = isEn 
@@ -26,7 +28,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     ? 'Empowering businesses with future-ready ICT & IoT solutions in Indonesia.'
     : 'Memberdayakan bisnis dengan solusi ICT & IoT yang siap untuk masa depan di Indonesia.';
 
-  const baseUrl = 'https://mpnsolutions.my.id';
   const canonicalUrl = `${baseUrl}/${lang}`;
 
   const localBusinessSchema = {
@@ -142,3 +143,5 @@ export default async function LanguageLayout({
     </>
   );
 }
+
+    

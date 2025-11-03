@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import Image from "next/image";
 import Link from "next/link";
@@ -29,11 +30,11 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       description: lang === 'id' ? descriptionId : description,
     },
     alternates: {
-      canonical: `/${lang}/career`,
+      canonical: `https://mpnsolutions.my.id/${lang}/career`,
       languages: {
-        'en': '/en/career',
-        'id': '/id/career',
-        'x-default': '/en/career',
+        'en': 'https://mpnsolutions.my.id/en/career',
+        'id': 'https://mpnsolutions.my.id/id/career',
+        'x-default': 'https://mpnsolutions.my.id/en/career',
       },
     },
   };
@@ -170,3 +171,5 @@ export default async function CareerPage({ params: { lang } }: { params: { lang:
     </main>
   );
 }
+
+    

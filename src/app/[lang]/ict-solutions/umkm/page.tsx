@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import Image from "next/image";
 import Link from "next/link";
@@ -29,11 +30,11 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       description: lang === 'id' ? descriptionId : description,
     },
     alternates: {
-      canonical: `/${lang}/ict-solutions/umkm`,
+      canonical: `https://mpnsolutions.my.id/${lang}/ict-solutions/umkm`,
       languages: {
-        'en': '/en/ict-solutions/umkm',
-        'id': '/id/ict-solutions/umkm',
-        'x-default': '/en/ict-solutions/umkm',
+        'en': 'https://mpnsolutions.my.id/en/ict-solutions/umkm',
+        'id': 'https://mpnsolutions.my.id/id/ict-solutions/umkm',
+        'x-default': 'https://mpnsolutions.my.id/en/ict-solutions/umkm',
       },
     },
   };
@@ -216,3 +217,5 @@ const advantages = [
     </main>
   );
 }
+
+    

@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import { Wrench } from "lucide-react";
 import Link from "next/link";
@@ -24,11 +25,11 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       url: `https://mpnsolutions.my.id/${lang}/insight/news`,
     },
     alternates: {
-      canonical: `/${lang}/insight/news`,
+      canonical: `https://mpnsolutions.my.id/${lang}/insight/news`,
       languages: {
-        'en': '/en/insight/news',
-        'id': '/id/insight/news',
-        'x-default': '/en/insight/news',
+        'en': 'https://mpnsolutions.my.id/en/insight/news',
+        'id': 'https://mpnsolutions.my.id/id/insight/news',
+        'x-default': 'https://mpnsolutions.my.id/en/insight/news',
       },
     },
   };
@@ -70,3 +71,5 @@ export default async function NewsPage({ params: { lang } }: { params: { lang: L
     </main>
   );
 }
+
+    

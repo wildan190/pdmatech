@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import { Wrench } from "lucide-react";
 import Link from "next/link";
@@ -24,11 +25,11 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       url: `https://mpnsolutions.my.id/${lang}/insight/article`,
     },
     alternates: {
-      canonical: `/${lang}/insight/article`,
+      canonical: `https://mpnsolutions.my.id/${lang}/insight/article`,
       languages: {
-        'en': '/en/insight/article',
-        'id': '/id/insight/article',
-        'x-default': '/en/insight/article',
+        'en': 'https://mpnsolutions.my.id/en/insight/article',
+        'id': 'https://mpnsolutions.my.id/id/insight/article',
+        'x-default': 'https://mpnsolutions.my.id/en/insight/article',
       },
     },
   };
@@ -70,3 +71,5 @@ export default async function ArticlePage({ params: { lang } }: { params: { lang
     </main>
   );
 }
+
+    

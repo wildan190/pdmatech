@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import Image from "next/image";
 import Link from "next/link";
@@ -28,11 +29,11 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       description: lang === 'id' ? descriptionId : description,
     },
     alternates: {
-      canonical: `/${lang}/ict-solutions/web`,
+      canonical: `https://mpnsolutions.my.id/${lang}/ict-solutions/web`,
       languages: {
-        'en': '/en/ict-solutions/web',
-        'id': '/id/ict-solutions/web',
-        'x-default': '/en/ict-solutions/web',
+        'en': 'https://mpnsolutions.my.id/en/ict-solutions/web',
+        'id': 'https://mpnsolutions.my.id/id/ict-solutions/web',
+        'x-default': 'https://mpnsolutions.my.id/en/ict-solutions/web',
       },
     },
   };
@@ -220,3 +221,5 @@ const whyChooseUsData = [
     </main>
   );
 }
+
+    

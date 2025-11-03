@@ -9,7 +9,8 @@ import { getDictionary } from "@/lib/dictionaries";
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
-  const title = dictionary.aboutUsSubMenu.privacy.title;
+  const pageDict = dictionary.privacyPage;
+  const title = pageDict.breadcrumb;
   const description = 'Read the Privacy Policy of Micro Padma Nusantara. We are committed to protecting your data and privacy when you use our services.';
   const descriptionId = 'Baca Kebijakan Privasi Micro Padma Nusantara. Kami berkomitmen untuk melindungi data dan privasi Anda saat Anda menggunakan layanan kami.';
 
@@ -27,11 +28,11 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       description: lang === 'id' ? descriptionId : description,
     },
     alternates: {
-      canonical: `/${lang}/about/privacy`,
+      canonical: `https://mpnsolutions.my.id/${lang}/about/privacy`,
       languages: {
-        'en': '/en/about/privacy',
-        'id': '/id/about/privacy',
-        'x-default': '/en/about/privacy',
+        'en': 'https://mpnsolutions.my.id/en/about/privacy',
+        'id': 'https://mpnsolutions.my.id/id/about/privacy',
+        'x-default': 'https://mpnsolutions.my.id/en/about/privacy',
       },
     },
   };
@@ -142,3 +143,5 @@ export default async function PrivacyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
+
+    
