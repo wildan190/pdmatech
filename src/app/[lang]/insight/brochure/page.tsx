@@ -5,9 +5,10 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Cpu, Layers, Store, Globe, Shield, CheckCircle, Zap, Goal, Download } from "lucide-react";
+import { ArrowRight, Cpu, Layers, Store, Globe, Shield, CheckCircle, Zap, Goal } from "lucide-react";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import PrintButton from '@/components/brochure/print-button';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/brochure';
@@ -46,18 +47,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     },
   };
 }
-
-// Client Component for the Print Button
-function PrintButton({ dictionary }: { dictionary: any }) {
-  'use client';
-  return (
-    <Button size="lg" className="mt-8 no-print" onClick={() => window.print()}>
-      <Download className="mr-2 h-5 w-5" />
-      {dictionary.downloadButton}
-    </Button>
-  );
-}
-
 
 export default async function BrochurePage({ params: { lang } }: { params: { lang: Locale }}) {
   const dictionary = await getDictionary(lang);
@@ -155,7 +144,7 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
           <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
             {pageDict.hero.description}
           </p>
-           <PrintButton dictionary={pageDict.hero} />
+           <PrintButton>{pageDict.hero.downloadButton}</PrintButton>
         </div>
       </section>
 
@@ -256,5 +245,3 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
     </main>
   );
 }
-
-    
