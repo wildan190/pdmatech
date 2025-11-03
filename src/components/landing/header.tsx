@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 import React from 'react';
+import { Menu } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const aboutUsComponents: { title: string; href: string; description: string }[] = [
   {
@@ -64,14 +66,12 @@ const insightComponents: { title: string; href: string; description: string }[] 
 const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="h-6 w-6 text-primary">
-            <rect width="256" height="256" fill="none"></rect>
-            <path d="M128,24a104,104,0,1,0,104,104A104.2,104.2,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Z" fill="currentColor"></path>
-            <path d="M168,88.9,104,128l64,39.1a8,8,0,0,0,8-13.8L121.5,128l54.5-25.3a8,8,0,1,0-8-13.8Z" fill="currentColor"></path>
-          </svg>
-          <span className="font-bold font-headline text-lg">Micro Padma Nusantara</span>
+      <div className="container flex h-20 max-w-screen-2xl items-center justify-between">
+        <Link href="/" className="flex items-center">
+          <div>
+            <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
+            <div className="text-xs text-muted-foreground">Your Business Partner</div>
+          </div>
         </Link>
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
@@ -124,16 +124,37 @@ const Header = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
              <NavigationMenuItem>
-              <Link href="/#contact" className={navigationMenuTriggerStyle()}>
-                Contact
-              </Link>
+              <Button asChild>
+                <Link href="/#contact">Contact Us</Link>
+              </Button>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
          <div className="flex items-center gap-4 md:hidden">
-            <Button asChild>
-                <a href="#contact">Contact Us</a>
-            </Button>
+             <Sheet>
+                <SheetTrigger asChild>
+                    <Button variant="outline" size="icon">
+                        <Menu className="h-5 w-5" />
+                        <span className="sr-only">Open menu</span>
+                    </Button>
+                </SheetTrigger>
+                <SheetContent side="left">
+                    <div className="grid gap-4 py-6">
+                        <Link href="/about/company" className="font-medium">Our Company</Link>
+                        <Link href="/about/people" className="font-medium">Our People</Link>
+                        <Link href="/about/privacy" className="font-medium">Privacy Policy</Link>
+                        <Link href="/ict-solutions/enterprise" className="font-medium">Enterprise Solutions</Link>
+                        <Link href="/ict-solutions/umkm" className="font-medium">UMKM Solutions</Link>
+                        <Link href="/ict-solutions/web" className="font-medium">Web Solutions</Link>
+                        <Link href="/insight/news" className="font-medium">News</Link>
+                        <Link href="/insight/article" className="font-medium">Articles</Link>
+                        <Link href="/insight/brochure" className="font-medium">Brochure</Link>
+                        <Button asChild>
+                            <Link href="/#contact">Contact Us</Link>
+                        </Button>
+                    </div>
+                </SheetContent>
+             </Sheet>
         </div>
       </div>
     </header>
