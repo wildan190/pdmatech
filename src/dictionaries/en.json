@@ -57,6 +57,8 @@
     },
     "footer": {
         "tagline": "Pioneering future-ready ICT & IoT solutions to empower businesses in the digital era.",
+        "company": "Company",
+        "resources": "Resources",
         "contactUs": "Contact Us",
         "quickLinks": "Quick Links",
         "followUs": "Follow Us",
@@ -550,11 +552,53 @@
             "button": "Contact Us"
         }
     },
+    "investorPage": {
+        "breadcrumb": "Investor Relations",
+        "hero": {
+            "title": "Investing in the Future of Indonesian Technology",
+            "description": "Join us in our mission to empower businesses and drive digital transformation across the archipelago."
+        },
+        "whyInvest": {
+            "pretitle": "VALUE PROPOSITION",
+            "title": "Why Invest in Micro Padma Nusantara?",
+            "description": "We are positioned at the forefront of Indonesia's digital revolution, offering a unique investment opportunity in a high-growth market.",
+            "items": [
+                {
+                    "title": "Strategic Market Position",
+                    "description": "Targeting the underserved yet vast enterprise and UMKM sectors with essential technology solutions."
+                },
+                {
+                    "title": "Innovation-Driven",
+                    "description": "A strong focus on scalable, high-demand solutions in IoT and custom enterprise software."
+                },
+                {
+                    "title": "Experienced Leadership",
+                    "description": "Led by a dynamic team with a proven track record in technology and strategic business development."
+                },
+                {
+                    "title": "High Growth Potential",
+                    "description": "Capitalizing on the rapid digitalization of the Indonesian economy with a lean and agile operational model."
+                }
+            ]
+        },
+        "financials": {
+            "title": "Financial Highlights",
+            "description": "We are committed to sustainable growth and transparent financial reporting. (Financial data will be available here)."
+        },
+        "resources": {
+            "title": "Investor Resources",
+            "description": "Access reports, presentations, and other important information.",
+            "comingSoon": "Investor resources are not yet available. Please check back soon."
+        },
+        "contact": {
+            "title": "Investor Inquiries",
+            "description": "For investor-related questions, please contact our team directly.",
+            "email": "investor.relations@mpnsolutions.my.id"
+        }
+    },
     "common": {
         "home": "Home",
         "aboutUs": "About Us",
         "learnMore": "Learn More"
     }
 }
-
-    

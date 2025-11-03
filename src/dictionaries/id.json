@@ -57,6 +57,8 @@
     },
     "footer": {
         "tagline": "Merintis solusi ICT & IoT yang siap masa depan untuk memberdayakan bisnis di era digital.",
+        "company": "Perusahaan",
+        "resources": "Sumber Daya",
         "contactUs": "Hubungi Kami",
         "quickLinks": "Tautan Cepat",
         "followUs": "Ikuti Kami",
@@ -550,11 +552,53 @@
             "button": "Hubungi Kami"
         }
     },
+    "investorPage": {
+        "breadcrumb": "Hubungan Investor",
+        "hero": {
+            "title": "Berinvestasi di Masa Depan Teknologi Indonesia",
+            "description": "Bergabunglah dengan kami dalam misi kami untuk memberdayakan bisnis dan mendorong transformasi digital di seluruh nusantara."
+        },
+        "whyInvest": {
+            "pretitle": "PROPOSISI NILAI",
+            "title": "Mengapa Berinvestasi di Micro Padma Nusantara?",
+            "description": "Kami berada di garis depan revolusi digital Indonesia, menawarkan peluang investasi unik di pasar dengan pertumbuhan tinggi.",
+            "items": [
+                {
+                    "title": "Posisi Pasar Strategis",
+                    "description": "Menargetkan sektor enterprise dan UMKM yang luas namun kurang terlayani dengan solusi teknologi esensial."
+                },
+                {
+                    "title": "Didorong oleh Inovasi",
+                    "description": "Fokus kuat pada solusi yang dapat diskalakan dan banyak diminati di bidang IoT dan perangkat lunak enterprise kustom."
+                },
+                {
+                    "title": "Kepemimpinan Berpengalaman",
+                    "description": "Dipimpin oleh tim dinamis dengan rekam jejak yang terbukti di bidang teknologi dan pengembangan bisnis strategis."
+                },
+                {
+                    "title": "Potensi Pertumbuhan Tinggi",
+                    "description": "Memanfaatkan digitalisasi ekonomi Indonesia yang pesat dengan model operasional yang ramping dan gesit."
+                }
+            ]
+        },
+        "financials": {
+            "title": "Sorotan Keuangan",
+            "description": "Kami berkomitmen pada pertumbuhan berkelanjutan dan pelaporan keuangan yang transparan. (Data keuangan akan tersedia di sini)."
+        },
+        "resources": {
+            "title": "Sumber Daya Investor",
+            "description": "Akses laporan, presentasi, dan informasi penting lainnya.",
+            "comingSoon": "Sumber daya investor belum tersedia. Silakan periksa kembali segera."
+        },
+        "contact": {
+            "title": "Pertanyaan Investor",
+            "description": "Untuk pertanyaan terkait investor, silakan hubungi tim kami secara langsung.",
+            "email": "investor.relations@mpnsolutions.my.id"
+        }
+    },
     "common": {
         "home": "Beranda",
         "aboutUs": "Tentang Kami",
         "learnMore": "Pelajari Lebih Lanjut"
     }
 }
-
-    

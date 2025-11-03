@@ -16,7 +16,8 @@ const routes = [
   '/contact',
   '/insight/news',
   '/insight/article',
-  '/insight/brochure'
+  '/insight/brochure',
+  '/investor'
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
