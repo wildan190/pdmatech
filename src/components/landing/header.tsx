@@ -73,7 +73,7 @@ const insightComponents: { title: string; href: string; description: string }[] 
 const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 items-center justify-between">
+      <div className="container flex h-20 items-center justify-between px-4">
         <Link href="/" className="flex items-start">
           <div>
             <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
