@@ -116,9 +116,7 @@
                 "message": "Your Message",
                 "messagePlaceholder": "Tell us about your project...",
                 "agreement": "I agree to provide my personal data to Micro Padma Nusantara and have read the <a href='/en/about/privacy' class='underline' target='_blank'>Privacy Policy</a>. Furthermore, I am willing to be contacted by Micro Padma Nusantara through my personal communication media in accordance with the information I provide.",
-                "submit": "Start Your Transformation",
-                "successTitle": "Message Sent!",
-                "successDescription": "Thank you for contacting us. We'll get back to you shortly."
+                "submit": "Start Your Transformation"
             }
         }
     },
@@ -511,9 +509,28 @@
             "subheadline": "Have a question, a project, or just want to say hello? We'd love to hear from you. Fill out the form below and our team will get back to you shortly."
         }
     },
+    "brochurePage": {
+        "breadcrumb": "Brochure",
+        "hero": {
+            "title": "Discover Our Innovations",
+            "description": "An overview of our mission, solutions, and commitment to driving your business forward through technology.",
+            "imageAlt": "Abstract technology background representing innovation"
+        },
+        "services": {
+            "title": "Our Core Solutions",
+            "description": "We deliver end-to-end solutions tailored to meet the unique challenges of your business, from foundational web presence to complex IoT ecosystems."
+        },
+        "cta": {
+            "title": "Let's Create the Future, Together.",
+            "description": "Ready to discuss how our technological expertise can elevate your business? Our team is ready to listen.",
+            "button": "Contact Us"
+        }
+    },
     "common": {
         "home": "Home",
         "aboutUs": "About Us",
         "learnMore": "Learn More"
     }
 }
+
+    

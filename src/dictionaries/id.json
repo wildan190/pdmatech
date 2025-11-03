@@ -116,9 +116,7 @@
                 "message": "Pesan Anda",
                 "messagePlaceholder": "Ceritakan tentang proyek Anda...",
                 "agreement": "Saya setuju untuk memberikan data pribadi saya kepada Micro Padma Nusantara dan telah membaca <a href='/id/about/privacy' class='underline' target='_blank'>Kebijakan Privasi</a>. Selanjutnya, saya bersedia dihubungi oleh Micro Padma Nusantara melalui media komunikasi pribadi saya sesuai dengan informasi yang saya berikan.",
-                "submit": "Mulai Transformasi Anda",
-                "successTitle": "Pesan Terkirim!",
-                "successDescription": "Terima kasih telah menghubungi kami. Kami akan segera menghubungi Anda kembali."
+                "submit": "Mulai Transformasi Anda"
             }
         }
     },
@@ -511,9 +509,28 @@
             "subheadline": "Punya pertanyaan, proyek, atau hanya ingin menyapa? Kami ingin mendengar dari Anda. Isi formulir di bawah ini dan tim kami akan segera menghubungi Anda."
         }
     },
+     "brochurePage": {
+        "breadcrumb": "Brosur",
+        "hero": {
+            "title": "Temukan Inovasi Kami",
+            "description": "Gambaran umum tentang misi, solusi, dan komitmen kami untuk mendorong bisnis Anda maju melalui teknologi.",
+            "imageAlt": "Latar belakang teknologi abstrak yang merepresentasikan inovasi"
+        },
+        "services": {
+            "title": "Solusi Inti Kami",
+            "description": "Kami memberikan solusi menyeluruh yang disesuaikan untuk memenuhi tantangan unik bisnis Anda, dari kehadiran web dasar hingga ekosistem IoT yang kompleks."
+        },
+        "cta": {
+            "title": "Mari Ciptakan Masa Depan, Bersama.",
+            "description": "Siap untuk membahas bagaimana keahlian teknologi kami dapat mengangkat bisnis Anda? Tim kami siap mendengarkan.",
+            "button": "Hubungi Kami"
+        }
+    },
     "common": {
         "home": "Beranda",
         "aboutUs": "Tentang Kami",
         "learnMore": "Pelajari Lebih Lanjut"
     }
 }
+
+    

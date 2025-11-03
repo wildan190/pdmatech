@@ -20,16 +20,20 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sitemapEntries: MetadataRoute.Sitemap = routes.map((route) => ({
-    url: `${URL}/en${route}`,
-    lastModified: new Date(),
-    alternates: {
-      languages: {
-        'en': `${URL}/en${route}`,
-        'id': `${URL}/id${route}`,
+  const sitemapEntries: MetadataRoute.Sitemap = routes
+    .filter(route => !route.includes('under-construction')) // Filter out under-construction pages if any
+    .map((route) => ({
+      url: `${URL}/en${route}`,
+      lastModified: new Date(),
+      alternates: {
+        languages: {
+          'en': `${URL}/en${route}`,
+          'id': `${URL}/id${route}`,
+        },
       },
-    },
   }));
 
   return sitemapEntries;
 }
+
+    
