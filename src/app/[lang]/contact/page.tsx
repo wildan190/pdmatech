@@ -99,11 +99,11 @@ export default async function ContactPage({ params: { lang } }: { params: { lang
       {/* Hero */}
       <section className="relative h-[50vh] flex items-center">
           <Image
-              src="/assets/img/home/contact-hero.jpg"
-              alt="An abstract image of glowing network connections, representing technology and communication."
+              src="/assets/img/contactus/contactus.jpg"
+              alt="A person's hands typing on a laptop, signifying communication and getting in touch."
               fill
               className="object-cover"
-              data-ai-hint="technology communication"
+              data-ai-hint="contact communication"
           />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 container text-left text-white">
