@@ -223,10 +223,10 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
                 <MapPin className="mx-auto h-12 w-12 text-primary mb-4" />
                 <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Location</h2>
                 <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-                    Find us at our office in Rangkasbitung, Banten.
+                    Find us at our office in Rangkasbitung, Banten. We look forward to welcoming you.
                 </p>
             </div>
-            <div className="aspect-video w-full rounded-lg overflow-hidden shadow-2xl">
+            <div className="aspect-video w-full rounded-lg overflow-hidden border">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.383196940831!2d106.2482343152686!3d-6.36531589531535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e4216d25245428d%3A0x86c236f1c42a225!2sJl.+Prof.+Dr.+Ir.+Soetami%2C+Cijoro+Pasir%2C+Kec.+Rangkasbitung%2C+Kabupaten+Lebak%2C+Banten+42316!5e0!3m2!1sen!2sid!4v1678886543210"
                     width="100%"
@@ -254,3 +254,5 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
+
+    
