@@ -244,7 +244,7 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
       </section>
       
       {/* Our Program Section */}
-      <section className="py-20 lg:py-24 bg-secondary/50">
+      <section id="our-program" className="py-20 lg:py-24 bg-secondary/50">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.ourProgram.title}</h2>
@@ -319,5 +319,3 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
-
-    
