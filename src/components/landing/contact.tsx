@@ -11,7 +11,6 @@ import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -32,7 +31,6 @@ const formSchema = z.object({
 
 const Contact = () => {
   const { toast } = useToast();
-  const contactImage = PlaceHolderImages.find(p => p.id === 'contact-background');
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -57,15 +55,12 @@ const Contact = () => {
 
   return (
     <section id="contact" className="relative py-20 lg:py-32">
-       {contactImage && (
         <Image
-          src={contactImage.imageUrl}
-          alt={contactImage.description}
+          src="/assets/img/home/tech.jpg"
+          alt="Abstract technology background"
           fill
           className="object-cover"
-          data-ai-hint={contactImage.imageHint}
         />
-      )}
       <div className="absolute inset-0 bg-black/70"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
