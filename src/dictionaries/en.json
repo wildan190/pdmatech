@@ -160,6 +160,9 @@
             "title": "Our Journey",
             "content": "Founded on the principle of innovation and partnership, Micro Padma Nusantara began its journey to bridge the technology gap for businesses in Indonesia. Over the years, we have grown into a trusted ICT and IoT solutions provider, known for our commitment to quality, reliability, and client success. Our story is one of continuous evolution, driven by a passion for technology and a dedication to empowering our clients."
         },
+        "founderQuote": {
+            "text": "Technology is a powerful tool, but its true potential is only unlocked when it's used to empower people and solve real-world problems. Our mission is to be the catalyst for that transformation."
+        },
         "vision": {
             "title": "Our Vision",
             "content": "To be the leading partner for businesses in Indonesia, pioneering innovative and sustainable technology solutions that drive digital transformation and create lasting value."
@@ -625,3 +628,5 @@
         "learnMore": "Learn More"
     }
 }
+
+    

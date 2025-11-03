@@ -160,6 +160,9 @@
             "title": "Perjalanan Kami",
             "content": "Didirikan dengan prinsip inovasi dan kemitraan, Micro Padma Nusantara memulai perjalanannya untuk menjembatani kesenjangan teknologi bagi bisnis di Indonesia. Selama bertahun-tahun, kami telah tumbuh menjadi penyedia solusi ICT dan IoT tepercaya, yang dikenal atas komitmen kami terhadap kualitas, keandalan, dan kesuksesan klien. Kisah kami adalah tentang evolusi berkelanjutan, didorong oleh semangat untuk teknologi dan dedikasi untuk memberdayakan klien kami."
         },
+        "founderQuote": {
+            "text": "Teknologi adalah alat yang kuat, tetapi potensi sebenarnya hanya terbuka ketika digunakan untuk memberdayakan orang dan memecahkan masalah dunia nyata. Misi kami adalah menjadi katalisator untuk transformasi itu."
+        },
         "vision": {
             "title": "Visi Kami",
             "content": "Menjadi mitra terdepan bagi bisnis di Indonesia, memelopori solusi teknologi inovatif dan berkelanjutan yang mendorong transformasi digital dan menciptakan nilai jangka panjang."
@@ -625,3 +628,5 @@
         "learnMore": "Pelajari Lebih Lanjut"
     }
 }
+
+    
