@@ -47,6 +47,18 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 }
 
+// Client Component for the Print Button
+function PrintButton({ dictionary }: { dictionary: any }) {
+  'use client';
+  return (
+    <Button size="lg" className="mt-8 no-print" onClick={() => window.print()}>
+      <Download className="mr-2 h-5 w-5" />
+      {dictionary.downloadButton}
+    </Button>
+  );
+}
+
+
 export default async function BrochurePage({ params: { lang } }: { params: { lang: Locale }}) {
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.brochurePage;
@@ -107,7 +119,7 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
     <main className="flex-grow bg-background">
       
       {/* Breadcrumb */}
-      <section className="bg-secondary/50 py-4 border-b">
+      <section className="bg-secondary/50 py-4 border-b no-print">
         <div className="container">
            <Breadcrumb>
               <BreadcrumbList>
@@ -143,12 +155,7 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
           <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
             {pageDict.hero.description}
           </p>
-           <Button size="lg" className="mt-8" asChild>
-            <a href="mailto:micropadmanusantara@gmail.com?subject=Request for Company Brochure">
-                <Download className="mr-2 h-5 w-5" />
-                {pageDict.hero.downloadButton}
-            </a>
-          </Button>
+           <PrintButton dictionary={pageDict.hero} />
         </div>
       </section>
 
@@ -197,7 +204,7 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
                   <CardContent className="p-0 flex-grow">
                     <p className="text-muted-foreground text-sm">{service.description}</p>
                   </CardContent>
-                  <div className="mt-6 w-full">
+                  <div className="mt-6 w-full no-print">
                      <Button variant="outline" asChild className="w-full">
                         <Link href={service.href}>
                             {commonDict.learnMore} <ArrowRight className="ml-2 h-4 w-4" />
@@ -237,7 +244,7 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-24 bg-primary text-primary-foreground">
+      <section className="py-20 lg:py-24 bg-primary text-primary-foreground no-print">
         <div className="container text-center">
           <h2 className="text-3xl font-bold font-headline mb-4">{pageDict.cta.title}</h2>
           <p className="max-w-2xl mx-auto mb-8">{pageDict.cta.description}</p>
@@ -249,3 +256,5 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
     </main>
   );
 }
+
+    

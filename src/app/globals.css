@@ -66,3 +66,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @media print {
+    .no-print {
+      display: none;
+    }
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    section {
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important;
+    }
+    header, footer {
+      display: none;
+    }
+  }
+}
