@@ -14,7 +14,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Our articles page is currently under construction. Please check back soon for in-depth analysis on ICT, IoT, and business technology trends.';
   const descriptionId = 'Halaman artikel kami sedang dalam pembangunan. Silakan periksa kembali segera untuk analisis mendalam tentang tren ICT, IoT, dan teknologi bisnis.';
 
-  const canonicalUrl = `${baseUrl}/${lang}/insight/article`;
+  const path = '/insight/article';
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title: `${title} - On Construction`,
@@ -26,9 +27,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en/insight/article`,
-        'id': `${baseUrl}/id/insight/article`,
-        'x-default': `${baseUrl}/en/insight/article`,
+        'en': `${baseUrl}/en${path}`,
+        'id': `${baseUrl}/id${path}`,
+        'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
@@ -75,7 +76,3 @@ export default async function ArticlePage({ params: { lang } }: { params: { lang
     </main>
   );
 }
-
-    
-
-    

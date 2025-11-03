@@ -18,7 +18,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Join our team of innovators at Micro Padma Nusantara. Explore career opportunities and become part of our mission to shape the future of technology in Indonesia.';
   const descriptionId = 'Bergabunglah dengan tim inovator kami di Micro Padma Nusantara. Jelajahi peluang karir dan jadilah bagian dari misi kami untuk membentuk masa depan teknologi di Indonesia.';
 
-  const canonicalUrl = `${baseUrl}/${lang}/career`;
+  const path = '/career';
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title: `${title} at Micro Padma Nusantara`,
@@ -27,9 +28,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en/career`,
-        'id': `${baseUrl}/id/career`,
-        'x-default': `${baseUrl}/en/career`,
+        'en': `${baseUrl}/en${path}`,
+        'id': `${baseUrl}/id${path}`,
+        'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
@@ -175,7 +176,3 @@ export default async function CareerPage({ params: { lang } }: { params: { lang:
     </main>
   );
 }
-
-    
-
-    

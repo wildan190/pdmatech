@@ -18,7 +18,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Empowering small and medium enterprises (UMKM) in Indonesia with affordable and effective digital solutions, including websites, POS Lite, and social media management.';
   const descriptionId = 'Memberdayakan usaha kecil dan menengah (UMKM) di Indonesia dengan solusi digital yang terjangkau dan efektif, termasuk situs web, POS Lite, dan manajemen media sosial.';
 
-  const canonicalUrl = `${baseUrl}/${lang}/ict-solutions/umkm`;
+  const path = '/ict-solutions/umkm';
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title,
@@ -27,9 +28,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en/ict-solutions/umkm`,
-        'id': `${baseUrl}/id/ict-solutions/umkm`,
-        'x-default': `${baseUrl}/en/ict-solutions/umkm`,
+        'en': `${baseUrl}/en${path}`,
+        'id': `${baseUrl}/id${path}`,
+        'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
@@ -221,7 +222,3 @@ const advantages = [
     </main>
   );
 }
-
-    
-
-    

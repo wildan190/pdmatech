@@ -14,7 +14,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Our company brochure is being prepared and will be available for download soon. Please check back later.';
   const descriptionId = 'Brosur perusahaan kami sedang disiapkan dan akan segera tersedia untuk diunduh. Silakan periksa kembali nanti.';
 
-  const canonicalUrl = `${baseUrl}/${lang}/insight/brochure`;
+  const path = '/insight/brochure';
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title: `${title} - On Construction`,
@@ -26,9 +27,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en/insight/brochure`,
-        'id': `${baseUrl}/id/insight/brochure`,
-        'x-default': `${baseUrl}/en/insight/brochure`,
+        'en': `${baseUrl}/en${path}`,
+        'id': `${baseUrl}/id${path}`,
+        'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
@@ -76,7 +77,3 @@ export default async function BrochurePage({ params: { lang } }: { params: { lan
     </main>
   );
 }
-
-    
-
-    

@@ -115,7 +115,7 @@
                 "industryPlaceholder": "e.g., Technology, Finance",
                 "message": "Your Message",
                 "messagePlaceholder": "Tell us about your project...",
-                "agreement": "I agree to provide my personal data to Micro Padma Nusantara and have read Micro Padma Nusantara's Privacy Policy. Furthermore, I am willing to be contacted by Micro Padma Nusantara through my personal communication media in accordance with the information I provide.",
+                "agreement": "I agree to provide my personal data to Micro Padma Nusantara and have read the <a href='/en/about/privacy' class='underline' target='_blank'>Privacy Policy</a>. Furthermore, I am willing to be contacted by Micro Padma Nusantara through my personal communication media in accordance with the information I provide.",
                 "submit": "Start Your Transformation",
                 "successTitle": "Message Sent!",
                 "successDescription": "Thank you for contacting us. We'll get back to you shortly."
@@ -504,8 +504,16 @@
             "news": "News"
         }
     },
+    "contactPage": {
+        "breadcrumb": "Contact Us",
+        "hero": {
+            "headline": "Let's Connect",
+            "subheadline": "Have a question, a project, or just want to say hello? We'd love to hear from you. Fill out the form below and our team will get back to you shortly."
+        }
+    },
     "common": {
         "home": "Home",
-        "aboutUs": "About Us"
+        "aboutUs": "About Us",
+        "learnMore": "Learn More"
     }
 }

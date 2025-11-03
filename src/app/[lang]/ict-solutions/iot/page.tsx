@@ -18,7 +18,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Transform your business with our end-to-end IoT solutions. From smart monitoring and asset tracking to industrial automation, we connect your world for enhanced efficiency.';
   const descriptionId = 'Ubah bisnis Anda dengan solusi IoT end-to-end kami. Dari pemantauan cerdas dan pelacakan aset hingga otomatisasi industri, kami menghubungkan dunia Anda untuk efisiensi yang lebih baik.';
 
-  const canonicalUrl = `${baseUrl}/${lang}/ict-solutions/iot`;
+  const path = '/ict-solutions/iot';
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title,
@@ -27,9 +28,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en/ict-solutions/iot`,
-        'id': `${baseUrl}/id/ict-solutions/iot`,
-        'x-default': `${baseUrl}/en/ict-solutions/iot`,
+        'en': `${baseUrl}/en${path}`,
+        'id': `${baseUrl}/id${path}`,
+        'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
@@ -234,7 +235,3 @@ const processSteps = [
     </main>
   );
 }
-
-    
-
-    

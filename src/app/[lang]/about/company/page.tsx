@@ -19,7 +19,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Learn about the history, mission, and vision of Micro Padma Nusantara. We are dedicated to delivering transformative ICT and IoT solutions in Indonesia.';
   const descriptionId = 'Pelajari tentang sejarah, misi, dan visi Micro Padma Nusantara. Kami berdedikasi untuk memberikan solusi ICT dan IoT yang transformatif di Indonesia.';
   
-  const canonicalUrl = `${baseUrl}/${lang}/about/company`;
+  const path = '/about/company';
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title,
@@ -28,9 +29,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en/about/company`,
-        'id': `${baseUrl}/id/about/company`,
-        'x-default': `${baseUrl}/en/about/company`,
+        'en': `${baseUrl}/en${path}`,
+        'id': `${baseUrl}/id${path}`,
+        'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
@@ -228,7 +229,3 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
-
-    
-
-    

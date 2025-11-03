@@ -115,7 +115,7 @@
                 "industryPlaceholder": "misalnya, Teknologi, Keuangan",
                 "message": "Pesan Anda",
                 "messagePlaceholder": "Ceritakan tentang proyek Anda...",
-                "agreement": "Saya setuju untuk memberikan data pribadi saya kepada Micro Padma Nusantara dan telah membaca Kebijakan Privasi Micro Padma Nusantara. Selanjutnya, saya bersedia dihubungi oleh Micro Padma Nusantara melalui media komunikasi pribadi saya sesuai dengan informasi yang saya berikan.",
+                "agreement": "Saya setuju untuk memberikan data pribadi saya kepada Micro Padma Nusantara dan telah membaca <a href='/id/about/privacy' class='underline' target='_blank'>Kebijakan Privasi</a>. Selanjutnya, saya bersedia dihubungi oleh Micro Padma Nusantara melalui media komunikasi pribadi saya sesuai dengan informasi yang saya berikan.",
                 "submit": "Mulai Transformasi Anda",
                 "successTitle": "Pesan Terkirim!",
                 "successDescription": "Terima kasih telah menghubungi kami. Kami akan segera menghubungi Anda kembali."
@@ -504,8 +504,16 @@
             "news": "Berita"
         }
     },
+    "contactPage": {
+        "breadcrumb": "Hubungi Kami",
+        "hero": {
+            "headline": "Mari Terhubung",
+            "subheadline": "Punya pertanyaan, proyek, atau hanya ingin menyapa? Kami ingin mendengar dari Anda. Isi formulir di bawah ini dan tim kami akan segera menghubungi Anda."
+        }
+    },
     "common": {
         "home": "Beranda",
-        "aboutUs": "Tentang Kami"
+        "aboutUs": "Tentang Kami",
+        "learnMore": "Pelajari Lebih Lanjut"
     }
 }

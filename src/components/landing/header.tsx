@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -141,9 +142,9 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
               </NavigationMenuContent>
             </NavigationMenuItem>
              <NavigationMenuItem>
-              <Button asChild>
-                <Link href={`/${lang}/#contact`}>{dictionary.navigation.contactUs}</Link>
-              </Button>
+                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                    <Link href={`/${lang}/contact`}>{dictionary.navigation.contactUs}</Link>
+                </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
                 <LanguageSwitcher lang={lang} />
@@ -196,7 +197,7 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
                       </AccordionItem>
                     </Accordion>
                     <Button asChild className="w-full mt-6">
-                        <Link href={`/${lang}/#contact`} onClick={handleLinkClick}>{dictionary.navigation.contactUs}</Link>
+                        <Link href={`/${lang}/contact`} onClick={handleLinkClick}>{dictionary.navigation.contactUs}</Link>
                     </Button>
                 </SheetContent>
              </Sheet>

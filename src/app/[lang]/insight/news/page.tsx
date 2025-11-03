@@ -14,7 +14,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Our news section is being updated with the latest stories and updates from Micro Padma Nusantara. Please check back soon.';
   const descriptionId = 'Bagian berita kami sedang diperbarui dengan cerita dan pembaruan terbaru dari Micro Padma Nusantara. Silakan periksa kembali segera.';
 
-  const canonicalUrl = `${baseUrl}/${lang}/insight/news`;
+  const path = '/insight/news';
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title: `${title} - On Construction`,
@@ -26,9 +27,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en/insight/news`,
-        'id': `${baseUrl}/id/insight/news`,
-        'x-default': `${baseUrl}/en/insight/news`,
+        'en': `${baseUrl}/en${path}`,
+        'id': `${baseUrl}/id${path}`,
+        'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
@@ -75,7 +76,3 @@ export default async function NewsPage({ params: { lang } }: { params: { lang: L
     </main>
   );
 }
-
-    
-
-    

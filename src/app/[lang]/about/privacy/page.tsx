@@ -16,7 +16,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Read the Privacy Policy of Micro Padma Nusantara. We are committed to protecting your data and privacy when you use our services.';
   const descriptionId = 'Baca Kebijakan Privasi Micro Padma Nusantara. Kami berkomitmen untuk melindungi data dan privasi Anda saat Anda menggunakan layanan kami.';
 
-  const canonicalUrl = `${baseUrl}/${lang}/about/privacy`;
+  const path = '/about/privacy';
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title,
@@ -25,9 +26,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en/about/privacy`,
-        'id': `${baseUrl}/id/about/privacy`,
-        'x-default': `${baseUrl}/en/about/privacy`,
+        'en': `${baseUrl}/en${path}`,
+        'id': `${baseUrl}/id${path}`,
+        'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
@@ -147,7 +148,3 @@ export default async function PrivacyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
-
-    
-
-    

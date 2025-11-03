@@ -18,7 +18,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Meet the talented team of leaders and innovators at Micro Padma Nusantara. Our experts are dedicated to driving your business success through technology.';
   const descriptionId = 'Temui tim pemimpin dan inovator berbakat di Micro Padma Nusantara. Para ahli kami berdedikasi untuk mendorong kesuksesan bisnis Anda melalui teknologi.';
 
-  const canonicalUrl = `${baseUrl}/${lang}/about/people`;
+  const path = '/about/people';
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title,
@@ -27,9 +28,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en/about/people`,
-        'id': `${baseUrl}/id/about/people`,
-        'x-default': `${baseUrl}/en/about/people`,
+        'en': `${baseUrl}/en${path}`,
+        'id': `${baseUrl}/id${path}`,
+        'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
@@ -158,7 +159,3 @@ export default async function PeoplePage({ params: { lang } }: { params: { lang:
     </main>
   );
 }
-
-    
-
-    

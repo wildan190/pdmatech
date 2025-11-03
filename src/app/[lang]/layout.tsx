@@ -87,6 +87,14 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     },
     description,
     keywords,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en': `${baseUrl}/en`,
+        'id': `${baseUrl}/id`,
+        'x-default': `${baseUrl}/en`,
+      },
+    },
     openGraph: {
       title: ogTitle,
       description: ogDescription,
@@ -109,14 +117,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       description: ogDescription,
       creator: '@micropadma',
       images: ['/assets/img/home/twitter-image.jpg'],
-    },
-    alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        'en': `${baseUrl}/en`,
-        'id': `${baseUrl}/id`,
-        'x-default': `${baseUrl}/en`,
-      },
     },
     other: {
         'ld+json': JSON.stringify([localBusinessSchema, websiteSchema])
@@ -143,5 +143,3 @@ export default async function LanguageLayout({
     </>
   );
 }
-
-    

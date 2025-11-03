@@ -18,7 +18,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Scalable and robust ICT solutions for large organizations, including ERP, CRM, custom software, POS, and more. Power your enterprise with Micro Padma Nusantara.';
   const descriptionId = 'Solusi ICT yang dapat diskalakan dan kuat untuk organisasi besar, termasuk ERP, CRM, perangkat lunak kustom, POS, dan lainnya. Berdayakan perusahaan Anda dengan Micro Padma Nusantara.';
 
-  const canonicalUrl = `${baseUrl}/${lang}/ict-solutions/enterprise`;
+  const path = '/ict-solutions/enterprise';
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title,
@@ -27,9 +28,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en': `${baseUrl}/en/ict-solutions/enterprise`,
-        'id': `${baseUrl}/id/ict-solutions/enterprise`,
-        'x-default': `${baseUrl}/en/ict-solutions/enterprise`,
+        'en': `${baseUrl}/en${path}`,
+        'id': `${baseUrl}/id${path}`,
+        'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
@@ -250,7 +251,3 @@ const whyChooseUsData = [
     </main>
   );
 }
-
-    
-
-    
