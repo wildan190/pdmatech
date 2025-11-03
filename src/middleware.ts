@@ -20,6 +20,10 @@ function getLocale(request: NextRequest): string | undefined {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-pathname', pathname);
+
 
   // Check if the request is for a static file in the `public` directory
   if (
@@ -35,7 +39,11 @@ export function middleware(request: NextRequest) {
       '/twitter-image.jpg'
     ].includes(pathname)
   ) {
-    return;
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
   }
 
   const pathnameIsMissingLocale = i18n.locales.every(
@@ -51,6 +59,12 @@ export function middleware(request: NextRequest) {
     
     return NextResponse.redirect(newUrl);
   }
+  
+  return NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 }
 
 export const config = {

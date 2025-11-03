@@ -622,6 +622,12 @@
             "email": "investor.relations@mpnsolutions.my.id"
         }
     },
+    "notFoundPage": {
+        "errorCode": "404",
+        "title": "Page Not Found",
+        "description": "Oops! It seems like the page you're looking for has taken a detour. Let's get you back on track.",
+        "button": "Go to Homepage"
+    },
     "common": {
         "home": "Home",
         "aboutUs": "About Us",
