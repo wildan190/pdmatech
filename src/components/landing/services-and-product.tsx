@@ -1,5 +1,5 @@
 'use client';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -38,28 +38,26 @@ const ServicesAndProduct = () => {
           {solutions.map((solution) => {
             const image = PlaceHolderImages.find(p => p.id === solution.imageId);
             return (
-              <Card key={solution.title} className="group overflow-hidden rounded-lg shadow-lg flex flex-col relative">
-                <div className="relative h-96 w-full">
-                    {image && (
-                        <Image
-                            src={image.imageUrl}
-                            alt={image.description}
-                            fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                            data-ai-hint={image.imageHint}
-                        />
-                    )}
-                </div>
-                <CardHeader className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                    <CardTitle className="text-white">{solution.title}</CardTitle>
-                </CardHeader>
-                <div className="absolute inset-0 bg-background/90 backdrop-blur-sm flex flex-col justify-center items-center text-center p-6 text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="mb-4 text-base">{solution.description}</p>
-                    <Button variant="secondary" asChild>
-                        <Link href={solution.href}>
-                            Find Out More <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                    </Button>
+              <Card key={solution.title} className="group overflow-hidden rounded-lg shadow-lg relative h-96">
+                {image && (
+                    <Image
+                        src={image.imageUrl}
+                        alt={image.description}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        data-ai-hint={image.imageHint}
+                    />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end p-6">
+                  <CardTitle className="text-white">{solution.title}</CardTitle>
+                  <div className="opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-screen transition-all duration-300 ease-in-out mt-2">
+                      <p className="text-white/80 text-sm mb-4">{solution.description}</p>
+                      <Button variant="secondary" asChild>
+                          <Link href={solution.href}>
+                              Find Out More <ArrowRight className="ml-2 h-4 w-4" />
+                          </Link>
+                      </Button>
+                  </div>
                 </div>
               </Card>
             )
