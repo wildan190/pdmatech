@@ -131,6 +131,18 @@
       "description": "A person holding a smartphone with a digital ticket QR code ready for scanning at an event.",
       "imageUrl": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxldmVudCUyMHRpY2tldHN8ZW58MHx8fHwxNzY0MDQ2NzU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "event tickets"
+    },
+    {
+      "id": "umkm-hero",
+      "description": "Seorang pemilik usaha kecil yang tersenyum sedang bekerja di laptopnya di dalam tokonya yang cerah.",
+      "imageUrl": "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGJ1c2luZXNzJTIwb3duZXJ8ZW58MHx8fHwxNzY0NDgxMjA0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "small business"
+    },
+    {
+      "id": "umkm-challenge",
+      "description": "Tumpukan kertas dan buku catatan yang berantakan di atas meja, melambangkan tantangan administratif bagi UMKM.",
+      "imageUrl": "https://images.unsplash.com/photo-1494366222322-387658a1a976?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZXNzeSUyMGRlc2t8ZW58MHx8fHwxNzY0NDgxMjU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "messy desk"
     }
   ]
 }
