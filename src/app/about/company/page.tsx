@@ -35,7 +35,6 @@ const whyChooseUsData = [
 ];
 
 export default function CompanyPage() {
-    const heroImage = PlaceHolderImages.find(p => p.id === 'company-hero');
     const visionImage = PlaceHolderImages.find(p => p.id === 'company-vision');
     const missionImage = PlaceHolderImages.find(p => p.id === 'company-mission');
 
@@ -69,15 +68,12 @@ export default function CompanyPage() {
 
         {/* Hero */}
         <section className="relative h-[60vh] flex items-center">
-            {heroImage && (
-                <Image
-                    src={heroImage.imageUrl}
-                    alt={heroImage.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={heroImage.imageHint}
-                />
-            )}
+            <Image
+                src="/assets/img/home/company.jpg"
+                alt="A modern, bright office space with people collaborating, representing a forward-thinking company."
+                fill
+                className="object-cover"
+            />
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 container text-left text-white">
             <h1 className="text-4xl md:text-5xl font-bold font-headline">Forging the Future of Technology, Together.</h1>
