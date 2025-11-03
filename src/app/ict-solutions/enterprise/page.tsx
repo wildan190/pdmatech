@@ -99,7 +99,7 @@ export default function EnterprisePage() {
         </section>
 
         {/* Hero */}
-        <section className="relative h-[60vh] flex items-center justify-center text-center">
+        <section className="relative h-[60vh] flex items-center justify-start text-left">
             <Image
                 src="/assets/img/ict/enterprise.jpg"
                 alt="A bustling, modern data center with rows of servers, symbolizing robust enterprise infrastructure."
@@ -110,7 +110,7 @@ export default function EnterprisePage() {
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 container text-white">
             <h1 className="text-4xl md:text-5xl font-bold font-headline">Powering Your Enterprise with Robust ICT Solutions</h1>
-            <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
+            <p className="mt-4 text-lg md:text-xl max-w-3xl">
               We deliver scalable, secure, and integrated software solutions designed to optimize your operations and drive sustainable growth.
             </p>
           </div>
