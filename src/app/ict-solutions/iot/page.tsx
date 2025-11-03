@@ -83,15 +83,13 @@ export default function IotPage() {
 
         {/* Hero */}
         <section className="relative h-[60vh] flex items-center justify-start text-left">
-            {heroImage && (
-                <Image
-                    src={heroImage.imageUrl}
-                    alt={heroImage.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={heroImage.imageHint}
-                />
-            )}
+            <Image
+                src="/assets/img/ict/iot.jpg"
+                alt="A futuristic cityscape with glowing data streams connecting buildings, representing a smart city powered by IoT."
+                fill
+                className="object-cover"
+                data-ai-hint="smart city"
+            />
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 container text-white">
             <h1 className="text-4xl md:text-5xl font-bold font-headline">Connecting Your World: Intelligent IoT Solutions</h1>
