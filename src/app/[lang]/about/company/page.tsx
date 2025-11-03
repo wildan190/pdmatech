@@ -94,7 +94,7 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
             icon: <Recycle className="w-8 h-8 text-primary" />,
             title: pageDict.ourProgram.items.environment.title,
             description: pageDict.ourProgram.items.environment.description,
-            imageUrl: "https://images.unsplash.com/photo-1599664223843-93498451d087?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBjbGVhbnVwfGVufDB8fHx8fDE3NjUxMTAwODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+            imageUrl: "/assets/img/volunter/garbage.jpg",
             imageAlt: "Volunteers cleaning up a park, showing environmental action.",
             imageHint: "community cleanup"
         }
