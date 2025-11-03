@@ -1,8 +1,9 @@
 
 import { Metadata } from 'next';
-import { Wrench } from "lucide-react";
+import { Rss, SearchX } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
+import { Card, CardContent } from "@/components/ui/card";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
@@ -18,7 +19,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
-    title: `${title} - On Construction`,
+    title: `${title} - Micro Padma Nusantara`,
     description: lang === 'id' ? descriptionId : description,
     robots: {
       index: false,
@@ -33,7 +34,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       },
     },
     openGraph: {
-      title: `${title} - On Construction`,
+      title: `${title} - Micro Padma Nusantara`,
       description: lang === 'id' ? descriptionId : description,
       url: canonicalUrl,
     },
@@ -66,13 +67,30 @@ export default async function NewsPage({ params: { lang } }: { params: { lang: L
               </Breadcrumb>
           </div>
       </section>
-      <div className="flex-grow container mx-auto px-4 py-20 lg:py-32 flex flex-col items-center justify-center text-center">
-          <Wrench className="w-20 h-20 text-primary mb-6" />
-          <h1 className="text-4xl font-bold font-headline">{pageDict.title}</h1>
-          <p className="mt-4 text-lg text-muted-foreground max-w-md">
-              {pageDict.newsDescription}
-          </p>
-      </div>
+
+      {/* Hero Section */}
+      <section className="py-20 lg:py-24 text-center">
+        <div className="container">
+            <Rss className="mx-auto h-16 w-16 text-primary mb-4" />
+            <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.breadcrumb.news}</h1>
+            <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+                {dictionary.insightSubMenu.news.description}
+            </p>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section className="pb-20 lg:pb-24">
+          <div className="container">
+              <Card className="max-w-3xl mx-auto shadow-none border-dashed">
+                  <CardContent className="p-10 text-center">
+                      <SearchX className="mx-auto h-16 w-16 text-muted-foreground/50 mb-4" />
+                      <h3 className="text-xl font-semibold text-muted-foreground">{dictionary.careerPage.openings.notAvailable}</h3>
+                      <p className="text-muted-foreground mt-2">{pageDict.newsDescription}</p>
+                  </CardContent>
+              </Card>
+          </div>
+      </section>
     </main>
   );
 }
