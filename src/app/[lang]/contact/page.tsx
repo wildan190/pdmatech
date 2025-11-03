@@ -11,6 +11,7 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
 const baseUrl = 'https://mpnsolutions.my.id';
+const path = '/contact';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
@@ -19,7 +20,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Get in touch with Micro Padma Nusantara. We are here to help you with your ICT and IoT needs. Contact us for a consultation.';
   const descriptionId = 'Hubungi Micro Padma Nusantara. Kami siap membantu kebutuhan ICT dan IoT Anda. Hubungi kami untuk konsultasi.';
 
-  const path = '/contact';
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {

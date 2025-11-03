@@ -7,6 +7,7 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
 const baseUrl = 'https://mpnsolutions.my.id';
+const path = '/insight/article';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
@@ -14,7 +15,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Our articles page is currently under construction. Please check back soon for in-depth analysis on ICT, IoT, and business technology trends.';
   const descriptionId = 'Halaman artikel kami sedang dalam pembangunan. Silakan periksa kembali segera untuk analisis mendalam tentang tren ICT, IoT, dan teknologi bisnis.';
 
-  const path = '/insight/article';
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {

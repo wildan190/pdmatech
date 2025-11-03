@@ -7,6 +7,7 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
 const baseUrl = 'https://mpnsolutions.my.id';
+const path = '/insight/brochure';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
@@ -14,7 +15,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Our company brochure is being prepared and will be available for download soon. Please check back later.';
   const descriptionId = 'Brosur perusahaan kami sedang disiapkan dan akan segera tersedia untuk diunduh. Silakan periksa kembali nanti.';
 
-  const path = '/insight/brochure';
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {

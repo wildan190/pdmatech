@@ -11,6 +11,7 @@ import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionaries";
 
 const baseUrl = 'https://mpnsolutions.my.id';
+const path = '/about/company';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
@@ -19,7 +20,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Learn about the history, mission, and vision of Micro Padma Nusantara. We are dedicated to delivering transformative ICT and IoT solutions in Indonesia.';
   const descriptionId = 'Pelajari tentang sejarah, misi, dan visi Micro Padma Nusantara. Kami berdedikasi untuk memberikan solusi ICT dan IoT yang transformatif di Indonesia.';
   
-  const path = '/about/company';
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {

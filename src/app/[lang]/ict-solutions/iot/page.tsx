@@ -11,6 +11,7 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
 const baseUrl = 'https://mpnsolutions.my.id';
+const path = '/ict-solutions/iot';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
@@ -18,7 +19,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Transform your business with our end-to-end IoT solutions. From smart monitoring and asset tracking to industrial automation, we connect your world for enhanced efficiency.';
   const descriptionId = 'Ubah bisnis Anda dengan solusi IoT end-to-end kami. Dari pemantauan cerdas dan pelacakan aset hingga otomatisasi industri, kami menghubungkan dunia Anda untuk efisiensi yang lebih baik.';
 
-  const path = '/ict-solutions/iot';
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {

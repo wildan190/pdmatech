@@ -11,9 +11,9 @@ const Footer = ({ dictionary, lang }: FooterProps) => {
   return (
     <footer className="border-t bg-card text-foreground">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
           <div>
-            <Link href={`/${lang}`} className="flex items-start">
+            <Link href={`/${lang}`} className="flex items-start justify-center md:justify-start">
               <div>
                 <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
                 <div className="text-sm text-muted-foreground">{dictionary.header.tagline}</div>
@@ -26,15 +26,15 @@ const Footer = ({ dictionary, lang }: FooterProps) => {
           <div>
             <h3 className="font-semibold mb-4">{dictionary.footer.contactUs}</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-3 justify-center md:justify-start">
                     <MapPin className="h-4 w-4 mt-1 shrink-0 text-primary" />
                     <span>Jl. Profesor Dr. Insinyur Soetami, Kp. Malangnengah, Cijoro Pasir, Rangkasbitung, Lebak, Banten 42316</span>
                 </li>
-                 <li className="flex items-start gap-3">
+                 <li className="flex items-start gap-3 justify-center md:justify-start">
                     <Mail className="h-4 w-4 mt-1 shrink-0 text-primary" />
                     <a href="mailto:micropadmanusantara@gmail.com" className="hover:text-primary transition-colors">micropadmanusantara@gmail.com</a>
                 </li>
-                 <li className="flex items-start gap-3">
+                 <li className="flex items-start gap-3 justify-center md:justify-start">
                     <Phone className="h-4 w-4 mt-1 shrink-0 text-primary" />
                     <a href="tel:+62811144793" className="hover:text-primary transition-colors">+62811144793</a>
                 </li>
@@ -53,7 +53,7 @@ const Footer = ({ dictionary, lang }: FooterProps) => {
           </div>
           <div>
             <h3 className="font-semibold mb-4">{dictionary.footer.followUs}</h3>
-             <div className="flex space-x-4">
+             <div className="flex space-x-4 justify-center md:justify-start">
                 <a href="https://facebook.com/micropadmanusantara" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Facebook className="h-5 w-5" /><span className="sr-only">Facebook</span></a>
                 <a href="https://instagram.com/micropadmanusantara" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Instagram className="h-5 w-5" /><span className="sr-only">Instagram</span></a>
             </div>

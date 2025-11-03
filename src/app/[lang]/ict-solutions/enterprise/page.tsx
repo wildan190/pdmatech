@@ -11,6 +11,7 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
 const baseUrl = 'https://mpnsolutions.my.id';
+const path = '/ict-solutions/enterprise';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
@@ -18,7 +19,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Scalable and robust ICT solutions for large organizations, including ERP, CRM, custom software, POS, and more. Power your enterprise with Micro Padma Nusantara.';
   const descriptionId = 'Solusi ICT yang dapat diskalakan dan kuat untuk organisasi besar, termasuk ERP, CRM, perangkat lunak kustom, POS, dan lainnya. Berdayakan perusahaan Anda dengan Micro Padma Nusantara.';
 
-  const path = '/ict-solutions/enterprise';
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {

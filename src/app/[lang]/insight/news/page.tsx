@@ -7,6 +7,7 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
 const baseUrl = 'https://mpnsolutions.my.id';
+const path = '/insight/news';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
@@ -14,7 +15,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Our news section is being updated with the latest stories and updates from Micro Padma Nusantara. Please check back soon.';
   const descriptionId = 'Bagian berita kami sedang diperbarui dengan cerita dan pembaruan terbaru dari Micro Padma Nusantara. Silakan periksa kembali segera.';
 
-  const path = '/insight/news';
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {

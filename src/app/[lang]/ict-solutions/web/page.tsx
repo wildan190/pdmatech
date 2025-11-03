@@ -10,6 +10,7 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
 const baseUrl = 'https://mpnsolutions.my.id';
+const path = '/ict-solutions/web';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
@@ -17,7 +18,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Crafting captivating and high-performance digital experiences. We build custom websites, e-commerce stores, and web applications using modern technologies like Next.js and React.';
   const descriptionId = 'Menciptakan pengalaman digital yang menawan dan berkinerja tinggi. Kami membangun situs web khusus, toko e-niaga, dan aplikasi web menggunakan teknologi modern seperti Next.js dan React.';
 
-  const path = '/ict-solutions/web';
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {

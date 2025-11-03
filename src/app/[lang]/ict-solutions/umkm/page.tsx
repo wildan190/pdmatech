@@ -11,6 +11,7 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 
 const baseUrl = 'https://mpnsolutions.my.id';
+const path = '/ict-solutions/umkm';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
@@ -18,7 +19,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = 'Empowering small and medium enterprises (UMKM) in Indonesia with affordable and effective digital solutions, including websites, POS Lite, and social media management.';
   const descriptionId = 'Memberdayakan usaha kecil dan menengah (UMKM) di Indonesia dengan solusi digital yang terjangkau dan efektif, termasuk situs web, POS Lite, dan manajemen media sosial.';
 
-  const path = '/ict-solutions/umkm';
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
