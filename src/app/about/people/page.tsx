@@ -9,19 +9,31 @@ import Experience from "@/components/landing/experience";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Briefcase } from "lucide-react";
 
-
-const teamMembers = [
+const leaders = [
     {
         name: "Wildan J. Belfiore",
         title: "President Director",
-        imageId: "team-wildan"
+        imageId: "team-wildan",
+        experiences: [
+            { role: "President Director", company: "PT Micro Padma Nusantara", period: "2023 - Present" },
+            { role: "Chief Technology Officer", company: "Huntr.id", period: "2023 - Present" },
+            { role: "Fullstack Engineer", company: "British Technologies Global Group", period: "2022 - 2023" },
+            { role: "Fullstack Engineer", company: "Lumoshive", period: "2022 - 2023" },
+            { role: "Fullstack Engineer", company: "Biro Klasifikasi Indonesia", period: "2022 - 2023" },
+            { role: "Fullstack Engineer", company: "Xapiens", period: "2022 - 2023" },
+        ]
     },
     {
         name: "Raihan Firdaus",
         title: "Business Solutions Manager",
-        imageId: "team-raihan"
+        imageId: "team-raihan",
+        experiences: [
+            { role: "Business Solution Manager", company: "PT Micro Padma Nusantara", period: "2023 - Present" },
+            { role: "Staff", company: "KCIC (Kereta Cepat Indonesia China)", period: "2022 - Present" },
+            { role: "Staff", company: "BPS (Badan Pusat Statistik)", period: "2022" },
+        ]
     }
 ];
 
@@ -69,35 +81,47 @@ export default function PeoplePage() {
         {/* Team Leaders */}
         <section className="py-20 lg:py-24 bg-secondary/50">
             <div className="container">
-                <div className="text-center mb-12">
+                <div className="text-center mb-16">
                      <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Leaders</h2>
                      <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
                         Meet the visionary minds guiding our mission to deliver transformative technology solutions.
                      </p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    {teamMembers.map((member) => {
-                        const image = PlaceHolderImages.find(p => p.id === member.imageId);
+                <div className="space-y-24">
+                    {leaders.map((leader, index) => {
+                        const image = PlaceHolderImages.find(p => p.id === leader.imageId);
+                        const isOdd = index % 2 !== 0;
                         return (
-                             <Card key={member.name} className="text-center overflow-hidden shadow-lg group">
-                                {image && (
-                                    <div className="relative h-80 w-full">
+                             <div key={leader.name} className="grid md:grid-cols-2 gap-12 items-center">
+                                <div className={`relative h-96 rounded-lg overflow-hidden shadow-xl ${isOdd ? 'md:order-last' : ''}`}>
+                                    {image && (
                                         <Image
                                             src={image.imageUrl}
-                                            alt={`Portrait of ${member.name}`}
+                                            alt={`Portrait of ${leader.name}`}
                                             fill
-                                            className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                                            className="object-cover object-top"
                                             data-ai-hint={image.imageHint}
                                         />
+                                    )}
+                                </div>
+                                <div className={`${isOdd ? 'md:text-right' : 'md:text-left'}`}>
+                                    <h3 className="text-3xl font-bold font-headline">{leader.name}</h3>
+                                    <p className="text-primary font-semibold text-lg mt-1">{leader.title}</p>
+                                    <div className="mt-6 space-y-4">
+                                        {leader.experiences.map((exp) => (
+                                            <div key={`${exp.company}-${exp.role}`} className={`flex items-start gap-4 ${isOdd ? 'md:justify-end' : 'md:justify-start'}`}>
+                                                <div className="bg-primary/10 p-2 rounded-full mt-1">
+                                                     <Briefcase className="w-5 h-5 text-primary"/>
+                                                </div>
+                                                <div>
+                                                    <p className="font-semibold">{exp.role}</p>
+                                                    <p className="text-muted-foreground text-sm">{exp.company} &middot; {exp.period}</p>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
-                                )}
-                                <CardHeader>
-                                    <CardTitle className="text-xl">{member.name}</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-primary font-semibold">{member.title}</p>
-                                </CardContent>
-                             </Card>
+                                </div>
+                             </div>
                         );
                     })}
                 </div>
