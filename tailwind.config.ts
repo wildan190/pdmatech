@@ -7,6 +7,10 @@ export default {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  safelist: [
+    'bg-green-500',
+    'hover:bg-green-600',
+  ],
   theme: {
     container: {
       center: true,
