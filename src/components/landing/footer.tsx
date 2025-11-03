@@ -47,7 +47,7 @@ const Footer = ({ dictionary, lang }: FooterProps) => {
               <li><Link href={`/${lang}/career`} className=" hover:text-primary transition-colors">{dictionary.careerPage.breadcrumb}</Link></li>
               <li><Link href={`/${lang}/insight/news`} className=" hover:text-primary transition-colors">{dictionary.navigation.insight}</Link></li>
               <li><Link href={`/${lang}/#contact`} className=" hover:text-primary transition-colors">{dictionary.navigation.contactUs}</Link></li>
-              <li><Link href={`/${lang}/about/privacy`} className=" hover:text-primary transition-colors">{dictionary.navigation.aboutUsSubMenu.privacy.title}</Link></li>
+              <li><Link href={`/${lang}/about/privacy`} className=" hover:text-primary transition-colors">{dictionary.aboutUsSubMenu.privacy.title}</Link></li>
             </ul>
           </div>
           <div>
