@@ -1,6 +1,7 @@
-# Allow all user agents to crawl the site
 User-agent: *
-Disallow:
+Allow: /
 
-# Point to the sitemap
-Sitemap: https://micropadmanusantara.com/sitemap.xml
+Sitemap: https://mpnsolutions.my.id/sitemap.xml
+
+User-agent: *
+Disallow: /insight/

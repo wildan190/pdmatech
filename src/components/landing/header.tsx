@@ -8,6 +8,7 @@ import React from 'react';
 import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import LanguageSwitcher from './language-switcher';
 
 type HeaderProps = {
     dictionary: any;
@@ -15,6 +16,7 @@ type HeaderProps = {
 }
 
 const Header = ({ dictionary, lang }: HeaderProps) => {
+  const [sheetOpen, setSheetOpen] = React.useState(false);
 
   const aboutUsComponents = [
     {
@@ -74,6 +76,10 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
           description: dictionary.insightSubMenu.brochure.description,
       },
   ];
+
+  const handleLinkClick = () => {
+    setSheetOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -139,10 +145,14 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
                 <Link href={`/${lang}/#contact`}>{dictionary.navigation.contactUs}</Link>
               </Button>
             </NavigationMenuItem>
+            <NavigationMenuItem>
+                <LanguageSwitcher lang={lang} />
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
          <div className="flex items-center gap-4 md:hidden">
-             <Sheet>
+             <LanguageSwitcher lang={lang} />
+             <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
                 <SheetTrigger asChild>
                     <Button variant="outline" size="icon">
                         <Menu className="h-5 w-5" />
@@ -150,21 +160,21 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
                     </Button>
                 </SheetTrigger>
                 <SheetContent side="right">
-                    <SheetHeader className="sr-only">
-                        <SheetTitle>Mobile Menu</SheetTitle>
+                    <SheetHeader className="mb-6">
+                        <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
                     </SheetHeader>
-                    <Link href={`/${lang}`} className="flex items-start mb-6">
+                    <Link href={`/${lang}`} className="flex items-start" onClick={handleLinkClick}>
                         <div>
                             <div className="font-bold font-headline text-lg">Micro Padma Nusantara</div>
                             <div className="text-sm text-muted-foreground">{dictionary.header.tagline}</div>
                         </div>
                     </Link>
-                    <Accordion type="single" collapsible className="w-full">
+                    <Accordion type="single" collapsible className="w-full mt-6">
                       <AccordionItem value="about-us">
                         <AccordionTrigger className="text-base font-medium">{dictionary.navigation.aboutUs}</AccordionTrigger>
                         <AccordionContent className="pl-4">
                           <div className="grid gap-3">
-                            {aboutUsComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">{item.title}</Link>)}
+                            {aboutUsComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground" onClick={handleLinkClick}>{item.title}</Link>)}
                           </div>
                         </AccordionContent>
                       </AccordionItem>
@@ -172,7 +182,7 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
                         <AccordionTrigger className="text-base font-medium">{dictionary.navigation.ictSolutions}</AccordionTrigger>
                         <AccordionContent className="pl-4">
                           <div className="grid gap-3">
-                          {ictSolutionsComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">{item.title}</Link>)}
+                          {ictSolutionsComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground" onClick={handleLinkClick}>{item.title}</Link>)}
                           </div>
                         </AccordionContent>
                       </AccordionItem>
@@ -180,13 +190,13 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
                         <AccordionTrigger className="text-base font-medium">{dictionary.navigation.insight}</AccordionTrigger>
                         <AccordionContent className="pl-4">
                           <div className="grid gap-3">
-                            {insightComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">{item.title}</Link>)}
+                            {insightComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground" onClick={handleLinkClick}>{item.title}</Link>)}
                           </div>
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
                     <Button asChild className="w-full mt-6">
-                        <Link href={`/${lang}/#contact`}>{dictionary.navigation.contactUs}</Link>
+                        <Link href={`/${lang}/#contact`} onClick={handleLinkClick}>{dictionary.navigation.contactUs}</Link>
                     </Button>
                 </SheetContent>
              </Sheet>
