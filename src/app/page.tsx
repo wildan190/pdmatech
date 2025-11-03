@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Micro Padma Nusantara | Innovative ICT & IoT Solutions',
     description: 'Your strategic partner in digital transformation. We provide cutting-edge ICT and IoT solutions, enterprise software, and web development to drive business growth and efficiency in Indonesia.',
+    url: '/',
   },
   twitter: {
     title: 'Micro Padma Nusantara | Innovative ICT & IoT Solutions',

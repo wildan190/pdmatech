@@ -1,4 +1,3 @@
-'use client';
 
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
@@ -9,6 +8,22 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Shield, Zap, Goal, Target, Eye } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Our Company',
+  description: 'Learn about the history, mission, and vision of Micro Padma Nusantara. We are dedicated to delivering transformative ICT and IoT solutions in Indonesia.',
+  keywords: ['about us', 'company profile', 'ICT company', 'IoT company', 'mission', 'vision', 'Micro Padma Nusantara'],
+  openGraph: {
+    title: 'Our Company - Micro Padma Nusantara',
+    description: 'Learn about our history, mission, and vision. We are dedicated to delivering transformative ICT and IoT solutions in Indonesia.',
+    url: 'https://mpnsolutions.my.id/about/company',
+  },
+  twitter: {
+    title: 'Our Company - Micro Padma Nusantara',
+    description: 'Learn about our history, mission, and vision. We are dedicated to delivering transformative ICT and IoT solutions in Indonesia.',
+  },
+};
 
 
 const whyChooseUsData = [

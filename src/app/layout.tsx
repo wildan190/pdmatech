@@ -15,7 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://micropadmanusantara.com'),
+  metadataBase: new URL('https://mpnsolutions.my.id'),
   title: {
     default: 'Micro Padma Nusantara | Innovative ICT & IoT Solutions',
     template: `%s | Micro Padma Nusantara`,
@@ -25,11 +25,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Micro Padma Nusantara | Innovative ICT & IoT Solutions',
     description: 'Empowering businesses with future-ready ICT & IoT solutions in Indonesia.',
-    url: 'https://micropadmanusantara.com',
+    url: 'https://mpnsolutions.my.id',
     siteName: 'Micro Padma Nusantara',
     images: [
       {
-        url: 'https://micropadmanusantara.com/og-image.jpg', // Replace with your actual OG image URL
+        url: '/assets/img/home/og-image.jpg', // Replace with your actual OG image URL
         width: 1200,
         height: 630,
         alt: 'Micro Padma Nusantara Logo and Tagline',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: 'Micro Padma Nusantara | Innovative ICT & IoT Solutions',
     description: 'Empowering businesses with future-ready ICT & IoT solutions in Indonesia.',
     creator: '@micropadma', // Replace with your Twitter handle
-    images: ['https://micropadmanusantara.com/twitter-image.jpg'], // Replace with your actual Twitter image URL
+    images: ['/assets/img/home/twitter-image.jpg'], // Replace with your actual Twitter image URL
   },
   robots: {
     index: true,
@@ -68,7 +68,7 @@ export default function RootLayout({
     '@type': 'LocalBusiness',
     name: 'Micro Padma Nusantara',
     description: 'Leading provider of innovative ICT and IoT solutions to empower businesses in the digital era.',
-    url: 'https://micropadmanusantara.com',
+    url: 'https://mpnsolutions.my.id',
     telephone: '+62811144793',
     address: {
       '@type': 'PostalAddress',
@@ -78,8 +78,8 @@ export default function RootLayout({
       postalCode: '42316',
       addressCountry: 'ID',
     },
-    logo: 'https://micropadmanusantara.com/logo.png',
-    image: 'https://micropadmanusantara.com/og-image.jpg',
+    logo: 'https://mpnsolutions.my.id/logo.png',
+    image: 'https://mpnsolutions.my.id/og-image.jpg',
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
@@ -103,11 +103,11 @@ export default function RootLayout({
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    url: 'https://micropadmanusantara.com',
+    url: 'https://mpnsolutions.my.id',
     name: 'Micro Padma Nusantara',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://micropadmanusantara.com/search?q={search_term_string}',
+      target: 'https://mpnsolutions.my.id/search?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   };

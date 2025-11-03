@@ -11,7 +11,12 @@ export const metadata: Metadata = {
   robots: {
     index: false,
     follow: true,
-  }
+  },
+  openGraph: {
+    title: 'Company News - On Construction',
+    description: 'Our news section is being updated with the latest stories and updates from Micro Padma Nusantara. Please check back soon.',
+    url: '/insight/news',
+  },
 };
 
 export default function NewsPage() {

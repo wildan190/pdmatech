@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-const URL = 'https://micropadmanusantara.com';
+const URL = 'https://mpnsolutions.my.id';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [

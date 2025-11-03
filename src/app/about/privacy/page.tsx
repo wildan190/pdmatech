@@ -1,4 +1,3 @@
-'use client';
 
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
@@ -6,6 +5,23 @@ import Link from "next/link";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, ShieldCheck, Mail } from "lucide-react";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description: 'Read the Privacy Policy of Micro Padma Nusantara. We are committed to protecting your data and privacy when you use our services.',
+  keywords: ['privacy policy', 'data protection', 'user privacy', 'terms of service', 'data security'],
+  openGraph: {
+    title: 'Privacy Policy - Micro Padma Nusantara',
+    description: 'We are committed to protecting your data and privacy.',
+    url: 'https://mpnsolutions.my.id/about/privacy',
+  },
+  twitter: {
+    title: 'Privacy Policy - Micro Padma Nusantara',
+    description: 'We are committed to protecting your data and privacy.',
+  },
+};
+
 
 export default function PrivacyPage() {
   return (

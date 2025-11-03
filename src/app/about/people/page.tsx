@@ -1,4 +1,3 @@
-'use client';
 
 import Header from "@/components/landing/header";
 import Footer from "@/components/landing/footer";
@@ -8,6 +7,22 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import Experience from "@/components/landing/experience";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Our People',
+  description: 'Meet the talented team of leaders and innovators at Micro Padma Nusantara. Our experts are dedicated to driving your business success through technology.',
+  keywords: ['our team', 'leadership', 'tech experts', 'ICT professionals', 'IoT experts', 'Micro Padma Nusantara team'],
+  openGraph: {
+    title: 'Our People - Micro Padma Nusantara',
+    description: 'Meet the talented team of leaders and innovators at Micro Padma Nusantara.',
+    url: 'https://mpnsolutions.my.id/about/people',
+  },
+  twitter: {
+    title: 'Our People - Micro Padma Nusantara',
+    description: 'Meet the talented team of leaders and innovators at Micro Padma Nusantara.',
+  },
+};
 
 const leaders = [
     {

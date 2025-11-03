@@ -11,7 +11,12 @@ export const metadata: Metadata = {
   robots: {
     index: false,
     follow: true,
-  }
+  },
+  openGraph: {
+    title: 'Company Brochure - On Construction',
+    description: 'Our company brochure is being prepared and will be available for download soon. Please check back later.',
+    url: '/insight/brochure',
+  },
 };
 
 export default function BrochurePage() {

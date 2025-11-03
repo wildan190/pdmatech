@@ -11,7 +11,12 @@ export const metadata: Metadata = {
   robots: {
     index: false,
     follow: true,
-  }
+  },
+  openGraph: {
+    title: 'Insight Articles - On Construction',
+    description: 'Our articles page is currently under construction. Please check back soon for in-depth analysis on ICT, IoT, and business technology trends.',
+    url: '/insight/article',
+  },
 };
 
 export default function ArticlePage() {
