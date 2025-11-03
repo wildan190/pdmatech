@@ -1,6 +1,6 @@
 'use client';
 
-import ParallaxImage from '../shared/parallax-image';
+import Image from 'next/image';
 import ContactForm from '../shared/contact-form';
 
 type ContactProps = {
@@ -10,9 +10,11 @@ type ContactProps = {
 const Contact = ({ dictionary }: ContactProps) => {
   return (
     <section id="contact" className="relative py-20 lg:py-32 overflow-hidden">
-        <ParallaxImage
+        <Image
           src="/assets/img/home/tech.jpg"
           alt="Abstract technology background"
+          fill
+          className="object-cover"
         />
       <div className="absolute inset-0 bg-black/70"></div>
       <div className="container mx-auto px-4 relative z-10">
