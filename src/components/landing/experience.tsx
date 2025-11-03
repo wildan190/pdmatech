@@ -26,7 +26,7 @@ const experienceData = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-20 lg:py-24 bg-background">
+    <section id="experience" className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {experienceData.map((item, index) => (

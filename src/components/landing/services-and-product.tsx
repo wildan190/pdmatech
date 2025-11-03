@@ -25,7 +25,7 @@ const solutions = [
 
 const ServicesAndProduct = () => {
   return (
-    <section id="services" className="py-20 lg:py-32">
+    <section id="services" className="py-12 lg:py-16">
       <div className="container mx-auto px-4">
         <div className="text-left mb-12">
           <p className="font-semibold text-primary">Services and Product</p>
