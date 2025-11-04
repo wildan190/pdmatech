@@ -62,6 +62,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       ],
       locale: isEn ? 'en_US' : 'id_ID',
       type: 'website',
+      ['ia:markup_url' as any]: canonicalUrl,
     },
     twitter: {
       card: 'summary_large_image',
