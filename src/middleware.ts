@@ -36,8 +36,8 @@ export function middleware(request: NextRequest) {
       '/robots.txt',
       '/favicon.ico',
       '/logo.png',
-      '/og-image.jpg',
-      '/twitter-image.jpg'
+      '/assets/img/home/og-image.jpg',
+      '/assets/img/home/twitter-image.jpg'
     ].includes(pathname)
   ) {
     return NextResponse.next({
@@ -70,5 +70,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sw.js).*)'],
 };

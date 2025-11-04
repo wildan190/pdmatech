@@ -99,7 +99,7 @@ export default async function LanguageLayout({
       addressCountry: 'ID',
     },
     logo: `${baseUrl}/logo.png`,
-    image: `${baseUrl}/og-image.jpg`,
+    image: `${baseUrl}/assets/img/home/og-image.jpg`,
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
