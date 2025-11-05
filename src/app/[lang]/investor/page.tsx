@@ -20,11 +20,13 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const descriptionId = 'Jelajahi peluang investasi dengan Micro Padma Nusantara. Bergabunglah dengan kami dalam mendorong transformasi digital Indonesia.';
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const keywordsEn = ['invest in Indonesian tech', 'ICT investment opportunities', 'IoT startup funding', 'tech investor relations', 'digital transformation Indonesia', 'Micro Padma Nusantara investors'];
+  const keywordsId = ['investasi teknologi Indonesia', 'peluang investasi ICT', 'pendanaan startup IoT', 'hubungan investor teknologi', 'transformasi digital Indonesia', 'investor Micro Padma Nusantara'];
 
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
-    keywords: ['investor relations', 'investment', 'ICT investment', 'IoT Indonesia', 'tech startup', 'Micro Padma Nusantara'],
+    keywords: lang === 'id' ? keywordsId : keywordsEn,
     alternates: {
       canonical: canonicalUrl,
       languages: {

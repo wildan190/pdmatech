@@ -18,11 +18,13 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const descriptionId = 'Baca Kebijakan Privasi Micro Padma Nusantara. Kami berkomitmen untuk melindungi data dan privasi Anda saat Anda menggunakan layanan kami.';
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const keywordsEn = ['privacy policy', 'data protection', 'user privacy', 'terms of service', 'data security Indonesia', 'GDPR compliance'];
+  const keywordsId = ['kebijakan privasi', 'perlindungan data', 'privasi pengguna', 'ketentuan layanan', 'keamanan data Indonesia', 'kepatuhan GDPR'];
 
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
-    keywords: ['privacy policy', 'data protection', 'user privacy', 'terms of service', 'data security'],
+    keywords: lang === 'id' ? keywordsId : keywordsEn,
     alternates: {
       canonical: canonicalUrl,
       languages: {

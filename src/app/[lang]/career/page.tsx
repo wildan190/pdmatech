@@ -21,11 +21,14 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const descriptionId = 'Bergabunglah dengan tim inovator kami di Micro Padma Nusantara. Jelajahi peluang karir dan jadilah bagian dari misi kami untuk membentuk masa depan teknologi di Indonesia.';
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const keywordsEn = ['tech jobs Indonesia', 'ICT careers', 'IoT job vacancies', 'software engineer jobs', 'work at Micro Padma Nusantara', 'technology careers Banten'];
+  const keywordsId = ['lowongan kerja teknologi', 'karir ICT', 'lowongan kerja IoT', 'pekerjaan software engineer', 'karir di Micro Padma Nusantara', 'lowongan kerja Banten'];
+
 
   return {
     title: `${title} at Micro Padma Nusantara`,
     description: lang === 'id' ? descriptionId : description,
-    keywords: ['career', 'jobs', 'tech jobs', 'ICT jobs', 'IoT careers', 'Micro Padma Nusantara careers', 'job openings', 'lowongan kerja'],
+    keywords: lang === 'id' ? keywordsId : keywordsEn,
     alternates: {
       canonical: canonicalUrl,
       languages: {

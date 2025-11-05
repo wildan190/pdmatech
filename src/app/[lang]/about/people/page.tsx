@@ -20,11 +20,13 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const descriptionId = 'Temui tim pemimpin dan inovator berbakat di Micro Padma Nusantara. Para ahli kami berdedikasi untuk mendorong kesuksesan bisnis Anda melalui teknologi.';
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const keywordsEn = ['our team', 'leadership team', 'ICT experts Indonesia', 'IoT professionals', 'meet our innovators', 'Micro Padma Nusantara team'];
+  const keywordsId = ['tim kami', 'tim kepemimpinan', 'ahli ICT Indonesia', 'profesional IoT', 'inovator kami', 'tim Micro Padma Nusantara'];
 
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
-    keywords: ['our team', 'leadership', 'tech experts', 'ICT professionals', 'IoT experts', 'Micro Padma Nusantara team'],
+    keywords: lang === 'id' ? keywordsId : keywordsEn,
     alternates: {
       canonical: canonicalUrl,
       languages: {

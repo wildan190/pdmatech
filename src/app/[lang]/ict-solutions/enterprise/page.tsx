@@ -21,11 +21,13 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const descriptionId = 'Solusi ICT yang dapat diskalakan dan kuat untuk organisasi besar, termasuk ERP, CRM, perangkat lunak kustom, POS, dan lainnya. Berdayakan perusahaan Anda dengan Micro Padma Nusantara.';
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const keywordsEn = ['enterprise software Indonesia', 'ERP solutions', 'CRM systems', 'custom software development', 'point of sale systems', 'hotel management software', 'enterprise ICT provider'];
+  const keywordsId = ['software enterprise Indonesia', 'solusi ERP', 'sistem CRM', 'pengembangan software kustom', 'sistem POS', 'software manajemen hotel', 'penyedia ICT enterprise'];
 
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
-    keywords: ['enterprise solutions', 'ERP', 'CRM', 'custom software', 'point of sale', 'hotel management', 'ticketing system', 'ICT for enterprise'],
+    keywords: lang === 'id' ? keywordsId : keywordsEn,
     alternates: {
       canonical: canonicalUrl,
       languages: {

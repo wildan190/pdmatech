@@ -18,9 +18,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const description = isEn
     ? 'Micro Padma Nusantara provides cutting-edge ICT and IoT solutions to drive business growth and efficiency. Explore our services for enterprise, UMKM, and more.'
     : 'Micro Padma Nusantara menyediakan solusi ICT dan IoT canggih untuk mendorong pertumbuhan dan efisiensi bisnis. Jelajahi layanan kami untuk enterprise, UMKM, dan lainnya.';
-  const keywords = isEn
-    ? ['ICT solutions', 'IoT', 'Enterprise software', 'UMKM', 'Web development', 'IT consulting', 'Micro Padma Nusantara', 'Indonesia']
-    : ['Solusi ICT', 'IoT', 'Perangkat lunak enterprise', 'UMKM', 'Pengembangan web', 'Konsultan IT', 'Micro Padma Nusantara', 'Indonesia'];
+  const keywordsEn = ['ICT solutions Indonesia', 'IoT company Indonesia', 'enterprise software solutions', 'UMKM digital solutions', 'web development services', 'IT consulting Jakarta', 'technology provider Indonesia', 'Micro Padma Nusantara'];
+  const keywordsId = ['solusi ICT Indonesia', 'perusahaan IoT Indonesia', 'software enterprise', 'solusi digital UMKM', 'jasa pembuatan website', 'konsultan IT Jakarta', 'penyedia teknologi Indonesia', 'Micro Padma Nusantara'];
   
   const ogTitle = isEn 
     ? 'Micro Padma Nusantara | Innovative ICT & IoT Solutions'
@@ -38,7 +37,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       template: `%s | Micro Padma Nusantara`,
     },
     description,
-    keywords,
+    keywords: isEn ? keywordsEn : keywordsId,
     alternates: {
       canonical: canonicalUrl,
       languages: {

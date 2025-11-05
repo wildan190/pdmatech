@@ -21,11 +21,14 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const descriptionId = 'Hubungi Micro Padma Nusantara. Kami siap membantu kebutuhan ICT dan IoT Anda. Hubungi kami untuk konsultasi.';
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const keywordsEn = ['contact ICT company', 'IoT consultation Indonesia', 'get a quote for software', 'Micro Padma Nusantara contact', 'tech support Indonesia', 'business inquiry'];
+  const keywordsId = ['hubungi perusahaan ICT', 'konsultasi IoT Indonesia', 'dapatkan penawaran software', 'kontak Micro Padma Nusantara', 'dukungan teknis Indonesia', 'permintaan bisnis'];
+
 
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
-    keywords: ['contact us', 'get in touch', 'ICT consultation', 'IoT consultation', 'Micro Padma Nusantara contact'],
+    keywords: lang === 'id' ? keywordsId : keywordsEn,
     alternates: {
       canonical: canonicalUrl,
       languages: {

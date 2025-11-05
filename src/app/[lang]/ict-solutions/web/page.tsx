@@ -20,11 +20,13 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const descriptionId = 'Menciptakan pengalaman digital yang menawan dan berkinerja tinggi. Kami membangun situs web khusus, toko e-niaga, dan aplikasi web menggunakan teknologi modern seperti Next.js dan React.';
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const keywordsEn = ['web development Indonesia', 'custom website design', 'e-commerce solutions', 'Next.js developer', 'React development agency', 'SEO optimization services', 'web application development'];
+  const keywordsId = ['jasa pembuatan website Indonesia', 'desain website kustom', 'solusi e-commerce', 'developer Next.js', 'agensi pengembangan React', 'jasa optimasi SEO', 'pengembangan aplikasi web'];
 
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
-    keywords: ['web development', 'web design', 'e-commerce', 'custom website', 'Next.js developer', 'React developer', 'SEO optimization'],
+    keywords: lang === 'id' ? keywordsId : keywordsEn,
     alternates: {
       canonical: canonicalUrl,
       languages: {

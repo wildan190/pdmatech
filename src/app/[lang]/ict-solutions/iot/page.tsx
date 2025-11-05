@@ -21,11 +21,13 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const descriptionId = 'Ubah bisnis Anda dengan solusi IoT end-to-end kami. Dari pemantauan cerdas dan pelacakan aset hingga otomatisasi industri, kami menghubungkan dunia Anda untuk efisiensi yang lebih baik.';
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const keywordsEn = ['IoT solutions Indonesia', 'Internet of Things company', 'smart monitoring systems', 'asset tracking GPS', 'industrial automation (IIoT)', 'smart agriculture solutions', 'connected devices'];
+  const keywordsId = ['solusi IoT Indonesia', 'perusahaan Internet of Things', 'sistem monitoring cerdas', 'pelacakan aset GPS', 'otomatisasi industri (IIoT)', 'solusi pertanian cerdas', 'perangkat terhubung'];
 
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
-    keywords: ['IoT solutions', 'Internet of Things', 'smart monitoring', 'asset tracking', 'industrial automation', 'smart agriculture', 'IIoT', 'connected devices'],
+    keywords: lang === 'id' ? keywordsId : keywordsEn,
     alternates: {
       canonical: canonicalUrl,
       languages: {

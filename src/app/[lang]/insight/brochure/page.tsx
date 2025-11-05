@@ -22,11 +22,13 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const descriptionId = 'Jelajahi brosur resmi Micro Padma Nusantara. Temukan solusi ICT dan IoT inovatif kami, misi kami, dan bagaimana kami memberdayakan bisnis di Indonesia.';
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const keywordsEn = ['company brochure', 'download ICT brochure', 'IoT solutions PDF', 'Micro Padma Nusantara profile', 'digital transformation services', 'tech company portfolio'];
+  const keywordsId = ['brosur perusahaan', 'unduh brosur ICT', 'PDF solusi IoT', 'profil Micro Padma Nusantara', 'layanan transformasi digital', 'portofolio perusahaan teknologi'];
 
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
-    keywords: ['company brochure', 'ICT solutions', 'IoT services', 'digital transformation', 'Micro Padma Nusantara profile', 'download brochure'],
+    keywords: lang === 'id' ? keywordsId : keywordsEn,
     alternates: {
       canonical: canonicalUrl,
       languages: {

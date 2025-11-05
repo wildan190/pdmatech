@@ -21,11 +21,13 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const descriptionId = 'Memberdayakan usaha kecil dan menengah (UMKM) di Indonesia dengan solusi digital yang terjangkau dan efektif, termasuk situs web, POS Lite, dan manajemen media sosial.';
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const keywordsEn = ['digital solutions for SMEs', 'UMKM go digital', 'affordable websites for UMKM', 'POS system for small business', 'social media management Indonesia', 'UMKM technology'];
+  const keywordsId = ['solusi digital UMKM', 'UMKM go digital', 'website murah untuk UMKM', 'sistem kasir untuk usaha kecil', 'manajemen media sosial Indonesia', 'teknologi untuk UMKM'];
 
   return {
     title,
     description: lang === 'id' ? descriptionId : description,
-    keywords: ['UMKM solutions', 'digital UMKM', 'website UMKM', 'POS UMKM', 'social media management', 'bisnis kecil', 'Indonesia'],
+    keywords: lang === 'id' ? keywordsId : keywordsEn,
     alternates: {
       canonical: canonicalUrl,
       languages: {
