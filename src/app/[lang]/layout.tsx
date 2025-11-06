@@ -6,6 +6,7 @@ import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
 import { Metadata } from 'next';
 import Script from 'next/script';
+import CookieConsent from '@/components/shared/cookie-consent';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 
@@ -145,6 +146,7 @@ export default async function LanguageLayout({
       {children}
       <WhatsAppButton dictionary={dictionary.whatsapp} />
       <Footer dictionary={dictionary} lang={params.lang} />
+      <CookieConsent dictionary={dictionary} lang={params.lang} />
     </>
   );
 }

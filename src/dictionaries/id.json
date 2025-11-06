@@ -632,5 +632,9 @@
         "home": "Beranda",
         "aboutUs": "Tentang Kami",
         "learnMore": "Pelajari Lebih Lanjut"
+    },
+    "cookieConsent": {
+        "message": "Kami menggunakan cookie untuk meningkatkan pengalaman penelusuran Anda dan menganalisis lalu lintas kami. Dengan mengeklik \"Terima\", Anda menyetujui penggunaan cookie kami dan menyetujui <a href='{privacy_policy_link}' class='underline'>Kebijakan Privasi</a> kami.",
+        "accept": "Terima"
     }
 }

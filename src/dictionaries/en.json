@@ -632,5 +632,9 @@
         "home": "Home",
         "aboutUs": "About Us",
         "learnMore": "Learn More"
+    },
+    "cookieConsent": {
+        "message": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking \"Accept\", you consent to our use of cookies and agree to our <a href='{privacy_policy_link}' class='underline'>Privacy Policy</a>.",
+        "accept": "Accept"
     }
 }
