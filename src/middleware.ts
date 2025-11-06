@@ -22,6 +22,7 @@ function getLocale(request: NextRequest): string | undefined {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
+  // Pass the pathname in a header so we can access it in not-found.tsx
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-pathname', pathname);
 
@@ -51,6 +52,7 @@ export function middleware(request: NextRequest) {
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
+  // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
     
@@ -61,6 +63,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(newUrl);
   }
   
+  // If we have a locale, just continue
   return NextResponse.next({
     request: {
       headers: requestHeaders,
