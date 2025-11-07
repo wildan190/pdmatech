@@ -24,8 +24,8 @@ const OurClients = ({ dictionary }: OurClientsProps) => {
         <h3 className="text-center text-muted-foreground font-semibold text-lg mb-8">
           {dictionary.title}
         </h3>
-        <div className="relative">
-          <div className="flex animate-marquee-scroll-slow hover:pause-animation items-center">
+        <div className="relative overflow-hidden">
+          <div className="flex animate-marquee-scroll hover:pause-animation items-center">
             {clients.concat(clients).map((client, index) => (
               <div key={index} className="flex-shrink-0 w-64 mx-8 text-center">
                 <Image
@@ -45,7 +45,7 @@ const OurClients = ({ dictionary }: OurClientsProps) => {
           from { transform: translateX(0); }
           to { transform: translateX(-50%); }
         }
-        .animate-marquee-scroll-slow {
+        .animate-marquee-scroll {
           animation: marquee-scroll 40s linear infinite;
         }
         .hover\:pause-animation:hover {
@@ -57,5 +57,3 @@ const OurClients = ({ dictionary }: OurClientsProps) => {
 };
 
 export default OurClients;
-
-    
