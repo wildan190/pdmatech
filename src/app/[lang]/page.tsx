@@ -17,7 +17,7 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
       <main className="flex-grow overflow-x-hidden">
         <Hero dictionary={dictionary.homePage.hero} lang={lang} />
         <Experience dictionary={dictionary.homePage.experience} />
-        <OurClients dictionary={dictionary.homePage.ourClients} />
+        <OurClients dictionary={dictionary.homePage.ourClients} lang={lang} />
         <ClimateBanner dictionary={dictionary.homePage.climateBanner} lang={lang} />
         <ServicesAndProduct dictionary={dictionary.homePage.services} lang={lang} />
         <OurTeam dictionary={dictionary.homePage.ourTeam} lang={lang} />
