@@ -1,6 +1,6 @@
 
 import { getDictionary } from '@/lib/dictionaries';
-import { Locale } from '@/i18n.config';
+import { Locale, i18n } from '@/i18n.config';
 import WhatsAppButton from '@/components/landing/whatsapp-button';
 import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
@@ -12,44 +12,60 @@ const baseUrl = 'https://mpnsolutions.my.id';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const isEn = lang === 'en';
+  const isId = lang === 'id';
 
-  const title = isEn 
-    ? 'Micro Padma Nusantara | Innovative ICT & IoT Solutions' 
-    : 'Micro Padma Nusantara | Solusi Inovatif ICT & IoT';
-  const description = isEn
-    ? 'Micro Padma Nusantara provides cutting-edge ICT and IoT solutions to drive business growth and efficiency. Explore our services for enterprise, UMKM, and more.'
-    : 'Micro Padma Nusantara menyediakan solusi ICT dan IoT canggih untuk mendorong pertumbuhan dan efisiensi bisnis. Jelajahi layanan kami untuk enterprise, UMKM, dan lainnya.';
-  const keywordsEn = ['ICT solutions Indonesia', 'IoT company Indonesia', 'enterprise software solutions', 'UMKM digital solutions', 'web development services', 'IT consulting Jakarta', 'technology provider Indonesia', 'Micro Padma Nusantara'];
-  const keywordsId = ['solusi ICT Indonesia', 'perusahaan IoT Indonesia', 'software enterprise', 'solusi digital UMKM', 'jasa pembuatan website', 'konsultan IT Jakarta', 'penyedia teknologi Indonesia', 'Micro Padma Nusantara'];
+  const titles: Record<Locale, string> = {
+    en: 'Micro Padma Nusantara | Innovative ICT & IoT Solutions',
+    id: 'Micro Padma Nusantara | Solusi Inovatif ICT & IoT',
+    zh: 'Micro Padma Nusantara | 创新的 ICT 和物联网解决方案'
+  };
+
+  const descriptions: Record<Locale, string> = {
+    en: 'Micro Padma Nusantara provides cutting-edge ICT and IoT solutions to drive business growth and efficiency. Explore our services for enterprise, UMKM, and more.',
+    id: 'Micro Padma Nusantara menyediakan solusi ICT dan IoT canggih untuk mendorong pertumbuhan dan efisiensi bisnis. Jelajahi layanan kami untuk enterprise, UMKM, dan lainnya.',
+    zh: 'Micro Padma Nusantara 提供尖端的 ICT 和物联网解决方案，以推动业务增长和效率。探索我们为企业、中小微企业等提供的服务。'
+  };
   
-  const ogTitle = isEn 
-    ? 'Micro Padma Nusantara | Innovative ICT & IoT Solutions'
-    : 'Micro Padma Nusantara | Solusi Inovatif ICT & IoT';
-  const ogDescription = isEn
-    ? 'Empowering businesses with future-ready ICT & IoT solutions in Indonesia.'
-    : 'Memberdayakan bisnis dengan solusi ICT & IoT yang siap untuk masa depan di Indonesia.';
+  const keywords: Record<Locale, string[]> = {
+    en: ['ICT solutions Indonesia', 'IoT company Indonesia', 'enterprise software solutions', 'UMKM digital solutions', 'web development services', 'IT consulting Jakarta', 'technology provider Indonesia', 'Micro Padma Nusantara'],
+    id: ['solusi ICT Indonesia', 'perusahaan IoT Indonesia', 'software enterprise', 'solusi digital UMKM', 'jasa pembuatan website', 'konsultan IT Jakarta', 'penyedia teknologi Indonesia', 'Micro Padma Nusantara'],
+    zh: ['印尼ICT解决方案', '印尼物联网公司', '企业软件解决方案', '中小微企业数字解决方案', '网站开发服务', '雅加达IT咨询', '印尼技术提供商', 'Micro Padma Nusantara']
+  };
+  
+  const ogTitles: Record<Locale, string> = {
+    en: 'Micro Padma Nusantara | Innovative ICT & IoT Solutions',
+    id: 'Micro Padma Nusantara | Solusi Inovatif ICT & IoT',
+    zh: 'Micro Padma Nusantara | 创新的 ICT 和物联网解决方案'
+  };
+  
+  const ogDescriptions: Record<Locale, string> = {
+    en: 'Empowering businesses with future-ready ICT & IoT solutions in Indonesia.',
+    id: 'Memberdayakan bisnis dengan solusi ICT & IoT yang siap untuk masa depan di Indonesia.',
+    zh: '以面向未来的 ICT 和物联网解决方案为印度尼西亚的企业赋能。'
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}`;
+  const alternates: { [key: string]: string } = {};
+  i18n.locales.forEach(locale => {
+    alternates[locale] = `${baseUrl}/${locale}`;
+  });
+  alternates['x-default'] = `${baseUrl}/${i18n.defaultLocale}`;
 
   return {
     metadataBase: new URL(baseUrl),
     title: {
-      default: title,
+      default: titles[lang],
       template: `%s | Micro Padma Nusantara`,
     },
-    description,
-    keywords: isEn ? keywordsEn : keywordsId,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
-      languages: {
-        'en': `${baseUrl}/en`,
-        'id': `${baseUrl}/id`,
-        'x-default': `${baseUrl}/en`,
-      },
+      languages: alternates,
     },
     openGraph: {
-      title: ogTitle,
-      description: ogDescription,
+      title: ogTitles[lang],
+      description: ogDescriptions[lang],
       url: canonicalUrl,
       siteName: 'Micro Padma Nusantara',
       images: [
@@ -57,17 +73,16 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
           url: '/assets/img/home/og-image.jpg',
           width: 1200,
           height: 630,
-          alt: isEn ? 'Micro Padma Nusantara Logo and Tagline' : 'Logo dan Tagline Micro Padma Nusantara',
+          alt: isId ? 'Logo dan Tagline Micro Padma Nusantara' : (isEn ? 'Micro Padma Nusantara Logo and Tagline' : 'Micro Padma Nusantara 徽标和标语'),
         },
       ],
-      locale: isEn ? 'en_US' : 'id_ID',
+      locale: isId ? 'id_ID' : (isEn ? 'en_US' : 'zh_CN'),
       type: 'website',
-      ['ia:markup_url' as any]: canonicalUrl,
     },
     twitter: {
       card: 'summary_large_image',
-      title: ogTitle,
-      description: ogDescription,
+      title: ogTitles[lang],
+      description: ogDescriptions[lang],
       creator: '@micropadma',
       images: ['/assets/img/home/twitter-image.jpg'],
     },

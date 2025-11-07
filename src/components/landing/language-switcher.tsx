@@ -37,6 +37,9 @@ export default function LanguageSwitcher({ lang }: { lang: string }) {
         <DropdownMenuItem asChild>
           <Link href={redirectedPathName('id')}>Indonesia</Link>
         </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href={redirectedPathName('zh')}>中文</Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

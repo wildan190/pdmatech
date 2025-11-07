@@ -17,34 +17,42 @@ const path = '/career';
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.careerPage.breadcrumb;
-  const description = 'Join our team of innovators at Micro Padma Nusantara. Explore career opportunities and become part of our mission to shape the future of technology in Indonesia.';
-  const descriptionId = 'Bergabunglah dengan tim inovator kami di Micro Padma Nusantara. Jelajahi peluang karir dan jadilah bagian dari misi kami untuk membentuk masa depan teknologi di Indonesia.';
+  
+  const descriptions: Record<Locale, string> = {
+    en: 'Join our team of innovators at Micro Padma Nusantara. Explore career opportunities and become part of our mission to shape the future of technology in Indonesia.',
+    id: 'Bergabunglah dengan tim inovator kami di Micro Padma Nusantara. Jelajahi peluang karir dan jadilah bagian dari misi kami untuk membentuk masa depan teknologi di Indonesia.',
+    zh: '加入 Micro Padma Nusantara 的创新团队。探索职业机会，成为我们塑造印度尼西亚技术未来使命的一部分。'
+  };
+
+  const keywords: Record<Locale, string[]> = {
+    en: ['tech jobs Indonesia', 'ICT careers', 'IoT job vacancies', 'software engineer jobs', 'work at Micro Padma Nusantara', 'technology careers Banten'],
+    id: ['lowongan kerja teknologi', 'karir ICT', 'lowongan kerja IoT', 'pekerjaan software engineer', 'karir di Micro Padma Nusantara', 'lowongan kerja Banten'],
+    zh: ['印尼技术工作', 'ICT职业', '物联网职位空缺', '软件工程师职位', '在Micro Padma Nusantara工作', '万丹技术职业']
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const keywordsEn = ['tech jobs Indonesia', 'ICT careers', 'IoT job vacancies', 'software engineer jobs', 'work at Micro Padma Nusantara', 'technology careers Banten'];
-  const keywordsId = ['lowongan kerja teknologi', 'karir ICT', 'lowongan kerja IoT', 'pekerjaan software engineer', 'karir di Micro Padma Nusantara', 'lowongan kerja Banten'];
-
 
   return {
     title: `${title} at Micro Padma Nusantara`,
-    description: lang === 'id' ? descriptionId : description,
-    keywords: lang === 'id' ? keywordsId : keywordsEn,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title: `${title} at Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
       title: `${title} at Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
     },
   };
 }

@@ -13,14 +13,18 @@ const path = '/insight/news';
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.constructionPage.breadcrumb.news;
-  const description = 'Our news section is being updated with the latest stories and updates from Micro Padma Nusantara. Please check back soon.';
-  const descriptionId = 'Bagian berita kami sedang diperbarui dengan cerita dan pembaruan terbaru dari Micro Padma Nusantara. Silakan periksa kembali segera.';
+  
+  const descriptions: Record<Locale, string> = {
+    en: 'Our news section is being updated with the latest stories and updates from Micro Padma Nusantara. Please check back soon.',
+    id: 'Bagian berita kami sedang diperbarui dengan cerita dan pembaruan terbaru dari Micro Padma Nusantara. Silakan periksa kembali segera.',
+    zh: '我们的新闻版块正在更新来自 Micro Padma Nusantara 的最新故事和动态。请稍后回来查看。'
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
     title: `${title} - Micro Padma Nusantara`,
-    description: lang === 'id' ? descriptionId : description,
+    description: descriptions[lang],
     robots: {
       index: false,
       follow: true,
@@ -30,12 +34,13 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title: `${title} - Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
     },
   };

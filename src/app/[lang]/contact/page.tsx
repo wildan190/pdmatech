@@ -17,34 +17,42 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.contactPage;
   const title = pageDict.breadcrumb;
-  const description = 'Get in touch with Micro Padma Nusantara. We are here to help you with your ICT and IoT needs. Contact us for a consultation.';
-  const descriptionId = 'Hubungi Micro Padma Nusantara. Kami siap membantu kebutuhan ICT dan IoT Anda. Hubungi kami untuk konsultasi.';
+  
+  const descriptions: Record<Locale, string> = {
+    en: 'Get in touch with Micro Padma Nusantara. We are here to help you with your ICT and IoT needs. Contact us for a consultation.',
+    id: 'Hubungi Micro Padma Nusantara. Kami siap membantu kebutuhan ICT dan IoT Anda. Hubungi kami untuk konsultasi.',
+    zh: '与 Micro Padma Nusantara 取得联系。我们随时准备帮助您满足 ICT 和物联网需求。联系我们进行咨询。'
+  };
+
+  const keywords: Record<Locale, string[]> = {
+    en: ['contact ICT company', 'IoT consultation Indonesia', 'get a quote for software', 'Micro Padma Nusantara contact', 'tech support Indonesia', 'business inquiry'],
+    id: ['hubungi perusahaan ICT', 'konsultasi IoT Indonesia', 'dapatkan penawaran software', 'kontak Micro Padma Nusantara', 'dukungan teknis Indonesia', 'permintaan bisnis'],
+    zh: ['联系ICT公司', '印尼物联网咨询', '软件报价', 'Micro Padma Nusantara联系方式', '印尼技术支持', '商务咨询']
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const keywordsEn = ['contact ICT company', 'IoT consultation Indonesia', 'get a quote for software', 'Micro Padma Nusantara contact', 'tech support Indonesia', 'business inquiry'];
-  const keywordsId = ['hubungi perusahaan ICT', 'konsultasi IoT Indonesia', 'dapatkan penawaran software', 'kontak Micro Padma Nusantara', 'dukungan teknis Indonesia', 'permintaan bisnis'];
-
 
   return {
     title,
-    description: lang === 'id' ? descriptionId : description,
-    keywords: lang === 'id' ? keywordsId : keywordsEn,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title: `${title} - Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
       title: `${title} - Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
     },
   };
 }

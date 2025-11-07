@@ -16,33 +16,42 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.peoplePage;
   const title = pageDict.breadcrumb;
-  const description = 'Meet the talented team of leaders and innovators at Micro Padma Nusantara. Our experts are dedicated to driving your business success through technology.';
-  const descriptionId = 'Temui tim pemimpin dan inovator berbakat di Micro Padma Nusantara. Para ahli kami berdedikasi untuk mendorong kesuksesan bisnis Anda melalui teknologi.';
+  
+  const descriptions: Record<Locale, string> = {
+    en: 'Meet the talented team of leaders and innovators at Micro Padma Nusantara. Our experts are dedicated to driving your business success through technology.',
+    id: 'Temui tim pemimpin dan inovator berbakat di Micro Padma Nusantara. Para ahli kami berdedikasi untuk mendorong kesuksesan bisnis Anda melalui teknologi.',
+    zh: '认识 Micro Padma Nusantara 的才华横溢的领导者和创新者团队。我们的专家致力于通过技术推动您的业务成功。'
+  };
+
+  const keywords: Record<Locale, string[]> = {
+    en: ['our team', 'leadership team', 'ICT experts Indonesia', 'IoT professionals', 'meet our innovators', 'Micro Padma Nusantara team'],
+    id: ['tim kami', 'tim kepemimpinan', 'ahli ICT Indonesia', 'profesional IoT', 'inovator kami', 'tim Micro Padma Nusantara'],
+    zh: ['我们的团队', '领导团队', '印尼ICT专家', '物联网专业人士', '认识我们的创新者', 'Micro Padma Nusantara 团队']
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const keywordsEn = ['our team', 'leadership team', 'ICT experts Indonesia', 'IoT professionals', 'meet our innovators', 'Micro Padma Nusantara team'];
-  const keywordsId = ['tim kami', 'tim kepemimpinan', 'ahli ICT Indonesia', 'profesional IoT', 'inovator kami', 'tim Micro Padma Nusantara'];
 
   return {
     title,
-    description: lang === 'id' ? descriptionId : description,
-    keywords: lang === 'id' ? keywordsId : keywordsEn,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title: `${title} - Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
       title: `${title} - Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
     },
   };
 }

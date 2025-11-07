@@ -18,33 +18,42 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.companyPage;
   const title = pageDict.breadcrumb;
-  const description = 'Learn about the history, mission, and vision of Micro Padma Nusantara. We are dedicated to delivering transformative ICT and IoT solutions in Indonesia.';
-  const descriptionId = 'Pelajari tentang sejarah, misi, dan visi Micro Padma Nusantara. Kami berdedikasi untuk memberikan solusi ICT dan IoT yang transformatif di Indonesia.';
   
+  const descriptions: Record<Locale, string> = {
+    en: 'Learn about the history, mission, and vision of Micro Padma Nusantara. We are dedicated to delivering transformative ICT and IoT solutions in Indonesia.',
+    id: 'Pelajari tentang sejarah, misi, dan visi Micro Padma Nusantara. Kami berdedikasi untuk memberikan solusi ICT dan IoT yang transformatif di Indonesia.',
+    zh: '了解 Micro Padma Nusantara 的历史、使命和愿景。我们致力于在印度尼西亚提供变革性的 ICT 和物联网解决方案。'
+  };
+
+  const keywords: Record<Locale, string[]> = {
+    en: ['about Micro Padma Nusantara', 'company profile ICT', 'Indonesian tech company', 'our mission and vision', 'ICT solutions provider', 'IoT innovation Indonesia', 'company history'],
+    id: ['tentang Micro Padma Nusantara', 'profil perusahaan ICT', 'perusahaan teknologi Indonesia', 'visi dan misi kami', 'penyedia solusi ICT', 'inovasi IoT Indonesia', 'sejarah perusahaan'],
+    zh: ['关于Micro Padma Nusantara', '公司简介ICT', '印尼科技公司', '我们的使命和愿景', 'ICT解决方案提供商', '印尼物联网创新', '公司历史']
+  };
+
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const keywordsEn = ['about Micro Padma Nusantara', 'company profile ICT', 'Indonesian tech company', 'our mission and vision', 'ICT solutions provider', 'IoT innovation Indonesia', 'company history'];
-  const keywordsId = ['tentang Micro Padma Nusantara', 'profil perusahaan ICT', 'perusahaan teknologi Indonesia', 'visi dan misi kami', 'penyedia solusi ICT', 'inovasi IoT Indonesia', 'sejarah perusahaan'];
 
   return {
     title,
-    description: lang === 'id' ? descriptionId : description,
-    keywords: lang === 'id' ? keywordsId : keywordsEn,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title: `${title} - Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
       title: `${title} - Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
     },
   };
 }

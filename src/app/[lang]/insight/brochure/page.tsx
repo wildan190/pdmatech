@@ -18,35 +18,44 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.brochurePage;
   const title = pageDict.breadcrumb;
-  const description = 'Explore the official brochure of Micro Padma Nusantara. Discover our innovative ICT and IoT solutions, our mission, and how we empower businesses in Indonesia.';
-  const descriptionId = 'Jelajahi brosur resmi Micro Padma Nusantara. Temukan solusi ICT dan IoT inovatif kami, misi kami, dan bagaimana kami memberdayakan bisnis di Indonesia.';
+
+  const descriptions: Record<Locale, string> = {
+    en: 'Explore the official brochure of Micro Padma Nusantara. Discover our innovative ICT and IoT solutions, our mission, and how we empower businesses in Indonesia.',
+    id: 'Jelajahi brosur resmi Micro Padma Nusantara. Temukan solusi ICT dan IoT inovatif kami, misi kami, dan bagaimana kami memberdayakan bisnis di Indonesia.',
+    zh: '浏览 Micro Padma Nusantara 的官方宣传册。了解我们的创新 ICT 和物联网解决方案、我们的使命以及我们如何为印度尼西亚的企业赋能。'
+  };
+
+  const keywords: Record<Locale, string[]> = {
+    en: ['company brochure', 'download ICT brochure', 'IoT solutions PDF', 'Micro Padma Nusantara profile', 'digital transformation services', 'tech company portfolio'],
+    id: ['brosur perusahaan', 'unduh brosur ICT', 'PDF solusi IoT', 'profil Micro Padma Nusantara', 'layanan transformasi digital', 'portofolio perusahaan teknologi'],
+    zh: ['公司宣传册', '下载ICT宣传册', '物联网解决方案PDF', 'Micro Padma Nusantara简介', '数字化转型服务', '科技公司产品组合']
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const keywordsEn = ['company brochure', 'download ICT brochure', 'IoT solutions PDF', 'Micro Padma Nusantara profile', 'digital transformation services', 'tech company portfolio'];
-  const keywordsId = ['brosur perusahaan', 'unduh brosur ICT', 'PDF solusi IoT', 'profil Micro Padma Nusantara', 'layanan transformasi digital', 'portofolio perusahaan teknologi'];
 
   return {
     title,
-    description: lang === 'id' ? descriptionId : description,
-    keywords: lang === 'id' ? keywordsId : keywordsEn,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title: `${title} | Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
       type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
       title: `${title} | Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
     },
   };
 }

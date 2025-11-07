@@ -16,33 +16,42 @@ const path = '/ict-solutions/web';
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.ictSolutionsSubMenu.web.title;
-  const description = 'Crafting captivating and high-performance digital experiences. We build custom websites, e-commerce stores, and web applications using modern technologies like Next.js and React.';
-  const descriptionId = 'Menciptakan pengalaman digital yang menawan dan berkinerja tinggi. Kami membangun situs web khusus, toko e-niaga, dan aplikasi web menggunakan teknologi modern seperti Next.js dan React.';
+  
+  const descriptions: Record<Locale, string> = {
+    en: 'Crafting captivating and high-performance digital experiences. We build custom websites, e-commerce stores, and web applications using modern technologies like Next.js and React.',
+    id: 'Menciptakan pengalaman digital yang menawan dan berkinerja tinggi. Kami membangun situs web khusus, toko e-niaga, dan aplikasi web menggunakan teknologi modern seperti Next.js dan React.',
+    zh: '打造引人入胜且高性能的数字体验。我们使用 Next.js 和 React 等现代技术构建定制网站、电子商务商店和 Web 应用程序。'
+  };
+
+  const keywords: Record<Locale, string[]> = {
+    en: ['web development Indonesia', 'custom website design', 'e-commerce solutions', 'Next.js developer', 'React development agency', 'SEO optimization services', 'web application development'],
+    id: ['jasa pembuatan website Indonesia', 'desain website kustom', 'solusi e-commerce', 'developer Next.js', 'agensi pengembangan React', 'jasa optimasi SEO', 'pengembangan aplikasi web'],
+    zh: ['印尼网站开发', '定制网站设计', '电子商务解决方案', 'Next.js开发者', 'React开发机构', 'SEO优化服务', 'Web应用开发']
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const keywordsEn = ['web development Indonesia', 'custom website design', 'e-commerce solutions', 'Next.js developer', 'React development agency', 'SEO optimization services', 'web application development'];
-  const keywordsId = ['jasa pembuatan website Indonesia', 'desain website kustom', 'solusi e-commerce', 'developer Next.js', 'agensi pengembangan React', 'jasa optimasi SEO', 'pengembangan aplikasi web'];
 
   return {
     title,
-    description: lang === 'id' ? descriptionId : description,
-    keywords: lang === 'id' ? keywordsId : keywordsEn,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
       title,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
     },
   };
 }

@@ -16,33 +16,42 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.investorPage;
   const title = pageDict.breadcrumb;
-  const description = 'Explore investment opportunities with Micro Padma Nusantara. Join us in driving Indonesia\'s digital transformation.';
-  const descriptionId = 'Jelajahi peluang investasi dengan Micro Padma Nusantara. Bergabunglah dengan kami dalam mendorong transformasi digital Indonesia.';
+  
+  const descriptions: Record<Locale, string> = {
+    en: 'Explore investment opportunities with Micro Padma Nusantara. Join us in driving Indonesia\'s digital transformation.',
+    id: 'Jelajahi peluang investasi dengan Micro Padma Nusantara. Bergabunglah dengan kami dalam mendorong transformasi digital Indonesia.',
+    zh: '探索与 Micro Padma Nusantara 的投资机会。加入我们，共同推动印度尼西亚的数字化转型。'
+  };
+
+  const keywords: Record<Locale, string[]> = {
+    en: ['invest in Indonesian tech', 'ICT investment opportunities', 'IoT startup funding', 'tech investor relations', 'digital transformation Indonesia', 'Micro Padma Nusantara investors'],
+    id: ['investasi teknologi Indonesia', 'peluang investasi ICT', 'pendanaan startup IoT', 'hubungan investor teknologi', 'transformasi digital Indonesia', 'investor Micro Padma Nusantara'],
+    zh: ['投资印尼科技', 'ICT投资机会', '物联网初创公司融资', '科技投资者关系', '印尼数字化转型', 'Micro Padma Nusantara投资者']
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const keywordsEn = ['invest in Indonesian tech', 'ICT investment opportunities', 'IoT startup funding', 'tech investor relations', 'digital transformation Indonesia', 'Micro Padma Nusantara investors'];
-  const keywordsId = ['investasi teknologi Indonesia', 'peluang investasi ICT', 'pendanaan startup IoT', 'hubungan investor teknologi', 'transformasi digital Indonesia', 'investor Micro Padma Nusantara'];
 
   return {
     title,
-    description: lang === 'id' ? descriptionId : description,
-    keywords: lang === 'id' ? keywordsId : keywordsEn,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title: `${title} | Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
       title: `${title} | Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
     },
   };
 }

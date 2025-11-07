@@ -17,33 +17,42 @@ const path = '/ict-solutions/umkm';
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.ictSolutionsSubMenu.umkm.title;
-  const description = 'Empowering small and medium enterprises (UMKM) in Indonesia with affordable and effective digital solutions, including websites, POS Lite, and social media management.';
-  const descriptionId = 'Memberdayakan usaha kecil dan menengah (UMKM) di Indonesia dengan solusi digital yang terjangkau dan efektif, termasuk situs web, POS Lite, dan manajemen media sosial.';
+  
+  const descriptions: Record<Locale, string> = {
+    en: 'Empowering small and medium enterprises (UMKM) in Indonesia with affordable and effective digital solutions, including websites, POS Lite, and social media management.',
+    id: 'Memberdayakan usaha kecil dan menengah (UMKM) di Indonesia dengan solusi digital yang terjangkau dan efektif, termasuk situs web, POS Lite, dan manajemen media sosial.',
+    zh: '为印度尼西亚的中小微企业（UMKM）提供价格实惠且有效的数字解决方案，包括网站、POS Lite 和社交媒体管理。'
+  };
+
+  const keywords: Record<Locale, string[]> = {
+    en: ['digital solutions for SMEs', 'UMKM go digital', 'affordable websites for UMKM', 'POS system for small business', 'social media management Indonesia', 'UMKM technology'],
+    id: ['solusi digital UMKM', 'UMKM go digital', 'website murah untuk UMKM', 'sistem kasir untuk usaha kecil', 'manajemen media sosial Indonesia', 'teknologi untuk UMKM'],
+    zh: ['中小企业数字解决方案', 'UMKM数字化', '中小微企业实惠网站', '小企业POS系统', '印尼社交媒体管理', 'UMKM技术']
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const keywordsEn = ['digital solutions for SMEs', 'UMKM go digital', 'affordable websites for UMKM', 'POS system for small business', 'social media management Indonesia', 'UMKM technology'];
-  const keywordsId = ['solusi digital UMKM', 'UMKM go digital', 'website murah untuk UMKM', 'sistem kasir untuk usaha kecil', 'manajemen media sosial Indonesia', 'teknologi untuk UMKM'];
 
   return {
     title,
-    description: lang === 'id' ? descriptionId : description,
-    keywords: lang === 'id' ? keywordsId : keywordsEn,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
       title,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
     },
   };
 }

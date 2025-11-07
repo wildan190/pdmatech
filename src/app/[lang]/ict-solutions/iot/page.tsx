@@ -17,33 +17,42 @@ const path = '/ict-solutions/iot';
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const title = dictionary.ictSolutionsSubMenu.iot.title;
-  const description = 'Transform your business with our end-to-end IoT solutions. From smart monitoring and asset tracking to industrial automation, we connect your world for enhanced efficiency.';
-  const descriptionId = 'Ubah bisnis Anda dengan solusi IoT end-to-end kami. Dari pemantauan cerdas dan pelacakan aset hingga otomatisasi industri, kami menghubungkan dunia Anda untuk efisiensi yang lebih baik.';
+  
+  const descriptions: Record<Locale, string> = {
+    en: 'Transform your business with our end-to-end IoT solutions. From smart monitoring and asset tracking to industrial automation, we connect your world for enhanced efficiency.',
+    id: 'Ubah bisnis Anda dengan solusi IoT end-to-end kami. Dari pemantauan cerdas dan pelacakan aset hingga otomatisasi industri, kami menghubungkan dunia Anda untuk efisiensi yang lebih baik.',
+    zh: '通过我们的端到端物联网解决方案改变您的业务。从智能监控和资产跟踪到工业自动化，我们连接您的世界以提高效率。'
+  };
+
+  const keywords: Record<Locale, string[]> = {
+    en: ['IoT solutions Indonesia', 'Internet of Things company', 'smart monitoring systems', 'asset tracking GPS', 'industrial automation (IIoT)', 'smart agriculture solutions', 'connected devices'],
+    id: ['solusi IoT Indonesia', 'perusahaan Internet of Things', 'sistem monitoring cerdas', 'pelacakan aset GPS', 'otomatisasi industri (IIoT)', 'solusi pertanian cerdas', 'perangkat terhubung'],
+    zh: ['印尼物联网解决方案', '物联网公司', '智能监控系统', 'GPS资产跟踪', '工业自动化(IIoT)', '智能农业解决方案', '连接设备']
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const keywordsEn = ['IoT solutions Indonesia', 'Internet of Things company', 'smart monitoring systems', 'asset tracking GPS', 'industrial automation (IIoT)', 'smart agriculture solutions', 'connected devices'];
-  const keywordsId = ['solusi IoT Indonesia', 'perusahaan Internet of Things', 'sistem monitoring cerdas', 'pelacakan aset GPS', 'otomatisasi industri (IIoT)', 'solusi pertanian cerdas', 'perangkat terhubung'];
 
   return {
     title,
-    description: lang === 'id' ? descriptionId : description,
-    keywords: lang === 'id' ? keywordsId : keywordsEn,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
       title,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
     },
   };
 }

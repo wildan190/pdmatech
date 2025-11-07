@@ -1,5 +1,6 @@
 
 import { MetadataRoute } from 'next';
+import { i18n } from '@/i18n.config';
 
 const URL = 'https://mpnsolutions.my.id';
 
@@ -21,20 +22,24 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sitemapEntries: MetadataRoute.Sitemap = routes
+  const sitemapEntries: MetadataRoute.Sitemap = [];
+
+  routes
     .filter(route => !route.includes('under-construction')) // Filter out under-construction pages if any
-    .map((route) => ({
-      url: `${URL}/en${route}`,
-      lastModified: new Date(),
-      alternates: {
-        languages: {
-          'en': `${URL}/en${route}`,
-          'id': `${URL}/id${route}`,
+    .forEach((route) => {
+      const alternates: { [key: string]: string } = {};
+      i18n.locales.forEach(locale => {
+        alternates[locale] = `${URL}/${locale}${route}`;
+      });
+
+      sitemapEntries.push({
+        url: `${URL}/${i18n.defaultLocale}${route}`,
+        lastModified: new Date(),
+        alternates: {
+          languages: alternates,
         },
-      },
-  }));
+      });
+    });
 
   return sitemapEntries;
 }
-
-    

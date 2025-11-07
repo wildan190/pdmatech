@@ -14,33 +14,42 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.privacyPage;
   const title = pageDict.breadcrumb;
-  const description = 'Read the Privacy Policy of Micro Padma Nusantara. We are committed to protecting your data and privacy when you use our services.';
-  const descriptionId = 'Baca Kebijakan Privasi Micro Padma Nusantara. Kami berkomitmen untuk melindungi data dan privasi Anda saat Anda menggunakan layanan kami.';
+  
+  const descriptions: Record<Locale, string> = {
+    en: 'Read the Privacy Policy of Micro Padma Nusantara. We are committed to protecting your data and privacy when you use our services.',
+    id: 'Baca Kebijakan Privasi Micro Padma Nusantara. Kami berkomitmen untuk melindungi data dan privasi Anda saat Anda menggunakan layanan kami.',
+    zh: '阅读 Micro Padma Nusantara 的隐私政策。我们致力于在您使用我们的服务时保护您的数据和隐私。'
+  };
+
+  const keywords: Record<Locale, string[]> = {
+    en: ['privacy policy', 'data protection', 'user privacy', 'terms of service', 'data security Indonesia', 'GDPR compliance'],
+    id: ['kebijakan privasi', 'perlindungan data', 'privasi pengguna', 'ketentuan layanan', 'keamanan data Indonesia', 'kepatuhan GDPR'],
+    zh: ['隐私政策', '数据保护', '用户隐私', '服务条款', '印尼数据安全', 'GDPR合规']
+  };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const keywordsEn = ['privacy policy', 'data protection', 'user privacy', 'terms of service', 'data security Indonesia', 'GDPR compliance'];
-  const keywordsId = ['kebijakan privasi', 'perlindungan data', 'privasi pengguna', 'ketentuan layanan', 'keamanan data Indonesia', 'kepatuhan GDPR'];
 
   return {
     title,
-    description: lang === 'id' ? descriptionId : description,
-    keywords: lang === 'id' ? keywordsId : keywordsEn,
+    description: descriptions[lang],
+    keywords: keywords[lang],
     alternates: {
       canonical: canonicalUrl,
       languages: {
         'en': `${baseUrl}/en${path}`,
         'id': `${baseUrl}/id${path}`,
+        'zh': `${baseUrl}/zh${path}`,
         'x-default': `${baseUrl}/en${path}`,
       },
     },
     openGraph: {
       title: `${title} - Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
       title: `${title} - Micro Padma Nusantara`,
-      description: lang === 'id' ? descriptionId : description,
+      description: descriptions[lang],
     },
   };
 }
