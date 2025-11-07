@@ -1,10 +1,10 @@
-
 'use client';
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const clients = [
   { name: 'Sinar Indah Padma', logo: '/assets/img/clients/sinar-indah-padma.svg' },
@@ -17,6 +17,9 @@ const clients = [
   { name: 'SyauqiRental', logo: '/assets/img/clients/syauqirental.svg' },
   { name: 'Bali Pure', logo: '/assets/img/clients/bali-pure.svg' },
   { name: 'MyPulsa', logo: '/assets/img/clients/mypulsa.svg' },
+  { name: 'Jowoland Construction', logo: '/assets/img/clients/jowoland-construction.svg' },
+  { name: 'Hadiwijaya', logo: '/assets/img/clients/hadiwijaya.svg' },
+  { name: 'Hadiningrat Corp', logo: '/assets/img/clients/hadiningrat-corp.svg' },
 ];
 
 type OurClientsProps = {
@@ -42,20 +45,26 @@ const OurClients = ({ dictionary, lang }: OurClientsProps) => {
             </p>
         </div>
         
-        <div className="mt-16">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-10 gap-x-8 items-center max-w-6xl mx-auto">
-            {clients.map((client) => (
-              <div key={client.name} className="flex justify-center">
+        <div className="relative mt-16 w-full overflow-hidden">
+          <div className="flex animate-marquee-scroll hover:[animation-play-state:paused]">
+            {[...clients, ...clients].map((client, index) => (
+              <div key={`${client.name}-${index}`} className="flex-shrink-0 w-1/5 flex justify-center items-center mx-4">
                 <Image
                   src={client.logo}
                   alt={client.name}
                   width={220}
                   height={88}
-                  className="h-20 w-auto object-contain"
+                  className="h-20 w-auto object-contain text-muted-foreground"
                 />
               </div>
             ))}
           </div>
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-secondary/50 to-transparent"
+          ></div>
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-secondary/50 to-transparent"
+          ></div>
         </div>
         
         <div className="text-center mt-16">
