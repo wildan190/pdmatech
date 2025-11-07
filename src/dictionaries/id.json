@@ -88,6 +88,9 @@
             "talents": "Talenta Teknologi",
             "projects": "Proyek di Indonesia"
         },
+        "ourClients": {
+            "title": "Dipercaya Oleh"
+        },
         "climateBanner": {
             "title": "Ikuti Inisiatif GoGreen Kami",
             "description": "Kami berkomitmen untuk membangun masa depan yang berkelanjutan. Temukan bagaimana solusi teknologi kami berkontribusi pada perubahan lingkungan yang positif.",
@@ -638,3 +641,5 @@
         "accept": "Terima"
     }
 }
+
+    

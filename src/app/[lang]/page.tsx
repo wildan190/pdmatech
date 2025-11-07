@@ -8,6 +8,7 @@ import Faq from '@/components/landing/faq';
 import Contact from '@/components/landing/contact';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import OurClients from '@/components/landing/our-clients';
 
 export default async function Home({ params: { lang } }: { params: { lang: Locale }}) {
   const dictionary = await getDictionary(lang);
@@ -16,6 +17,7 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
       <main className="flex-grow overflow-x-hidden">
         <Hero dictionary={dictionary.homePage.hero} lang={lang} />
         <Experience dictionary={dictionary.homePage.experience} />
+        <OurClients dictionary={dictionary.homePage.ourClients} />
         <ClimateBanner dictionary={dictionary.homePage.climateBanner} lang={lang} />
         <ServicesAndProduct dictionary={dictionary.homePage.services} lang={lang} />
         <OurTeam dictionary={dictionary.homePage.ourTeam} lang={lang} />
@@ -24,3 +26,5 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
       </main>
   );
 }
+
+    

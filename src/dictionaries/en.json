@@ -88,6 +88,9 @@
             "talents": "Technology Talents",
             "projects": "Projects in Indonesia"
         },
+        "ourClients": {
+            "title": "Trusted By"
+        },
         "climateBanner": {
             "title": "Join Our GoGreen Initiative",
             "description": "We are committed to building a sustainable future. Discover how our technology solutions contribute to positive environmental change.",
@@ -638,3 +641,5 @@
         "accept": "Accept"
     }
 }
+
+    
