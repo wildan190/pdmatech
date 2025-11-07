@@ -233,7 +233,7 @@
             "wildan": {
                 "name": "Wildan J. Belfiore",
                 "title": "President Director",
-                "bio": "Wildan is a visionary technologist with a rich background in full-stack engineering. Since 2022, he has honed his skills across diverse industries, contributing to complex projects at renowned organizations such as Xapiens, Biro Klasifikasi Indonesia, Lumoshive, and the British Technologies Global Group. His passion for innovation and leadership led him to co-found Micro Padma Nusantara in 2023, where he serves as President Director. Concurrently, he holds the position of Chief Technology Officer at Huntr.id, driving the technological vision for both companies and pioneering solutions that shape the future."
+                "bio": "Wildan is a visionary technologist with a rich background in full-stack engineering. Since 2022, he has honed his skills across diverse industries, contributing to complex projects at renowned organizations such as Xapiens, Biro Klasifikasi Indonesia, Lumoshive, and Garuda Systrain Interindo. His passion for innovation and leadership led him to co-found Micro Padma Nusantara in 2023, where he serves as President Director. Concurrently, he holds the position of Chief Technology Officer at Huntr.id, driving the technological vision for both companies and pioneering solutions that shape the future."
             },
             "raihan": {
                 "name": "Raihan Firdaus",
@@ -506,142 +506,140 @@
         }
     },
     "careerPage": {
-        "breadcrumb": "Karir",
+        "breadcrumb": "Career",
         "hero": {
-            "title": "Bangun Masa Depan Anda Bersama Kami",
-            "description": "Bergabunglah dengan tim inovator, pemecah masalah, dan kolaborator yang bersemangat dalam membentuk masa depan teknologi di Indonesia."
+            "title": "Build Your Future With Us",
+            "description": "Join a team of passionate innovators, problem-solvers, and collaborators shaping the future of technology in Indonesia."
         },
         "culture": {
-            "pretitle": "BUDAYA KAMI",
-            "title": "Lebih dari Sekadar Pekerjaan, Ini adalah Misi",
-            "description": "Di Micro Padma Nusantara, kami tidak hanya membangun produk; kami membangun budaya keunggulan, pertumbuhan, dan dampak. Kami percaya dalam memberdayakan tim kami untuk melakukan pekerjaan terbaik mereka di lingkungan yang mendukung, menantang, dan bermanfaat."
+            "pretitle": "OUR CULTURE",
+            "title": "More Than a Job, It's a Mission",
+            "description": "At Micro Padma Nusantara, we don't just build products; we build a culture of excellence, growth, and impact. We believe in empowering our team to do their best work in an environment that is supportive, challenging, and rewarding."
         },
         "values": {
             "innovation": {
-                "title": "Inovasi di Hati",
-                "description": "Kami didorong oleh keinginan untuk mendorong batasan dan menjelajahi batas-batas teknologi baru. Kreativitas dan pemikiran ke depan adalah inti kami."
+                "title": "Innovation at Heart",
+                "description": "We are driven by a desire to push boundaries and explore the frontiers of new technology. Creativity and forward-thinking are in our DNA."
             },
             "collaboration": {
-                "title": "Semangat Kolaboratif",
-                "description": "Kami percaya solusi terbaik datang dari kerja sama. Tim kami berkembang dengan komunikasi terbuka dan saling mendukung."
+                "title": "Collaborative Spirit",
+                "description": "We believe the best solutions come from working together. Our team thrives on open communication and mutual support."
             },
             "growth": {
-                "title": "Pola Pikir Bertumbuh",
-                "description": "Kami adalah pembelajar seumur hidup, berkomitmen untuk pengembangan pribadi dan profesional untuk diri kami sendiri dan klien kami."
+                "title": "Growth Mindset",
+                "description": "We are lifelong learners, committed to personal and professional development for ourselves and our clients."
             },
             "passion": {
-                "title": "Semangat Berpusat pada Klien",
-                "description": "Kesuksesan Anda adalah kesuksesan kami. Kami bersemangat untuk memberikan nilai dan membangun kemitraan jangka panjang berdasarkan kepercayaan."
+                "title": "Client-Centric Passion",
+                "description": "Your success is our success. We are passionate about delivering value and building long-term partnerships based on trust."
             }
         },
         "openings": {
-            "title": "Lowongan Saat Ini",
-            "description": "Kami selalu mencari individu berbakat. Meskipun saat ini tidak ada posisi terbuka, kami akan senang mendengar dari Anda.",
-            "notAvailable": "Tidak Ada Posisi yang Tersedia Saat Ini",
-            "checkBack": "Silakan periksa kembali nanti untuk peluang di masa depan."
+            "title": "Current Openings",
+            "description": "We're always looking for talented individuals. While there are no open positions at the moment, we'd love to hear from you.",
+            "notAvailable": "No Positions Currently Available",
+            "checkBack": "Please check back later for future opportunities."
         },
         "cta": {
-            "title": "Tidak Menemukan Peran untuk Anda?",
-            "description": "Kami selalu terbuka untuk terhubung dengan talenta luar biasa. Jika Anda yakin keahlian Anda dapat membuat perbedaan, kirimkan resume Anda!",
-            "button": "Kirim Resume Anda"
+            "title": "Don't See a Role for You?",
+            "description": "We're always open to connecting with exceptional talent. If you believe your skills could make a difference, send us your resume!",
+            "button": "Submit Your Resume"
         }
     },
     "constructionPage": {
-        "title": "Sedang Dibangun",
-        "description": "Kami sedang bekerja keras untuk memberikan Anda konten baru dan menarik. Silakan periksa kembali segera!",
-        "brochureDescription": "Kami sedang mempersiapkan brosur perusahaan kami untuk Anda. Silakan periksa kembali segera untuk mengunduhnya!",
-        "newsDescription": "Bagian berita kami sedang diperbarui dengan cerita dan pembaruan terbaru. Silakan periksa kembali segera!",
+        "title": "Under Construction",
+        "description": "We are working hard to bring you new and exciting content. Please check back soon!",
+        "brochureDescription": "We are preparing our company brochure for you. Please check back soon to download it!",
+        "newsDescription": "Our news section is being updated with the latest stories and updates. Please check back soon!",
         "breadcrumb": {
-            "insight": "Wawasan",
-            "article": "Artikel",
-            "brochure": "Brosur",
-            "news": "Berita"
+            "insight": "Insight",
+            "article": "Article",
+            "brochure": "Brochure",
+            "news": "News"
         }
     },
     "contactPage": {
-        "breadcrumb": "Hubungi Kami",
+        "breadcrumb": "Contact Us",
         "hero": {
-            "headline": "Mari Terhubung",
-            "subheadline": "Punya pertanyaan, proyek, atau hanya ingin menyapa? Kami ingin mendengar dari Anda. Isi formulir di bawah ini dan tim kami akan segera menghubungi Anda."
+            "headline": "Let's Get in Touch",
+            "subheadline": "Have a question, a project, or just want to say hello? We'd love to hear from you. Fill out the form below and our team will get back to you shortly."
         }
     },
-     "brochurePage": {
-        "breadcrumb": "Brosur",
+    "brochurePage": {
+        "breadcrumb": "Brochure",
         "hero": {
-            "title": "Temukan Inovasi Kami",
-            "description": "Gambaran umum tentang misi, solusi, dan komitmen kami untuk mendorong bisnis Anda maju melalui teknologi.",
-            "imageAlt": "Latar belakang teknologi abstrak yang merepresentasikan inovasi",
-            "downloadButton": "Unduh Brosur"
+            "title": "Discover Our Innovations",
+            "description": "An overview of our mission, solutions, and our commitment to driving your business forward through technology.",
+            "imageAlt": "Abstract technology background representing innovation",
+            "downloadButton": "Download Brochure"
         },
         "services": {
-            "title": "Solusi Inti Kami",
-            "description": "Kami memberikan solusi menyeluruh yang disesuaikan untuk memenuhi tantangan unik bisnis Anda, dari kehadiran web dasar hingga ekosistem IoT yang kompleks."
+            "title": "Our Core Solutions",
+            "description": "We deliver end-to-end solutions tailored to meet your unique business challenges, from basic web presence to complex IoT ecosystems."
         },
         "cta": {
-            "title": "Mari Ciptakan Masa Depan, Bersama.",
-            "description": "Siap untuk membahas bagaimana keahlian teknologi kami dapat mengangkat bisnis Anda? Tim kami siap mendengarkan.",
-            "button": "Hubungi Kami"
+            "title": "Let's Create the Future, Together.",
+            "description": "Ready to discuss how our technological expertise can elevate your business? Our team is ready to listen.",
+            "button": "Contact Us"
         }
     },
     "investorPage": {
-        "breadcrumb": "Hubungan Investor",
+        "breadcrumb": "Investor Relations",
         "hero": {
-            "title": "Berinvestasi di Masa Depan Teknologi Indonesia",
-            "description": "Bergabunglah dengan kami dalam misi kami untuk memberdayakan bisnis dan mendorong transformasi digital di seluruh nusantara."
+            "title": "Investing in the Future of Indonesian Technology",
+            "description": "Join us on our mission to empower businesses and drive digital transformation across the archipelago."
         },
         "whyInvest": {
-            "pretitle": "PROPOSISI NILAI",
-            "title": "Mengapa Berinvestasi di Micro Padma Nusantara?",
-            "description": "Kami berada di garis depan revolusi digital Indonesia, menawarkan peluang investasi unik di pasar dengan pertumbuhan tinggi.",
+            "pretitle": "VALUE PROPOSITION",
+            "title": "Why Invest in Micro Padma Nusantara?",
+            "description": "We are at the forefront of Indonesia's digital revolution, offering a unique investment opportunity in a high-growth market.",
             "items": [
                 {
-                    "title": "Posisi Pasar Strategis",
-                    "description": "Menargetkan sektor enterprise dan UMKM yang luas namun kurang terlayani dengan solusi teknologi esensial."
+                    "title": "Strategic Market Position",
+                    "description": "Targeting both the vast but underserved UMKM and enterprise sectors with essential technology solutions."
                 },
                 {
-                    "title": "Didorong oleh Inovasi",
-                    "description": "Fokus kuat pada solusi yang dapat diskalakan dan banyak diminati di bidang IoT dan perangkat lunak enterprise kustom."
+                    "title": "Innovation-Driven",
+                    "description": "A strong focus on scalable, high-demand solutions in IoT and custom enterprise software."
                 },
                 {
-                    "title": "Kepemimpinan Berpengalaman",
-                    "description": "Dipimpin oleh tim dinamis dengan rekam jejak yang terbukti di bidang teknologi dan pengembangan bisnis strategis."
+                    "title": "Experienced Leadership",
+                    "description": "Led by a dynamic team with a proven track record in technology and strategic business development."
                 },
                 {
-                    "title": "Potensi Pertumbuhan Tinggi",
-                    "description": "Memanfaatkan digitalisasi ekonomi Indonesia yang pesat dengan model operasional yang ramping dan gesit."
+                    "title": "High Growth Potential",
+                    "description": "Capitalizing on the rapid digitalization of Indonesia's economy with a lean and agile operational model."
                 }
             ]
         },
         "financials": {
-            "title": "Sorotan Keuangan",
-            "description": "Kami berkomitmen pada pertumbuhan berkelanjutan dan pelaporan keuangan yang transparan. (Data keuangan akan tersedia di sini)."
+            "title": "Financial Highlights",
+            "description": "We are committed to sustainable growth and transparent financial reporting. (Financial data will be available here)."
         },
         "resources": {
-            "title": "Sumber Daya Investor",
-            "description": "Akses laporan, presentasi, dan informasi penting lainnya.",
-            "comingSoon": "Sumber daya investor belum tersedia. Silakan periksa kembali segera."
+            "title": "Investor Resources",
+            "description": "Access reports, presentations, and other key information.",
+            "comingSoon": "Investor resources are not yet available. Please check back soon."
         },
         "contact": {
-            "title": "Pertanyaan Investor",
-            "description": "Untuk pertanyaan terkait investor, silakan hubungi tim kami secara langsung.",
+            "title": "Investor Inquiries",
+            "description": "For investor-related questions, please contact our team directly.",
             "email": "investor.relations@mpnsolutions.my.id"
         }
     },
     "notFoundPage": {
         "errorCode": "404",
-        "title": "Halaman Tidak Ditemukan",
-        "description": "Ups! Sepertinya halaman yang Anda cari telah mengambil jalan memutar. Mari kita kembalikan Anda ke jalur yang benar.",
-        "button": "Kembali ke Beranda"
+        "title": "Page Not Found",
+        "description": "Oops! It looks like the page you were searching for has taken a detour. Let's get you back on track.",
+        "button": "Back to Home"
     },
     "common": {
-        "home": "Beranda",
-        "aboutUs": "Tentang Kami",
-        "learnMore": "Pelajari Lebih Lanjut"
+        "home": "Home",
+        "aboutUs": "About Us",
+        "learnMore": "Learn More"
     },
     "cookieConsent": {
-        "message": "Kami menggunakan cookie untuk meningkatkan pengalaman penelusuran Anda dan menganalisis lalu lintas kami. Dengan mengeklik \"Terima\", Anda menyetujui penggunaan cookie kami dan menyetujui <a href='{privacy_policy_link}' class='underline'>Kebijakan Privasi</a> kami.",
-        "accept": "Terima"
+        "message": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking \"Accept\", you consent to our use of cookies and agree to our <a href='{privacy_policy_link}' class='underline'>Privacy Policy</a>.",
+        "accept": "Accept"
     }
 }
-
-    

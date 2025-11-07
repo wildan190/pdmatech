@@ -11,7 +11,7 @@ const clients = [
   { name: 'Hakarentcar', logo: '/assets/img/clients/hakarentcar.svg' },
   { name: 'Communic8', logo: '/assets/img/clients/communic8.svg' },
   { name: 'Liga Mahasiswa', logo: '/assets/img/clients/liga-mahasiswa.svg' },
-  { name: 'British Technology Global Group', logo: '/assets/img/clients/british-technology.svg' },
+  { name: 'Garuda Systrain Interindo', logo: '/assets/img/clients/garuda-systrain-interindo.svg' },
 ];
 
 type OurClientsProps = {
