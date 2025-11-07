@@ -12,6 +12,11 @@ const clients = [
   { name: 'Communic8', logo: '/assets/img/clients/communic8.svg' },
   { name: 'Liga Mahasiswa', logo: '/assets/img/clients/liga-mahasiswa.svg' },
   { name: 'Garuda Systrain Interindo', logo: '/assets/img/clients/garuda-systrain-interindo.svg' },
+  { name: 'Huntr.id', logo: '/assets/img/clients/huntr-id.svg' },
+  { name: 'Safarental', logo: '/assets/img/clients/safarental.svg' },
+  { name: 'SyauqiRental', logo: '/assets/img/clients/syauqirental.svg' },
+  { name: 'Bali Pure', logo: '/assets/img/clients/bali-pure.svg' },
+  { name: 'MyPulsa', logo: '/assets/img/clients/mypulsa.svg' },
 ];
 
 type OurClientsProps = {
@@ -24,8 +29,6 @@ type OurClientsProps = {
 };
 
 const OurClients = ({ dictionary, lang }: OurClientsProps) => {
-  const topRowClients = clients.slice(0, 3);
-  const bottomRowClients = clients.slice(3);
 
   return (
     <section id="our-clients" className="py-20 lg:py-24 bg-secondary/50">
@@ -39,22 +42,9 @@ const OurClients = ({ dictionary, lang }: OurClientsProps) => {
             </p>
         </div>
         
-        <div className="mt-16 space-y-10">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 items-center max-w-4xl mx-auto">
-            {topRowClients.map((client) => (
-              <div key={client.name} className="flex justify-center">
-                <Image
-                  src={client.logo}
-                  alt={client.name}
-                  width={220}
-                  height={88}
-                  className="h-20 w-auto object-contain"
-                />
-              </div>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 gap-8 items-center max-w-2xl mx-auto">
-            {bottomRowClients.map((client) => (
+        <div className="mt-16">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-10 gap-x-8 items-center max-w-6xl mx-auto">
+            {clients.map((client) => (
               <div key={client.name} className="flex justify-center">
                 <Image
                   src={client.logo}
