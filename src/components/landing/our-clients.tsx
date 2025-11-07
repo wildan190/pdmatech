@@ -24,6 +24,9 @@ type OurClientsProps = {
 };
 
 const OurClients = ({ dictionary, lang }: OurClientsProps) => {
+  const topRowClients = clients.slice(0, 3);
+  const bottomRowClients = clients.slice(3);
+
   return (
     <section id="our-clients" className="py-20 lg:py-24 bg-secondary/50">
       <div className="container mx-auto px-4">
@@ -36,18 +39,33 @@ const OurClients = ({ dictionary, lang }: OurClientsProps) => {
             </p>
         </div>
         
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 items-center">
-          {clients.map((client) => (
-            <div key={client.name} className="flex justify-center">
-              <Image
-                src={client.logo}
-                alt={client.name}
-                width={180}
-                height={72}
-                className="h-16 w-auto object-contain"
-              />
-            </div>
-          ))}
+        <div className="mt-16 space-y-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 items-center max-w-4xl mx-auto">
+            {topRowClients.map((client) => (
+              <div key={client.name} className="flex justify-center">
+                <Image
+                  src={client.logo}
+                  alt={client.name}
+                  width={220}
+                  height={88}
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-8 items-center max-w-2xl mx-auto">
+            {bottomRowClients.map((client) => (
+              <div key={client.name} className="flex justify-center">
+                <Image
+                  src={client.logo}
+                  alt={client.name}
+                  width={220}
+                  height={88}
+                  className="h-20 w-auto object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
         
         <div className="text-center mt-16">
