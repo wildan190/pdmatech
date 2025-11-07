@@ -36,20 +36,18 @@ const OurClients = ({ dictionary, lang }: OurClientsProps) => {
             </p>
         </div>
         
-        <div className="relative mt-16 overflow-hidden">
-          <div className="flex animate-marquee-scroll hover:pause-animation items-center">
-            {clients.concat(clients).map((client, index) => (
-              <div key={index} className="flex-shrink-0 w-72 mx-10 text-center">
-                <Image
-                  src={client.logo}
-                  alt={client.name}
-                  width={180}
-                  height={72}
-                  className="h-14 w-auto inline-block object-contain"
-                />
-              </div>
-            ))}
-          </div>
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 items-center">
+          {clients.map((client) => (
+            <div key={client.name} className="flex justify-center">
+              <Image
+                src={client.logo}
+                alt={client.name}
+                width={180}
+                height={72}
+                className="h-16 w-auto object-contain"
+              />
+            </div>
+          ))}
         </div>
         
         <div className="text-center mt-16">
@@ -61,18 +59,6 @@ const OurClients = ({ dictionary, lang }: OurClientsProps) => {
         </div>
 
       </div>
-      <style jsx>{`
-        @keyframes marquee-scroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .animate-marquee-scroll {
-          animation: marquee-scroll 40s linear infinite;
-        }
-        .hover\\:pause-animation:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 };
