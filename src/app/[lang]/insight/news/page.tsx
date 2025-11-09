@@ -99,3 +99,5 @@ export default async function NewsPage({ params: { lang } }: { params: { lang: L
     </main>
   );
 }
+
+    

@@ -189,3 +189,5 @@ export default async function InvestorPage({ params: { lang } }: { params: { lan
     </main>
   );
 }
+
+    

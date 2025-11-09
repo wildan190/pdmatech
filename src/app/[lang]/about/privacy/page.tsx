@@ -71,10 +71,6 @@ export default async function PrivacyPage({ params: { lang } }: { params: { lang
                       </BreadcrumbItem>
                       <BreadcrumbSeparator />
                       <BreadcrumbItem>
-                          <BreadcrumbLink asChild><Link href={`/${lang}/about/company`}>{dictionary.common.aboutUs}</Link></BreadcrumbLink>
-                      </BreadcrumbItem>
-                      <BreadcrumbSeparator />
-                      <BreadcrumbItem>
                           <BreadcrumbPage>{pageDict.breadcrumb}</BreadcrumbPage>
                       </BreadcrumbItem>
                   </BreadcrumbList>
@@ -159,3 +155,5 @@ export default async function PrivacyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
+
+    

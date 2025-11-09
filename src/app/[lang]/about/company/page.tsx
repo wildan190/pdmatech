@@ -125,13 +125,9 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
            <Breadcrumb>
               <BreadcrumbList>
                   <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                      <Link href={`/${lang}`}>{dictionary.common.home}</Link>
-                  </BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                      <BreadcrumbLink asChild><Link href={`/${lang}/about/company`}>{dictionary.common.aboutUs}</Link></BreadcrumbLink>
+                      <BreadcrumbLink asChild>
+                          <Link href={`/${lang}`}>{dictionary.common.home}</Link>
+                      </BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
@@ -347,3 +343,5 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
+
+    

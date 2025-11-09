@@ -129,6 +129,10 @@ const whyChooseUsData = [
                       <BreadcrumbLink asChild><Link href={`/${lang}`}>{dictionary.common.home}</Link></BreadcrumbLink>
                   </BreadcrumbItem>
                    <BreadcrumbSeparator />
+                   <BreadcrumbItem>
+                      <BreadcrumbLink asChild><Link href={`/${lang}/#services`}>{dictionary.navigation.ictSolutions}</Link></BreadcrumbLink>
+                  </BreadcrumbItem>
+                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
                       <BreadcrumbPage>{pageDict.breadcrumb}</BreadcrumbPage>
                   </BreadcrumbItem>
@@ -241,3 +245,5 @@ const whyChooseUsData = [
     </main>
   );
 }
+
+    
