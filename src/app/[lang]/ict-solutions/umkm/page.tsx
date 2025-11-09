@@ -16,12 +16,17 @@ const path = '/ict-solutions/umkm';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
-  const title = dictionary.ictSolutionsSubMenu.umkm.title;
   
+  const titles: Record<Locale, string> = {
+    en: "Digital Solutions for UMKM & SMEs | Affordable Websites, POS",
+    id: "Solusi Digital untuk UMKM & UKM | Website Terjangkau, POS",
+    zh: "为中小微企业和中小企业提供数字解决方案 | 经济实惠的网站、POS"
+  };
+
   const descriptions: Record<Locale, string> = {
-    en: 'Empowering small and medium enterprises (UMKM) in Indonesia with affordable and effective digital solutions, including websites, POS Lite, and social media management.',
-    id: 'Memberdayakan usaha kecil dan menengah (UMKM) di Indonesia dengan solusi digital yang terjangkau dan efektif, termasuk situs web, POS Lite, dan manajemen media sosial.',
-    zh: '为印度尼西亚的中小微企业（UMKM）提供价格实惠且有效的数字解决方案，包括网站、POS Lite 和社交媒体管理。'
+    en: 'Empowering Indonesian SMEs (UMKM) with effective and affordable digital solutions. We provide website development, Lite POS systems, and social media management.',
+    id: 'Memberdayakan UMKM di Indonesia dengan solusi digital yang efektif dan terjangkau. Kami menyediakan jasa pembuatan website, sistem POS Lite, dan manajemen media sosial.',
+    zh: '为印度尼西亚的中小微企业（UMKM）提供有效且经济实惠的数字解决方案。我们提供网站开发、轻量级POS系统和社交媒体管理。'
   };
 
   const keywords: Record<Locale, string[]> = {
@@ -33,7 +38,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
-    title,
+    title: titles[lang],
     description: descriptions[lang],
     keywords: keywords[lang],
     alternates: {
@@ -46,12 +51,12 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       },
     },
     openGraph: {
-      title,
+      title: titles[lang],
       description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
-      title,
+      title: titles[lang],
       description: descriptions[lang],
     },
   };

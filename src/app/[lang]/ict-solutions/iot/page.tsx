@@ -16,24 +16,29 @@ const path = '/ict-solutions/iot';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
-  const title = dictionary.ictSolutionsSubMenu.iot.title;
   
+  const titles: Record<Locale, string> = {
+    en: "IoT Solutions for Enterprise — IIoT, Asset Tracking & Predictive Maintenance",
+    id: "Solusi IoT untuk Perusahaan — Implementasi IIoT, Pelacakan Aset & Predictive Maintenance",
+    zh: "企业物联网解决方案 — IIoT、资产跟踪和预测性维护"
+  };
+
   const descriptions: Record<Locale, string> = {
-    en: 'Transform your business with our end-to-end IoT solutions. From smart monitoring and asset tracking to industrial automation, we connect your world for enhanced efficiency.',
-    id: 'Ubah bisnis Anda dengan solusi IoT end-to-end kami. Dari pemantauan cerdas dan pelacakan aset hingga otomatisasi industri, kami menghubungkan dunia Anda untuk efisiensi yang lebih baik.',
-    zh: '通过我们的端到端物联网解决方案改变您的业务。从智能监控和资产跟踪到工业自动化，我们连接您的世界以提高效率。'
+    en: 'End-to-end IoT solutions for manufacturing, logistics, and smart cities. Get a consultation for implementation, platform integration, and 24/7 support. Request a demo.',
+    id: 'Solusi IoT end-to-end untuk manufaktur, logistik, dan smart city. Konsultasi implementasi, integrasi platform, dan dukungan 24/7 — request demo.',
+    zh: '为制造业、物流和智慧城市提供端到端的物联网解决方案。获取实施、平台集成和全天候支持的咨询。请求演示。'
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['IoT solutions Indonesia', 'Internet of Things company', 'smart monitoring systems', 'asset tracking GPS', 'industrial automation (IIoT)', 'smart agriculture solutions', 'connected devices'],
-    id: ['solusi IoT Indonesia', 'perusahaan Internet of Things', 'sistem monitoring cerdas', 'pelacakan aset GPS', 'otomatisasi industri (IIoT)', 'solusi pertanian cerdas', 'perangkat terhubung'],
-    zh: ['印尼物联网解决方案', '物联网公司', '智能监控系统', 'GPS资产跟踪', '工业自动化(IIoT)', '智能农业解决方案', '连接设备']
+    en: ['IoT solutions for enterprise', 'IIoT for manufacturing', 'IoT asset tracking', 'predictive maintenance IoT', 'IoT platform Indonesia', 'IoT system integrator'],
+    id: ['solusi IoT untuk perusahaan', 'IIoT untuk manufaktur', 'pelacakan aset IoT', 'predictive maintenance IoT', 'platform IoT Indonesia', 'integrator sistem IoT'],
+    zh: ['企业物联网解决方案', '工业物联网制造', '物联网资产跟踪', '预测性维护物联网', '印尼物联网平台', '物联网系统集成商']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
-    title,
+    title: titles[lang],
     description: descriptions[lang],
     keywords: keywords[lang],
     alternates: {
@@ -46,12 +51,12 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       },
     },
     openGraph: {
-      title,
+      title: titles[lang],
       description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
-      title,
+      title: titles[lang],
       description: descriptions[lang],
     },
   };
@@ -122,7 +127,7 @@ const processSteps = [
                       <BreadcrumbLink asChild><Link href={`/${lang}`}>{dictionary.common.home}</Link></BreadcrumbLink>
                   </BreadcrumbItem>
                    <BreadcrumbSeparator />
-                   <BreadcrumbItem>
+                  <BreadcrumbItem>
                       <BreadcrumbPage>{pageDict.breadcrumb}</BreadcrumbPage>
                   </BreadcrumbItem>
               </BreadcrumbList>

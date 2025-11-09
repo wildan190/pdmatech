@@ -15,12 +15,17 @@ const path = '/ict-solutions/web';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
-  const title = dictionary.ictSolutionsSubMenu.web.title;
-  
+
+  const titles: Record<Locale, string> = {
+    en: "Web Development Services | Custom Websites, E-Commerce, SEO",
+    id: "Jasa Pembuatan Website | Website Kustom, E-Commerce, SEO",
+    zh: "网站开发服务 | 定制网站、电子商务、搜索引擎优化"
+  };
+
   const descriptions: Record<Locale, string> = {
-    en: 'Crafting captivating and high-performance digital experiences. We build custom websites, e-commerce stores, and web applications using modern technologies like Next.js and React.',
-    id: 'Menciptakan pengalaman digital yang menawan dan berkinerja tinggi. Kami membangun situs web khusus, toko e-niaga, dan aplikasi web menggunakan teknologi modern seperti Next.js dan React.',
-    zh: '打造引人入胜且高性能的数字体验。我们使用 Next.js 和 React 等现代技术构建定制网站、电子商务商店和 Web 应用程序。'
+    en: 'Crafting high-performance digital experiences. We build custom websites, e-commerce stores, and web applications using modern technologies like Next.js and React.',
+    id: 'Menciptakan pengalaman digital berperforma tinggi. Kami membangun situs web kustom, toko e-commerce, dan aplikasi web menggunakan teknologi modern seperti Next.js dan React.',
+    zh: '打造高性能的数字体验。我们使用Next.js和React等现代技术构建定制网站、电子商务商店和Web应用程序。'
   };
 
   const keywords: Record<Locale, string[]> = {
@@ -32,7 +37,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
-    title,
+    title: titles[lang],
     description: descriptions[lang],
     keywords: keywords[lang],
     alternates: {
@@ -45,12 +50,12 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       },
     },
     openGraph: {
-      title,
+      title: titles[lang],
       description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
-      title,
+      title: titles[lang],
       description: descriptions[lang],
     },
   };

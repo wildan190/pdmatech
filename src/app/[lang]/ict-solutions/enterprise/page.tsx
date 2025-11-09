@@ -16,24 +16,29 @@ const path = '/ict-solutions/enterprise';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
-  const title = dictionary.ictSolutionsSubMenu.enterprise.title;
   
+  const titles: Record<Locale, string> = {
+    en: "Managed IT Services Indonesia — MSP, Monitoring & 24/7 Support",
+    id: "Managed IT Services Indonesia — MSP, Monitoring & Dukungan 24/7",
+    zh: "印度尼西亚托管IT服务 — MSP、监控和全天候支持"
+  };
+
   const descriptions: Record<Locale, string> = {
-    en: 'Scalable and robust ICT solutions for large organizations, including ERP, CRM, custom software, POS, and more. Power your enterprise with Micro Padma Nusantara.',
-    id: 'Solusi ICT yang dapat diskalakan dan kuat untuk organisasi besar, termasuk ERP, CRM, perangkat lunak kustom, POS, dan lainnya. Berdayakan perusahaan Anda dengan Micro Padma Nusantara.',
-    zh: '为大型组织提供可扩展且强大的 ICT 解决方案，包括 ERP、CRM、定制软件、POS 等。借助 Micro Padma Nusantara 增强您的企业实力。'
+    en: 'Reduce IT downtime & costs with managed IT, NOC, and managed security services. Services for SMEs to enterprise — contact our team.',
+    id: 'Kurangi downtime & biaya IT dengan layanan managed IT, NOC, dan managed security. Layanan untuk UKM hingga enterprise — hubungi tim kami.',
+    zh: '通过托管IT、NOC和托管安全服务，减少IT停机时间和成本。为中小企业到大型企业提供服务 — 联系我们的团队。'
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['enterprise software Indonesia', 'ERP solutions', 'CRM systems', 'custom software development', 'point of sale systems', 'hotel management software', 'enterprise ICT provider'],
-    id: ['software enterprise Indonesia', 'solusi ERP', 'sistem CRM', 'pengembangan software kustom', 'sistem POS', 'software manajemen hotel', 'penyedia ICT enterprise'],
-    zh: ['印尼企业软件', 'ERP解决方案', 'CRM系统', '定制软件开发', '销售点系统', '酒店管理软件', '企业ICT提供商']
+    en: ['managed IT services Indonesia', 'MSP Indonesia', 'NOC services', 'managed security services', 'enterprise IT solutions', 'IT support for business'],
+    id: ['managed IT services Indonesia', 'MSP Indonesia', 'layanan NOC', 'layanan keamanan terkelola', 'solusi IT enterprise', 'dukungan IT untuk bisnis'],
+    zh: ['印尼托管IT服务', '印尼MSP', 'NOC服务', '托管安全服务', '企业IT解决方案', '商业IT支持']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
 
   return {
-    title,
+    title: titles[lang],
     description: descriptions[lang],
     keywords: keywords[lang],
     alternates: {
@@ -46,12 +51,12 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       },
     },
     openGraph: {
-      title,
+      title: titles[lang],
       description: descriptions[lang],
       url: canonicalUrl,
     },
     twitter: {
-      title,
+      title: titles[lang],
       description: descriptions[lang],
     },
   };
