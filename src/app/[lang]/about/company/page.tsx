@@ -1,4 +1,6 @@
 
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -6,60 +8,30 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, Shield, Zap, Goal, Target, Eye, MapPin, Leaf, GraduationCap, Recycle } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { Metadata } from 'next';
 import { Locale } from "@/i18n.config";
-import { getDictionary } from "@/lib/dictionaries";
 import ParallaxImage from "@/components/shared/parallax-image";
+import { useEffect, useState } from "react";
+import { getDictionary } from "@/lib/dictionaries";
 
-const baseUrl = 'https://mpnsolutions.my.id';
-const path = '/about/company';
+type CompanyPageProps = {
+    params: { lang: Locale }
+};
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
-  const dictionary = await getDictionary(lang);
-  const pageDict = dictionary.companyPage;
-  const title = pageDict.breadcrumb;
-  
-  const descriptions: Record<Locale, string> = {
-    en: 'Learn about the history, mission, and vision of Micro Padma Nusantara. We are dedicated to delivering transformative ICT and IoT solutions in Indonesia.',
-    id: 'Pelajari tentang sejarah, misi, dan visi Micro Padma Nusantara. Kami berdedikasi untuk memberikan solusi ICT dan IoT yang transformatif di Indonesia.',
-    zh: '了解 Micro Padma Nusantara 的历史、使命和愿景。我们致力于在印度尼西亚提供变革性的 ICT 和物联网解决方案。'
-  };
+export default function CompanyPage({ params: { lang } }: CompanyPageProps) {
+    const [dictionary, setDictionary] = useState<any>(null);
 
-  const keywords: Record<Locale, string[]> = {
-    en: ['about Micro Padma Nusantara', 'company profile ICT', 'Indonesian tech company', 'our mission and vision', 'ICT solutions provider', 'IoT innovation Indonesia', 'company history'],
-    id: ['tentang Micro Padma Nusantara', 'profil perusahaan ICT', 'perusahaan teknologi Indonesia', 'visi dan misi kami', 'penyedia solusi ICT', 'inovasi IoT Indonesia', 'sejarah perusahaan'],
-    zh: ['关于Micro Padma Nusantara', '公司简介ICT', '印尼科技公司', '我们的使命和愿景', 'ICT解决方案提供商', '印尼物联网创新', '公司历史']
-  };
+    useEffect(() => {
+        const fetchDictionary = async () => {
+            const dict = await getDictionary(lang);
+            setDictionary(dict);
+        };
+        fetchDictionary();
+    }, [lang]);
 
-  const canonicalUrl = `${baseUrl}/${lang}${path}`;
+    if (!dictionary) {
+        return null; // Or a loading spinner
+    }
 
-  return {
-    title,
-    description: descriptions[lang],
-    keywords: keywords[lang],
-    alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        'en': `${baseUrl}/en${path}`,
-        'id': `${baseUrl}/id${path}`,
-        'zh': `${baseUrl}/zh${path}`,
-        'x-default': `${baseUrl}/en${path}`,
-      },
-    },
-    openGraph: {
-      title: `${title} - Micro Padma Nusantara`,
-      description: descriptions[lang],
-      url: canonicalUrl,
-    },
-    twitter: {
-      title: `${title} - Micro Padma Nusantara`,
-      description: descriptions[lang],
-    },
-  };
-}
-
-export default async function CompanyPage({ params: { lang } }: { params: { lang: Locale }}) {
-    const dictionary = await getDictionary(lang);
     const pageDict = dictionary.companyPage;
     const peopleDict = dictionary.peoplePage;
 
@@ -343,5 +315,3 @@ export default async function CompanyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
-
-    

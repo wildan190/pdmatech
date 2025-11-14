@@ -74,46 +74,35 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 }
 
-export default async function IotPage({ params: { lang } }: { params: { lang: Locale }}) {
-  const dictionary = await getDictionary(lang);
-  const pageDict = dictionary.iotPage;
-
-  const iconMap: { [key: string]: React.ReactNode } = {
-    Cpu: <Cpu className="w-8 h-8 text-primary" />,
-    Map: <Map className="w-8 h-8 text-primary" />,
-    Factory: <Factory className="w-8 h-8 text-primary" />,
-    Leaf: <Leaf className="w-8 h-8 text-primary" />,
-  };
-
-  const services = [
+const servicesList = [
     {
-        iconName: "Cpu",
-        title: pageDict.applications.monitoring.title,
-        description: pageDict.applications.monitoring.description,
+        icon: <Cpu className="w-8 h-8 text-primary" />,
+        key: "monitoring",
         imageId: "iot-feature-1",
         imagePath: "/assets/img/ict/smartmonitoring.jpg"
     },
     {
-        iconName: "Map",
-        title: pageDict.applications.tracking.title,
-        description: pageDict.applications.tracking.description,
+        icon: <Map className="w-8 h-8 text-primary" />,
+        key: "tracking",
         imageId: "iot-feature-3",
         imagePath: "/assets/img/ict/logistics.jpg"
     },
     {
-        iconName: "Factory",
-        title: pageDict.applications.automation.title,
-        description: pageDict.applications.automation.description,
+        icon: <Factory className="w-8 h-8 text-primary" />,
+        key: "automation",
         imageId: "iot-feature-4"
     },
     {
-        iconName: "Leaf",
-        title: pageDict.applications.agriculture.title,
-        description: pageDict.applications.agriculture.description,
+        icon: <Leaf className="w-8 h-8 text-primary" />,
+        key: "agriculture",
         imageId: "iot-feature-2",
         imagePath: "/assets/img/ict/agriculture.jpg"
     }
 ];
+
+export default async function IotPage({ params: { lang } }: { params: { lang: Locale }}) {
+  const dictionary = await getDictionary(lang);
+  const pageDict = dictionary.iotPage;
 
 const processSteps = [
   {
@@ -197,15 +186,16 @@ const processSteps = [
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service) => {
+            {servicesList.map((service) => {
                const image = PlaceHolderImages.find(p => p.id === service.imageId);
+               const serviceText = pageDict.applications[service.key];
                return(
-              <Card key={service.title} className="group overflow-hidden flex flex-col">
+              <Card key={service.key} className="group overflow-hidden flex flex-col">
                   <div className="relative h-48 w-full overflow-hidden">
                       {service.imagePath ? (
                           <Image
                               src={service.imagePath}
-                              alt={service.description}
+                              alt={serviceText.description}
                               fill
                               className="object-cover transition-transform duration-300 group-hover:scale-105"
                           />
@@ -222,13 +212,13 @@ const processSteps = [
                   <CardHeader>
                       <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full flex-shrink-0 mt-1">
-                              {iconMap[service.iconName]}
+                              {service.icon}
                           </div>
-                          <CardTitle className="text-xl leading-tight">{service.title}</CardTitle>
+                          <CardTitle className="text-xl leading-tight">{serviceText.title}</CardTitle>
                       </div>
                   </CardHeader>
                   <CardContent className="flex-grow">
-                      <p className="text-muted-foreground text-sm">{service.description}</p>
+                      <p className="text-muted-foreground text-sm">{serviceText.description}</p>
                   </CardContent>
               </Card>
                );
@@ -273,5 +263,3 @@ const processSteps = [
     </main>
   );
 }
-
-    
