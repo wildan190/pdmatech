@@ -10,6 +10,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import ParallaxImage from '@/components/shared/parallax-image';
+import React from 'react';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/iot';
@@ -36,6 +37,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const imageUrl = `${baseUrl}/assets/img/ict/iot.jpg`;
 
   return {
     title: titles[lang],
@@ -54,10 +56,20 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       title: titles[lang],
       description: descriptions[lang],
       url: canonicalUrl,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: titles[lang],
+        },
+      ],
     },
     twitter: {
+      card: 'summary_large_image',
       title: titles[lang],
       description: descriptions[lang],
+      images: [imageUrl],
     },
   };
 }
@@ -66,29 +78,36 @@ export default async function IotPage({ params: { lang } }: { params: { lang: Lo
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.iotPage;
 
+  const iconMap: { [key: string]: React.ReactNode } = {
+    Cpu: <Cpu className="w-8 h-8 text-primary" />,
+    Map: <Map className="w-8 h-8 text-primary" />,
+    Factory: <Factory className="w-8 h-8 text-primary" />,
+    Leaf: <Leaf className="w-8 h-8 text-primary" />,
+  };
+
   const services = [
     {
-        icon: <Cpu className="w-8 h-8 text-primary" />,
+        iconName: "Cpu",
         title: pageDict.applications.monitoring.title,
         description: pageDict.applications.monitoring.description,
         imageId: "iot-feature-1",
         imagePath: "/assets/img/ict/smartmonitoring.jpg"
     },
     {
-        icon: <Map className="w-8 h-8 text-primary" />,
+        iconName: "Map",
         title: pageDict.applications.tracking.title,
         description: pageDict.applications.tracking.description,
         imageId: "iot-feature-3",
         imagePath: "/assets/img/ict/logistics.jpg"
     },
     {
-        icon: <Factory className="w-8 h-8 text-primary" />,
+        iconName: "Factory",
         title: pageDict.applications.automation.title,
         description: pageDict.applications.automation.description,
         imageId: "iot-feature-4"
     },
     {
-        icon: <Leaf className="w-8 h-8 text-primary" />,
+        iconName: "Leaf",
         title: pageDict.applications.agriculture.title,
         description: pageDict.applications.agriculture.description,
         imageId: "iot-feature-2",
@@ -125,6 +144,10 @@ const processSteps = [
               <BreadcrumbList>
                   <BreadcrumbItem>
                       <BreadcrumbLink asChild><Link href={`/${lang}`}>{dictionary.common.home}</Link></BreadcrumbLink>
+                  </BreadcrumbItem>
+                   <BreadcrumbSeparator />
+                   <BreadcrumbItem>
+                      <BreadcrumbLink asChild><Link href={`/${lang}/#services`}>{dictionary.navigation.ictSolutions}</Link></BreadcrumbLink>
                   </BreadcrumbItem>
                    <BreadcrumbSeparator />
                   <BreadcrumbItem>
@@ -199,7 +222,7 @@ const processSteps = [
                   <CardHeader>
                       <div className="flex items-start gap-4">
                           <div className="bg-primary/10 p-3 rounded-full flex-shrink-0 mt-1">
-                              {service.icon}
+                              {iconMap[service.iconName]}
                           </div>
                           <CardTitle className="text-xl leading-tight">{service.title}</CardTitle>
                       </div>
@@ -250,3 +273,5 @@ const processSteps = [
     </main>
   );
 }
+
+    
