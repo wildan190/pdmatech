@@ -51,6 +51,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   });
   alternates['x-default'] = `${baseUrl}/${i18n.defaultLocale}`;
 
+  const ogImageUrl = `${baseUrl}/assets/img/home/og-image.jpg`;
+  const twitterImageUrl = `${baseUrl}/assets/img/home/twitter-image.jpg`;
+
   return {
     metadataBase: new URL(baseUrl),
     title: {
@@ -70,7 +73,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       siteName: 'Micro Padma Nusantara',
       images: [
         {
-          url: '/assets/img/home/og-image.jpg',
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: isId ? 'Logo dan Tagline Micro Padma Nusantara' : (isEn ? 'Micro Padma Nusantara Logo and Tagline' : 'Micro Padma Nusantara 徽标和标语'),
@@ -84,7 +87,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       title: ogTitles[lang],
       description: ogDescriptions[lang],
       creator: '@micropadma',
-      images: ['/assets/img/home/twitter-image.jpg'],
+      images: [twitterImageUrl],
     },
   };
 }
