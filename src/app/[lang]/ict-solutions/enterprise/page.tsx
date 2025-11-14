@@ -36,6 +36,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const imageUrl = `${baseUrl}/assets/img/ict/enterprise.jpg`;
 
   return {
     title: titles[lang],
@@ -54,10 +55,20 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       title: titles[lang],
       description: descriptions[lang],
       url: canonicalUrl,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: titles[lang],
+        },
+      ],
     },
     twitter: {
+      card: 'summary_large_image',
       title: titles[lang],
       description: descriptions[lang],
+      images: [imageUrl],
     },
   };
 }
@@ -270,5 +281,3 @@ const whyChooseUsData = [
     </main>
   );
 }
-
-    
