@@ -188,7 +188,7 @@ const processSteps = [
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {servicesList.map((service) => {
                const image = PlaceHolderImages.find(p => p.id === service.imageId);
-               const serviceText = pageDict.applications[service.key];
+               const serviceText = pageDict.applications[service.key as keyof typeof pageDict.applications];
                return(
               <Card key={service.key} className="group overflow-hidden flex flex-col">
                   <div className="relative h-48 w-full overflow-hidden">
@@ -263,3 +263,5 @@ const processSteps = [
     </main>
   );
 }
+
+    
