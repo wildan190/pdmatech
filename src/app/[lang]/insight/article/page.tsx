@@ -25,10 +25,6 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   return {
     title: `${title} - Micro Padma Nusantara`,
     description: descriptions[lang],
-    robots: {
-      index: false,
-      follow: true,
-    },
     alternates: {
       canonical: canonicalUrl,
       languages: {
@@ -99,5 +95,3 @@ export default async function ArticlePage({ params: { lang } }: { params: { lang
     </main>
   );
 }
-
-    
