@@ -641,5 +641,95 @@
     "cookieConsent": {
         "message": "Kami menggunakan cookie untuk meningkatkan pengalaman penelusuran Anda dan menganalisis lalu lintas kami. Dengan mengeklik \"Terima\", Anda menyetujui penggunaan cookie kami dan menyetujui <a href='{privacy_policy_link}' class='underline'>Kebijakan Privasi</a> kami.",
         "accept": "Terima"
+    },
+    "website1jtPage": {
+        "breadcrumb": "Program Website 1 Juta",
+        "hero": {
+            "title": "Website Profesional, Mulai dari 1 Juta Rupiah",
+            "description": "Dapatkan website company profile atau landing page yang modern, cepat, dan SEO-friendly untuk meningkatkan citra bisnis Anda.",
+            "cta": "Lihat Paket",
+            "imageAlt": "Desain website modern dan bersih yang ditampilkan di layar laptop."
+        },
+        "forWho": {
+            "title": "Sempurna untuk Skala Bisnis Anda",
+            "description": "Apapun ukuran bisnis Anda, website profesional adalah kunci untuk menjangkau pasar yang lebih luas.",
+            "item1": {
+                "title": "UMKM",
+                "description": "Tampilkan produk dan layanan Anda secara profesional untuk membangun kepercayaan pelanggan dan memperluas pasar."
+            },
+            "item2": {
+                "title": "Startup",
+                "description": "Bangun kesan pertama yang kuat bagi investor dan pengguna dengan landing page yang skalabel dan modern."
+            },
+            "item3": {
+                "title": "Perusahaan",
+                "description": "Butuh meluncurkan landing page untuk produk atau kampanye baru dengan cepat? Kami punya solusi cepat dan efektif."
+            }
+        },
+        "features": {
+            "pretitle": "APA YANG ANDA DAPATKAN",
+            "title": "Dikemas dengan Teknologi Terkini",
+            "description": "Kami tidak hanya membuat website, kami membangun aset digital untuk pertumbuhan bisnis Anda.",
+            "item1": {
+                "title": "Desain Modern & Responsif",
+                "description": "Tampil memukau dan berfungsi sempurna di perangkat apapun, dari desktop hingga mobile."
+            },
+            "item2": {
+                "title": "Fondasi Ramah SEO",
+                "description": "Dibangun dengan praktik terbaik untuk membantu website Anda mendapat peringkat lebih tinggi di pencarian Google."
+            },
+            "item3": {
+                "title": "Cepat & Aman",
+                "description": "Menggunakan teknologi modern (Next.js) untuk kecepatan optimal dan keamanan terbaik di kelasnya."
+            },
+            "item4": {
+                "title": "Skalabel untuk Masa Depan",
+                "description": "Website Anda siap tumbuh bersama bisnis, mudah ditambahkan fitur baru sesuai kebutuhan."
+            }
+        },
+        "packages": {
+            "title": "Pilih Paket Anda",
+            "description": "Harga transparan tanpa biaya tersembunyi. Pilih paket yang paling sesuai dengan kebutuhan Anda.",
+            "cta": "Pilih Paket",
+            "starter": {
+                "price": "Rp 1jt",
+                "description": "Untuk bisnis yang butuh kehadiran digital profesional dengan cepat.",
+                "features": [
+                    "1 Halaman Website (Landing Page)",
+                    "Desain Responsif",
+                    "Pengaturan SEO Dasar",
+                    "Integrasi Formulir Kontak",
+                    "Pengerjaan 1 Minggu"
+                ]
+            },
+            "business": {
+                "price": "Rp 3jt",
+                "description": "Pilihan paling populer untuk bisnis yang sedang berkembang.",
+                "features": [
+                    "Hingga 5 Halaman (e.g., Home, About, Services)",
+                    "Semua yang ada di Starter",
+                    "Content Management System (CMS)",
+                    "Galeri Foto",
+                    "Integrasi WhatsApp"
+                ]
+            },
+            "enterprise": {
+                "price": "Kustom",
+                "description": "Solusi yang dirancang khusus untuk kebutuhan bisnis yang unik dan kompleks.",
+                "features": [
+                    "Halaman & Fitur Kustom Tanpa Batas",
+                    "Semua yang ada di Business",
+                    "Integrasi E-commerce",
+                    "SEO & Analitik Lanjutan",
+                    "Dukungan Prioritas"
+                ]
+            }
+        },
+        "cta": {
+            "title": "Siap untuk Go Online?",
+            "description": "Jangan lewatkan kesempatan memiliki website profesional dengan harga tak terkalahkan. Hubungi kami untuk konsultasi gratis!",
+            "button": "Dapatkan Konsultasi Gratis",
+            "whatsappMessage": "Halo, saya tertarik dengan program pembuatan website 1 juta. Boleh minta info lebih lanjut?"
+        }
     }
 }

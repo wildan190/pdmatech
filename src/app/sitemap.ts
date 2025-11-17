@@ -18,7 +18,8 @@ const routes = [
   '/insight/news',
   '/insight/article',
   '/insight/brochure',
-  '/investor'
+  '/investor',
+  '/program/website-1jt',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

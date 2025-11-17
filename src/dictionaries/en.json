@@ -641,5 +641,95 @@
     "cookieConsent": {
         "message": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking \"Accept\", you consent to our use of cookies and agree to our <a href='{privacy_policy_link}' class='underline'>Privacy Policy</a>.",
         "accept": "Accept"
+    },
+    "website1jtPage": {
+        "breadcrumb": "Website 1 Million Program",
+        "hero": {
+            "title": "Professional Website, Starting from IDR 1 Million",
+            "description": "Get a modern, fast, and SEO-friendly company profile or landing page to elevate your business presence.",
+            "cta": "See Packages",
+            "imageAlt": "A modern and clean website design displayed on a laptop screen."
+        },
+        "forWho": {
+            "title": "Perfect for Your Business Scale",
+            "description": "Whatever your business size, a professional website is the key to reaching a wider market.",
+            "item1": {
+                "title": "SMEs/UMKM",
+                "description": "Showcase your products and services professionally to build customer trust and expand your market."
+            },
+            "item2": {
+                "title": "Startup",
+                "description": "Build a strong first impression for investors and users with a scalable and modern landing page."
+            },
+            "item3": {
+                "title": "Enterprise",
+                "description": "Need to quickly launch a landing page for a new product or campaign? We have the fast and effective solution."
+            }
+        },
+        "features": {
+            "pretitle": "WHAT YOU GET",
+            "title": "Packed with Cutting-Edge Technology",
+            "description": "We don't just build websites, we build digital assets for your business growth.",
+            "item1": {
+                "title": "Modern & Responsive Design",
+                "description": "Looks stunning and functions perfectly on any device, from desktop to mobile."
+            },
+            "item2": {
+                "title": "SEO-Friendly Foundation",
+                "description": "Built with best practices to help your website rank higher on Google search results."
+            },
+            "item3": {
+                "title": "Fast & Secure",
+                "description": "Using modern technology (Next.js) for optimal speed and best-in-class security."
+            },
+            "item4": {
+                "title": "Scalable for the Future",
+                "description": "Your website is ready to grow with your business, easily adding new features as needed."
+            }
+        },
+        "packages": {
+            "title": "Choose Your Package",
+            "description": "Transparent pricing with no hidden fees. Choose the package that best suits your needs.",
+            "cta": "Choose Package",
+            "starter": {
+                "price": "IDR 1jt",
+                "description": "For businesses that need a professional digital presence quickly.",
+                "features": [
+                    "1 Page Website (Landing Page)",
+                    "Responsive Design",
+                    "Basic SEO Setup",
+                    "Contact Form Integration",
+                    "1-Week Completion"
+                ]
+            },
+            "business": {
+                "price": "IDR 3jt",
+                "description": "The most popular choice for growing businesses.",
+                "features": [
+                    "Up to 5 Pages (e.g., Home, About, Services)",
+                    "Everything in Starter",
+                    "Content Management System (CMS)",
+                    "Photo Gallery",
+                    "WhatsApp Integration"
+                ]
+            },
+            "enterprise": {
+                "price": "Custom",
+                "description": "Tailored solutions for unique and complex business needs.",
+                "features": [
+                    "Unlimited Pages & Custom Features",
+                    "Everything in Business",
+                    "E-commerce Integration",
+                    "Advanced SEO & Analytics",
+                    "Dedicated Support"
+                ]
+            }
+        },
+        "cta": {
+            "title": "Ready to Go Online?",
+            "description": "Don't miss the opportunity to have a professional website at an unbeatable price. Contact us for a free consultation!",
+            "button": "Get Free Consultation",
+            "whatsappMessage": "Hello, I'm interested in the IDR 1 million website creation program. Can I get more information?"
+        }
     }
 }
