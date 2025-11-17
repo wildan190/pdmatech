@@ -20,7 +20,15 @@ function getLocale(request: NextRequest): string | undefined {
 }
 
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
+  const { pathname, search } = request.nextUrl;
+  const hostname = request.headers.get('host') || '';
+
+  // Redirect www to non-www
+  if (hostname.startsWith('www.')) {
+    const newHost = hostname.replace('www.', '');
+    const newUrl = new URL(`https://${newHost}${pathname}${search}`);
+    return NextResponse.redirect(newUrl, 301);
+  }
   
   // Pass the pathname in a header so we can access it in not-found.tsx
   const requestHeaders = new Headers(request.headers);
