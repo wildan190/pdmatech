@@ -24,9 +24,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const descriptions: Record<Locale, string> = {
-    en: 'Discover our affordable website program. Get a professional, fast, and SEO-friendly website for your business from IDR 1 million. Suitable for SMEs and Startups.',
-    id: 'Temukan program website terjangkau kami. Dapatkan website profesional, cepat, dan ramah SEO untuk bisnis Anda mulai dari 1 juta. Cocok untuk UMKM dan Startup.',
-    zh: '探索我们经济实惠的网站计划。从100万印尼盾起，为您的企业获得一个专业、快速且SEO友好的网站。适合中小微企业和初创公司。'
+    en: 'Discover our affordable website program. Get a professional, fast, and SEO-friendly site for your business, starting from IDR 1 million. Perfect for SMEs & Startups.',
+    id: 'Dapatkan website profesional & cepat mulai dari 1 juta. Solusi terjangkau untuk UMKM, Startup, dan bisnis yang ingin maju. Jelajahi paket kami sekarang!',
+    zh: '探索我们经济实惠的网站计划。为您的企业获得一个专业、快速且SEO友好的网站，起价100万印尼盾。非常适合中小微企业和初创公司。'
   };
 
   const keywords: Record<Locale, string[]> = {
