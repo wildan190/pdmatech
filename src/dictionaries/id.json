@@ -3,6 +3,7 @@
     "navigation": {
         "aboutUs": "Tentang Kami",
         "ictSolutions": "Solusi ICT",
+        "program": "Program",
         "insight": "Wawasan",
         "contactUs": "Hubungi Kami"
     },
@@ -36,6 +37,12 @@
         "web": {
             "title": "Solusi Web",
             "description": "Desain dan pengembangan web yang modern dan responsif."
+        }
+    },
+    "programSubMenu": {
+        "website1jt": {
+            "title": "Program Website 1 Juta",
+            "description": "Dapatkan website profesional untuk bisnis Anda dengan harga terjangkau."
         }
     },
     "insightSubMenu": {
@@ -733,3 +740,5 @@
         }
     }
 }
+
+    
