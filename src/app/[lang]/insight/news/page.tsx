@@ -12,8 +12,13 @@ const path = '/insight/news';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
-  const title = dictionary.constructionPage.breadcrumb.news;
   
+  const titles: Record<Locale, string> = {
+    en: 'Latest Tech News & Company Updates',
+    id: 'Berita Teknologi & Informasi Perusahaan Terbaru',
+    zh: '最新科技新闻与公司动态'
+  };
+
   const descriptions: Record<Locale, string> = {
     en: 'Our news section is being updated with the latest stories and updates from Micro Padma Nusantara. Please check back soon.',
     id: 'Bagian berita kami sedang diperbarui dengan cerita dan pembaruan terbaru dari Micro Padma Nusantara. Silakan periksa kembali segera.',
@@ -21,9 +26,10 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const title = titles[lang];
 
   return {
-    title: `${title} - Micro Padma Nusantara`,
+    title,
     description: descriptions[lang],
     alternates: {
       canonical: canonicalUrl,

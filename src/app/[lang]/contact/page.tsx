@@ -15,9 +15,13 @@ const path = '/contact';
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
-  const pageDict = dictionary.contactPage;
-  const title = pageDict.breadcrumb;
   
+  const titles: Record<Locale, string> = {
+    en: 'Contact Us for ICT & IoT Solutions',
+    id: 'Hubungi Kami untuk Solusi ICT & IoT',
+    zh: '联系我们获取ICT和物联网解决方案'
+  };
+
   const descriptions: Record<Locale, string> = {
     en: 'Get in touch with Micro Padma Nusantara. We are here to help you with your ICT and IoT needs. Contact us for a consultation.',
     id: 'Hubungi Micro Padma Nusantara. Kami siap membantu kebutuhan ICT dan IoT Anda. Hubungi kami untuk konsultasi.',
@@ -31,6 +35,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const title = titles[lang];
 
   return {
     title,

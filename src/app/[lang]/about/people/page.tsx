@@ -15,8 +15,13 @@ const path = '/about/people';
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.peoplePage;
-  const title = pageDict.breadcrumb;
   
+  const titles: Record<Locale, string> = {
+    en: 'Meet Our Team of ICT & IoT Experts',
+    id: 'Temui Tim Ahli ICT & IoT Kami',
+    zh: '认识我们的ICT和物联网专家团队'
+  };
+
   const descriptions: Record<Locale, string> = {
     en: 'Meet the talented team of leaders and innovators at Micro Padma Nusantara. Our experts are dedicated to driving your business success through technology.',
     id: 'Temui tim pemimpin dan inovator berbakat di Micro Padma Nusantara. Para ahli kami berdedikasi untuk mendorong kesuksesan bisnis Anda melalui teknologi.',
@@ -30,6 +35,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const title = titles[lang];
 
   return {
     title,
@@ -166,5 +172,3 @@ export default async function PeoplePage({ params: { lang } }: { params: { lang:
     </main>
   );
 }
-
-    
