@@ -18,21 +18,21 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const pageDict = dictionary.website1jtPage;
   
   const titles: Record<Locale, string> = {
-    en: "Affordable Website Design Services | Starts from IDR 1 Million",
+    en: "Affordable Website Design | Starts from IDR 1 Million",
     id: "Jasa Pembuatan Website Murah | Mulai dari 1 Juta Rupiah",
     zh: "经济实惠的网站设计服务 | 100万印尼盾起"
   };
 
   const descriptions: Record<Locale, string> = {
-    en: 'Get a professional, fast, and SEO-friendly company profile or landing page website starting from just IDR 1 million. Perfect for SMEs, Startups, and Enterprises.',
-    id: 'Dapatkan website company profile atau landing page profesional, cepat, dan SEO-friendly mulai dari 1 juta rupiah. Cocok untuk UMKM, Startup, dan Perusahaan.',
-    zh: '只需100万印尼盾起，即可获得专业、快速且SEO友好的公司简介或登录页面网站。非常适合中小微企业、初创公司和企业。'
+    en: 'Discover our affordable website program. Get a professional, fast, and SEO-friendly website for your business from IDR 1 million. Suitable for SMEs and Startups.',
+    id: 'Temukan program website terjangkau kami. Dapatkan website profesional, cepat, dan ramah SEO untuk bisnis Anda mulai dari 1 juta. Cocok untuk UMKM dan Startup.',
+    zh: '探索我们经济实惠的网站计划。从100万印尼盾起，为您的企业获得一个专业、快速且SEO友好的网站。适合中小微企业和初创公司。'
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['affordable website design', 'website development service', 'IDR 1 million website', 'landing page service', 'company profile website', 'website for SMEs'],
-    id: ['jasa pembuatan website murah', 'website 1 juta', 'website company profile', 'jasa landing page', 'website untuk UMKM', 'buat website profesional'],
-    zh: ['经济实惠的网站设计', '网站开发服务', '100万印尼盾网站', '登录页面服务', '公司简介网站', '中小微企业网站']
+    en: ['affordable website', 'website design service', 'IDR 1 million website', 'landing page service', 'company profile website', 'website for SMEs', 'website for startup'],
+    id: ['jasa website murah', 'website 1 juta', 'website company profile', 'jasa landing page', 'website untuk UMKM', 'website untuk startup', 'buat website profesional'],
+    zh: ['经济实惠的网站', '网站设计服务', '100万印尼盾网站', '登录页面服务', '公司简介网站', '中小微企业网站', '初创公司网站']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
