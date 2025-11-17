@@ -1,0 +1,740 @@
+
+{
+    "navigation": {
+        "aboutUs": "About Us",
+        "ictSolutions": "ICT Solutions",
+        "program": "Program",
+        "insight": "Insight",
+        "contactUs": "Contact Us"
+    },
+    "aboutUsSubMenu": {
+        "company": {
+            "title": "Our Company",
+            "description": "Learn about our history, mission, and values."
+        },
+        "people": {
+            "title": "Our People",
+            "description": "Meet the team behind our success."
+        },
+        "privacy": {
+            "title": "Privacy Policy",
+            "description": "How we protect your data and privacy."
+        }
+    },
+    "ictSolutionsSubMenu": {
+        "iot": {
+            "title": "IoT Solutions",
+            "description": "Intelligent solutions for a connected world."
+        },
+        "enterprise": {
+            "title": "Enterprise Solutions",
+            "description": "Scalable solutions for large businesses."
+        },
+        "umkm": {
+            "title": "UMKM Solutions",
+            "description": "Affordable and effective solutions for small and medium businesses."
+        },
+        "web": {
+            "title": "Web Solutions",
+            "description": "Modern and responsive web design and development."
+        }
+    },
+    "programSubMenu": {
+        "website1jt": {
+            "title": "1 Million Website Program",
+            "description": "Get a professional website for your business at an affordable price."
+        }
+    },
+    "insightSubMenu": {
+        "news": {
+            "title": "News",
+            "description": "Latest news and updates from our company."
+        },
+        "article": {
+            "title": "Article",
+            "description": "In-depth articles about technology and business."
+        },
+        "brochure": {
+            "title": "Brochure",
+            "description": "Download our company brochure."
+        }
+    },
+    "header": {
+        "tagline": "Your Business Partner"
+    },
+    "footer": {
+        "tagline": "Pioneering future-ready ICT & IoT solutions to empower businesses in the digital era.",
+        "company": "Company",
+        "resources": "Resources",
+        "contactUs": "Contact Us",
+        "quickLinks": "Quick Links",
+        "followUs": "Follow Us",
+        "copyright": "All Rights Reserved."
+    },
+    "whatsapp": {
+        "contactUs": "Contact us on WhatsApp"
+    },
+    "homePage": {
+        "hero": {
+            "slide1": {
+                "headline": "Pioneering Future-Ready ICT & IoT Solutions",
+                "subheadline": "We are Micro Padma Nusantara, empowering businesses with innovative technology for a connected and intelligent world.",
+                "cta1": "Explore Our Solutions",
+                "cta2": "Get a Quote"
+            },
+            "slide2": {
+                "headline": "Simplify Process. Maximize Productivity",
+                "subheadline": "Micro Padma Nusantara delivers tailored IT solutions, software, and strategic support—to help your business scale confidently.",
+                "cta1": "Discover Our Services",
+                "cta2": "Contact Us"
+            }
+        },
+        "experience": {
+            "clients": "Top Tier Clients",
+            "years": "Years of Experience",
+            "talents": "Technology Talents",
+            "projects": "Projects in Indonesia"
+        },
+        "ourClients": {
+            "title": "Trusted By Leading Companies",
+            "description": "We are proud to have collaborated with some of the most respected companies. Their trust is a testament to our commitment to excellence.",
+            "cta": "Become Our Next Partner"
+        },
+        "climateBanner": {
+            "title": "Join Our GoGreen Initiative",
+            "description": "We are committed to building a sustainable future. Discover how our technology solutions contribute to positive environmental change.",
+            "button": "Learn More About Our Programs"
+        },
+        "services": {
+            "title": "Services and Product",
+            "headline": "Solutions that Power Your Business",
+            "subheadline": "From everyday essentials to cutting-edge innovations — we build, customize, and secure your digital ecosystem.",
+            "iotTitle": "IoT Solutions",
+            "iotDescription": "Comprehensive IoT solutions to connect your assets and drive data-driven insights.",
+            "enterpriseTitle": "Enterprise Solutions",
+            "enterpriseDescription": "Scalable and robust solutions for large-scale enterprise needs, from cloud to security.",
+            "findOutMore": "Find Out More"
+        },
+        "ourTeam": {
+            "headline": "Driven by Talent. Built on Experience.",
+            "subheadline": "Comprises passionate, experienced, and certified ICT professionals with a strong focus on helping clients advance.",
+            "cta": "Get to know us"
+        },
+        "faq": {
+            "pretitle": "FAQ",
+            "title": "Frequently Asked Questions",
+            "description": "Have questions? We have answers. If you can't find what you're looking for, feel free to contact us.",
+            "items": [
+                {
+                    "question": "What kind of businesses do you serve?",
+                    "answer": "We serve a wide range of businesses, from large-scale enterprises to small and medium-sized businesses (UMKM) in various sectors such as retail, hospitality, manufacturing, and more. Our solutions are tailored to meet the specific needs of each client."
+                },
+                {
+                    "question": "How do you start a project with a new client?",
+                    "answer": "Our process begins with a free consultation to understand your business challenges and goals. From there, we develop a tailored proposal and project roadmap. We believe in a collaborative approach, working closely with you from concept to deployment and beyond."
+                },
+                {
+                    "question": "What makes your IoT solutions different?",
+                    "answer": "Our IoT solutions are end-to-end, meaning we handle everything from hardware integration and platform development to deployment and ongoing support. We focus on creating practical, data-driven solutions that provide tangible ROI by improving efficiency and enabling new capabilities."
+                },
+                {
+                    "question": "Do you offer support after the project is completed?",
+                    "answer": "Absolutely. We view our clients as long-term partners. We offer various support and maintenance packages to ensure your digital solutions continue to run smoothly and effectively, allowing you to focus on your core business."
+                }
+            ]
+        },
+        "contact": {
+            "headline": "Do You Have a Project?",
+            "subheadline": "We’re Here To Help",
+            "form": {
+                "name": "Full Name",
+                "namePlaceholder": "John Doe",
+                "email": "Email Address",
+                "emailPlaceholder": "you@example.com",
+                "company": "Company",
+                "companyPlaceholder": "Your Company",
+                "industry": "Industry",
+                "industryPlaceholder": "e.g., Technology, Finance",
+                "message": "Your Message",
+                "messagePlaceholder": "Tell us about your project...",
+                "agreement": "I agree to provide my personal data to Micro Padma Nusantara and have read the <a href='/en/about/privacy' class='underline' target='_blank'>Privacy Policy</a>. Furthermore, I am willing to be contacted by Micro Padma Nusantara through my personal communication media in accordance with the information I provide.",
+                "submit": "Start Your Transformation"
+            }
+        }
+    },
+    "companyPage": {
+        "breadcrumb": "Our Company",
+        "hero": {
+            "headline": "Forging the Future of Technology, Together.",
+            "subheadline": "We are Micro Padma Nusantara, a team of innovators and problem-solvers dedicated to delivering transformative ICT and IoT solutions. We partner with businesses to navigate the complexities of the digital landscape, driving growth, efficiency, and sustainable success."
+        },
+        "journey": {
+            "title": "Our Journey",
+            "content": "Founded on the principle of innovation and partnership, Micro Padma Nusantara began its journey to bridge the technology gap for businesses in Indonesia. Over the years, we have grown into a trusted ICT and IoT solutions provider, known for our commitment to quality, reliability, and client success. Our story is one of continuous evolution, driven by a passion for technology and a dedication to empowering our clients."
+        },
+        "founderQuote": {
+            "text": "Technology is a powerful tool, but its true potential is only unlocked when it's used to empower people and solve real-world problems. Our mission is to be the catalyst for that transformation."
+        },
+        "vision": {
+            "title": "Our Vision",
+            "content": "To be the leading partner for businesses in Indonesia, pioneering innovative and sustainable technology solutions that drive digital transformation and create lasting value."
+        },
+        "mission": {
+            "title": "Our Mission",
+            "content": "To empower businesses with cutting-edge ICT and IoT solutions, delivered with exceptional service and a focus on strategic partnership, enabling them to thrive in the digital economy."
+        },
+        "whyChooseUs": {
+            "pretitle": "VALUE PROPOSITION",
+            "title": "Why Partner With Us?",
+            "description": "We deliver more than just technology; we deliver a partnership built on trust, expertise, and a shared vision for success.",
+            "item1": {
+                "title": "Proven Experience",
+                "description": "With over a decade of experience, we've powered major operations across Indonesia, delivering robust and reliable ICT solutions."
+            },
+            "item2": {
+                "title": "Client-Centric Approach",
+                "description": "Your success is our priority. Our dedicated call center and service desk are always ready to provide the support you need, whenever you need it."
+            },
+            "item3": {
+                "title": "Agile & Efficient",
+                "description": "In today's market, speed is currency. We operate with agility to deliver solutions quickly, ensuring you achieve maximum efficiency."
+            },
+            "item4": {
+                "title": "Strategic Problem Solving",
+                "description": "We go beyond quick fixes. We collaborate with you to identify and solve the right problems, leveraging technology for impactful and lasting benefits."
+            }
+        },
+        "ourProgram": {
+            "title": "Our Program",
+            "description": "We are committed to making a positive impact beyond business, through initiatives that support the environment and society.",
+            "items": {
+                "goGreen": {
+                    "title": "GoGreen",
+                    "description": "An initiative to promote environmental sustainability through technology, reducing carbon footprint in our operations and solutions."
+                },
+                "socialTech": {
+                    "title": "Social Tech Education",
+                    "description": "Providing free technology education and digital literacy for communities, empowering the next generation of innovators."
+                },
+                "environment": {
+                    "title": "Environmental Cleanliness",
+                    "description": "Campaigning and acting for a cleaner environment, organizing community-based waste management and recycling programs."
+                }
+            }
+        },
+        "cta": {
+            "title": "Ready to Start Your Digital Transformation?",
+            "description": "Let's discuss how our solutions can be tailored to meet your unique business challenges and goals.",
+            "button": "Get in Touch"
+        }
+    },
+    "peoplePage": {
+        "breadcrumb": "Our People",
+        "hero": {
+            "title": "Meet Our Team",
+            "description": "We are a collective of thinkers, creators, and innovators, united by a passion for technology and a drive to deliver excellence."
+        },
+        "leaders": {
+            "title": "Our Leaders",
+            "description": "Meet the visionary minds guiding our mission to deliver transformative technology solutions.",
+            "wildan": {
+                "name": "Wildan J. Belfiore",
+                "title": "President Director",
+                "bio": "Wildan is a visionary technologist with a rich background in full-stack engineering. Since 2022, he has honed his skills across diverse industries, contributing to complex projects at renowned organizations such as Xapiens, Biro Klasifikasi Indonesia, Lumoshive, and Garuda Systrain Interindo. His passion for innovation and leadership led him to co-found Micro Padma Nusantara in 2023, where he serves as President Director. Concurrently, he holds the position of Chief Technology Officer at Huntr.id, driving the technological vision for both companies and pioneering solutions that shape the future."
+            },
+            "raihan": {
+                "name": "Raihan Firdaus",
+                "title": "Business Solutions Manager",
+                "bio": "Raihan brings a unique blend of public sector experience and strategic business acumen to the team. His journey began in 2022 with a foundational role at BPS (Badan Pusat Statistik), which provided him with deep analytical insights. He then transitioned to a staff position at KCIC (Kereta Cepat Indonesia China), where he continues to contribute to one of the nation's key infrastructure projects. Since 2023, Raihan has simultaneously taken on the role of Business Solutions Manager at Micro Padma Nusantara, where he excels at bridging client needs with powerful, effective technology solutions."
+            }
+        },
+        "cta": {
+            "title": "Join Our Journey of Innovation",
+            "description": "We are always looking for passionate talent. Explore how you can contribute to our team.",
+            "button": "Contact Us"
+        }
+    },
+    "privacyPage": {
+        "breadcrumb": "Privacy Policy",
+        "title": "Privacy Policy",
+        "description": "Your privacy is important to us. This policy explains what data we collect and how we use it.",
+        "lastUpdated": "Last updated",
+        "commitment": {
+            "title": "Our Commitment to Your Privacy",
+            "content": "PT Micro Padma Nusantara ('we,' 'our,' or 'us') is committed to protecting your privacy. This Privacy Policy outlines our practices concerning the collection, use, and disclosure of your personal information when you use our website and services (collectively, the 'Services'). By accessing or using our Services, you agree to the terms of this Privacy Policy."
+        },
+        "infoCollected": {
+            "title": "1. Information We Collect",
+            "content": "We collect information that you provide directly to us, information we collect automatically, and information from third-party sources.",
+            "item1": "<strong>Personal Information:</strong> This includes your name, email address, phone number, company name, industry, and any other information you provide when you fill out a contact form, subscribe to our newsletter, or otherwise communicate with us.",
+            "item2": "<strong>Usage Data:</strong> We automatically collect information about your interaction with our Services. This may include your IP address, browser type, operating system, pages viewed, links clicked, and the dates and times of your visits.",
+            "item3": "<strong>Cookies and Tracking Technologies:</strong> We use cookies and similar tracking technologies to collect and track information and to improve and analyze our Service."
+        },
+        "howWeUse": {
+            "title": "2. How We Use Your Information",
+            "content": "We use the information we collect for various purposes, including to:",
+            "item1": "Provide, operate, and maintain our Services.",
+            "item2": "Improve, personalize, and expand our Services.",
+            "item3": "Understand and analyze how you use our Services.",
+            "item4": "Communicate with you, either directly or through one of our partners, for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes.",
+            "item5": "Process your transactions and manage your orders.",
+            "item6": "Find and prevent fraud."
+        },
+        "howWeShare": {
+            "title": "3. How We Share Your Information",
+            "content": "We do not sell your personal information. We may share your information in the following situations:",
+            "item1": "<strong>With Service Providers:</strong> We may share your information with third-party vendors and service providers that perform services on our behalf, such as hosting, data analysis, and marketing.",
+            "item2": "<strong>For Legal Reasons:</strong> We may disclose your information if required to do so by law or in response to valid requests by public authorities (e.g., a court or a government agency).",
+            "item3": "<strong>Business Transfers:</strong> In connection with any merger, sale of company assets, financing, or acquisition of all or a portion of our business by another company, your Personal Information may be transferred."
+        },
+        "dataSecurity": {
+            "title": "4. Data Security",
+            "content": "The security of your data is important to us. We implement a variety of security measures to maintain the safety of your personal information. However, remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security."
+        },
+        "yourRights": {
+            "title": "5. Your Data Protection Rights",
+            "content": "Depending on your location, you may have the following rights regarding your personal information: the right to access, correct, update, or request deletion of your personal information. If you wish to exercise any of these rights, please contact us using the contact information provided below."
+        },
+        "policyChanges": {
+            "title": "6. Changes to This Privacy Policy",
+            "content": "We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes."
+        },
+        "contactUs": {
+            "title": "7. Contact Us",
+            "content": "If you have any questions about this Privacy Policy, please contact us:"
+        }
+    },
+    "enterprisePage": {
+        "breadcrumb": "Enterprise Solutions",
+        "hero": {
+            "title": "Powering Your Enterprise with Robust ICT Solutions",
+            "description": "We deliver scalable, secure, and integrated software solutions designed to optimize your operations and drive sustainable growth."
+        },
+        "overview": {
+            "pretitle": "OVERVIEW",
+            "title": "Built for Complexity, Designed for Growth",
+            "description": "Micro Padma Nusantara understands the unique challenges faced by large organizations. Our enterprise solutions are engineered to handle complex workflows, manage vast amounts of data, and integrate seamlessly into your existing infrastructure. We focus on building powerful, custom systems that streamline operations, reduce costs, and provide a competitive edge in your industry."
+        },
+        "services": {
+            "title": "Custom Development Services",
+            "description": "From core business management to specialized operational tools, we build the software that runs your business.",
+            "erp": "Integrate all your core business processes into a single, unified system for enhanced efficiency and real-time data visibility.",
+            "crm": "Build and manage stronger customer relationships with a centralized platform for sales, marketing, and service.",
+            "softwareHouse": "Leverage our expert developers to build bespoke software solutions perfectly tailored to your unique operational needs.",
+            "pos": "Modernize your retail or F&B operations with our intuitive and powerful Point of Sale systems for seamless transactions.",
+            "hotel": "Streamline your hospitality operations, from reservations to guest services, with our comprehensive hotel management software.",
+            "ticketing": "Manage events, attractions, or transport services efficiently with a robust and user-friendly ticketing platform."
+        },
+        "whyChooseUs": {
+            "pretitle": "WHY CHOOSE US",
+            "title": "Your Strategic Technology Partner",
+            "description": "We deliver enterprise solutions that are not just functional, but transformational. Our commitment to quality, security, and partnership ensures your investment yields long-term value.",
+            "item1": {
+                "title": "Scalable Architecture",
+                "description": "Our solutions are built to grow with your business, handling increased complexity and user load without compromising performance."
+            },
+            "item2": {
+                "title": "Seamless Integration",
+                "description": "We ensure our software integrates smoothly with your existing systems, creating a unified and efficient IT ecosystem."
+            },
+            "item3": {
+                "title": "Enterprise-Grade Security",
+                "description": "Protecting your data is our top priority. We implement robust security protocols to safeguard your critical business information."
+            },
+            "item4": {
+                "title": "Dedicated Support",
+                "description": "Receive ongoing, expert support from our dedicated team to ensure your systems run smoothly and effectively."
+            }
+        },
+        "cta": {
+            "title": "Ready to Architect Your Future?",
+            "description": "Let's build a robust digital foundation for your enterprise. Contact us for a consultation.",
+            "button": "Schedule a Consultation"
+        }
+    },
+    "iotPage": {
+        "breadcrumb": "IoT Solutions",
+        "hero": {
+            "title": "Connecting Your World: Intelligent IoT Solutions",
+            "description": "We transform your physical business assets into smart, connected devices that deliver actionable data and drive operational excellence."
+        },
+        "overview": {
+            "pretitle": "THE FUTURE IS CONNECTED",
+            "title": "Unlock the Power of Real-Time Data",
+            "description": "The Internet of Things (IoT) is revolutionizing industries by bridging the gap between the physical and digital worlds. By embedding sensors and connectivity into your equipment, environments, and products, you can gather invaluable real-time data. This data empowers you to automate processes, predict failures, reduce costs, and create innovative new services that were previously impossible."
+        },
+        "applications": {
+            "title": "IoT Applications Across Industries",
+            "description": "We develop tailored IoT solutions that solve real-world problems and create tangible value.",
+            "monitoring": {
+                "title": "Smart Monitoring & Control",
+                "description": "Remotely monitor and control your assets in real-time, from industrial machinery to environmental conditions, for proactive maintenance and optimized performance."
+            },
+            "tracking": {
+                "title": "Asset Tracking & Logistics",
+                "description": "Gain complete visibility over your supply chain with our advanced tracking solutions, optimizing routes, reducing loss, and ensuring timely delivery."
+            },
+            "automation": {
+                "title": "Industrial Automation (IIoT)",
+                "description": "Transform your manufacturing processes with connected sensors and automated workflows, leading to increased production efficiency and reduced operational costs."
+            },
+            "agriculture": {
+                "title": "Smart Agriculture",
+                "description": "Leverage IoT to monitor soil conditions, automate irrigation, and track crop health, maximizing yields and promoting sustainable farming practices."
+            }
+        },
+        "process": {
+            "pretitle": "END-TO-END IMPLEMENTATION",
+            "title": "From Concept to Connectivity",
+            "description": "We provide a comprehensive, four-step process to ensure your IoT project is a success from start to finish.",
+            "step1": {
+                "title": "1. Discovery & Strategy",
+                "description": "We start by understanding your unique business challenges and goals to co-create a tailored IoT strategy and roadmap."
+            },
+            "step2": {
+                "title": "2. Hardware & Sensor Integration",
+                "description": "We select and configure the right sensors and hardware, ensuring reliable data capture from your physical assets."
+            },
+            "step3": {
+                "title": "3. Platform Development",
+                "description": "Our team builds the central IoT platform to collect, process, and visualize data, complete with a user-friendly dashboard."
+            },
+            "step4": {
+                "title": "4. Deployment & Support",
+                "description": "We manage the full deployment and provide ongoing support and maintenance to ensure your IoT ecosystem runs flawlessly."
+            }
+        },
+        "cta": {
+            "title": "Ready to Build a Smarter Business?",
+            "description": "Let's explore how IoT can revolutionize your operations. Contact our experts for a free consultation and a proof of concept.",
+            "button": "Discuss Your IoT Project"
+        }
+    },
+    "umkmPage": {
+        "breadcrumb": "UMKM Solutions",
+        "hero": {
+            "title": "Digital Solutions for Advancing MSMEs",
+            "description": "We are here to empower micro, small, and medium enterprises with technology that is appropriate, affordable, and easy to use."
+        },
+        "challenge": {
+            "pretitle": "MSME CHALLENGES",
+            "title": "Navigating the Digital Era",
+            "description": "In the midst of tight competition, MSMEs often face resource limitations in adopting technology. From difficulties in building an online presence, managing operations efficiently, to reaching a wider market. We understand these challenges and provide a bridge for you to digitally transform."
+        },
+        "solutions": {
+            "title": "The Right Solutions for Your Business",
+            "description": "We offer a series of services specifically designed to drive the growth of MSME businesses.",
+            "website": {
+                "title": "Website & Company Profile",
+                "description": "Build a professional online presence to reach more customers and increase your business credibility."
+            },
+            "pos": {
+                "title": "Point of Sale (POS) Lite",
+                "description": "A modern, easy-to-use cashier system to record sales, manage inventory, and monitor business reports in real-time."
+            },
+            "social": {
+                "title": "Social Media Management",
+                "description": "Increase customer engagement and strengthen your brand through effective content strategies and social media management."
+            },
+            "customApp": {
+                "title": "Custom Micro Applications",
+                "description": "Need a specific digital solution? We can create a simple application tailored to your unique business needs."
+            }
+        },
+        "whyChooseUs": {
+            "pretitle": "WHY US?",
+            "title": "Your Digital Growth Partner",
+            "description": "We are not just a technology provider, but a partner committed to your business success. We focus on solutions that deliver real impact.",
+            "item1": {
+                "title": "Affordable Price",
+                "description": "We provide quality solutions at prices specially designed to fit the budget of MSMEs."
+            },
+            "item2": {
+                "title": "Easy to Use",
+                "description": "No technical expertise required. Our platform is intuitive and designed for ease of use for everyone."
+            },
+            "item3": {
+                "title": "Full Support",
+                "description": "Our team is ready to help you every step of the way, ensuring you get the maximum benefit from our solutions."
+            },
+            "item4": {
+                "title": "Scalability",
+                "description": "Our solutions can grow with your business, ready to be developed along with your success."
+            }
+        },
+        "cta": {
+            "title": "Ready to Take Your Business to the Next Level?",
+            "description": "Discuss your business needs with us and find the most appropriate digital solution. Free consultation!",
+            "button": "Contact Us Now"
+        }
+    },
+    "webPage": {
+        "breadcrumb": "Web Solutions",
+        "hero": {
+            "title": "Crafting Digital Experiences that Captivate and Convert",
+            "description": "We build fast, beautiful, and user-friendly websites that serve as the digital forefront of your brand."
+        },
+        "approach": {
+            "pretitle": "OUR APPROACH",
+            "title": "Your Website is Your Digital Front Door",
+            "description": "In today's digital-first world, your website is often the first interaction a potential customer has with your business. It's more than just an online brochure; it's a powerful tool for building credibility, generating leads, and driving growth. At Micro Padma Nusantara, we create strategic web solutions that not only look great but also perform exceptionally, ensuring that your first impression is a lasting one."
+        },
+        "services": {
+            "title": "Our Web Development Services",
+            "description": "We offer a complete suite of services to build and maintain your powerful online presence.",
+            "custom": "We build beautiful, bespoke websites from scratch that perfectly capture your brand identity and meet your specific business objectives.",
+            "ecommerce": "Launch a powerful online store with a seamless user experience, secure payment gateways, and easy-to-manage inventory systems.",
+            "responsive": "We ensure your website looks and functions flawlessly on all devices, from desktops to smartphones, providing an optimal user experience everywhere.",
+            "seo": "Improve your search engine rankings and deliver a lightning-fast experience for your visitors with our optimization services.",
+            "redesign": "Modernize your existing website with a fresh design, improved functionality, and a better user experience to re-engage your audience.",
+            "webapp": "Go beyond a simple website with custom web applications that streamline your operations and provide unique value to your users."
+        },
+        "whyChooseUs": {
+            "pretitle": "WHY CHOOSE US",
+            "title": "Engineered for Excellence",
+            "description": "We combine creative design with technical expertise to deliver web solutions that are not only visually appealing but also robust, secure, and built for the future.",
+            "item1": {
+                "title": "Modern Technology",
+                "description": "We build with the latest, most reliable technologies like Next.js and React to create fast, scalable, and secure websites."
+            },
+            "item2": {
+                "title": "User-Centric Approach",
+                "description": "Our design process is centered around your target audience, ensuring an intuitive and engaging experience that drives results."
+            },
+            "item3": {
+                "title": "Quality & Reliability",
+                "description": "We adhere to the highest standards of coding and testing to deliver a reliable, high-performance product you can depend on."
+            }
+        },
+        "cta": {
+            "title": "Have an Idea for a Website?",
+            "description": "Let's turn your vision into a stunning digital reality. Get in touch with us today for a free consultation.",
+            "button": "Start a Project"
+        }
+    },
+    "careerPage": {
+        "breadcrumb": "Career",
+        "hero": {
+            "title": "Build Your Future With Us",
+            "description": "Join a team of passionate innovators, problem-solvers, and collaborators shaping the future of technology in Indonesia."
+        },
+        "culture": {
+            "pretitle": "OUR CULTURE",
+            "title": "More Than a Job, It's a Mission",
+            "description": "At Micro Padma Nusantara, we don't just build products; we build a culture of excellence, growth, and impact. We believe in empowering our team to do their best work in an environment that is supportive, challenging, and rewarding."
+        },
+        "values": {
+            "innovation": {
+                "title": "Innovation at Heart",
+                "description": "We are driven by a desire to push boundaries and explore the frontiers of new technology. Creativity and forward-thinking are in our DNA."
+            },
+            "collaboration": {
+                "title": "Collaborative Spirit",
+                "description": "We believe the best solutions come from working together. Our team thrives on open communication and mutual support."
+            },
+            "growth": {
+                "title": "Growth Mindset",
+                "description": "We are lifelong learners, committed to personal and professional development for ourselves and our clients."
+            },
+            "passion": {
+                "title": "Client-Centric Passion",
+                "description": "Your success is our success. We are passionate about delivering value and building long-term partnerships based on trust."
+            }
+        },
+        "openings": {
+            "title": "Current Openings",
+            "description": "We're always looking for talented individuals. While there are no open positions at the moment, we'd love to hear from you.",
+            "notAvailable": "No Positions Currently Available",
+            "checkBack": "Please check back later for future opportunities."
+        },
+        "cta": {
+            "title": "Don't See a Role for You?",
+            "description": "We're always open to connecting with exceptional talent. If you believe your skills could make a difference, send us your resume!",
+            "button": "Submit Your Resume"
+        }
+    },
+    "constructionPage": {
+        "title": "Under Construction",
+        "description": "We are working hard to bring you new and exciting content. Please check back soon!",
+        "breadcrumb": {
+            "insight": "Insight",
+            "article": "Article",
+            "brochure": "Brochure",
+            "news": "News"
+        }
+    },
+    "contactPage": {
+        "breadcrumb": "Contact Us",
+        "hero": {
+            "headline": "Let's Get in Touch",
+            "subheadline": "Have a question, a project, or just want to say hello? We'd love to hear from you. Fill out the form below and our team will get back to you shortly."
+        }
+    },
+    "brochurePage": {
+        "breadcrumb": "Brochure",
+        "hero": {
+            "title": "Discover Our Innovations",
+            "description": "An overview of our mission, solutions, and our commitment to driving your business forward through technology.",
+            "imageAlt": "Abstract technology background representing innovation",
+            "downloadButton": "Download Brochure"
+        },
+        "services": {
+            "title": "Our Core Solutions",
+            "description": "We deliver end-to-end solutions tailored to meet your unique business challenges, from basic web presence to complex IoT ecosystems."
+        },
+        "cta": {
+            "title": "Let's Create the Future, Together.",
+            "description": "Ready to discuss how our technological expertise can elevate your business? Our team is ready to listen.",
+            "button": "Contact Us"
+        }
+    },
+    "investorPage": {
+        "breadcrumb": "Investor Relations",
+        "hero": {
+            "title": "Investing in the Future of Indonesian Technology",
+            "description": "Join us on our mission to empower businesses and drive digital transformation across the archipelago."
+        },
+        "whyInvest": {
+            "pretitle": "VALUE PROPOSITION",
+            "title": "Why Invest in Micro Padma Nusantara?",
+            "description": "We are at the forefront of Indonesia's digital revolution, offering a unique investment opportunity in a high-growth market.",
+            "items": [
+                {
+                    "title": "Strategic Market Position",
+                    "description": "Targeting both the vast but underserved UMKM and enterprise sectors with essential technology solutions."
+                },
+                {
+                    "title": "Innovation-Driven",
+                    "description": "A strong focus on scalable, high-demand solutions in IoT and custom enterprise software."
+                },
+                {
+                    "title": "Experienced Leadership",
+                    "description": "Led by a dynamic team with a proven track record in technology and strategic business development."
+                },
+                {
+                    "title": "High Growth Potential",
+                    "description": "Capitalizing on the rapid digitalization of Indonesia's economy with a lean and agile operational model."
+                }
+            ]
+        },
+        "financials": {
+            "title": "Financial Highlights",
+            "description": "We are committed to sustainable growth and transparent financial reporting. (Financial data will be available here)."
+        },
+        "resources": {
+            "title": "Investor Resources",
+            "description": "Access reports, presentations, and other key information.",
+            "comingSoon": "Investor resources are not yet available. Please check back soon."
+        },
+        "contact": {
+            "title": "Investor Inquiries",
+            "description": "For investor-related questions, please contact our team directly.",
+            "email": "investor.relations@mpnsolutions.my.id"
+        }
+    },
+    "notFoundPage": {
+        "errorCode": "404",
+        "title": "Page Not Found",
+        "description": "Oops! It looks like the page you were searching for has taken a detour. Let's get you back on track.",
+        "button": "Back to Home"
+    },
+    "common": {
+        "home": "Home",
+        "aboutUs": "About Us",
+        "learnMore": "Learn More"
+    },
+    "cookieConsent": {
+        "message": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking \"Accept\", you consent to our use of cookies and agree to our <a href='{privacy_policy_link}' class='underline'>Privacy Policy</a>.",
+        "accept": "Accept"
+    },
+    "website1jtPage": {
+        "breadcrumb": "Website 1 Million Program",
+        "hero": {
+            "title": "Professional Website, Starting from IDR 1 Million",
+            "description": "Get a modern, fast, and SEO-friendly company profile or landing page to elevate your business presence.",
+            "cta": "See Packages",
+            "imageAlt": "A modern and clean website design displayed on a laptop screen."
+        },
+        "forWho": {
+            "title": "Perfect for Your Business Scale",
+            "description": "Whatever your business size, a professional website is the key to reaching a wider market.",
+            "item1": {
+                "title": "SMEs/UMKM",
+                "description": "Showcase your products and services professionally to build customer trust and expand your market."
+            },
+            "item2": {
+                "title": "Startup",
+                "description": "Build a strong first impression for investors and users with a scalable and modern landing page."
+            },
+            "item3": {
+                "title": "Enterprise",
+                "description": "Need to quickly launch a landing page for a new product or campaign? We have the fast and effective solution."
+            }
+        },
+        "features": {
+            "pretitle": "WHAT YOU GET",
+            "title": "Packed with Cutting-Edge Technology",
+            "description": "We don't just build websites, we build digital assets for your business growth.",
+            "item1": {
+                "title": "Modern & Responsive Design",
+                "description": "Looks stunning and functions perfectly on any device, from desktop to mobile."
+            },
+            "item2": {
+                "title": "SEO-Friendly Foundation",
+                "description": "Built with best practices to help your website rank higher on Google search results."
+            },
+            "item3": {
+                "title": "Fast & Secure",
+                "description": "Using modern technology (Next.js) for optimal speed and best-in-class security."
+            },
+            "item4": {
+                "title": "Scalable for the Future",
+                "description": "Your website is ready to grow with your business, easily adding new features as needed."
+            }
+        },
+        "packages": {
+            "title": "Choose Your Package",
+            "description": "Transparent pricing with no hidden fees. Choose the package that best suits your needs.",
+            "cta": "Choose Package",
+            "starter": {
+                "price": "IDR 1jt",
+                "description": "For businesses that need a professional digital presence quickly.",
+                "features": [
+                    "1 Page Website (Landing Page)",
+                    "Responsive Design",
+                    "Basic SEO Setup",
+                    "Contact Form Integration",
+                    "1-Week Completion"
+                ]
+            },
+            "business": {
+                "price": "IDR 3jt",
+                "description": "The most popular choice for growing businesses.",
+                "features": [
+                    "Up to 5 Pages (e.g., Home, About, Services)",
+                    "Everything in Starter",
+                    "Content Management System (CMS)",
+                    "Photo Gallery",
+                    "WhatsApp Integration"
+                ]
+            },
+            "enterprise": {
+                "price": "Custom",
+                "description": "Tailored solutions for unique and complex business needs.",
+                "features": [
+                    "Unlimited Pages & Custom Features",
+                    "Everything in Business",
+                    "E-commerce Integration",
+                    "Advanced SEO & Analytics",
+                    "Dedicated Support"
+                ]
+            }
+        },
+        "cta": {
+            "title": "Ready to Go Online?",
+            "description": "Don't miss the opportunity to have a professional website at an unbeatable price. Contact us for a free consultation!",
+            "button": "Get Free Consultation",
+            "whatsappMessage": "Hello, I'm interested in the IDR 1 million website creation program. Can I get more information?"
+        }
+    }
+}

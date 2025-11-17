@@ -3,6 +3,7 @@
     "navigation": {
         "aboutUs": "关于我们",
         "ictSolutions": "ICT 解决方案",
+        "program": "程序",
         "insight": "洞见",
         "contactUs": "联系我们"
     },
@@ -36,6 +37,12 @@
         "web": {
             "title": "网站解决方案",
             "description": "现代化且响应迅速的网页设计和开发。"
+        }
+    },
+    "programSubMenu": {
+        "website1jt": {
+            "title": "100万印尼盾网站计划",
+            "description": "以实惠的价格为您的企业获得一个专业的网站。"
         }
     },
     "insightSubMenu": {
@@ -414,6 +421,7 @@
             "title": "驾驭数字时代",
             "description": "在激烈的竞争中，中小微企业在采用技术方面常常面临资源限制。从建立在线形象、高效管理运营到开拓更广阔的市场，都存在困难。我们了解这些挑战，并为您提供数字化转型的桥梁。"
         },
+
         "solutions": {
             "title": "适合您业务的解决方案",
             "description": "我们提供一系列专门设计用于推动中小微企业业务增长的服务。",
@@ -549,8 +557,6 @@
     "constructionPage": {
         "title": "建设中",
         "description": "我们正在努力为您带来新的、令人兴奋的内容。请稍后回来查看！",
-        "brochureDescription": "我们正在为您准备公司宣传册。请稍后回来下载！",
-        "newsDescription": "我们的新闻版块正在更新最新故事和动态。请稍后回来查看！",
         "breadcrumb": {
             "insight": "洞见",
             "article": "文章",
@@ -641,7 +647,95 @@
     "cookieConsent": {
         "message": "我们使用 cookie 来增强您的浏览体验并分析我们的流量。点击“接受”，即表示您同意我们使用 cookie 并同意我们的<a href='{privacy_policy_link}' class='underline'>隐私政策</a>。",
         "accept": "接受"
+    },
+    "website1jtPage": {
+        "breadcrumb": "100万印尼盾网站计划",
+        "hero": {
+            "title": "专业网站，100万印尼盾起",
+            "description": "获得一个现代化、快速且SEO友好的公司简介或登录页面，以提升您的业务形象。",
+            "cta": "查看套餐",
+            "imageAlt": "笔记本电脑屏幕上显示的现代化、简洁的网站设计。"
+        },
+        "forWho": {
+            "title": "完美适合您的业务规模",
+            "description": "无论您的业务规模如何，专业网站都是开拓更广阔市场的关键。",
+            "item1": {
+                "title": "中小微企业",
+                "description": "专业展示您的产品和服务，以建立客户信任并扩大市场。"
+            },
+            "item2": {
+                "title": "初创公司",
+                "description": "通过可扩展的现代化登录页面，为投资者和用户建立强大的第一印象。"
+            },
+            "item3": {
+                "title": "企业",
+                "description": "需要为新产品或活动快速启动登录页面？我们有快速有效的解决方案。"
+            }
+        },
+        "features": {
+            "pretitle": "您将获得什么",
+            "title": "采用尖端技术",
+            "description": "我们不只是建网站，我们为您的业务增长构建数字资产。",
+            "item1": {
+                "title": "现代化响应式设计",
+                "description": "在任何设备上（从台式机到手机）都能完美呈现并正常运行。"
+            },
+            "item2": {
+                "title": "SEO友好基础",
+                "description": "采用最佳实践构建，帮助您的网站在Google搜索结果中排名更高。"
+            },
+            "item3": {
+                "title": "快速与安全",
+                "description": "使用现代化技术（Next.js）以实现最佳速度和一流的安全性。"
+            },
+            "item4": {
+                "title": "面向未来的可扩展性",
+                "description": "您的网站已准备好与您的业务共同成长，可根据需要轻松添加新功能。"
+            }
+        },
+        "packages": {
+            "title": "选择您的套餐",
+            "description": "透明定价，无隐藏费用。选择最适合您需求的套餐。",
+            "cta": "选择套餐",
+            "starter": {
+                "price": "100万印尼盾",
+                "description": "适用于需要快速建立专业数字形象的企业。",
+                "features": [
+                    "1页网站（登录页面）",
+                    "响应式设计",
+                    "基础SEO设置",
+                    "联系表单集成",
+                    "1周内完成"
+                ]
+            },
+            "business": {
+                "price": "300万印尼盾",
+                "description": "成长型企业的首选。",
+                "features": [
+                    "最多5个页面（例如首页、关于、服务）",
+                    "包含“入门版”所有功能",
+                    "内容管理系统（CMS）",
+                    "照片库",
+                    "WhatsApp集成"
+                ]
+            },
+            "enterprise": {
+                "price": "定制",
+                "description": "为独特和复杂的业务需求量身定制的解决方案。",
+                "features": [
+                    "无限页面和自定义功能",
+                    "包含“商务版”所有功能",
+                    "电子商务集成",
+                    "高级SEO与分析",
+                    "专属支持"
+                ]
+            }
+        },
+        "cta": {
+            "title": "准备好上线了吗？",
+            "description": "不要错过以无与伦比的价格拥有专业网站的机会。联系我们进行免费咨询！",
+            "button": "获取免费咨询",
+            "whatsappMessage": "你好，我对100万印尼盾的网站创建计划感兴趣。可以提供更多信息吗？"
+        }
     }
 }
-
-    

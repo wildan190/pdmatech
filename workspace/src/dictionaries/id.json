@@ -1,0 +1,740 @@
+
+{
+    "navigation": {
+        "aboutUs": "Tentang Kami",
+        "ictSolutions": "Solusi ICT",
+        "program": "Program",
+        "insight": "Wawasan",
+        "contactUs": "Hubungi Kami"
+    },
+    "aboutUsSubMenu": {
+        "company": {
+            "title": "Perusahaan Kami",
+            "description": "Pelajari tentang sejarah, misi, dan nilai-nilai kami."
+        },
+        "people": {
+            "title": "Tim Kami",
+            "description": "Temui tim di balik kesuksesan kami."
+        },
+        "privacy": {
+            "title": "Kebijakan Privasi",
+            "description": "Bagaimana kami melindungi data dan privasi Anda."
+        }
+    },
+    "ictSolutionsSubMenu": {
+        "iot": {
+            "title": "Solusi IoT",
+            "description": "Solusi cerdas untuk dunia yang terhubung."
+        },
+        "enterprise": {
+            "title": "Solusi Enterprise",
+            "description": "Solusi terukur untuk bisnis skala besar."
+        },
+        "umkm": {
+            "title": "Solusi UMKM",
+            "description": "Solusi terjangkau dan efektif untuk usaha kecil dan menengah."
+        },
+        "web": {
+            "title": "Solusi Web",
+            "description": "Desain dan pengembangan web yang modern dan responsif."
+        }
+    },
+    "programSubMenu": {
+        "website1jt": {
+            "title": "Program Website 1 Juta",
+            "description": "Dapatkan website profesional untuk bisnis Anda dengan harga terjangkau."
+        }
+    },
+    "insightSubMenu": {
+        "news": {
+            "title": "Berita",
+            "description": "Berita dan pembaruan terbaru dari perusahaan kami."
+        },
+        "article": {
+            "title": "Artikel",
+            "description": "Artikel mendalam tentang teknologi dan bisnis."
+        },
+        "brochure": {
+            "title": "Brosur",
+            "description": "Unduh brosur perusahaan kami."
+        }
+    },
+    "header": {
+        "tagline": "Mitra Bisnis Anda"
+    },
+    "footer": {
+        "tagline": "Merintis solusi ICT & IoT yang siap masa depan untuk memberdayakan bisnis di era digital.",
+        "company": "Perusahaan",
+        "resources": "Sumber Daya",
+        "contactUs": "Hubungi Kami",
+        "quickLinks": "Tautan Cepat",
+        "followUs": "Ikuti Kami",
+        "copyright": "Hak Cipta Dilindungi."
+    },
+    "whatsapp": {
+        "contactUs": "Hubungi kami di WhatsApp"
+    },
+    "homePage": {
+        "hero": {
+            "slide1": {
+                "headline": "Merintis Solusi ICT & IoT Masa Depan",
+                "subheadline": "Kami adalah Micro Padma Nusantara, memberdayakan bisnis dengan teknologi inovatif untuk dunia yang terhubung dan cerdas.",
+                "cta1": "Jelajahi Solusi Kami",
+                "cta2": "Dapatkan Penawaran"
+            },
+            "slide2": {
+                "headline": "Sederhanakan Proses. Maksimalkan Produktivitas",
+                "subheadline": "Micro Padma Nusantara menyediakan solusi IT, perangkat lunak, dan dukungan strategis yang disesuaikan—untuk membantu bisnis Anda berkembang dengan percaya diri.",
+                "cta1": "Temukan Layanan Kami",
+                "cta2": "Hubungi Kami"
+            }
+        },
+        "experience": {
+            "clients": "Klien Teratas",
+            "years": "Tahun Pengalaman",
+            "talents": "Talenta Teknologi",
+            "projects": "Proyek di Indonesia"
+        },
+        "ourClients": {
+            "title": "Dipercaya oleh Perusahaan Terkemuka",
+            "description": "Kami bangga telah berkolaborasi dengan beberapa perusahaan paling terkemuka. Kepercayaan mereka adalah bukti komitmen kami terhadap keunggulan.",
+            "cta": "Jadilah Mitra Kami Berikutnya"
+        },
+        "climateBanner": {
+            "title": "Ikuti Inisiatif GoGreen Kami",
+            "description": "Kami berkomitmen untuk membangun masa depan yang berkelanjutan. Temukan bagaimana solusi teknologi kami berkontribusi pada perubahan lingkungan yang positif.",
+            "button": "Pelajari Lebih Lanjut Program Kami"
+        },
+        "services": {
+            "title": "Layanan dan Produk",
+            "headline": "Solusi yang Memberdayakan Bisnis Anda",
+            "subheadline": "Dari kebutuhan sehari-hari hingga inovasi terdepan — kami membangun, menyesuaikan, dan mengamankan ekosistem digital Anda.",
+            "iotTitle": "Solusi IoT",
+            "iotDescription": "Solusi IoT komprehensif untuk menghubungkan aset Anda dan mendorong wawasan berbasis data.",
+            "enterpriseTitle": "Solusi Enterprise",
+            "enterpriseDescription": "Solusi terukur dan kuat untuk kebutuhan perusahaan skala besar, dari cloud hingga keamanan.",
+            "findOutMore": "Cari Tahu Lebih Lanjut"
+        },
+        "ourTeam": {
+            "headline": "Didorong oleh Bakat. Dibangun di atas Pengalaman.",
+            "subheadline": "Terdiri dari para profesional ICT yang bersemangat, berpengalaman, dan bersertifikat dengan fokus kuat untuk membantu klien maju.",
+            "cta": "Kenali kami"
+        },
+        "faq": {
+            "pretitle": "FAQ",
+            "title": "Pertanyaan yang Sering Diajukan",
+            "description": "Punya pertanyaan? Kami punya jawabannya. Jika Anda tidak menemukan apa yang Anda cari, jangan ragu untuk menghubungi kami.",
+            "items": [
+                {
+                    "question": "Jenis bisnis apa yang Anda layani?",
+                    "answer": "Kami melayani berbagai jenis bisnis, mulai dari perusahaan skala besar hingga usaha mikro, kecil, dan menengah (UMKM) di berbagai sektor seperti ritel, perhotelan, manufaktur, dan lainnya. Solusi kami disesuaikan untuk memenuhi kebutuhan spesifik setiap klien."
+                },
+                {
+                    "question": "Bagaimana Anda memulai proyek dengan klien baru?",
+                    "answer": "Proses kami dimulai dengan konsultasi gratis untuk memahami tantangan dan tujuan bisnis Anda. Dari sana, kami mengembangkan proposal dan peta jalan proyek yang disesuaikan. Kami percaya pada pendekatan kolaboratif, bekerja sama dengan Anda dari konsep hingga penerapan dan seterusnya."
+                },
+                {
+                    "question": "Apa yang membedakan solusi IoT Anda?",
+                    "answer": "Solusi IoT kami bersifat end-to-end, artinya kami menangani semuanya mulai dari integrasi perangkat keras dan pengembangan platform hingga penerapan dan dukungan berkelanjutan. Kami fokus pada penciptaan solusi praktis berbasis data yang memberikan ROI nyata dengan meningkatkan efisiensi dan memungkinkan kemampuan baru."
+                },
+                {
+                    "question": "Apakah Anda menawarkan dukungan setelah proyek selesai?",
+                    "answer": "Tentu saja. Kami memandang klien kami sebagai mitra jangka panjang. Kami menawarkan berbagai paket dukungan dan pemeliharaan untuk memastikan solusi digital Anda terus berjalan lancar dan efektif, memungkinkan Anda untuk fokus pada bisnis inti Anda."
+                }
+            ]
+        },
+        "contact": {
+            "headline": "Apakah Anda Punya Proyek?",
+            "subheadline": "Kami Siap Membantu",
+            "form": {
+                "name": "Nama Lengkap",
+                "namePlaceholder": "John Doe",
+                "email": "Alamat Email",
+                "emailPlaceholder": "anda@contoh.com",
+                "company": "Perusahaan",
+                "companyPlaceholder": "Perusahaan Anda",
+                "industry": "Industri",
+                "industryPlaceholder": "misalnya, Teknologi, Keuangan",
+                "message": "Pesan Anda",
+                "messagePlaceholder": "Ceritakan tentang proyek Anda...",
+                "agreement": "Saya setuju untuk memberikan data pribadi saya kepada Micro Padma Nusantara dan telah membaca <a href='/id/about/privacy' class='underline' target='_blank'>Kebijakan Privasi</a>. Selanjutnya, saya bersedia dihubungi oleh Micro Padma Nusantara melalui media komunikasi pribadi saya sesuai dengan informasi yang saya berikan.",
+                "submit": "Mulai Transformasi Anda"
+            }
+        }
+    },
+    "companyPage": {
+        "breadcrumb": "Perusahaan Kami",
+        "hero": {
+            "headline": "Menciptakan Masa Depan Teknologi, Bersama.",
+            "subheadline": "Kami adalah Micro Padma Nusantara, tim inovator dan pemecah masalah yang berdedikasi untuk memberikan solusi ICT dan IoT yang transformatif. Kami bermitra dengan bisnis untuk menavigasi kompleksitas lanskap digital, mendorong pertumbuhan, efisiensi, dan kesuksesan yang berkelanjutan."
+        },
+        "journey": {
+            "title": "Perjalanan Kami",
+            "content": "Didirikan dengan prinsip inovasi dan kemitraan, Micro Padma Nusantara memulai perjalanannya untuk menjembatani kesenjangan teknologi bagi bisnis di Indonesia. Selama bertahun-tahun, kami telah tumbuh menjadi penyedia solusi ICT dan IoT tepercaya, yang dikenal atas komitmen kami terhadap kualitas, keandalan, dan kesuksesan klien. Kisah kami adalah tentang evolusi berkelanjutan, didorong oleh semangat untuk teknologi dan dedikasi untuk memberdayakan klien kami."
+        },
+        "founderQuote": {
+            "text": "Teknologi adalah alat yang kuat, tetapi potensi sebenarnya hanya terbuka ketika digunakan untuk memberdayakan orang dan memecahkan masalah dunia nyata. Misi kami adalah menjadi katalisator untuk transformasi itu."
+        },
+        "vision": {
+            "title": "Visi Kami",
+            "content": "Menjadi mitra terdepan bagi bisnis di Indonesia, memelopori solusi teknologi inovatif dan berkelanjutan yang mendorong transformasi digital dan menciptakan nilai jangka panjang."
+        },
+        "mission": {
+            "title": "Misi Kami",
+            "content": "Memberdayakan bisnis dengan solusi ICT dan IoT terdepan, yang disampaikan dengan layanan luar biasa dan fokus pada kemitraan strategis, memungkinkan mereka untuk berkembang pesat di ekonomi digital."
+        },
+        "whyChooseUs": {
+            "pretitle": "PROPOSISI NILAI",
+            "title": "Mengapa Bermitra dengan Kami?",
+            "description": "Kami memberikan lebih dari sekadar teknologi; kami memberikan kemitraan yang dibangun di atas kepercayaan, keahlian, dan visi bersama untuk sukses.",
+            "item1": {
+                "title": "Pengalaman Terbukti",
+                "description": "Dengan pengalaman lebih dari satu dekade, kami telah mendukung operasi besar di seluruh Indonesia, memberikan solusi ICT yang kuat dan andal."
+            },
+            "item2": {
+                "title": "Pendekatan Berpusat pada Klien",
+                "description": "Kesuksesan Anda adalah prioritas kami. Pusat panggilan dan meja layanan kami yang berdedikasi selalu siap memberikan dukungan yang Anda butuhkan, kapan pun Anda membutuhkannya."
+            },
+            "item3": {
+                "title": "Lincah & Efisien",
+                "description": "Di pasar saat ini, kecepatan adalah mata uang. Kami beroperasi dengan kelincahan untuk memberikan solusi dengan cepat, memastikan Anda mencapai efisiensi maksimum."
+            },
+            "item4": {
+                "title": "Pemecahan Masalah Strategis",
+                "description": "Kami melampaui perbaikan cepat. Kami berkolaborasi dengan Anda untuk mengidentifikasi dan memecahkan masalah yang tepat, memanfaatkan teknologi untuk manfaat yang berdampak dan bertahan lama."
+            }
+        },
+        "ourProgram": {
+            "title": "Program Kami",
+            "description": "Kami berkomitmen untuk memberikan dampak positif di luar bisnis, melalui inisiatif yang mendukung lingkungan dan masyarakat.",
+            "items": {
+                "goGreen": {
+                    "title": "GoGreen",
+                    "description": "Inisiatif untuk mempromosikan keberlanjutan lingkungan melalui teknologi, mengurangi jejak karbon dalam operasi dan solusi kami."
+                },
+                "socialTech": {
+                    "title": "Edukasi Teknologi Sosial",
+                    "description": "Memberikan pendidikan teknologi dan literasi digital gratis untuk masyarakat, memberdayakan generasi inovator berikutnya."
+                },
+                "environment": {
+                    "title": "Kebersihan Lingkungan",
+                    "description": "Mengkampanyekan dan bertindak untuk lingkungan yang lebih bersih, mengorganisir program pengelolaan sampah dan daur ulang berbasis masyarakat."
+                }
+            }
+        },
+        "cta": {
+            "title": "Siap Memulai Transformasi Digital Anda?",
+            "description": "Mari diskusikan bagaimana solusi kami dapat disesuaikan untuk memenuhi tantangan dan tujuan bisnis unik Anda.",
+            "button": "Hubungi Kami"
+        }
+    },
+    "peoplePage": {
+        "breadcrumb": "Tim Kami",
+        "hero": {
+            "title": "Temui Tim Kami",
+            "description": "Kami adalah kumpulan pemikir, pencipta, dan inovator, yang dipersatukan oleh semangat untuk teknologi dan dorongan untuk memberikan keunggulan."
+        },
+        "leaders": {
+            "title": "Pemimpin Kami",
+            "description": "Temui para pemikir visioner yang memandu misi kami untuk memberikan solusi teknologi yang transformatif.",
+            "wildan": {
+                "name": "Wildan J. Belfiore",
+                "title": "President Director",
+                "bio": "Wildan adalah seorang teknolog visioner dengan latar belakang yang kaya di bidang rekayasa full-stack. Sejak 2022, ia telah mengasah keterampilannya di berbagai industri, berkontribusi pada proyek-proyek kompleks di organisasi ternama seperti Xapiens, Biro Klasifikasi Indonesia, Lumoshive, dan Garuda Systrain Interindo. Semangatnya untuk inovasi dan kepemimpinan membawanya untuk turut mendirikan Micro Padma Nusantara pada tahun 2023, di mana ia menjabat sebagai Direktur Utama. Bersamaan dengan itu, ia memegang posisi Chief Technology Officer di Huntr.id, mendorong visi teknologi untuk kedua perusahaan dan memelopori solusi yang membentuk masa depan."
+            },
+            "raihan": {
+                "name": "Raihan Firdaus",
+                "title": "Business Solutions Manager",
+                "bio": "Raihan membawa perpaduan unik antara pengalaman sektor publik dan kecerdasan bisnis strategis ke dalam tim. Perjalanannya dimulai pada tahun 2022 dengan peran dasar di BPS (Badan Pusat Statistik), yang memberinya wawasan analitis yang mendalam. Ia kemudian beralih ke posisi staf di KCIC (Kereta Cepat Indonesia China), di mana ia terus berkontribusi pada salah satu proyek infrastruktur utama negara. Sejak 2023, Raihan secara bersamaan mengambil peran sebagai Manajer Solusi Bisnis di Micro Padma Nusantara, di mana ia unggul dalam menjembatani kebutuhan klien dengan solusi teknologi yang kuat dan efektif."
+            }
+        },
+        "cta": {
+            "title": "Bergabunglah dengan Perjalanan Inovasi Kami",
+            "description": "Kami selalu mencari talenta yang bersemangat. Jelajahi bagaimana Anda dapat berkontribusi pada tim kami.",
+            "button": "Hubungi Kami"
+        }
+    },
+    "privacyPage": {
+        "breadcrumb": "Kebijakan Privasi",
+        "title": "Kebijakan Privasi",
+        "description": "Privasi Anda penting bagi kami. Kebijakan ini menjelaskan data apa yang kami kumpulkan dan bagaimana kami menggunakannya.",
+        "lastUpdated": "Terakhir diperbarui",
+        "commitment": {
+            "title": "Komitmen Kami terhadap Privasi Anda",
+            "content": "PT Micro Padma Nusantara ('kami', 'milik kami', atau 'kita') berkomitmen untuk melindungi privasi Anda. Kebijakan Privasi ini menguraikan praktik kami mengenai pengumpulan, penggunaan, dan pengungkapan informasi pribadi Anda saat Anda menggunakan situs web dan layanan kami (secara kolektif, 'Layanan'). Dengan mengakses atau menggunakan Layanan kami, Anda menyetujui ketentuan Kebijakan Privasi ini."
+        },
+        "infoCollected": {
+            "title": "1. Informasi yang Kami Kumpulkan",
+            "content": "Kami mengumpulkan informasi yang Anda berikan langsung kepada kami, informasi yang kami kumpulkan secara otomatis, dan informasi dari sumber pihak ketiga.",
+            "item1": "<strong>Informasi Pribadi:</strong> Ini termasuk nama, alamat email, nomor telepon, nama perusahaan, industri, dan informasi lain apa pun yang Anda berikan saat mengisi formulir kontak, berlangganan buletin kami, atau berkomunikasi dengan kami.",
+            "item2": "<strong>Data Penggunaan:</strong> Kami secara otomatis mengumpulkan informasi tentang interaksi Anda dengan Layanan kami. Ini dapat mencakup alamat IP, jenis browser, sistem operasi, halaman yang dilihat, tautan yang diklik, serta tanggal dan waktu kunjungan Anda.",
+            "item3": "<strong>Cookie dan Teknologi Pelacakan:</strong> Kami menggunakan cookie dan teknologi pelacakan serupa untuk mengumpulkan dan melacak informasi serta untuk meningkatkan dan menganalisis Layanan kami."
+        },
+        "howWeUse": {
+            "title": "2. Bagaimana Kami Menggunakan Informasi Anda",
+            "content": "Kami menggunakan informasi yang kami kumpulkan untuk berbagai tujuan, termasuk untuk:",
+            "item1": "Menyediakan, mengoperasikan, dan memelihara Layanan kami.",
+            "item2": "Meningkatkan, mempersonalisasi, dan memperluas Layanan kami.",
+            "item3": "Memahami dan menganalisis cara Anda menggunakan Layanan kami.",
+            "item4": "Berkomunikasi dengan Anda, baik secara langsung maupun melalui salah satu mitra kami, untuk layanan pelanggan, untuk memberi Anda pembaruan dan informasi lain yang berkaitan dengan situs web, serta untuk tujuan pemasaran dan promosi.",
+            "item5": "Memproses transaksi Anda dan mengelola pesanan Anda.",
+            "item6": "Menemukan dan mencegah penipuan."
+        },
+        "howWeShare": {
+            "title": "3. Bagaimana Kami Membagikan Informasi Anda",
+            "content": "Kami tidak menjual informasi pribadi Anda. Kami dapat membagikan informasi Anda dalam situasi berikut:",
+            "item1": "<strong>Dengan Penyedia Layanan:</strong> Kami dapat membagikan informasi Anda dengan vendor dan penyedia layanan pihak ketiga yang melakukan layanan atas nama kami, seperti hosting, analisis data, dan pemasaran.",
+            "item2": "<strong>Untuk Alasan Hukum:</strong> Kami dapat mengungkapkan informasi Anda jika diharuskan oleh hukum atau sebagai tanggapan atas permintaan yang sah oleh otoritas publik (misalnya, pengadilan atau lembaga pemerintah).",
+            "item3": "<strong>Transfer Bisnis:</strong> Sehubungan dengan merger, penjualan aset perusahaan, pembiayaan, atau akuisisi seluruh atau sebagian bisnis kami oleh perusahaan lain, Informasi Pribadi Anda dapat ditransfer."
+        },
+        "dataSecurity": {
+            "title": "4. Keamanan Data",
+            "content": "Keamanan data Anda penting bagi kami. Kami menerapkan berbagai langkah keamanan untuk menjaga keamanan informasi pribadi Anda. Namun, ingatlah bahwa tidak ada metode transmisi melalui Internet atau metode penyimpanan elektronik yang 100% aman. Meskipun kami berusaha menggunakan cara yang dapat diterima secara komersial untuk melindungi Informasi Pribadi Anda, kami tidak dapat menjamin keamanannya secara mutlak."
+        },
+        "yourRights": {
+            "title": "5. Hak Perlindungan Data Anda",
+            "content": "Tergantung pada lokasi Anda, Anda mungkin memiliki hak berikut terkait informasi pribadi Anda: hak untuk mengakses, memperbaiki, memperbarui, atau meminta penghapusan informasi pribadi Anda. Jika Anda ingin menggunakan salah satu dari hak-hak ini, silakan hubungi kami menggunakan informasi kontak yang disediakan di bawah ini."
+        },
+        "policyChanges": {
+            "title": "6. Perubahan pada Kebijakan Privasi Ini",
+            "content": "Kami dapat memperbarui Kebijakan Privasi kami dari waktu ke waktu. Kami akan memberitahu Anda tentang perubahan apa pun dengan memposting Kebijakan Privasi baru di halaman ini. Anda disarankan untuk meninjau Kebijakan Privasi ini secara berkala untuk setiap perubahan."
+        },
+        "contactUs": {
+            "title": "7. Hubungi Kami",
+            "content": "Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami:"
+        }
+    },
+    "enterprisePage": {
+        "breadcrumb": "Solusi Enterprise",
+        "hero": {
+            "title": "Memberdayakan Perusahaan Anda dengan Solusi ICT yang Tangguh",
+            "description": "Kami menyediakan solusi perangkat lunak yang terukur, aman, dan terintegrasi yang dirancang untuk mengoptimalkan operasi Anda dan mendorong pertumbuhan yang berkelanjutan."
+        },
+        "overview": {
+            "pretitle": "IKHTISAR",
+            "title": "Dibangun untuk Kompleksitas, Dirancang untuk Pertumbuhan",
+            "description": "Micro Padma Nusantara memahami tantangan unik yang dihadapi oleh organisasi besar. Solusi perusahaan kami direkayasa untuk menangani alur kerja yang kompleks, mengelola data dalam jumlah besar, dan terintegrasi secara mulus ke dalam infrastruktur Anda yang ada. Kami fokus pada pembangunan sistem kustom yang kuat yang merampingkan operasi, mengurangi biaya, dan memberikan keunggulan kompetitif di industri Anda."
+        },
+        "services": {
+            "title": "Layanan Pengembangan Kustom",
+            "description": "Dari manajemen bisnis inti hingga alat operasional khusus, kami membangun perangkat lunak yang menjalankan bisnis Anda.",
+            "erp": "Integrasikan semua proses bisnis inti Anda ke dalam satu sistem terpadu untuk efisiensi yang ditingkatkan dan visibilitas data waktu nyata.",
+            "crm": "Bangun dan kelola hubungan pelanggan yang lebih kuat dengan platform terpusat untuk penjualan, pemasaran, dan layanan.",
+            "softwareHouse": "Manfaatkan pengembang ahli kami untuk membangun solusi perangkat lunak pesanan yang disesuaikan dengan sempurna untuk kebutuhan operasional unik Anda.",
+            "pos": "Modernkan operasi ritel atau F&B Anda dengan sistem Point of Sale kami yang intuitif dan kuat untuk transaksi yang mulus.",
+            "hotel": "Rampingkan operasi perhotelan Anda, dari reservasi hingga layanan tamu, dengan perangkat lunak manajemen hotel kami yang komprehensif.",
+            "ticketing": "Kelola acara, atraksi, atau layanan transportasi secara efisien dengan platform tiket yang kuat dan ramah pengguna."
+        },
+        "whyChooseUs": {
+            "pretitle": "MENGAPA MEMILIH KAMI",
+            "title": "Mitra Teknologi Strategis Anda",
+            "description": "Kami memberikan solusi perusahaan yang tidak hanya fungsional, tetapi juga transformasional. Komitmen kami terhadap kualitas, keamanan, dan kemitraan memastikan investasi Anda menghasilkan nilai jangka panjang.",
+            "item1": {
+                "title": "Arsitektur Skalabel",
+                "description": "Solusi kami dibangun untuk tumbuh bersama bisnis Anda, menangani peningkatan kompleksitas dan beban pengguna tanpa mengorbankan kinerja."
+            },
+            "item2": {
+                "title": "Integrasi Mulus",
+                "description": "Kami memastikan perangkat lunak kami terintegrasi dengan lancar dengan sistem Anda yang ada, menciptakan ekosistem TI yang terpadu dan efisien."
+            },
+            "item3": {
+                "title": "Keamanan Tingkat Perusahaan",
+                "description": "Melindungi data Anda adalah prioritas utama kami. Kami menerapkan protokol keamanan yang kuat untuk melindungi informasi bisnis penting Anda."
+            },
+            "item4": {
+                "title": "Dukungan Khusus",
+                "description": "Dapatkan dukungan ahli yang berkelanjutan dari tim kami yang berdedikasi untuk memastikan sistem Anda berjalan lancar dan efektif."
+            }
+        },
+        "cta": {
+            "title": "Siap Merancang Masa Depan Anda?",
+            "description": "Mari bangun fondasi digital yang kuat untuk perusahaan Anda. Hubungi kami untuk konsultasi.",
+            "button": "Jadwalkan Konsultasi"
+        }
+    },
+    "iotPage": {
+        "breadcrumb": "Solusi IoT",
+        "hero": {
+            "title": "Menghubungkan Dunia Anda: Solusi IoT Cerdas",
+            "description": "Kami mengubah aset bisnis fisik Anda menjadi perangkat cerdas yang terhubung yang memberikan data yang dapat ditindaklanjuti dan mendorong keunggulan operasional."
+        },
+        "overview": {
+            "pretitle": "MASA DEPAN TERHUBUNG",
+            "title": "Buka Kekuatan Data Real-Time",
+            "description": "Internet of Things (IoT) merevolusi industri dengan menjembatani kesenjangan antara dunia fisik dan digital. Dengan menanamkan sensor dan konektivitas ke dalam peralatan, lingkungan, dan produk Anda, Anda dapat mengumpulkan data real-time yang tak ternilai. Data ini memberdayakan Anda untuk mengotomatiskan proses, memprediksi kegagalan, mengurangi biaya, dan menciptakan layanan baru yang inovatif yang sebelumnya tidak mungkin."
+        },
+        "applications": {
+            "title": "Aplikasi IoT di Berbagai Industri",
+            "description": "Kami mengembangkan solusi IoT yang disesuaikan untuk memecahkan masalah dunia nyata dan menciptakan nilai nyata.",
+            "monitoring": {
+                "title": "Pemantauan & Kontrol Cerdas",
+                "description": "Pantau dan kontrol aset Anda dari jarak jauh secara real-time, dari mesin industri hingga kondisi lingkungan, untuk pemeliharaan proaktif dan kinerja yang dioptimalkan."
+            },
+            "tracking": {
+                "title": "Pelacakan Aset & Logistik",
+                "description": "Dapatkan visibilitas lengkap atas rantai pasokan Anda dengan solusi pelacakan canggih kami, mengoptimalkan rute, mengurangi kerugian, dan memastikan pengiriman tepat waktu."
+            },
+            "automation": {
+                "title": "Otomatisasi Industri (IIoT)",
+                "description": "Ubah proses manufaktur Anda dengan sensor yang terhubung dan alur kerja otomatis, yang mengarah pada peningkatan efisiensi produksi dan pengurangan biaya operasional."
+            },
+            "agriculture": {
+                "title": "Pertanian Cerdas",
+                "description": "Manfaatkan IoT untuk memantau kondisi tanah, mengotomatiskan irigasi, dan melacak kesehatan tanaman, memaksimalkan hasil panen, dan mempromosikan praktik pertanian berkelanjutan."
+            }
+        },
+        "process": {
+            "pretitle": "IMPLEMENTASI END-TO-END",
+            "title": "Dari Konsep ke Konektivitas",
+            "description": "Kami menyediakan proses empat langkah yang komprehensif untuk memastikan proyek IoT Anda sukses dari awal hingga akhir.",
+            "step1": {
+                "title": "1. Penemuan & Strategi",
+                "description": "Kami mulai dengan memahami tantangan dan tujuan bisnis unik Anda untuk bersama-sama menciptakan strategi dan peta jalan IoT yang disesuaikan."
+            },
+            "step2": {
+                "title": "2. Integrasi Perangkat Keras & Sensor",
+                "description": "Kami memilih dan mengonfigurasi sensor dan perangkat keras yang tepat, memastikan pengambilan data yang andal dari aset fisik Anda."
+            },
+            "step3": {
+                "title": "3. Pengembangan Platform",
+                "description": "Tim kami membangun platform IoT pusat untuk mengumpulkan, memproses, dan memvisualisasikan data, lengkap dengan dasbor yang ramah pengguna."
+            },
+            "step4": {
+                "title": "4. Penerapan & Dukungan",
+                "description": "Kami mengelola penerapan penuh dan memberikan dukungan serta pemeliharaan berkelanjutan untuk memastikan ekosistem IoT Anda berjalan dengan sempurna."
+            }
+        },
+        "cta": {
+            "title": "Siap Membangun Bisnis yang Lebih Cerdas?",
+            "description": "Mari jelajahi bagaimana IoT dapat merevolusi operasi Anda. Hubungi para ahli kami untuk konsultasi gratis dan bukti konsep.",
+            "button": "Diskusikan Proyek IoT Anda"
+        }
+    },
+    "umkmPage": {
+        "breadcrumb": "Solusi UMKM",
+        "hero": {
+            "title": "Solusi Digital untuk UMKM Maju",
+            "description": "Kami hadir untuk memberdayakan usaha mikro, kecil, dan menengah dengan teknologi yang tepat guna, terjangkau, dan mudah digunakan."
+        },
+        "challenge": {
+            "pretitle": "TANTANGAN UMKM",
+            "title": "Menavigasi Era Digital",
+            "description": "Di tengah persaingan yang ketat, UMKM seringkali menghadapi keterbatasan sumber daya untuk mengadopsi teknologi. Mulai dari kesulitan membangun kehadiran online, mengelola operasional secara efisien, hingga menjangkau pasar yang lebih luas. Kami mengerti tantangan ini dan menyediakan jembatan bagi Anda untuk bertransformasi secara digital."
+        },
+        "solutions": {
+            "title": "Solusi Tepat untuk Bisnis Anda",
+            "description": "Kami menawarkan serangkaian layanan yang dirancang khusus untuk mendorong pertumbuhan bisnis UMKM.",
+            "website": {
+                "title": "Website & Profil Perusahaan",
+                "description": "Bangun kehadiran online yang profesional untuk menjangkau lebih banyak pelanggan dan meningkatkan kredibilitas bisnis Anda."
+            },
+            "pos": {
+                "title": "Point of Sale (POS) Lite",
+                "description": "Sistem kasir modern yang mudah digunakan untuk mencatat penjualan, mengelola inventaris, dan memantau laporan bisnis secara real-time."
+            },
+            "social": {
+                "title": "Manajemen Media Sosial",
+                "description": "Tingkatkan interaksi dengan pelanggan dan perkuat brand Anda melalui strategi konten dan manajemen media sosial yang efektif."
+            },
+            "customApp": {
+                "title": "Aplikasi Mikro Kustom",
+                "description": "Butuh solusi digital yang spesifik? Kami dapat membuatkan aplikasi sederhana yang disesuaikan untuk kebutuhan unik bisnis Anda."
+            }
+        },
+        "whyChooseUs": {
+            "pretitle": "MENGAPA KAMI?",
+            "title": "Partner Pertumbuhan Digital Anda",
+            "description": "Kami bukan hanya penyedia teknologi, tapi partner yang berkomitmen untuk kesuksesan bisnis Anda. Kami fokus pada solusi yang memberikan dampak nyata.",
+            "item1": {
+                "title": "Harga Terjangkau",
+                "description": "Kami menyediakan solusi berkualitas dengan harga yang dirancang khusus agar sesuai dengan anggaran UMKM."
+            },
+            "item2": {
+                "title": "Mudah Digunakan",
+                "description": "Tidak perlu keahlian teknis. Platform kami intuitif dan dirancang untuk kemudahan penggunaan bagi siapa saja."
+            },
+            "item3": {
+                "title": "Dukungan Penuh",
+                "description": "Tim kami siap membantu Anda di setiap langkah, memastikan Anda mendapatkan manfaat maksimal dari solusi kami."
+            },
+            "item4": {
+                "title": "Skalabilitas",
+                "description": "Solusi kami dapat tumbuh bersama bisnis Anda, siap untuk dikembangkan seiring dengan kesuksesan Anda."
+            }
+        },
+        "cta": {
+            "title": "Siap Membawa Bisnis Anda ke Level Berikutnya?",
+            "description": "Diskusikan kebutuhan bisnis Anda bersama kami dan temukan solusi digital yang paling tepat. Konsultasi gratis!",
+            "button": "Hubungi Kami Sekarang"
+        }
+    },
+    "webPage": {
+        "breadcrumb": "Solusi Web",
+        "hero": {
+            "title": "Menciptakan Pengalaman Digital yang Memikat dan Mengkonversi",
+            "description": "Kami membangun situs web yang cepat, indah, dan ramah pengguna yang berfungsi sebagai garda depan digital merek Anda."
+        },
+        "approach": {
+            "pretitle": "PENDEKATAN KAMI",
+            "title": "Situs Web Anda adalah Pintu Depan Digital Anda",
+            "description": "Di dunia yang mengutamakan digital saat ini, situs web Anda sering kali menjadi interaksi pertama pelanggan potensial dengan bisnis Anda. Ini lebih dari sekadar brosur online; ini adalah alat yang ampuh untuk membangun kredibilitas, menghasilkan prospek, dan mendorong pertumbuhan. Di Micro Padma Nusantara, kami menciptakan solusi web strategis yang tidak hanya terlihat hebat tetapi also berkinerja luar biasa, memastikan kesan pertama Anda bertahan lama."
+        },
+        "services": {
+            "title": "Layanan Pengembangan Web Kami",
+            "description": "Kami menawarkan rangkaian layanan lengkap untuk membangun dan memelihara kehadiran online Anda yang kuat.",
+            "custom": "Kami membangun situs web pesanan yang indah dari awal yang secara sempurna menangkap identitas merek Anda dan memenuhi tujuan bisnis spesifik Anda.",
+            "ecommerce": "Luncurkan toko online yang kuat dengan pengalaman pengguna yang mulus, gateway pembayaran yang aman, dan sistem inventaris yang mudah dikelola.",
+            "responsive": "Kami memastikan situs web Anda terlihat dan berfungsi dengan sempurna di semua perangkat, dari desktop hingga ponsel cerdas, memberikan pengalaman pengguna yang optimal di mana saja.",
+            "seo": "Tingkatkan peringkat mesin pencari Anda dan berikan pengalaman secepat kilat bagi pengunjung Anda dengan layanan pengoptimalan kami.",
+            "redesign": "Modernkan situs web Anda yang ada dengan desain segar, fungsionalitas yang lebih baik, dan pengalaman pengguna yang lebih baik untuk melibatkan kembali audiens Anda.",
+            "webapp": "Melampaui situs web sederhana dengan aplikasi web kustom yang merampingkan operasi Anda dan memberikan nilai unik bagi pengguna Anda."
+        },
+        "whyChooseUs": {
+            "pretitle": "MENGAPA MEMILIH KAMI",
+            "title": "Direkayasa untuk Keunggulan",
+            "description": "Kami menggabungkan desain kreatif dengan keahlian teknis untuk memberikan solusi web yang tidak hanya menarik secara visual tetapi juga kuat, aman, dan dibangun untuk masa depan.",
+            "item1": {
+                "title": "Teknologi Modern",
+                "description": "Kami membangun dengan teknologi terbaru dan paling andal seperti Next.js dan React untuk membuat situs web yang cepat, dapat diskalakan, dan aman."
+            },
+            "item2": {
+                "title": "Pendekatan Berpusat pada Pengguna",
+                "description": "Proses desain kami berpusat di sekitar audiens target Anda, memastikan pengalaman yang intuitif dan menarik yang mendorong hasil."
+            },
+            "item3": {
+                "title": "Kualitas & Keandalan",
+                "description": "Kami mematuhi standar pengkodean dan pengujian tertinggi untuk memberikan produk berkinerja tinggi yang andal yang dapat Anda andalkan."
+            }
+        },
+        "cta": {
+            "title": "Punya Ide untuk Situs Web?",
+            "description": "Mari ubah visi Anda menjadi kenyataan digital yang menakjubkan. Hubungi kami hari ini untuk konsultasi gratis.",
+            "button": "Mulai Proyek"
+        }
+    },
+    "careerPage": {
+        "breadcrumb": "Karir",
+        "hero": {
+            "title": "Bangun Masa Depan Anda Bersama Kami",
+            "description": "Bergabunglah dengan tim inovator, pemecah masalah, dan kolaborator yang bersemangat dalam membentuk masa depan teknologi di Indonesia."
+        },
+        "culture": {
+            "pretitle": "BUDAYA KAMI",
+            "title": "Lebih dari Sekadar Pekerjaan, Ini adalah Misi",
+            "description": "Di Micro Padma Nusantara, kami tidak hanya membangun produk; kami membangun budaya keunggulan, pertumbuhan, dan dampak. Kami percaya dalam memberdayakan tim kami untuk melakukan pekerjaan terbaik mereka di lingkungan yang mendukung, menantang, dan bermanfaat."
+        },
+        "values": {
+            "innovation": {
+                "title": "Inovasi di Hati",
+                "description": "Kami didorong oleh keinginan untuk mendorong batasan dan menjelajahi batas-batas teknologi baru. Kreativitas dan pemikiran ke depan adalah inti kami."
+            },
+            "collaboration": {
+                "title": "Semangat Kolaboratif",
+                "description": "Kami percaya solusi terbaik datang dari kerja sama. Tim kami berkembang dengan komunikasi terbuka dan saling mendukung."
+            },
+            "growth": {
+                "title": "Pola Pikir Bertumbuh",
+                "description": "Kami adalah pembelajar seumur hidup, berkomitmen untuk pengembangan pribadi dan profesional untuk diri kami sendiri dan klien kami."
+            },
+            "passion": {
+                "title": "Semangat Berpusat pada Klien",
+                "description": "Kesuksesan Anda adalah kesuksesan kami. Kami bersemangat untuk memberikan nilai dan membangun kemitraan jangka panjang berdasarkan kepercayaan."
+            }
+        },
+        "openings": {
+            "title": "Lowongan Saat Ini",
+            "description": "Kami selalu mencari individu berbakat. Meskipun saat ini tidak ada posisi terbuka, kami akan senang mendengar dari Anda.",
+            "notAvailable": "Tidak Ada Posisi yang Tersedia Saat Ini",
+            "checkBack": "Silakan periksa kembali nanti untuk peluang di masa depan."
+        },
+        "cta": {
+            "title": "Tidak Menemukan Peran untuk Anda?",
+            "description": "Kami selalu terbuka untuk terhubung dengan talenta luar biasa. Jika Anda yakin keahlian Anda dapat membuat perbedaan, kirimkan resume Anda!",
+            "button": "Kirim Resume Anda"
+        }
+    },
+    "constructionPage": {
+        "title": "Sedang Dibangun",
+        "description": "Kami sedang bekerja keras untuk memberikan Anda konten baru dan menarik. Silakan periksa kembali segera!",
+        "breadcrumb": {
+            "insight": "Wawasan",
+            "article": "Artikel",
+            "brochure": "Brosur",
+            "news": "Berita"
+        }
+    },
+    "contactPage": {
+        "breadcrumb": "Hubungi Kami",
+        "hero": {
+            "headline": "Mari Terhubung",
+            "subheadline": "Punya pertanyaan, proyek, atau hanya ingin menyapa? Kami ingin mendengar dari Anda. Isi formulir di bawah ini dan tim kami akan segera menghubungi Anda."
+        }
+    },
+     "brochurePage": {
+        "breadcrumb": "Brosur",
+        "hero": {
+            "title": "Temukan Inovasi Kami",
+            "description": "Gambaran umum tentang misi, solusi, dan komitmen kami untuk mendorong bisnis Anda maju melalui teknologi.",
+            "imageAlt": "Latar belakang teknologi abstrak yang merepresentasikan inovasi",
+            "downloadButton": "Unduh Brosur"
+        },
+        "services": {
+            "title": "Solusi Inti Kami",
+            "description": "Kami memberikan solusi menyeluruh yang disesuaikan untuk memenuhi tantangan unik bisnis Anda, dari kehadiran web dasar hingga ekosistem IoT yang kompleks."
+        },
+        "cta": {
+            "title": "Mari Ciptakan Masa Depan, Bersama.",
+            "description": "Siap untuk membahas bagaimana keahlian teknologi kami dapat mengangkat bisnis Anda? Tim kami siap mendengarkan.",
+            "button": "Hubungi Kami"
+        }
+    },
+    "investorPage": {
+        "breadcrumb": "Hubungan Investor",
+        "hero": {
+            "title": "Berinvestasi di Masa Depan Teknologi Indonesia",
+            "description": "Bergabunglah dengan kami dalam misi kami untuk memberdayakan bisnis dan mendorong transformasi digital di seluruh nusantara."
+        },
+        "whyInvest": {
+            "pretitle": "PROPOSISI NILAI",
+            "title": "Mengapa Berinvestasi di Micro Padma Nusantara?",
+            "description": "Kami berada di garis depan revolusi digital Indonesia, menawarkan peluang investasi unik di pasar dengan pertumbuhan tinggi.",
+            "items": [
+                {
+                    "title": "Posisi Pasar Strategis",
+                    "description": "Menargetkan sektor enterprise dan UMKM yang luas namun kurang terlayani dengan solusi teknologi esensial."
+                },
+                {
+                    "title": "Didorong oleh Inovasi",
+                    "description": "Fokus kuat pada solusi yang dapat diskalakan dan banyak diminati di bidang IoT dan perangkat lunak enterprise kustom."
+                },
+                {
+                    "title": "Kepemimpinan Berpengalaman",
+                    "description": "Dipimpin oleh tim dinamis dengan rekam jejak yang terbukti di bidang teknologi dan pengembangan bisnis strategis."
+                },
+                {
+                    "title": "Potensi Pertumbuhan Tinggi",
+                    "description": "Memanfaatkan digitalisasi ekonomi Indonesia yang pesat dengan model operasional yang ramping dan gesit."
+                }
+            ]
+        },
+        "financials": {
+            "title": "Sorotan Keuangan",
+            "description": "Kami berkomitmen pada pertumbuhan berkelanjutan dan pelaporan keuangan yang transparan. (Data keuangan akan tersedia di sini)."
+        },
+        "resources": {
+            "title": "Sumber Daya Investor",
+            "description": "Akses laporan, presentasi, dan informasi penting lainnya.",
+            "comingSoon": "Sumber daya investor belum tersedia. Silakan periksa kembali segera."
+        },
+        "contact": {
+            "title": "Pertanyaan Investor",
+            "description": "Untuk pertanyaan terkait investor, silakan hubungi tim kami secara langsung.",
+            "email": "investor.relations@mpnsolutions.my.id"
+        }
+    },
+    "notFoundPage": {
+        "errorCode": "404",
+        "title": "Halaman Tidak Ditemukan",
+        "description": "Ups! Sepertinya halaman yang Anda cari telah mengambil jalan memutar. Mari kita kembalikan Anda ke jalur yang benar.",
+        "button": "Kembali ke Beranda"
+    },
+    "common": {
+        "home": "Beranda",
+        "aboutUs": "Tentang Kami",
+        "learnMore": "Pelajari Lebih Lanjut"
+    },
+    "cookieConsent": {
+        "message": "Kami menggunakan cookie untuk meningkatkan pengalaman penelusuran Anda dan menganalisis lalu lintas kami. Dengan mengeklik \"Terima\", Anda menyetujui penggunaan cookie kami dan menyetujui <a href='{privacy_policy_link}' class='underline'>Kebijakan Privasi</a> kami.",
+        "accept": "Terima"
+    },
+    "website1jtPage": {
+        "breadcrumb": "Program Website 1 Juta",
+        "hero": {
+            "title": "Website Profesional, Mulai dari 1 Juta Rupiah",
+            "description": "Dapatkan website company profile atau landing page yang modern, cepat, dan SEO-friendly untuk meningkatkan citra bisnis Anda.",
+            "cta": "Lihat Paket",
+            "imageAlt": "Desain website modern dan bersih yang ditampilkan di layar laptop."
+        },
+        "forWho": {
+            "title": "Sempurna untuk Skala Bisnis Anda",
+            "description": "Apapun ukuran bisnis Anda, website profesional adalah kunci untuk menjangkau pasar yang lebih luas.",
+            "item1": {
+                "title": "UMKM",
+                "description": "Tampilkan produk dan layanan Anda secara profesional untuk membangun kepercayaan pelanggan dan memperluas pasar."
+            },
+            "item2": {
+                "title": "Startup",
+                "description": "Bangun kesan pertama yang kuat bagi investor dan pengguna dengan landing page yang skalabel dan modern."
+            },
+            "item3": {
+                "title": "Perusahaan",
+                "description": "Butuh meluncurkan landing page untuk produk atau kampanye baru dengan cepat? Kami punya solusi cepat dan efektif."
+            }
+        },
+        "features": {
+            "pretitle": "APA YANG ANDA DAPATKAN",
+            "title": "Dikemas dengan Teknologi Terkini",
+            "description": "Kami tidak hanya membuat website, kami membangun aset digital untuk pertumbuhan bisnis Anda.",
+            "item1": {
+                "title": "Desain Modern & Responsif",
+                "description": "Tampil memukau dan berfungsi sempurna di perangkat apapun, dari desktop hingga mobile."
+            },
+            "item2": {
+                "title": "Fondasi Ramah SEO",
+                "description": "Dibangun dengan praktik terbaik untuk membantu website Anda mendapat peringkat lebih tinggi di pencarian Google."
+            },
+            "item3": {
+                "title": "Cepat & Aman",
+                "description": "Menggunakan teknologi modern (Next.js) untuk kecepatan optimal dan keamanan terbaik di kelasnya."
+            },
+            "item4": {
+                "title": "Skalabel untuk Masa Depan",
+                "description": "Website Anda siap tumbuh bersama bisnis, mudah ditambahkan fitur baru sesuai kebutuhan."
+            }
+        },
+        "packages": {
+            "title": "Pilih Paket Anda",
+            "description": "Harga transparan tanpa biaya tersembunyi. Pilih paket yang paling sesuai dengan kebutuhan Anda.",
+            "cta": "Pilih Paket",
+            "starter": {
+                "price": "Rp 1jt",
+                "description": "Untuk bisnis yang butuh kehadiran digital profesional dengan cepat.",
+                "features": [
+                    "1 Halaman Website (Landing Page)",
+                    "Desain Responsif",
+                    "Pengaturan SEO Dasar",
+                    "Integrasi Formulir Kontak",
+                    "Pengerjaan 1 Minggu"
+                ]
+            },
+            "business": {
+                "price": "Rp 3jt",
+                "description": "Pilihan paling populer untuk bisnis yang sedang berkembang.",
+                "features": [
+                    "Hingga 5 Halaman (e.g., Home, About, Services)",
+                    "Semua yang ada di Starter",
+                    "Content Management System (CMS)",
+                    "Galeri Foto",
+                    "Integrasi WhatsApp"
+                ]
+            },
+            "enterprise": {
+                "price": "Kustom",
+                "description": "Solusi yang dirancang khusus untuk kebutuhan bisnis yang unik dan kompleks.",
+                "features": [
+                    "Halaman & Fitur Kustom Tanpa Batas",
+                    "Semua yang ada di Business",
+                    "Integrasi E-commerce",
+                    "SEO & Analitik Lanjutan",
+                    "Dukungan Prioritas"
+                ]
+            }
+        },
+        "cta": {
+            "title": "Siap untuk Go Online?",
+            "description": "Jangan lewatkan kesempatan memiliki website profesional dengan harga tak terkalahkan. Hubungi kami untuk konsultasi gratis!",
+            "button": "Dapatkan Konsultasi Gratis",
+            "whatsappMessage": "Halo, saya tertarik dengan program pembuatan website 1 juta. Boleh minta info lebih lanjut?"
+        }
+    }
+}
