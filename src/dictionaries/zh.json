@@ -3,6 +3,7 @@
     "navigation": {
         "aboutUs": "关于我们",
         "ictSolutions": "ICT 解决方案",
+        "program": "程序",
         "insight": "洞见",
         "contactUs": "联系我们"
     },
@@ -36,6 +37,12 @@
         "web": {
             "title": "网站解决方案",
             "description": "现代化且响应迅速的网页设计和开发。"
+        }
+    },
+    "programSubMenu": {
+        "website1jt": {
+            "title": "100万印尼盾网站计划",
+            "description": "以实惠的价格为您的企业获得一个专业的网站。"
         }
     },
     "insightSubMenu": {
@@ -414,6 +421,7 @@
             "title": "驾驭数字时代",
             "description": "在激烈的竞争中，中小微企业在采用技术方面常常面临资源限制。从建立在线形象、高效管理运营到开拓更广阔的市场，都存在困难。我们了解这些挑战，并为您提供数字化转型的桥梁。"
         },
+
         "solutions": {
             "title": "适合您业务的解决方案",
             "description": "我们提供一系列专门设计用于推动中小微企业业务增长的服务。",
@@ -549,8 +557,8 @@
     "constructionPage": {
         "title": "建设中",
         "description": "我们正在努力为您带来新的、令人兴奋的内容。请稍后回来查看！",
-        "brochureDescription": "我们正在为您准备公司宣传册。请稍后回来下载！",
         "newsDescription": "我们的新闻版块正在更新最新故事和动态。请稍后回来查看！",
+        "brochureDescription": "我们正在为您准备公司宣传册。请稍后回来下载！",
         "breadcrumb": {
             "insight": "洞见",
             "article": "文章",
