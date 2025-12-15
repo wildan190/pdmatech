@@ -2,16 +2,13 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Home, Frown } from 'lucide-react';
-import { headers } from 'next/headers';
 import { getDictionary } from '@/lib/dictionaries';
-import { i18n } from '@/i18n.config';
+import { i18n, Locale } from '@/i18n.config';
 
 export default async function NotFound() {
-    const headersList = headers();
-    const pathname = headersList.get('x-pathname') || '';
-    
-    // Extract locale from pathname, default to 'en'
-    const locale = i18n.locales.find(l => pathname.startsWith(`/${l}`)) || i18n.defaultLocale;
+    // Using headers() is not supported during static build.
+    // Defaulting to the default locale to prevent build errors.
+    const locale: Locale = i18n.defaultLocale;
 
     const dictionary = await getDictionary(locale);
     const pageDict = dictionary.notFoundPage;
