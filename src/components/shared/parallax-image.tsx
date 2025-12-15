@@ -1,36 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Image, { ImageProps } from 'next/image';
 
-type ParallaxImageProps = Omit<ImageProps, 'className' | 'style'> & {
-  speed?: number;
-};
+type ParallaxImageProps = Omit<ImageProps, 'className' | 'style'>;
 
-const ParallaxImage = ({ src, alt, speed = 0.2, ...props }: ParallaxImageProps) => {
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setOffset(window.pageYOffset);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  // Use positive value for yPos to make the image move down (lag behind)
-  const yPos = offset * speed;
-
+const ParallaxImage = ({ src, alt, ...props }: ParallaxImageProps) => {
   return (
     <Image
       src={src}
       alt={alt}
       fill
       className="object-cover"
-      style={{ transform: `translate3d(0, ${yPos}px, 0)` }}
       {...props}
     />
   );
