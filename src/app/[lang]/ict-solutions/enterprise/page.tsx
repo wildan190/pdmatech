@@ -18,21 +18,21 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const dictionary = await getDictionary(lang);
   
   const titles: Record<Locale, string> = {
-    en: "Managed IT Services Indonesia — MSP, Monitoring & 24/7 Support",
-    id: "Managed IT Services Indonesia — MSP, Monitoring & Dukungan 24/7",
-    zh: "印度尼西亚托管IT服务 — MSP、监控和全天候支持"
+    en: "Enterprise ICT Solutions | Managed Services & Custom Software",
+    id: "Solusi ICT Enterprise | Layanan Terkelola & Software Kustom",
+    zh: "企业ICT解决方案 | 托管服务和定制软件"
   };
 
   const descriptions: Record<Locale, string> = {
-    en: 'Reduce IT downtime & costs with managed IT, NOC, and managed security services. Services for SMEs to enterprise — contact our team.',
-    id: 'Kurangi downtime & biaya IT dengan layanan managed IT, NOC, dan managed security. Layanan untuk UKM hingga enterprise — hubungi tim kami.',
-    zh: '通过托管IT、NOC和托管安全服务，减少IT停机时间和成本。为中小企业到大型企业提供服务 — 联系我们的团队。'
+    en: 'Scalable enterprise solutions for Southeast Asia. We provide managed IT services, custom software (ERP, CRM), and 24/7 support to drive business efficiency.',
+    id: 'Solusi enterprise terukur untuk Asia Tenggara. Kami menyediakan layanan IT terkelola, software kustom (ERP, CRM), dan dukungan 24/7 untuk mendorong efisiensi bisnis.',
+    zh: '为东南亚提供可扩展的企业解决方案。我们提供托管IT服务、定制软件（ERP、CRM）和全天候支持，以提高业务效率。'
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['managed IT services Indonesia', 'MSP Indonesia', 'NOC services', 'managed security services', 'enterprise IT solutions', 'IT support for business'],
-    id: ['managed IT services Indonesia', 'MSP Indonesia', 'layanan NOC', 'layanan keamanan terkelola', 'solusi IT enterprise', 'dukungan IT untuk bisnis'],
-    zh: ['印尼托管IT服务', '印尼MSP', 'NOC服务', '托管安全服务', '企业IT解决方案', '商业IT支持']
+    en: ['enterprise ICT solutions', 'managed IT services', 'custom software development', 'ERP solutions SEA', 'CRM implementation', 'IT support for business', 'Southeast Asia'],
+    id: ['solusi ICT enterprise', 'layanan IT terkelola', 'pengembangan software kustom', 'solusi ERP', 'implementasi CRM', 'dukungan IT untuk bisnis', 'Asia Tenggara'],
+    zh: ['企业ICT解决方案', '托管IT服务', '定制软件开发', 'ERP解决方案', 'CRM实施', '商业IT支持', '东南亚']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;

@@ -20,21 +20,21 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const dictionary = await getDictionary(lang);
   
   const titles: Record<Locale, string> = {
-    en: "IoT Solutions for Enterprise — IIoT, Asset Tracking & Predictive Maintenance",
-    id: "Solusi IoT untuk Perusahaan — Implementasi IIoT, Pelacakan Aset & Predictive Maintenance",
-    zh: "企业物联网解决方案 — IIoT、资产跟踪和预测性维护"
+    en: "IoT Solutions Provider for Southeast Asia | IIoT & Asset Tracking",
+    id: "Penyedia Solusi IoT untuk Asia Tenggara | IIoT & Pelacakan Aset",
+    zh: "东南亚物联网解决方案提供商 | 工业物联网与资产跟踪"
   };
 
   const descriptions: Record<Locale, string> = {
-    en: 'End-to-end IoT solutions for manufacturing, logistics, and smart cities. Get a consultation for implementation, platform integration, and 24/7 support. Request a demo.',
-    id: 'Solusi IoT end-to-end untuk manufaktur, logistik, dan smart city. Konsultasi implementasi, integrasi platform, dan dukungan 24/7 — request demo.',
-    zh: '为制造业、物流和智慧城市提供端到端的物联网解决方案。获取实施、平台集成和全天候支持的咨询。请求演示。'
+    en: 'End-to-end IoT solutions for manufacturing, logistics, and smart cities in Southeast Asia. Get a consultation for platform integration and 24/7 support.',
+    id: 'Solusi IoT end-to-end untuk manufaktur, logistik, dan kota pintar di Asia Tenggara. Dapatkan konsultasi untuk integrasi platform dan dukungan 24/7.',
+    zh: '为东南亚的制造业、物流和智慧城市提供端到端的物联网解决方案。获取平台集成和全天候支持的咨询。'
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['IoT solutions for enterprise', 'IIoT for manufacturing', 'IoT asset tracking', 'predictive maintenance IoT', 'IoT platform Indonesia', 'IoT system integrator'],
-    id: ['solusi IoT untuk perusahaan', 'IIoT untuk manufaktur', 'pelacakan aset IoT', 'predictive maintenance IoT', 'platform IoT Indonesia', 'integrator sistem IoT'],
-    zh: ['企业物联网解决方案', '工业物联网制造', '物联网资产跟踪', '预测性维护物联网', '印尼物联网平台', '物联网系统集成商']
+    en: ['IoT solutions Southeast Asia', 'IIoT for manufacturing', 'IoT asset tracking', 'predictive maintenance IoT', 'IoT platform provider', 'IoT system integrator SEA', 'smart city solutions'],
+    id: ['solusi IoT Asia Tenggara', 'IIoT untuk manufaktur', 'pelacakan aset IoT', 'predictive maintenance IoT', 'platform IoT', 'integrator sistem IoT', 'solusi kota pintar'],
+    zh: ['东南亚物联网解决方案', '工业物联网制造', '物联网资产跟踪', '预测性维护物联网', '物联网平台提供商', '物联网系统集成商', '智慧城市解决方案']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;

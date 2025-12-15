@@ -7,39 +7,57 @@ import Footer from '@/components/landing/footer';
 import { Metadata } from 'next';
 import Script from 'next/script';
 import CookieConsent from '@/components/shared/cookie-consent';
+import { Toaster } from '@/components/ui/toaster';
+import { Inter, Space_Grotesk } from 'next/font/google';
+import { ReactNode } from 'react';
+import '../globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+});
 
 const baseUrl = 'https://mpnsolutions.my.id';
+
+export async function generateStaticParams() {
+    return i18n.locales.map(locale => ({ lang: locale }))
+}
 
 export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
   const isEn = lang === 'en';
   const isId = lang === 'id';
 
   const titles: Record<Locale, string> = {
-    en: 'Micro Padma Nusantara | Innovative ICT & IoT Solutions',
+    en: 'Micro Padma Nusantara | ICT & IoT Solutions for Southeast Asia',
     id: 'Micro Padma Nusantara | Solusi Inovatif ICT & IoT',
     zh: 'Micro Padma Nusantara | 创新的 ICT 和物联网解决方案'
   };
 
   const descriptions: Record<Locale, string> = {
-    en: 'Micro Padma Nusantara provides cutting-edge ICT and IoT solutions to drive business growth and efficiency. Explore our services for enterprise, UMKM, and more.',
+    en: 'Micro Padma Nusantara provides cutting-edge ICT and IoT solutions to drive business growth and efficiency across Southeast Asia. Explore our services for enterprise, SMEs, and more.',
     id: 'Micro Padma Nusantara menyediakan solusi ICT dan IoT canggih untuk mendorong pertumbuhan dan efisiensi bisnis. Jelajahi layanan kami untuk enterprise, UMKM, dan lainnya.',
     zh: 'Micro Padma Nusantara 提供尖端的 ICT 和物联网解决方案，以推动业务增长和效率。探索我们为企业、中小微企业等提供的服务。'
   };
   
   const keywords: Record<Locale, string[]> = {
-    en: ['ICT solutions Indonesia', 'IoT company Indonesia', 'enterprise software solutions', 'UMKM digital solutions', 'web development services', 'IT consulting Jakarta', 'technology provider Indonesia', 'Micro Padma Nusantara'],
+    en: ['ICT solutions Southeast Asia', 'IoT company SEA', 'enterprise software solutions', 'digital transformation Asia', 'web development services', 'IT consulting', 'technology provider Singapore', 'IoT Malaysia', 'Micro Padma Nusantara'],
     id: ['solusi ICT Indonesia', 'perusahaan IoT Indonesia', 'software enterprise', 'solusi digital UMKM', 'jasa pembuatan website', 'konsultan IT Jakarta', 'penyedia teknologi Indonesia', 'Micro Padma Nusantara'],
-    zh: ['印尼ICT解决方案', '印尼物联网公司', '企业软件解决方案', '中小微企业数字解决方案', '网站开发服务', '雅加达IT咨询', '印尼技术提供商', 'Micro Padma Nusantara']
+    zh: ['东南亚ICT解决方案', '印尼物联网公司', '企业软件解决方案', '中小微企业数字解决方案', '网站开发服务', 'IT咨询', '新加坡技术提供商', 'Micro Padma Nusantara']
   };
   
   const ogTitles: Record<Locale, string> = {
-    en: 'Micro Padma Nusantara | Innovative ICT & IoT Solutions',
+    en: 'Micro Padma Nusantara | ICT & IoT Solutions for Southeast Asia',
     id: 'Micro Padma Nusantara | Solusi Inovatif ICT & IoT',
     zh: 'Micro Padma Nusantara | 创新的 ICT 和物联网解决方案'
   };
   
   const ogDescriptions: Record<Locale, string> = {
-    en: 'Empowering businesses with future-ready ICT & IoT solutions in Indonesia.',
+    en: 'Empowering businesses with future-ready ICT & IoT solutions in Southeast Asia.',
     id: 'Memberdayakan bisnis dengan solusi ICT & IoT yang siap untuk masa depan di Indonesia.',
     zh: '以面向未来的 ICT 和物联网解决方案为印度尼西亚的企业赋能。'
   };
@@ -117,6 +135,9 @@ export default async function LanguageLayout({
       postalCode: '42316',
       addressCountry: 'ID',
     },
+    areaServed: [
+        "ID", "SG", "MY", "TH", "VN", "PH"
+    ],
     logo: `${baseUrl}/logo.png`,
     image: `${baseUrl}/assets/img/home/og-image.jpg`,
     openingHoursSpecification: [
@@ -152,19 +173,22 @@ export default async function LanguageLayout({
   };
 
   return (
-    <>
-      <Script
-        id="schema-markup"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([localBusinessSchema, websiteSchema]),
-        }}
-      />
-      <Header dictionary={dictionary} lang={params.lang} />
-      {children}
-      <WhatsAppButton dictionary={dictionary.whatsapp} />
-      <Footer dictionary={dictionary} lang={params.lang} />
-      <CookieConsent dictionary={dictionary} lang={params.lang} />
-    </>
+    <html lang={params.lang} className={`${inter.variable} ${spaceGrotesk.variable} scroll-smooth`}>
+      <body className="font-body antialiased">
+        <Script
+          id="schema-markup"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([localBusinessSchema, websiteSchema]),
+          }}
+        />
+        <Header dictionary={dictionary} lang={params.lang} />
+        {children}
+        <WhatsAppButton dictionary={dictionary.whatsapp} />
+        <Footer dictionary={dictionary} lang={params.lang} />
+        <CookieConsent dictionary={dictionary} lang={params.lang} />
+        <Toaster />
+      </body>
+    </html>
   );
 }

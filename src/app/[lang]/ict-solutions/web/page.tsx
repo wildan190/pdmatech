@@ -17,21 +17,21 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   const dictionary = await getDictionary(lang);
 
   const titles: Record<Locale, string> = {
-    en: "Web Development Services | Custom Websites, E-Commerce, SEO",
-    id: "Jasa Pembuatan Website | Website Kustom, E-Commerce, SEO",
-    zh: "网站开发服务 | 定制网站、电子商务、搜索引擎优化"
+    en: "Web Development Services for SEA | Custom Websites & E-Commerce",
+    id: "Jasa Pembuatan Website untuk Asia Tenggara | Situs Web & E-Commerce Kustom",
+    zh: "东南亚网站开发服务 | 定制网站和电子商务"
   };
 
   const descriptions: Record<Locale, string> = {
-    en: 'Crafting high-performance digital experiences. We build custom websites, e-commerce stores, and web applications using modern technologies like Next.js and React.',
-    id: 'Menciptakan pengalaman digital berperforma tinggi. Kami membangun situs web kustom, toko e-commerce, dan aplikasi web menggunakan teknologi modern seperti Next.js dan React.',
-    zh: '打造高性能的数字体验。我们使用Next.js和React等现代技术构建定制网站、电子商务商店和Web应用程序。'
+    en: 'High-performance web development for businesses in Southeast Asia. We build custom websites, e-commerce stores, and web apps with Next.js & React.',
+    id: 'Pengembangan web berkinerja tinggi untuk bisnis di Asia Tenggara. Kami membangun situs web kustom, toko e-commerce, dan aplikasi web dengan Next.js & React.',
+    zh: '为东南亚企业提供高性能的网站开发。我们使用Next.js和React构建定制网站、电子商务商店和Web应用程序。'
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['web development Indonesia', 'custom website design', 'e-commerce solutions', 'Next.js developer', 'React development agency', 'SEO optimization services', 'web application development'],
-    id: ['jasa pembuatan website Indonesia', 'desain website kustom', 'solusi e-commerce', 'developer Next.js', 'agensi pengembangan React', 'jasa optimasi SEO', 'pengembangan aplikasi web'],
-    zh: ['印尼网站开发', '定制网站设计', '电子商务解决方案', 'Next.js开发者', 'React开发机构', 'SEO优化服务', 'Web应用开发']
+    en: ['web development Southeast Asia', 'custom website design', 'e-commerce solutions SEA', 'Next.js developer', 'React development agency', 'SEO optimization services', 'web application development'],
+    id: ['jasa pembuatan website Asia Tenggara', 'desain website kustom', 'solusi e-commerce', 'developer Next.js', 'agensi pengembangan React', 'jasa optimasi SEO', 'pengembangan aplikasi web'],
+    zh: ['东南亚网站开发', '定制网站设计', '电子商务解决方案', 'Next.js开发者', 'React开发机构', 'SEO优化服务', 'Web应用开发']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -245,5 +245,3 @@ const whyChooseUsData = [
     </main>
   );
 }
-
-    
