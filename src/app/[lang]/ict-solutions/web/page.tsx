@@ -138,6 +138,13 @@ const portfolio = [
       url: "https://hadiwijayaborepile.co.id",
       image: "https://picsum.photos/seed/hadiwijaya/600/400",
       imageHint: "construction site"
+    },
+    {
+      name: "Huntr.id",
+      company: "PT. Hunter Integrasi Bisnis",
+      url: "https://huntr.id",
+      image: "https://picsum.photos/seed/huntr/600/400",
+      imageHint: "job portal"
     }
   ];
 
@@ -239,7 +246,7 @@ const portfolio = [
               {pageDict.portfolio.description}
             </p>
           </div>
-          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {portfolio.map((project) => (
               <Card key={project.name} className="group overflow-hidden flex flex-col shadow-lg hover:shadow-primary/20 transition-shadow bg-card border-0">
                 <div className="relative h-56 w-full">
