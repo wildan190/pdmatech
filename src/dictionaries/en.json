@@ -3,6 +3,7 @@
     "navigation": {
         "aboutUs": "About Us",
         "ictSolutions": "ICT Solutions",
+        "program": "Program",
         "insight": "Insight",
         "contactUs": "Contact Us"
     },
@@ -36,6 +37,12 @@
         "web": {
             "title": "Web Solutions",
             "description": "Modern and responsive web design and development."
+        }
+    },
+    "programSubMenu": {
+        "website1jt": {
+            "title": "Website 1JT Program",
+            "description": "Get a professional website for your business at an affordable price."
         }
     },
     "insightSubMenu": {
@@ -170,7 +177,7 @@
         },
         "vision": {
             "title": "Our Vision",
-            "content": "To be the leading partner for businesses in Indonesia, pioneering innovative and sustainable technology solutions that drive digital transformation and create lasting value."
+            "content": "To be the leading partner for businesses in Southeast Asia, pioneering innovative and sustainable technology solutions that drive digital transformation and create lasting value."
         },
         "mission": {
             "title": "Our Mission",
@@ -224,7 +231,7 @@
     "peoplePage": {
         "breadcrumb": "Our People",
         "hero": {
-            "title": "Meet Our Team",
+            "title": "Meet Our Team of ICT & IoT Experts",
             "description": "We are a collective of thinkers, creators, and innovators, united by a passion for technology and a drive to deliver excellence."
         },
         "leaders": {
@@ -482,6 +489,11 @@
             "redesign": "Modernize your existing website with a fresh design, improved functionality, and a better user experience to re-engage your audience.",
             "webapp": "Go beyond a simple website with custom web applications that streamline your operations and provide unique value to your users."
         },
+        "portfolio": {
+            "title": "Our Portfolio",
+            "description": "We are proud of the work we do. Here are some of the projects we have successfully delivered for our clients.",
+            "visitButton": "Visit Website"
+        },
         "whyChooseUs": {
             "pretitle": "WHY CHOOSE US",
             "title": "Engineered for Excellence",
@@ -645,8 +657,8 @@
     "website1jtPage": {
         "breadcrumb": "Website 1 Million Program",
         "hero": {
-            "title": "Professional Website, Starting from IDR 1 Million",
-            "description": "Get a modern, fast, and SEO-friendly company profile or landing page to elevate your business presence.",
+            "title": "Affordable Website Design | Starts from IDR 1 Million",
+            "description": "Discover our affordable website program for SMEs & startups. Get a professional, fast, and SEO-friendly site for your business, starting from IDR 1 million.",
             "cta": "See Packages",
             "imageAlt": "A modern and clean website design displayed on a laptop screen."
         },

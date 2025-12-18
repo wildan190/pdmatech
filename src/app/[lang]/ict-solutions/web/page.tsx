@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle, Code, Search, ShoppingBag, Redo, Scaling, Users, Palette, MonitorSmartphone } from "lucide-react";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowRight, CheckCircle, Code, Search, ShoppingBag, Redo, Scaling, Users, Palette, MonitorSmartphone, ExternalLink } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
@@ -117,6 +117,30 @@ const whyChooseUsData = [
   }
 ];
 
+const portfolio = [
+    {
+      name: "Liga Mahasiswa",
+      company: "PT. BINA MAHASISWA INDONESIA",
+      url: "https://www.ligamahasiswa.com",
+      image: "https://picsum.photos/seed/lima/600/400",
+      imageHint: "sports event"
+    },
+    {
+      name: "Communic 8 Agency",
+      company: "PT. Communic 8",
+      url: "https://communic8agency.com",
+      image: "https://picsum.photos/seed/communic8/600/400",
+      imageHint: "creative agency"
+    },
+    {
+      name: "Hadiwijaya Bore Pile",
+      company: "PT. Hadiningrat Construction",
+      url: "https://hadiwijayaborepile.co.id",
+      image: "https://picsum.photos/seed/hadiwijaya/600/400",
+      imageHint: "construction site"
+    }
+  ];
+
   return (
     <main className="flex-grow">
       
@@ -205,9 +229,47 @@ const whyChooseUsData = [
           </div>
         </div>
       </section>
+
+      {/* Our Portfolio Section */}
+      <section className="py-20 lg:py-24 bg-background">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.portfolio.title}</h2>
+            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+              {pageDict.portfolio.description}
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+            {portfolio.map((project) => (
+              <Card key={project.name} className="group overflow-hidden flex flex-col shadow-lg hover:shadow-primary/20 transition-shadow bg-card border-0">
+                <div className="relative h-56 w-full">
+                  <Image
+                    src={project.image}
+                    alt={`Screenshot of ${project.name} website`}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    data-ai-hint={project.imageHint}
+                  />
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-xl">{project.name}</CardTitle>
+                  <p className="text-sm text-muted-foreground">{project.company}</p>
+                </CardHeader>
+                <CardFooter>
+                  <Button variant="outline" asChild className="w-full">
+                    <a href={project.url} target="_blank" rel="noopener noreferrer">
+                      {pageDict.portfolio.visitButton} <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
       
       {/* Why Choose Us */}
-      <section className="py-20 lg:py-24 bg-background">
+      <section className="py-20 lg:py-24 bg-secondary/50">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto">
               <p className="font-semibold text-primary">{pageDict.whyChooseUs.pretitle}</p>
@@ -218,7 +280,7 @@ const whyChooseUsData = [
           </div>
           <div className="mt-16 grid sm:grid-cols-1 md:grid-cols-3 gap-8">
               {whyChooseUsData.map((item, index) => (
-                <div key={index} className="p-8 rounded-lg bg-secondary/30 text-center">
+                <div key={index} className="p-8 rounded-lg bg-background text-center">
                     <div className="inline-block bg-primary/10 p-4 rounded-full mb-4">
                        {item.icon}
                     </div>

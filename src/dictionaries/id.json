@@ -177,7 +177,7 @@
         },
         "vision": {
             "title": "Visi Kami",
-            "content": "Menjadi mitra terdepan bagi bisnis di Indonesia, memelopori solusi teknologi inovatif dan berkelanjutan yang mendorong transformasi digital dan menciptakan nilai jangka panjang."
+            "content": "Menjadi mitra terdepan bagi bisnis di Asia Tenggara, memelopori solusi teknologi inovatif dan berkelanjutan yang mendorong transformasi digital dan menciptakan nilai jangka panjang."
         },
         "mission": {
             "title": "Misi Kami",
@@ -231,7 +231,7 @@
     "peoplePage": {
         "breadcrumb": "Tim Kami",
         "hero": {
-            "title": "Temui Tim Kami",
+            "title": "Temui Tim Ahli ICT & IoT Kami",
             "description": "Kami adalah kumpulan pemikir, pencipta, dan inovator, yang dipersatukan oleh semangat untuk teknologi dan dorongan untuk memberikan keunggulan."
         },
         "leaders": {
@@ -489,6 +489,11 @@
             "redesign": "Modernkan situs web Anda yang ada dengan desain segar, fungsionalitas yang lebih baik, dan pengalaman pengguna yang lebih baik untuk melibatkan kembali audiens Anda.",
             "webapp": "Melampaui situs web sederhana dengan aplikasi web kustom yang merampingkan operasi Anda dan memberikan nilai unik bagi pengguna Anda."
         },
+        "portfolio": {
+            "title": "Portofolio Kami",
+            "description": "Kami bangga dengan pekerjaan yang kami lakukan. Berikut adalah beberapa proyek yang telah berhasil kami berikan kepada klien kami.",
+            "visitButton": "Kunjungi Situs"
+        },
         "whyChooseUs": {
             "pretitle": "MENGAPA MEMILIH KAMI",
             "title": "Direkayasa untuk Keunggulan",
@@ -740,5 +745,3 @@
         }
     }
 }
-
-    
