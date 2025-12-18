@@ -122,28 +122,28 @@ const portfolio = [
       name: "Liga Mahasiswa",
       company: "PT. BINA MAHASISWA INDONESIA",
       url: "https://www.ligamahasiswa.com",
-      image: "https://picsum.photos/seed/lima/600/400",
-      imageHint: "sports event"
+      image: "https://images.unsplash.com/photo-1560089023-a2d82defa29c?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxiYXNrZXRiYWxsJTIwc3BvcnRzfGVufDB8fHx8MTc2NTU1ODIzN3ww&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
+      imageHint: "basketball sports"
     },
     {
       name: "Communic 8 Agency",
       company: "PT. Communic 8",
       url: "https://communic8agency.com",
-      image: "https://picsum.photos/seed/communic8/600/400",
+      image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGFnZW5jeSUyMG1lZXRpbmd8ZW58MHx8fHwxNzY1NTU4MzAxfDA&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
       imageHint: "creative agency"
     },
     {
       name: "Hadiwijaya Bore Pile",
       company: "PT. Hadiningrat Construction",
       url: "https://hadiwijayaborepile.co.id",
-      image: "https://picsum.photos/seed/hadiwijaya/600/400",
+      image: "https://images.unsplash.com/photo-1581094371911-37d3d8f33c3e?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlfGVufDB8fHx8MTc2NTU1ODMzN3ww&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
       imageHint: "construction site"
     },
     {
       name: "Huntr.id",
       company: "PT. Hunter Integrasi Bisnis",
       url: "https://huntr.id",
-      image: "https://picsum.photos/seed/huntr/600/400",
+      image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxqb2IlMjBwb3J0YWwlMjBzZWFyY2h8ZW58MHx8fHwxNzY1NTU4Mzc3fDA&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
       imageHint: "job portal"
     }
   ];
@@ -253,8 +253,9 @@ const portfolio = [
                   <Image
                     src={project.image}
                     alt={`Screenshot of ${project.name} website`}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    width={600}
+                    height={400}
+                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
                     data-ai-hint={project.imageHint}
                   />
                 </div>
@@ -314,3 +315,5 @@ const portfolio = [
     </main>
   );
 }
+
+    
