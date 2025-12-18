@@ -246,17 +246,15 @@ const portfolio = [
               {pageDict.portfolio.description}
             </p>
           </div>
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {portfolio.map((project) => (
               <Card key={project.name} className="group overflow-hidden flex flex-col shadow-lg hover:shadow-primary/20 transition-shadow bg-card border-0">
-                <div className="relative h-56 w-full">
-                  <Image
-                    src={project.image}
-                    alt={`Screenshot of ${project.name} website`}
-                    width={600}
-                    height={400}
-                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                    data-ai-hint={project.imageHint}
+                <div className="relative h-96 w-full border-b">
+                  <iframe
+                    src={project.url}
+                    title={`Live preview of ${project.name}`}
+                    className="w-full h-full"
+                    sandbox=""
                   />
                 </div>
                 <CardHeader>
@@ -315,5 +313,3 @@ const portfolio = [
     </main>
   );
 }
-
-    
