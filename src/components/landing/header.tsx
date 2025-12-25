@@ -60,6 +60,14 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
       },
   ];
 
+  const programComponents = [
+      {
+          title: dictionary.programSubMenu.website1jt.title,
+          href: `/${lang}/program/website-1jt`,
+          description: dictionary.programSubMenu.website1jt.description,
+      },
+  ];
+
   const insightComponents = [
       {
           title: dictionary.insightSubMenu.news.title,
@@ -114,6 +122,22 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] lg:grid-cols-2">
                   {ictSolutionsComponents.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+             <NavigationMenuItem>
+              <NavigationMenuTrigger>{dictionary.navigation.program}</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] lg:grid-cols-1">
+                  {programComponents.map((component) => (
                     <ListItem
                       key={component.title}
                       title={component.title}
@@ -184,6 +208,14 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
                         <AccordionContent className="pl-4">
                           <div className="grid gap-3">
                           {ictSolutionsComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground" onClick={handleLinkClick}>{item.title}</Link>)}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="program">
+                        <AccordionTrigger className="text-base font-medium">{dictionary.navigation.program}</AccordionTrigger>
+                        <AccordionContent className="pl-4">
+                          <div className="grid gap-3">
+                            {programComponents.map(item => <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground" onClick={handleLinkClick}>{item.title}</Link>)}
                           </div>
                         </AccordionContent>
                       </AccordionItem>
