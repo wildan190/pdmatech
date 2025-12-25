@@ -36,7 +36,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const imageUrl = `https://images.unsplash.com/photo-1542744095-291d1f67b221?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwZGVzaWduJTIwbGFwdG9wfGVufDB8fHx8MTc2NTU1MjU2MHww&ixlib=rb-4.1.0&q=80&w=1200`;
+  const imageUrl = `${baseUrl}/assets/img/cover.png`;
 
   return {
     title: titles[lang],
@@ -146,9 +146,9 @@ export default async function Website1JtPage({ params: { lang } }: { params: { l
       {/* Hero */}
       <section className="relative h-[70vh] flex items-center justify-center text-center overflow-hidden">
           <ParallaxImage
-              src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwZGVzaWduJTIwbGFwdG9wfGVufDB8fHx8MTc2NTU1MjU2MHww&ixlib=rb-4.1.0&q=80&w=1080"
+              src="/assets/img/cover.png"
               alt={pageDict.hero.imageAlt}
-              data-ai-hint="website design laptop"
+              data-ai-hint="modern website design"
               priority
           />
         <div className="absolute inset-0 bg-black/60" />
