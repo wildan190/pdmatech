@@ -9,6 +9,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import ParallaxImage from '@/components/shared/parallax-image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/web';
@@ -35,6 +36,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const webHeroImage = PlaceHolderImages.find(p => p.id === 'web-hero');
 
   return {
     title: titles[lang],
@@ -53,53 +55,50 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       title: titles[lang],
       description: descriptions[lang],
       url: canonicalUrl,
+      images: webHeroImage ? [webHeroImage.imageUrl] : []
     },
     twitter: {
       title: titles[lang],
       description: descriptions[lang],
+      images: webHeroImage ? [webHeroImage.imageUrl] : []
     },
   };
 }
 
-
-export default async function WebPage({ params: { lang } }: { params: { lang: Locale }}) {
-  const dictionary = await getDictionary(lang);
-  const pageDict = dictionary.webPage;
-
-  const services = [
-    {
-        icon: <Palette className="w-8 h-8 text-primary" />,
-        title: "Custom Website Design & Development",
-        description: pageDict.services.custom,
-    },
-    {
-        icon: <ShoppingBag className="w-8 h-8 text-primary" />,
-        title: "E-Commerce & Online Stores",
-        description: pageDict.services.ecommerce,
-    },
-    {
-        icon: <MonitorSmartphone className="w-8 h-8 text-primary" />,
-        title: "Responsive Web Design",
-        description: pageDict.services.responsive,
-    },
-    {
-        icon: <Search className="w-8 h-8 text-primary" />,
-        title: "SEO & Performance Optimization",
-        description: pageDict.services.seo,
-    },
-    {
-        icon: <Redo className="w-8 h-8 text-primary" />,
-        title: "Website Redesign",
-        description: pageDict.services.redesign,
-    },
-     {
-        icon: <Code className="w-8 h-8 text-primary" />,
-        title: "Web Application Development",
-        description: pageDict.services.webapp,
-    }
+const servicesData = (pageDict: any) => [
+  {
+      icon: <Palette className="w-8 h-8 text-primary" />,
+      title: "Custom Website Design & Development",
+      description: pageDict.services.custom,
+  },
+  {
+      icon: <ShoppingBag className="w-8 h-8 text-primary" />,
+      title: "E-Commerce & Online Stores",
+      description: pageDict.services.ecommerce,
+  },
+  {
+      icon: <MonitorSmartphone className="w-8 h-8 text-primary" />,
+      title: "Responsive Web Design",
+      description: pageDict.services.responsive,
+  },
+  {
+      icon: <Search className="w-8 h-8 text-primary" />,
+      title: "SEO & Performance Optimization",
+      description: pageDict.services.seo,
+  },
+  {
+      icon: <Redo className="w-8 h-8 text-primary" />,
+      title: "Website Redesign",
+      description: pageDict.services.redesign,
+  },
+   {
+      icon: <Code className="w-8 h-8 text-primary" />,
+      title: "Web Application Development",
+      description: pageDict.services.webapp,
+  }
 ];
 
-const whyChooseUsData = [
+const whyChooseUsData = (pageDict: any) => [
   {
     icon: <Scaling className="w-8 h-8 text-primary" />,
     title: pageDict.whyChooseUs.item1.title,
@@ -117,36 +116,41 @@ const whyChooseUsData = [
   }
 ];
 
-const portfolio = [
-    {
-      name: "Liga Mahasiswa",
-      company: "PT. BINA MAHASISWA INDONESIA",
-      url: "https://www.ligamahasiswa.com",
-      image: "https://images.unsplash.com/photo-1560089023-a2d82defa29c?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxiYXNrZXRiYWxsJTIwc3BvcnRzfGVufDB8fHx8MTc2NTU1ODIzN3ww&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
-      imageHint: "basketball sports"
-    },
-    {
-      name: "Communic 8 Agency",
-      company: "PT. Communic 8",
-      url: "https://communic8agency.com",
-      image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGFnZW5jeSUyMG1lZXRpbmd8ZW58MHx8fHwxNzY1NTU4MzAxfDA&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
-      imageHint: "creative agency"
-    },
-    {
-      name: "Hadiwijaya Bore Pile",
-      company: "PT. Hadiningrat Construction",
-      url: "https://hadiwijayaborepile.co.id",
-      image: "https://images.unsplash.com/photo-1581094371911-37d3d82f33c3e?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlfGVufDB8fHx8MTc2NTU1ODMzN3ww&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
-      imageHint: "construction site"
-    },
-    {
-      name: "Huntr.id",
-      company: "PT. Hunter Integrasi Bisnis",
-      url: "https://huntr.id",
-      image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxqb2IlMjBwb3J0YWwlMjBzZWFyY2h8ZW58MHx8fHwxNzY1NTU4Mzc3fDA&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
-      imageHint: "job portal"
-    }
-  ];
+const portfolioData = [
+  {
+    name: "Liga Mahasiswa",
+    company: "PT. BINA MAHASISWA INDONESIA",
+    url: "https://www.ligamahasiswa.com",
+    imageId: "portfolio-liga-mahasiswa"
+  },
+  {
+    name: "Communic 8 Agency",
+    company: "PT. Communic 8",
+    url: "https://communic8agency.com",
+    imageId: "portfolio-communic8"
+  },
+  {
+    name: "Hadiwijaya Bore Pile",
+    company: "PT. Hadiningrat Construction",
+    url: "https://hadiwijayaborepile.co.id",
+    imageId: "portfolio-hadiwijaya"
+  },
+  {
+    name: "Huntr.id",
+    company: "PT. Hunter Integrasi Bisnis",
+    url: "https://huntr.id",
+    imageId: "portfolio-huntr"
+  }
+];
+
+export default async function WebPage({ params: { lang } }: { params: { lang: Locale }}) {
+  const dictionary = await getDictionary(lang);
+  const pageDict = dictionary.webPage;
+
+  const services = servicesData(pageDict);
+  const whyChooseUs = whyChooseUsData(pageDict);
+  const webHeroImage = PlaceHolderImages.find(p => p.id === 'web-hero');
+  const webApproachImage = PlaceHolderImages.find(p => p.id === 'web-approach');
 
   return (
     <main className="flex-grow">
@@ -174,11 +178,13 @@ const portfolio = [
 
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center justify-start text-left overflow-hidden">
-          <ParallaxImage
-              src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGFic3RyYWN0fGVufDB8fHx8MTc2NDg4NDYyOHww&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="Abstract image representing modern web design with clean lines and vibrant colors."
-              data-ai-hint="web development abstract"
-          />
+          {webHeroImage && (
+            <ParallaxImage
+                src={webHeroImage.imageUrl}
+                alt={webHeroImage.description}
+                data-ai-hint={webHeroImage.imageHint}
+            />
+          )}
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 container text-white">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.hero.title}</h1>
@@ -200,13 +206,15 @@ const portfolio = [
                   </p>
               </div>
               <div className="relative h-80 rounded-lg overflow-hidden shadow-lg">
+                {webApproachImage && (
                   <Image
-                      src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwb24lMjBsYXB0b3B8ZW58MHx8fHwxNzY0ODg1MDMxfDA&ixlib=rb-4.1.0&q=80&w=1080"
-                      alt="A sleek laptop displaying a modern website interface."
+                      src={webApproachImage.imageUrl}
+                      alt={webApproachImage.description}
                       fill
                       className="object-cover"
-                      data-ai-hint="website laptop"
+                      data-ai-hint={webApproachImage.imageHint}
                   />
+                )}
               </div>
           </div>
         </div>
@@ -247,7 +255,7 @@ const portfolio = [
             </p>
           </div>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {portfolio.map((project) => (
+            {portfolioData.map((project) => (
               <Card key={project.name} className="group overflow-hidden flex flex-col shadow-lg hover:shadow-primary/20 transition-shadow bg-card border-0">
                 <div className="relative h-96 w-full border-b">
                   <iframe
@@ -285,7 +293,7 @@ const portfolio = [
               </p>
           </div>
           <div className="mt-16 grid sm:grid-cols-1 md:grid-cols-3 gap-8">
-              {whyChooseUsData.map((item, index) => (
+              {whyChooseUs.map((item, index) => (
                 <div key={index} className="p-8 rounded-lg bg-background text-center">
                     <div className="inline-block bg-primary/10 p-4 rounded-full mb-4">
                        {item.icon}
@@ -313,3 +321,5 @@ const portfolio = [
     </main>
   );
 }
+
+    

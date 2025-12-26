@@ -11,6 +11,56 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from "@/i18n.config";
 import ParallaxImage from "@/components/shared/parallax-image";
 
+const whyChooseUsItems = (pageDict: any) => [
+  {
+    icon: <Shield className="w-8 h-8 text-primary" />,
+    title: pageDict.whyChooseUs.item1.title,
+    description: pageDict.whyChooseUs.item1.description
+  },
+  {
+    icon: <CheckCircle className="w-8 h-8 text-primary" />,
+    title: pageDict.whyChooseUs.item2.title,
+    description: pageDict.whyChooseUs.item2.description
+  },
+  {
+    icon: <Zap className="w-8 h-8 text-primary" />,
+    title: pageDict.whyChooseUs.item3.title,
+    description: pageDict.whyChooseUs.item3.description
+  },
+  {
+    icon: <Goal className="w-8 h-8 text-primary" />,
+    title: pageDict.whyChooseUs.item4.title,
+    description: pageDict.whyChooseUs.item4.description
+  }
+];
+
+const programItems = (pageDict: any) => [
+    {
+        icon: <Leaf className="w-8 h-8 text-primary" />,
+        title: pageDict.ourProgram.items.goGreen.title,
+        description: pageDict.ourProgram.items.goGreen.description,
+        imageUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGxhbmRzY2FwZXxlbnwwfHx8fDE3NjUxMTAwMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        imageAlt: "A beautiful green landscape representing the GoGreen initiative.",
+        imageHint: "green landscape"
+    },
+    {
+        icon: <GraduationCap className="w-8 h-8 text-primary" />,
+        title: pageDict.ourProgram.items.socialTech.title,
+        description: pageDict.ourProgram.items.socialTech.description,
+        imageUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlZHVjYXRpb24lMjB3b3Jrc2hvcHxlbnwwfHx8fDE3NjUxMTAwNDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+        imageAlt: "Students learning in a collaborative workshop, representing social tech education.",
+        imageHint: "education workshop"
+    },
+    {
+        icon: <Recycle className="w-8 h-8 text-primary" />,
+        title: pageDict.ourProgram.items.environment.title,
+        description: pageDict.ourProgram.items.environment.description,
+        imageUrl: "https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBjbGVhbnVwfGVufDB8fHx8MTc2Nzk3NDY3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+        imageAlt: "Volunteers cleaning up a park, showing environmental action.",
+        imageHint: "community cleanup"
+    }
+];
+
 type CompanyClientPageProps = {
     dictionary: any;
     lang: Locale;
@@ -20,58 +70,13 @@ export default function CompanyClientPage({ dictionary, lang }: CompanyClientPag
     const pageDict = dictionary.companyPage;
     const peopleDict = dictionary.peoplePage;
 
-    const whyChooseUsData = [
-      {
-        icon: <Shield className="w-8 h-8 text-primary" />,
-        title: pageDict.whyChooseUs.item1.title,
-        description: pageDict.whyChooseUs.item1.description
-      },
-      {
-        icon: <CheckCircle className="w-8 h-8 text-primary" />,
-        title: pageDict.whyChooseUs.item2.title,
-        description: pageDict.whyChooseUs.item2.description
-      },
-      {
-        icon: <Zap className="w-8 h-8 text-primary" />,
-        title: pageDict.whyChooseUs.item3.title,
-        description: pageDict.whyChooseUs.item3.description
-      },
-      {
-        icon: <Goal className="w-8 h-8 text-primary" />,
-        title: pageDict.whyChooseUs.item4.title,
-        description: pageDict.whyChooseUs.item4.description
-      }
-    ];
-
-    const programData = [
-        {
-            icon: <Leaf className="w-8 h-8 text-primary" />,
-            title: pageDict.ourProgram.items.goGreen.title,
-            description: pageDict.ourProgram.items.goGreen.description,
-            imageUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGxhbmRzY2FwZXxlbnwwfHx8fDE3NjUxMTAwMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-            imageAlt: "A beautiful green landscape representing the GoGreen initiative.",
-            imageHint: "green landscape"
-        },
-        {
-            icon: <GraduationCap className="w-8 h-8 text-primary" />,
-            title: pageDict.ourProgram.items.socialTech.title,
-            description: pageDict.ourProgram.items.socialTech.description,
-            imageUrl: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlZHVjYXRpb24lMjB3b3Jrc2hvcHxlbnwwfHx8fDE3NjUxMTAwNDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-            imageAlt: "Students learning in a collaborative workshop, representing social tech education.",
-            imageHint: "education workshop"
-        },
-        {
-            icon: <Recycle className="w-8 h-8 text-primary" />,
-            title: pageDict.ourProgram.items.environment.title,
-            description: pageDict.ourProgram.items.environment.description,
-            imageUrl: "/assets/img/volunteer/garbage.jpg",
-            imageAlt: "Volunteers cleaning up a park, showing environmental action.",
-            imageHint: "community cleanup"
-        }
-    ];
+    const whyChooseUsData = whyChooseUsItems(pageDict);
+    const programData = programItems(pageDict);
 
     const visionImage = PlaceHolderImages.find(p => p.id === 'company-vision');
     const missionImage = PlaceHolderImages.find(p => p.id === 'company-mission');
+    const journeyImage = PlaceHolderImages.find(p => p.id === 'company-journey');
+    const heroImage = PlaceHolderImages.find(p => p.id === 'company-hero');
 
   return (
     <main className="flex-grow">
@@ -97,10 +102,13 @@ export default function CompanyClientPage({ dictionary, lang }: CompanyClientPag
 
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center overflow-hidden">
-          <ParallaxImage
-              src="/assets/img/home/company.jpg"
-              alt="A modern, bright office space with people collaborating, representing a forward-thinking company."
-          />
+          {heroImage && (
+            <ParallaxImage
+                src={heroImage.imageUrl}
+                alt={heroImage.description}
+                data-ai-hint={heroImage.imageHint}
+            />
+          )}
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 container text-left text-white">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.hero.headline}</h1>
@@ -121,13 +129,15 @@ export default function CompanyClientPage({ dictionary, lang }: CompanyClientPag
               </p>
             </div>
             <div className="relative h-80 rounded-lg overflow-hidden shadow-lg">
-              <Image
-                src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwbGFifGVufDB8fHx8MTc2MjI0MzQwMXww&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Technology Lab"
-                fill
-                className="object-cover"
-                data-ai-hint="technology lab"
-              />
+              {journeyImage && (
+                <Image
+                  src={journeyImage.imageUrl}
+                  alt={journeyImage.description}
+                  fill
+                  className="object-cover"
+                  data-ai-hint={journeyImage.imageHint}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -209,7 +219,7 @@ export default function CompanyClientPage({ dictionary, lang }: CompanyClientPag
 
       {/* Founder's Quote */}
       <section className="relative py-20 lg:py-24 text-white overflow-hidden">
-        <ParallaxImage src="/assets/img/home/company.jpg" alt="Team collaboration" />
+        {heroImage && <ParallaxImage src={heroImage.imageUrl} alt={heroImage.description} />}
         <div className="absolute inset-0 bg-black/70" />
         <div className="relative z-10 container">
             <div className="max-w-4xl mx-auto text-center">
@@ -225,7 +235,7 @@ export default function CompanyClientPage({ dictionary, lang }: CompanyClientPag
       </section>
       
       {/* Our Program Section */}
-      <section className="py-20 lg:py-24 bg-secondary/50">
+      <section id="our-program" className="py-20 lg:py-24 bg-secondary/50">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.ourProgram.title}</h2>
@@ -300,3 +310,5 @@ export default function CompanyClientPage({ dictionary, lang }: CompanyClientPag
     </main>
   );
 }
+
+    

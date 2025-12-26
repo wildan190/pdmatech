@@ -19,36 +19,6 @@
       "imageHint": "modern architecture"
     },
     {
-      "id": "solution-security",
-      "description": "A digital padlock symbolizing cybersecurity.",
-      "imageUrl": "https://images.unsplash.com/photo-1620825937374-87fc7d6bddc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjeWJlciUyMHNlY3VyaXR5fGVufDB8fHx8MTc2MjE0OTI3OHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "cyber security"
-    },
-    {
-      "id": "solution-consulting",
-      "description": "Professionals collaborating over a digital interface.",
-      "imageUrl": "https://images.unsplash.com/photo-1709715357520-5e1047a2b691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMG1lZXRpbmd8ZW58MHx8fHwxNzYyMDc0ODc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "business meeting"
-    },
-    {
-      "id": "avatar-1",
-      "description": "Portrait of a satisfied client.",
-      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjIwNzc3MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "person portrait"
-    },
-    {
-      "id": "avatar-2",
-      "description": "Portrait of another satisfied client.",
-      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjIwNzc3MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "person portrait"
-    },
-    {
-      "id": "avatar-3",
-      "description": "Portrait of a third satisfied client.",
-      "imageUrl": "https://images.unsplash.com/photo-1590086782792-42dd2350140d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjIwNzc3MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "person portrait"
-    },
-    {
       "id": "our-team",
       "description": "A diverse team of professionals collaborating in a modern office.",
       "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c710?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwwfHx8fDE3NjIyMzEwMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
@@ -67,6 +37,12 @@
       "imageHint": "team collaboration"
     },
     {
+      "id": "company-journey",
+      "description": "A modern technology lab with equipment, symbolizing the company's journey of innovation.",
+      "imageUrl": "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwbGFifGVufDB8fHx8MTc2MjI0MzQwMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "technology lab"
+    },
+    {
       "id": "company-vision",
       "description": "A person looking out at a futuristic city skyline, symbolizing a forward-looking vision.",
       "imageUrl": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmdXR1cmlzdGljJTIwdGVjaG5vbG9neXxlbnwwfHx8fDE3NjQwMDgwMDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
@@ -77,18 +53,6 @@
       "description": "Hands of diverse people working together on a complex puzzle, representing a collaborative mission.",
       "imageUrl": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb2xsYWJvcmF0aW9uJTIwYnVzaW5lc3N8ZW58MHx8fHwxNzY0MDA4MDU0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "business collaboration"
-    },
-    {
-      "id": "team-wildan",
-      "description": "Professional portrait of Wildan J. Belfiore.",
-      "imageUrl": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYWxlJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyMDc3NzEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "male portrait"
-    },
-    {
-      "id": "team-raihan",
-      "description": "Professional portrait of Raihan Firdaus.",
-      "imageUrl": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtYWxlJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyMDc3NzEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "male portrait"
     },
     {
       "id": "enterprise-hero",
@@ -115,15 +79,9 @@
       "imageHint": "software development"
     },
     {
-      "id": "service-pos",
-      "description": "A modern point-of-sale terminal in a chic retail store environment.",
-      "imageUrl": "https://images.unsplash.com/photo-1582719202042-094037508a46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb2ludCUyMG9mJTIwc2FsZXxlbnwwfHx8fDE3NjQwNDY2NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "point sale"
-    },
-    {
       "id": "service-hotel",
       "description": "A luxurious and modern hotel lobby, representing the hospitality industry.",
-      "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGxvYmJ5fGVufDB8fHx8MTc2NDA0NjcwOXww&ixlibrb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGxvYmJ5fGVufDB8fHx8MTc2NDA0NjcwOXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "hotel lobby"
     },
     {
@@ -134,13 +92,13 @@
     },
     {
       "id": "umkm-hero",
-      "description": "Seorang pemilik usaha kecil yang tersenyum sedang bekerja di laptopnya di dalam tokonya yang cerah.",
+      "description": "A smiling small business owner working on their laptop inside their bright shop.",
       "imageUrl": "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGJ1c2luZXNzJTIwb3duZXJ8ZW58MHx8fHwxNzY0NDgxMjA0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "small business"
     },
     {
       "id": "umkm-challenge",
-      "description": "Tumpukan kertas dan buku catatan yang berantakan di atas meja, melambangkan tantangan administratif bagi UMKM.",
+      "description": "A messy desk with scattered papers and notebooks, symbolizing administrative challenges for SMEs.",
       "imageUrl": "https://images.unsplash.com/photo-1494366222322-387658a1a976?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZXNzeSUyMGRlc2t8ZW58MHx8fHwxNzY0NDgxMjU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "messy desk"
     },
@@ -179,6 +137,42 @@
       "description": "A diverse group of smiling professionals in a modern office, looking collaboratively at a screen.",
       "imageUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbm5vdmF0aXZlJTIwdGVhbXxlbnwwfHx8fDE3NjUwNjc0ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "innovative team"
+    },
+    {
+      "id": "web-hero",
+      "description": "Abstract image representing modern web design with clean lines and vibrant colors.",
+      "imageUrl": "https://images.unsplash.com/photo-1547658719-da2b51169166?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGFic3RyYWN0fGVufDB8fHx8MTc2NDg4NDYyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "web development"
+    },
+    {
+      "id": "web-approach",
+      "description": "A sleek laptop displaying a modern website interface.",
+      "imageUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwb24lMjBsYXB0b3B8ZW58MHx8fHwxNzY0ODg1MDMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "website laptop"
+    },
+    {
+      "id": "portfolio-liga-mahasiswa",
+      "description": "A dynamic shot of a basketball game in action.",
+      "imageUrl": "https://images.unsplash.com/photo-1560089023-a2d82defa29c?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxiYXNrZXRiYWxsJTIwc3BvcnRzfGVufDB8fHx8MTc2NTU1ODIzN3ww&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
+      "imageHint": "basketball sports"
+    },
+    {
+      "id": "portfolio-communic8",
+      "description": "A creative team brainstorming in a modern agency meeting.",
+      "imageUrl": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGFnZW5jeSUyMG1lZXRpbmd8ZW58MHx8fHwxNzY1NTU4MzAxfDA&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
+      "imageHint": "creative agency"
+    },
+    {
+      "id": "portfolio-hadiwijaya",
+      "description": "A large construction site with heavy machinery and bore pile drilling.",
+      "imageUrl": "https://images.unsplash.com/photo-1581094371911-37d3d82f33c3?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlfGVufDB8fHx8MTc2NTU1ODMzN3ww&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
+      "imageHint": "construction site"
+    },
+    {
+      "id": "portfolio-huntr",
+      "description": "A person using a laptop to search on a job portal website.",
+      "imageUrl": "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxqb2IlMjBwb3J0YWwlMjBzZWFyY2h8ZW58MHx8fHwxNzY1NTU4Mzc3fDA&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
+      "imageHint": "job portal"
     }
   ]
 }

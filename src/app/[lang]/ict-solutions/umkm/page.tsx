@@ -36,6 +36,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const heroImage = PlaceHolderImages.find(p => p.id === 'umkm-hero');
 
   return {
     title: titles[lang],
@@ -54,42 +55,40 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
       title: titles[lang],
       description: descriptions[lang],
       url: canonicalUrl,
+      images: heroImage ? [heroImage.imageUrl] : [],
     },
     twitter: {
       title: titles[lang],
       description: descriptions[lang],
+      images: heroImage ? [heroImage.imageUrl] : [],
     },
   };
 }
 
-export default async function UmkmPage({ params: { lang } }: { params: { lang: Locale }}) {
-  const dictionary = await getDictionary(lang);
-  const pageDict = dictionary.umkmPage;
-
-  const solutions = [
-    {
-        icon: <Globe className="w-8 h-8 text-primary" />,
-        title: pageDict.solutions.website.title,
-        description: pageDict.solutions.website.description
-    },
-    {
-        icon: <ShoppingCart className="w-8 h-8 text-primary" />,
-        title: pageDict.solutions.pos.title,
-        description: pageDict.solutions.pos.description
-    },
-    {
-        icon: <MessageSquare className="w-8 h-8 text-primary" />,
-        title: pageDict.solutions.social.title,
-        description: pageDict.solutions.social.description
-    },
-    {
-        icon: <AppWindow className="w-8 h-8 text-primary" />,
-        title: pageDict.solutions.customApp.title,
-        description: pageDict.solutions.customApp.description
-    }
+const solutionsData = (pageDict: any) => [
+  {
+      icon: <Globe className="w-8 h-8 text-primary" />,
+      title: pageDict.solutions.website.title,
+      description: pageDict.solutions.website.description
+  },
+  {
+      icon: <ShoppingCart className="w-8 h-8 text-primary" />,
+      title: pageDict.solutions.pos.title,
+      description: pageDict.solutions.pos.description
+  },
+  {
+      icon: <MessageSquare className="w-8 h-8 text-primary" />,
+      title: pageDict.solutions.social.title,
+      description: pageDict.solutions.social.description
+  },
+  {
+      icon: <AppWindow className="w-8 h-8 text-primary" />,
+      title: pageDict.solutions.customApp.title,
+      description: pageDict.solutions.customApp.description
+  }
 ];
 
-const advantages = [
+const advantagesData = (pageDict: any) => [
   {
     title: pageDict.whyChooseUs.item1.title,
     description: pageDict.whyChooseUs.item1.description
@@ -107,6 +106,13 @@ const advantages = [
     description: pageDict.whyChooseUs.item4.description
   }
 ];
+
+export default async function UmkmPage({ params: { lang } }: { params: { lang: Locale }}) {
+  const dictionary = await getDictionary(lang);
+  const pageDict = dictionary.umkmPage;
+  
+  const solutions = solutionsData(pageDict);
+  const advantages = advantagesData(pageDict);
 
   const heroImage = PlaceHolderImages.find(p => p.id === 'umkm-hero');
   const umkmChallengeImage = PlaceHolderImages.find(p => p.id === 'umkm-challenge');
