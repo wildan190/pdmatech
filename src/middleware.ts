@@ -30,23 +30,20 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(newUrl, 301);
   }
   
-  // Pass the pathname in a header so we can access it in not-found.tsx
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-pathname', pathname);
 
 
   // Check if the request is for a static file in the `public` directory
   if (
-    pathname.startsWith('/assets') ||
-    pathname.startsWith('/images') ||
-    pathname.startsWith('/svg') ||
+    pathname.startsWith('/assets/') ||
+    pathname.startsWith('/images/') ||
+    pathname.startsWith('/svg/') ||
     [
       '/sitemap.xml',
       '/robots.txt',
       '/favicon.ico',
       '/logo.png',
-      '/assets/img/home/og-image.jpg',
-      '/assets/img/home/twitter-image.jpg'
     ].includes(pathname)
   ) {
     return NextResponse.next({
