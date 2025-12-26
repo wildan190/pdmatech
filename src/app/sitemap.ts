@@ -23,24 +23,20 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sitemapEntries: MetadataRoute.Sitemap = [];
-
-  routes
-    .filter(route => !route.includes('under-construction')) // Filter out under-construction pages if any
-    .forEach((route) => {
-      const alternates: { [key: string]: string } = {};
-      i18n.locales.forEach(locale => {
-        alternates[locale] = `${URL}/${locale}${route}`;
-      });
-
-      sitemapEntries.push({
-        url: `${URL}/${i18n.defaultLocale}${route}`,
-        lastModified: new Date(),
-        alternates: {
-          languages: alternates,
-        },
-      });
+  const sitemapEntries: MetadataRoute.Sitemap = routes.map((route) => {
+    const alternates: { [key: string]: string } = {};
+    i18n.locales.forEach(locale => {
+      alternates[locale] = `${URL}/${locale}${route}`;
     });
+
+    return {
+      url: `${URL}/${i18n.defaultLocale}${route}`,
+      lastModified: new Date(),
+      alternates: {
+        languages: alternates,
+      },
+    };
+  });
 
   return sitemapEntries;
 }
