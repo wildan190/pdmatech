@@ -10,6 +10,7 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import ParallaxImage from '@/components/shared/parallax-image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Script from 'next/script';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/web';
@@ -152,174 +153,223 @@ export default async function WebPage({ params: { lang } }: { params: { lang: Lo
   const webHeroImage = PlaceHolderImages.find(p => p.id === 'web-hero');
   const webApproachImage = PlaceHolderImages.find(p => p.id === 'web-approach');
 
+  const webPageSchema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Service',
+          'name': pageDict.breadcrumb,
+          'description': pageDict.hero.description,
+          'provider': {
+            '@type': 'Organization',
+            'name': 'Micro Padma Nusantara'
+          },
+          'areaServed': [
+            {'@type': 'Country', 'name': 'ID'},
+            {'@type': 'Country', 'name': 'SG'},
+            {'@type': 'Country', 'name': 'MY'},
+            {'@type': 'Country', 'name': 'TH'},
+            {'@type': 'Country', 'name': 'VN'},
+            {'@type': 'Country', 'name': 'PH'}
+          ],
+          'serviceType': pageDict.services.title,
+        },
+        {
+          '@type': 'ItemList',
+          'name': pageDict.portfolio.title,
+          'description': pageDict.portfolio.description,
+          'itemListElement': portfolioData.map((project, index) => ({
+            '@type': 'ListItem',
+            'position': index + 1,
+            'item': {
+              '@type': 'CreativeWork',
+              'name': project.name,
+              'url': project.url,
+              'author': {
+                '@type': 'Organization',
+                'name': project.company
+              }
+            }
+          }))
+        }
+      ]
+    };
+
   return (
-    <main className="flex-grow">
-      
-      {/* Breadcrumb */}
-      <section className="bg-secondary/50 py-4 border-b">
-        <div className="container">
-           <Breadcrumb>
-              <BreadcrumbList>
-                  <BreadcrumbItem>
-                      <BreadcrumbLink asChild><Link href={`/${lang}`}>{dictionary.common.home}</Link></BreadcrumbLink>
-                  </BreadcrumbItem>
-                   <BreadcrumbSeparator />
-                   <BreadcrumbItem>
-                      <BreadcrumbLink asChild><Link href={`/${lang}/#services`}>{dictionary.navigation.ictSolutions}</Link></BreadcrumbLink>
-                  </BreadcrumbItem>
-                   <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                      <BreadcrumbPage>{pageDict.breadcrumb}</BreadcrumbPage>
-                  </BreadcrumbItem>
-              </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-      </section>
-
-      {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-start text-left overflow-hidden">
-          {webHeroImage && (
-            <ParallaxImage
-                src={webHeroImage.imageUrl}
-                alt={webHeroImage.description}
-                data-ai-hint={webHeroImage.imageHint}
-            />
-          )}
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 container text-white">
-          <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.hero.title}</h1>
-          <p className="mt-4 text-lg md:text-xl max-w-3xl">
-            {pageDict.hero.description}
-          </p>
-        </div>
-      </section>
-
-      {/* Overview */}
-      <section className="py-20 lg:py-24">
-        <div className="container">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                  <p className="font-semibold text-primary">{pageDict.approach.pretitle}</p>
-                  <h2 className="text-3xl font-bold font-headline mt-2">{pageDict.approach.title}</h2>
-                  <p className="text-muted-foreground text-lg mt-4">
-                      {pageDict.approach.description}
-                  </p>
-              </div>
-              <div className="relative h-80 rounded-lg overflow-hidden shadow-lg">
-                {webApproachImage && (
-                  <Image
-                      src={webApproachImage.imageUrl}
-                      alt={webApproachImage.description}
-                      fill
-                      className="object-cover"
-                      data-ai-hint={webApproachImage.imageHint}
-                  />
-                )}
-              </div>
+    <>
+      <Script
+        id="webpage-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webPageSchema),
+        }}
+      />
+      <main className="flex-grow">
+        
+        {/* Breadcrumb */}
+        <section className="bg-secondary/50 py-4 border-b">
+          <div className="container">
+            <Breadcrumb>
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink asChild><Link href={`/${lang}`}>{dictionary.common.home}</Link></BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbLink asChild><Link href={`/${lang}/#services`}>{dictionary.navigation.ictSolutions}</Link></BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbPage>{pageDict.breadcrumb}</BreadcrumbPage>
+                    </BreadcrumbItem>
+                </BreadcrumbList>
+            </Breadcrumb>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Our Web Services */}
-      <section className="py-20 lg:py-24 bg-secondary/50">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.services.title}</h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              {pageDict.services.description}
+        {/* Hero */}
+        <section className="relative h-[60vh] flex items-center justify-start text-left overflow-hidden">
+            {webHeroImage && (
+              <ParallaxImage
+                  src={webHeroImage.imageUrl}
+                  alt={webHeroImage.description}
+                  data-ai-hint={webHeroImage.imageHint}
+              />
+            )}
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="relative z-10 container text-white">
+            <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.hero.title}</h1>
+            <p className="mt-4 text-lg md:text-xl max-w-3xl">
+              {pageDict.hero.description}
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <Card key={service.title} className="p-6 border-0 shadow-lg hover:shadow-primary/20 transition-shadow bg-background flex flex-col">
-                  <CardContent className="flex flex-col items-start gap-4 p-0">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      {service.icon}
-                    </div>
-                    <h3 className="font-bold text-xl">{service.title}</h3>
-                    <p className="text-muted-foreground text-sm">{service.description}</p>
-                  </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Our Portfolio Section */}
-      <section className="py-20 lg:py-24 bg-background">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.portfolio.title}</h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              {pageDict.portfolio.description}
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {portfolioData.map((project) => (
-              <Card key={project.name} className="group overflow-hidden flex flex-col shadow-lg hover:shadow-primary/20 transition-shadow bg-card border-0">
-                <div className="relative h-96 w-full border-b">
-                  <iframe
-                    src={project.url}
-                    title={`Live preview of ${project.name}`}
-                    className="w-full h-full"
-                    sandbox="allow-scripts allow-same-origin"
-                  />
+        {/* Overview */}
+        <section className="py-20 lg:py-24">
+          <div className="container">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p className="font-semibold text-primary">{pageDict.approach.pretitle}</p>
+                    <h2 className="text-3xl font-bold font-headline mt-2">{pageDict.approach.title}</h2>
+                    <p className="text-muted-foreground text-lg mt-4">
+                        {pageDict.approach.description}
+                    </p>
                 </div>
-                <CardHeader>
-                  <CardTitle className="text-xl">{project.name}</CardTitle>
-                  <p className="text-sm text-muted-foreground">{project.company}</p>
-                </CardHeader>
-                <CardFooter>
-                  <Button variant="outline" asChild className="w-full">
-                    <a href={project.url} target="_blank" rel="noopener noreferrer">
-                      {pageDict.portfolio.visitButton} <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
+                <div className="relative h-80 rounded-lg overflow-hidden shadow-lg">
+                  {webApproachImage && (
+                    <Image
+                        src={webApproachImage.imageUrl}
+                        alt={webApproachImage.description}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={webApproachImage.imageHint}
+                    />
+                  )}
+                </div>
+            </div>
           </div>
-        </div>
-      </section>
-      
-      {/* Why Choose Us */}
-      <section className="py-20 lg:py-24 bg-secondary/50">
-        <div className="container">
-          <div className="text-center max-w-3xl mx-auto">
-              <p className="font-semibold text-primary">{pageDict.whyChooseUs.pretitle}</p>
-              <h2 className="text-3xl font-bold font-headline mt-2">{pageDict.whyChooseUs.title}</h2>
-              <p className="text-muted-foreground text-lg mt-4">
-                {pageDict.whyChooseUs.description}
+        </section>
+
+        {/* Our Web Services */}
+        <section className="py-20 lg:py-24 bg-secondary/50">
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.services.title}</h2>
+              <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+                {pageDict.services.description}
               </p>
-          </div>
-          <div className="mt-16 grid sm:grid-cols-1 md:grid-cols-3 gap-8">
-              {whyChooseUs.map((item, index) => (
-                <div key={index} className="p-8 rounded-lg bg-background text-center">
-                    <div className="inline-block bg-primary/10 p-4 rounded-full mb-4">
-                       {item.icon}
-                    </div>
-                    <h3 className="font-bold text-xl mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                </div>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service) => (
+                <Card key={service.title} className="p-6 border-0 shadow-lg hover:shadow-primary/20 transition-shadow bg-background flex flex-col">
+                    <CardContent className="flex flex-col items-start gap-4 p-0">
+                      <div className="bg-primary/10 p-3 rounded-full">
+                        {service.icon}
+                      </div>
+                      <h3 className="font-bold text-xl">{service.title}</h3>
+                      <p className="text-muted-foreground text-sm">{service.description}</p>
+                    </CardContent>
+                </Card>
               ))}
             </div>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* CTA */}
-      <section className="py-20 lg:py-24 bg-primary text-primary-foreground">
-        <div className="container text-center">
-          <h2 className="text-3xl font-bold font-headline mb-4">{pageDict.cta.title}</h2>
-          <p className="max-w-2xl mx-auto mb-8">{pageDict.cta.description}</p>
-          <Button size="lg" variant="secondary" asChild>
-            <Link href={`/${lang}/#contact`}>
-              {pageDict.cta.button} <ArrowRight className="ml-2"/>
-            </Link>
-          </Button>
-        </div>
-      </section>
-    </main>
+        {/* Our Portfolio Section */}
+        <section className="py-20 lg:py-24 bg-background">
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.portfolio.title}</h2>
+              <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+                {pageDict.portfolio.description}
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+              {portfolioData.map((project) => (
+                <Card key={project.name} className="group overflow-hidden flex flex-col shadow-lg hover:shadow-primary/20 transition-shadow bg-card border-0">
+                  <div className="relative h-96 w-full border-b">
+                    <iframe
+                      src={project.url}
+                      title={`Live preview of ${project.name}`}
+                      className="w-full h-full"
+                      sandbox="allow-scripts allow-same-origin"
+                    />
+                  </div>
+                  <CardHeader>
+                    <CardTitle className="text-xl">{project.name}</CardTitle>
+                    <p className="text-sm text-muted-foreground">{project.company}</p>
+                  </CardHeader>
+                  <CardFooter>
+                    <Button variant="outline" asChild className="w-full">
+                      <a href={project.url} target="_blank" rel="noopener noreferrer">
+                        {pageDict.portfolio.visitButton} <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+        
+        {/* Why Choose Us */}
+        <section className="py-20 lg:py-24 bg-secondary/50">
+          <div className="container">
+            <div className="text-center max-w-3xl mx-auto">
+                <p className="font-semibold text-primary">{pageDict.whyChooseUs.pretitle}</p>
+                <h2 className="text-3xl font-bold font-headline mt-2">{pageDict.whyChooseUs.title}</h2>
+                <p className="text-muted-foreground text-lg mt-4">
+                  {pageDict.whyChooseUs.description}
+                </p>
+            </div>
+            <div className="mt-16 grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+                {whyChooseUs.map((item, index) => (
+                  <div key={index} className="p-8 rounded-lg bg-background text-center">
+                      <div className="inline-block bg-primary/10 p-4 rounded-full mb-4">
+                        {item.icon}
+                      </div>
+                      <h3 className="font-bold text-xl mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground text-sm">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-20 lg:py-24 bg-primary text-primary-foreground">
+          <div className="container text-center">
+            <h2 className="text-3xl font-bold font-headline mb-4">{pageDict.cta.title}</h2>
+            <p className="max-w-2xl mx-auto mb-8">{pageDict.cta.description}</p>
+            <Button size="lg" variant="secondary" asChild>
+              <Link href={`/${lang}/#contact`}>
+                {pageDict.cta.button} <ArrowRight className="ml-2"/>
+              </Link>
+            </Button>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
-
-    
