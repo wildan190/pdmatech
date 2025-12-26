@@ -9,6 +9,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import ParallaxImage from '@/components/shared/parallax-image';
+import Script from 'next/script';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mpnsolutions.my.id';
 const path = '/program/website-1jt';
@@ -116,9 +117,41 @@ export default async function Website1JtPage({ params: { lang } }: { params: { l
   ];
 
   const ctaWhatsappUrl = `https://wa.me/62811144793?text=${encodeURIComponent(pageDict.cta.whatsappMessage)}`;
+  const canonicalUrl = `${baseUrl}/${lang}${path}`;
+  const imageUrl = `${baseUrl}/assets/img/cover.png`;
+
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: pageDict.breadcrumb,
+    image: imageUrl,
+    description: pageDict.hero.description,
+    brand: {
+      '@type': 'Brand',
+      name: 'Micro Padma Nusantara',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: canonicalUrl,
+      priceCurrency: 'IDR',
+      price: '1000000',
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        price: '1000000',
+        priceCurrency: 'IDR',
+        valueAddedTaxIncluded: false
+      },
+      availability: 'https://schema.org/InStock',
+    },
+  };
 
   return (
     <main className="flex-grow">
+       <Script
+        id="product-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       
       {/* Breadcrumb */}
       <section className="bg-secondary/50 py-4 border-b">
@@ -284,4 +317,3 @@ export default async function Website1JtPage({ params: { lang } }: { params: { l
       </section>
     </main>
   );
-}
