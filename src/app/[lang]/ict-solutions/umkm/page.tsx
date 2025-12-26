@@ -24,15 +24,15 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const descriptions: Record<Locale, string> = {
-    en: 'Empowering Indonesian SMEs (UMKM) with effective and affordable digital solutions. We provide website development, Lite POS systems, and social media management.',
-    id: 'Memberdayakan UMKM di Indonesia dengan solusi digital yang efektif dan terjangkau. Kami menyediakan jasa pembuatan website, sistem POS Lite, dan manajemen media sosial.',
-    zh: '为印度尼西亚的中小微企业（UMKM）提供有效且经济实惠的数字解决方案。我们提供网站开发、轻量级POS系统和社交媒体管理。'
+    en: 'Empowering Indonesian SMEs (UMKM) with effective and affordable digital solutions. We provide website development, Lite POS systems, and social media management to help your business go digital.',
+    id: 'Memberdayakan UMKM di Indonesia dengan solusi digital yang efektif dan terjangkau. Kami menyediakan jasa pembuatan website, sistem POS Lite, dan manajemen media sosial untuk membantu bisnis Anda go digital.',
+    zh: '为印度尼西亚的中小微企业（UMKM）提供有效且经济实惠的数字解决方案。我们提供网站开发、轻量级POS系统和社交媒体管理，帮助您的企业实现数字化。'
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['digital solutions for SMEs', 'UMKM go digital', 'affordable websites for UMKM', 'POS system for small business', 'social media management Indonesia', 'UMKM technology'],
-    id: ['solusi digital UMKM', 'UMKM go digital', 'website murah untuk UMKM', 'sistem kasir untuk usaha kecil', 'manajemen media sosial Indonesia', 'teknologi untuk UMKM'],
-    zh: ['中小企业数字解决方案', 'UMKM数字化', '中小微企业实惠网站', '小企业POS系统', '印尼社交媒体管理', 'UMKM技术']
+    en: ['digital solutions for SMEs in Indonesia', 'UMKM go digital program', 'affordable websites for UMKM', 'lite POS system for small business', 'social media management services Indonesia', 'how to bring my small business online'],
+    id: ['solusi digital untuk UMKM di Indonesia', 'program UMKM go digital', 'website murah untuk UMKM', 'sistem kasir ringan untuk usaha kecil', 'jasa manajemen media sosial Indonesia', 'cara membawa bisnis kecil online'],
+    zh: ['印尼中小企业数字解决方案', 'UMKM数字化计划', '中小微企业实惠网站', '小企业轻量级POS系统', '印尼社交媒体管理服务', '如何让我的小企业上线']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;

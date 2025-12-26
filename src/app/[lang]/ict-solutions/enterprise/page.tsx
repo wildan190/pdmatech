@@ -24,15 +24,15 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const descriptions: Record<Locale, string> = {
-    en: 'Scalable enterprise solutions for Southeast Asia. We provide managed IT services, custom software (ERP, CRM), and 24/7 support to drive business efficiency.',
-    id: 'Solusi enterprise terukur untuk Asia Tenggara. Kami menyediakan layanan IT terkelola, software kustom (ERP, CRM), dan dukungan 24/7 untuk mendorong efisiensi bisnis.',
-    zh: '为东南亚提供可扩展的企业解决方案。我们提供托管IT服务、定制软件（ERP、CRM）和全天候支持，以提高业务效率。'
+    en: 'Specializing in scalable enterprise solutions like custom ERP, CRM, and managed IT services for businesses across Southeast Asia. Drive efficiency and growth with our 24/7 support.',
+    id: 'Spesialisasi dalam solusi enterprise terukur seperti ERP kustom, CRM, dan layanan IT terkelola untuk bisnis di seluruh Asia Tenggara. Dorong efisiensi dan pertumbuhan dengan dukungan 24/7 kami.',
+    zh: '为东南亚各地的企业提供可扩展的企业解决方案，如定制ERP、CRM和托管IT服务。通过我们的全天候支持，提高效率并推动增长。'
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['enterprise ICT solutions', 'managed IT services', 'custom software development', 'ERP solutions SEA', 'CRM implementation', 'IT support for business', 'Southeast Asia'],
-    id: ['solusi ICT enterprise', 'layanan IT terkelola', 'pengembangan software kustom', 'solusi ERP', 'implementasi CRM', 'dukungan IT untuk bisnis', 'Asia Tenggara'],
-    zh: ['企业ICT解决方案', '托管IT服务', '定制软件开发', 'ERP解决方案', 'CRM实施', '商业IT支持', '东南亚']
+    en: ['custom enterprise software development Southeast Asia', 'managed IT services for corporations', 'ERP solutions for large business in SEA', 'CRM implementation and support', 'IT support for enterprise business', 'scalable software architecture'],
+    id: ['pengembangan software enterprise kustom Asia Tenggara', 'layanan IT terkelola untuk korporasi', 'solusi ERP untuk bisnis besar', 'implementasi dan dukungan CRM', 'dukungan IT untuk bisnis enterprise', 'arsitektur software terukur'],
+    zh: ['东南亚定制企业软件开发', '企业托管IT服务', '大型企业ERP解决方案', 'CRM实施与支持', '企业业务IT支持', '可扩展软件架构']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;

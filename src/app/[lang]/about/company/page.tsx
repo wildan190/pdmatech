@@ -24,9 +24,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['about us', 'company profile', 'ICT company Southeast Asia', 'our mission', 'our vision', 'tech company values', 'Micro Padma Nusantara'],
-    id: ['tentang kami', 'profil perusahaan', 'misi kami', 'visi kami', 'nilai perusahaan', 'perusahaan teknologi', 'Micro Padma Nusantara'],
-    zh: ['关于我们', '公司简介', '东南亚ICT公司', '我们的使命', '我们的愿景', '科技公司价值观', 'Micro Padma Nusantara']
+    en: ['about us', 'company profile', 'ICT company Southeast Asia', 'our mission', 'our vision', 'tech company values', 'digital transformation services Southeast Asia', 'Micro Padma Nusantara'],
+    id: ['tentang kami', 'profil perusahaan', 'misi kami', 'visi kami', 'nilai perusahaan', 'perusahaan teknologi', 'layanan transformasi digital', 'Micro Padma Nusantara'],
+    zh: ['关于我们', '公司简介', '东南亚ICT公司', '我们的使命', '我们的愿景', '科技公司价值观', '数字化转型服务', 'Micro Padma Nusantara']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;

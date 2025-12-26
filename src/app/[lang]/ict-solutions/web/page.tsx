@@ -23,15 +23,15 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 
   const descriptions: Record<Locale, string> = {
-    en: 'High-performance web development for businesses in Southeast Asia. We build custom websites, e-commerce stores, and web apps with Next.js & React.',
-    id: 'Pengembangan web berkinerja tinggi untuk bisnis di Asia Tenggara. Kami membangun situs web kustom, toko e-commerce, dan aplikasi web dengan Next.js & React.',
-    zh: '为东南亚企业提供高性能的网站开发。我们使用Next.js和React构建定制网站、电子商务商店和Web应用程序。'
+    en: 'High-performance web development for businesses in Southeast Asia. We build custom websites, e-commerce stores, and web apps with Next.js & React, focusing on user experience and SEO.',
+    id: 'Pengembangan web berkinerja tinggi untuk bisnis di Asia Tenggara. Kami membangun situs web kustom, toko e-commerce, dan aplikasi web dengan Next.js & React, dengan fokus pada pengalaman pengguna dan SEO.',
+    zh: '为东南亚企业提供高性能的网站开发。我们使用Next.js和React构建定制网站、电子商务商店和Web应用程序，专注于用户体验和SEO。'
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['web development Southeast Asia', 'custom website design', 'e-commerce solutions SEA', 'Next.js developer', 'React development agency', 'SEO optimization services', 'web application development'],
-    id: ['jasa pembuatan website Asia Tenggara', 'desain website kustom', 'solusi e-commerce', 'developer Next.js', 'agensi pengembangan React', 'jasa optimasi SEO', 'pengembangan aplikasi web'],
-    zh: ['东南亚网站开发', '定制网站设计', '电子商务解决方案', 'Next.js开发者', 'React开发机构', 'SEO优化服务', 'Web应用开发']
+    en: ['custom web application development SEA', 'e-commerce store development Southeast Asia', 'Next.js and React development agency', 'user-centric website design', 'SEO and performance optimization services', 'website redesign for better UX'],
+    id: ['jasa pengembangan aplikasi web Asia Tenggara', 'pembuatan toko e-commerce Asia Tenggara', 'agensi pengembangan Next.js dan React', 'desain website berpusat pada pengguna', 'jasa optimasi SEO dan performa', 'desain ulang website untuk UX yang lebih baik'],
+    zh: ['东南亚定制Web应用开发', '东南亚电子商务商店开发', 'Next.js和React开发机构', '以用户为中心的网站设计', 'SEO与性能优化服务', '为更好用户体验的网站重新设计']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -136,7 +136,7 @@ const portfolio = [
       name: "Hadiwijaya Bore Pile",
       company: "PT. Hadiningrat Construction",
       url: "https://hadiwijayaborepile.co.id",
-      image: "https://images.unsplash.com/photo-1581094371911-37d3d8f33c3e?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlfGVufDB8fHx8MTc2NTU1ODMzN3ww&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1581094371911-37d3d82f33c3e?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlfGVufDB8fHx8MTc2NTU1ODMzN3ww&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
       imageHint: "construction site"
     },
     {
@@ -254,7 +254,7 @@ const portfolio = [
                     src={project.url}
                     title={`Live preview of ${project.name}`}
                     className="w-full h-full"
-                    sandbox=""
+                    sandbox="allow-scripts allow-same-origin"
                   />
                 </div>
                 <CardHeader>
