@@ -75,7 +75,7 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 }
 
-const servicesList = [
+const servicesData = [
     {
         icon: <Cpu className="w-8 h-8 text-primary" />,
         key: "monitoring",
@@ -101,11 +101,7 @@ const servicesList = [
     }
 ];
 
-export default async function IotPage({ params: { lang } }: { params: { lang: Locale }}) {
-  const dictionary = await getDictionary(lang);
-  const pageDict = dictionary.iotPage;
-
-const processSteps = [
+const processData = (pageDict: any) => [
   {
     title: pageDict.process.step1.title,
     description: pageDict.process.step1.description
@@ -123,6 +119,12 @@ const processSteps = [
     description: pageDict.process.step4.description
   }
 ];
+
+export default async function IotPage({ params: { lang } }: { params: { lang: Locale }}) {
+  const dictionary = await getDictionary(lang);
+  const pageDict = dictionary.iotPage;
+  const heroImage = PlaceHolderImages.find(p => p.id === 'iot-hero');
+  const processSteps = processData(pageDict);
 
   return (
     <main className="flex-grow">
@@ -150,11 +152,13 @@ const processSteps = [
 
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center justify-start text-left overflow-hidden">
-          <ParallaxImage
-              src="/assets/img/ict/iot.jpg"
-              alt="A futuristic cityscape with glowing data streams connecting buildings, representing a smart city powered by IoT."
-              data-ai-hint="smart city"
-          />
+          {heroImage && (
+            <ParallaxImage
+                src={heroImage.imageUrl}
+                alt={heroImage.description}
+                data-ai-hint={heroImage.imageHint}
+            />
+          )}
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 container text-white">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.hero.title}</h1>
@@ -187,7 +191,7 @@ const processSteps = [
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {servicesList.map((service) => {
+            {servicesData.map((service) => {
                const image = PlaceHolderImages.find(p => p.id === service.imageId);
                const serviceText = pageDict.applications[service.key as keyof typeof pageDict.applications];
                return(
@@ -240,7 +244,7 @@ const processSteps = [
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {processSteps.map((item, index) => (
                 <div key={index} className="p-6 rounded-lg bg-secondary/30">
-                    <h3 className="font-bold font-headline text-2xl text-primary mb-2">{item.title}</h3>
+                    <h3 className="font-bold font-headline text-2xl text-primary mb-2">0{index+1}. {item.title}</h3>
                     <p className="text-muted-foreground text-sm">{item.description}</p>
                 </div>
               ))}
@@ -264,7 +268,3 @@ const processSteps = [
     </main>
   );
 }
-
-
-
-
