@@ -146,9 +146,9 @@ export default async function Website1JtPage({ params: { lang } }: { params: { l
       {/* Hero */}
       <section className="relative h-[70vh] flex items-center justify-center text-center overflow-hidden">
           <ParallaxImage
-              src="/assets/img/cover.png"
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwb24lMjBsYXB0b3B8ZW58MHx8fHwxNzY0ODg1MDMxfDA&ixlib=rb-4.1.0&q=80&w=1080"
               alt={pageDict.hero.imageAlt}
-              data-ai-hint="modern website design"
+              data-ai-hint="modern website"
               priority
           />
         <div className="absolute inset-0 bg-black/60" />
