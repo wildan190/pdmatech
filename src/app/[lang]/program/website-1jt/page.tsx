@@ -146,174 +146,178 @@ export default async function Website1JtPage({ params: { lang } }: { params: { l
   };
 
   return (
-    <main className="flex-grow">
-       <Script
+    <>
+      <Script
         id="product-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
-      
-      {/* Breadcrumb */}
-      <section className="bg-secondary/50 py-4 border-b">
-        <div className="container">
-           <Breadcrumb>
-              <BreadcrumbList>
-                  <BreadcrumbItem>
-                      <BreadcrumbLink asChild><Link href={`/${lang}`}>{commonDict.home}</Link></BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                   <BreadcrumbItem>
-                        <BreadcrumbLink asChild>
-                            <Link href={`/${lang}#`}>{dictionary.navigation.program}</Link>
-                        </BreadcrumbLink>
+      <main className="flex-grow">
+        {/* Breadcrumb */}
+        <section className="bg-secondary/50 py-4 border-b">
+          <div className="container">
+            <Breadcrumb>
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink asChild><Link href={`/${lang}`}>{commonDict.home}</Link></BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                     <BreadcrumbPage>{pageDict.breadcrumb}</BreadcrumbPage>
-                  </BreadcrumbItem>
-              </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-      </section>
-
-      {/* Hero */}
-      <section className="relative h-[70vh] flex items-center justify-center text-center overflow-hidden">
-          <ParallaxImage
-              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwb24lMjBsYXB0b3B8ZW58MHx8fHwxNzY0ODg1MDMxfDA&ixlib=rb-4.1.0&q=80&w=1080"
-              alt={pageDict.hero.imageAlt}
-              data-ai-hint="modern website"
-              priority
-          />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 container text-white px-4">
-          <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.hero.title}</h1>
-          <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
-            {pageDict.hero.description}
-          </p>
-           <Button size="lg" className="mt-8" asChild>
-                <Link href="#packages">{pageDict.hero.cta}</Link>
-            </Button>
-        </div>
-      </section>
-
-      {/* For Who? */}
-      <section className="py-20 lg:py-24 bg-background">
-        <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl font-bold font-headline mt-2">{pageDict.forWho.title}</h2>
-              <p className="text-muted-foreground text-lg mt-4">
-                {pageDict.forWho.description}
-              </p>
+                    <BreadcrumbItem>
+                          <BreadcrumbLink asChild>
+                              <Link href={`/${lang}/#program`}>{dictionary.navigation.program}</Link>
+                          </BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                      <BreadcrumbPage>{pageDict.breadcrumb}</BreadcrumbPage>
+                    </BreadcrumbItem>
+                </BreadcrumbList>
+            </Breadcrumb>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-              <Card className="text-center p-6">
-                <CardHeader>
-                    <Rocket className="w-12 h-12 mx-auto text-primary" />
-                    <CardTitle className="mt-4">{pageDict.forWho.item1.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-muted-foreground">{pageDict.forWho.item1.description}</p>
-                </CardContent>
-              </Card>
-               <Card className="text-center p-6">
-                <CardHeader>
-                    <Building className="w-12 h-12 mx-auto text-primary" />
-                    <CardTitle className="mt-4">{pageDict.forWho.item2.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-muted-foreground">{pageDict.forWho.item2.description}</p>
-                </CardContent>
-              </Card>
-               <Card className="text-center p-6">
-                <CardHeader>
-                    <Gem className="w-12 h-12 mx-auto text-primary" />
-                    <CardTitle className="mt-4">{pageDict.forWho.item3.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-muted-foreground">{pageDict.forWho.item3.description}</p>
-                </CardContent>
-              </Card>
-          </div>
-        </div>
-      </section>
-      
-      {/* Features */}
-       <section className="py-20 lg:py-24 bg-secondary/50">
-        <div className="container">
-          <div className="grid lg:grid-cols-3 gap-12 items-center">
-             <div className="lg:col-span-1 space-y-4">
-                <p className="font-semibold text-primary">{pageDict.features.pretitle}</p>
-                <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.features.title}</h2>
-                <p className="text-muted-foreground text-lg">{pageDict.features.description}</p>
-            </div>
-            <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
-              {features.map((item, index) => (
-                <Card key={index} className="p-6 border-0 shadow-lg hover:shadow-primary/20 transition-shadow bg-background">
-                  <CardContent className="flex flex-col items-start gap-4 p-0">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      {item.icon}
-                    </div>
-                    <h3 className="font-bold text-xl">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Packages */}
-      <section id="packages" className="py-20 lg:py-24 bg-background">
-        <div className="container">
-            <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.packages.title}</h2>
-                <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                {pageDict.packages.description}
+        {/* Hero */}
+        <section className="relative h-[70vh] flex items-center justify-center text-center overflow-hidden">
+            <ParallaxImage
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwb24lMjBsYXB0b3B8ZW58MHx8fHwxNzY0ODg1MDMxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+                alt={pageDict.hero.imageAlt}
+                data-ai-hint="modern website"
+                priority
+            />
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="relative z-10 container text-white px-4">
+            <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.hero.title}</h1>
+            <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
+              {pageDict.hero.description}
+            </p>
+            <Button size="lg" className="mt-8" asChild>
+                  <Link href="#packages">{pageDict.hero.cta}</Link>
+              </Button>
+          </div>
+        </section>
+
+        {/* For Who? */}
+        <section className="py-20 lg:py-24 bg-background">
+          <div className="container">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className="text-3xl font-bold font-headline mt-2">{pageDict.forWho.title}</h2>
+                <p className="text-muted-foreground text-lg mt-4">
+                  {pageDict.forWho.description}
                 </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-                {packages.map((pkg) => (
-                    <Card key={pkg.title} className={`flex flex-col ${pkg.highlight ? 'border-primary shadow-primary/20 shadow-lg' : ''}`}>
-                        <CardHeader className="text-center">
-                            {pkg.icon}
-                            <CardTitle className="text-2xl">{pkg.title}</CardTitle>
-                            <CardDescription className="text-4xl font-bold text-foreground">{pkg.price}</CardDescription>
-                            <p className="text-sm text-muted-foreground">{pkg.description}</p>
-                        </CardHeader>
-                        <CardContent className="flex-grow">
-                            <ul className="space-y-3">
-                                {pkg.features.map((feature, i) => (
-                                    <li key={i} className="flex items-start">
-                                        <Check className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
-                                        <span className="text-muted-foreground">{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </CardContent>
-                        <CardFooter>
-                            <Button asChild className="w-full" variant={pkg.highlight ? 'default' : 'outline'}>
-                                <Link href={ctaWhatsappUrl} target="_blank">{pkg.cta}</Link>
-                            </Button>
-                        </CardFooter>
-                    </Card>
-                ))}
+            <div className="grid md:grid-cols-3 gap-8">
+                <Card className="text-center p-6">
+                  <CardHeader>
+                      <Rocket className="w-12 h-12 mx-auto text-primary" />
+                      <CardTitle className="mt-4">{pageDict.forWho.item1.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                      <p className="text-muted-foreground">{pageDict.forWho.item1.description}</p>
+                  </CardContent>
+                </Card>
+                <Card className="text-center p-6">
+                  <CardHeader>
+                      <Building className="w-12 h-12 mx-auto text-primary" />
+                      <CardTitle className="mt-4">{pageDict.forWho.item2.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                      <p className="text-muted-foreground">{pageDict.forWho.item2.description}</p>
+                  </CardContent>
+                </Card>
+                <Card className="text-center p-6">
+                  <CardHeader>
+                      <Gem className="w-12 h-12 mx-auto text-primary" />
+                      <CardTitle className="mt-4">{pageDict.forWho.item3.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                      <p className="text-muted-foreground">{pageDict.forWho.item3.description}</p>
+                  </CardContent>
+                </Card>
             </div>
-        </div>
-      </section>
+          </div>
+        </section>
+        
+        {/* Features */}
+        <section className="py-20 lg:py-24 bg-secondary/50">
+          <div className="container">
+            <div className="grid lg:grid-cols-3 gap-12 items-center">
+              <div className="lg:col-span-1 space-y-4">
+                  <p className="font-semibold text-primary">{pageDict.features.pretitle}</p>
+                  <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.features.title}</h2>
+                  <p className="text-muted-foreground text-lg">{pageDict.features.description}</p>
+              </div>
+              <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+                {features.map((item, index) => (
+                  <Card key={index} className="p-6 border-0 shadow-lg hover:shadow-primary/20 transition-shadow bg-background">
+                    <CardContent className="flex flex-col items-start gap-4 p-0">
+                      <div className="bg-primary/10 p-3 rounded-full">
+                        {item.icon}
+                      </div>
+                      <h3 className="font-bold text-xl">{item.title}</h3>
+                      <p className="text-muted-foreground text-sm">{item.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Packages */}
+        <section id="packages" className="py-20 lg:py-24 bg-background">
+          <div className="container">
+              <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.packages.title}</h2>
+                  <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+                  {pageDict.packages.description}
+                  </p>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+                  {packages.map((pkg) => (
+                      <Card key={pkg.title} className={`flex flex-col ${pkg.highlight ? 'border-primary shadow-primary/20 shadow-lg' : ''}`}>
+                          <CardHeader className="text-center">
+                              {pkg.icon}
+                              <CardTitle className="text-2xl">{pkg.title}</CardTitle>
+                              <CardDescription className="text-4xl font-bold text-foreground">{pkg.price}</CardDescription>
+                              <p className="text-sm text-muted-foreground">{pkg.description}</p>
+                          </CardHeader>
+                          <CardContent className="flex-grow">
+                              <ul className="space-y-3">
+                                  {pkg.features.map((feature, i) => (
+                                      <li key={i} className="flex items-start">
+                                          <Check className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                                          <span className="text-muted-foreground">{feature}</span>
+                                      </li>
+                                  ))}
+                              </ul>
+                          </CardContent>
+                          <CardFooter>
+                              <Button asChild className="w-full" variant={pkg.highlight ? 'default' : 'outline'}>
+                                  <Link href={ctaWhatsappUrl} target="_blank">{pkg.cta}</Link>
+                              </Button>
+                          </CardFooter>
+                      </Card>
+                  ))}
+              </div>
+          </div>
+        </section>
 
 
-      {/* CTA */}
-      <section className="py-20 lg:py-24 bg-primary text-primary-foreground">
-        <div className="container text-center">
-          <h2 className="text-3xl font-bold font-headline mb-4">{pageDict.cta.title}</h2>
-          <p className="max-w-2xl mx-auto mb-8">{pageDict.cta.description}</p>
-          <Button size="lg" variant="secondary" asChild>
-            <Link href={ctaWhatsappUrl} target="_blank">
-                {pageDict.cta.button} <ArrowRight className="ml-2"/>
-            </Link>
-          </Button>
-        </div>
-      </section>
-    </main>
+        {/* CTA */}
+        <section className="py-20 lg:py-24 bg-primary text-primary-foreground">
+          <div className="container text-center">
+            <h2 className="text-3xl font-bold font-headline mb-4">{pageDict.cta.title}</h2>
+            <p className="max-w-2xl mx-auto mb-8">{pageDict.cta.description}</p>
+            <Button size="lg" variant="secondary" asChild>
+              <Link href={ctaWhatsappUrl} target="_blank">
+                  {pageDict.cta.button} <ArrowRight className="ml-2"/>
+              </Link>
+            </Button>
+          </div>
+        </section>
+      </main>
+    </>
   );
+}
+
+    
