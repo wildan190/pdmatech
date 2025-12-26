@@ -28,7 +28,8 @@ export async function generateStaticParams() {
     return i18n.locales.map(locale => ({ lang: locale }))
 }
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+  const lang = params.lang;
   const isEn = lang === 'en';
   const isId = lang === 'id';
 

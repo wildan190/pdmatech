@@ -15,7 +15,8 @@ import Script from 'next/script';
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/web';
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
 
   const titles: Record<Locale, string> = {
@@ -144,7 +145,8 @@ const portfolioData = [
   }
 ];
 
-export default async function WebPage({ params: { lang } }: { params: { lang: Locale }}) {
+export default async function WebPage({ params }: { params: { lang: Locale }}) {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.webPage;
 

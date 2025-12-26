@@ -10,7 +10,8 @@ import { getDictionary } from '@/lib/dictionaries';
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/news';
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   
   const titles: Record<Locale, string> = {
@@ -48,7 +49,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 }
 
-export default async function NewsPage({ params: { lang } }: { params: { lang: Locale }}) {
+export default async function NewsPage({ params }: { params: { lang: Locale }}) {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.constructionPage;
   return (

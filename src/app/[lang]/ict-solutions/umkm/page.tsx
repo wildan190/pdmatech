@@ -14,7 +14,8 @@ import ParallaxImage from '@/components/shared/parallax-image';
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/umkm';
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   
   const titles: Record<Locale, string> = {
@@ -107,7 +108,8 @@ const advantagesData = (pageDict: any) => [
   }
 ];
 
-export default async function UmkmPage({ params: { lang } }: { params: { lang: Locale }}) {
+export default async function UmkmPage({ params }: { params: { lang: Locale }}) {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.umkmPage;
   
@@ -247,5 +249,3 @@ export default async function UmkmPage({ params: { lang } }: { params: { lang: L
     </main>
   );
 }
-
-    

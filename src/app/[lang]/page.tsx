@@ -10,7 +10,8 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import OurClients from '@/components/landing/our-clients';
 
-export default async function Home({ params: { lang } }: { params: { lang: Locale }}) {
+export default async function Home({ params }: { params: { lang: Locale }}) {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   
   return (
@@ -26,5 +27,3 @@ export default async function Home({ params: { lang } }: { params: { lang: Local
       </main>
   );
 }
-
-    

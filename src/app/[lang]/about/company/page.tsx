@@ -8,7 +8,8 @@ import Script from "next/script";
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/about/company';
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.companyPage;
   
@@ -63,7 +64,8 @@ type CompanyPageProps = {
     params: { lang: Locale }
 };
 
-export default async function CompanyPage({ params: { lang } }: CompanyPageProps) {
+export default async function CompanyPage({ params }: CompanyPageProps) {
+    const lang = params.lang;
     const dictionary = await getDictionary(lang);
 
     const corporationSchema = {

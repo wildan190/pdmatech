@@ -1,5 +1,4 @@
 
-
 import { Metadata } from 'next';
 import Image from "next/image";
 import Link from "next/link";
@@ -11,12 +10,12 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import ParallaxImage from '@/components/shared/parallax-image';
-import React from 'react';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/iot';
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   
   const titles: Record<Locale, string> = {
@@ -120,7 +119,8 @@ const processData = (pageDict: any) => [
   }
 ];
 
-export default async function IotPage({ params: { lang } }: { params: { lang: Locale }}) {
+export default async function IotPage({ params }: { params: { lang: Locale }}) {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.iotPage;
   const heroImage = PlaceHolderImages.find(p => p.id === 'iot-hero');

@@ -14,7 +14,8 @@ import Script from 'next/script';
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mpnsolutions.my.id';
 const path = '/program/website-1jt';
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.website1jtPage;
   
@@ -74,7 +75,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 }
 
-export default async function Website1JtPage({ params: { lang } }: { params: { lang: Locale }}) {
+export default async function Website1JtPage({ params }: { params: { lang: Locale }}) {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.website1jtPage;
   const commonDict = dictionary.common;
@@ -319,5 +321,3 @@ export default async function Website1JtPage({ params: { lang } }: { params: { l
     </>
   );
 }
-
-    

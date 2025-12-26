@@ -10,7 +10,8 @@ import { getDictionary } from "@/lib/dictionaries";
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/about/privacy';
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.privacyPage;
   const title = pageDict.breadcrumb;
@@ -54,7 +55,8 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
 }
 
-export default async function PrivacyPage({ params: { lang } }: { params: { lang: Locale }}) {
+export default async function PrivacyPage({ params }: { params: { lang: Locale }}) {
+  const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.privacyPage;
 
@@ -155,5 +157,3 @@ export default async function PrivacyPage({ params: { lang } }: { params: { lang
     </main>
   );
 }
-
-    
