@@ -33,26 +33,6 @@ export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-pathname', pathname);
 
-
-  // Check if the request is for a static file in the `public` directory
-  if (
-    pathname.startsWith('/assets/') ||
-    pathname.startsWith('/images/') ||
-    pathname.startsWith('/svg/') ||
-    [
-      '/sitemap.xml',
-      '/robots.txt',
-      '/favicon.ico',
-      '/logo.png',
-    ].includes(pathname)
-  ) {
-    return NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      },
-    });
-  }
-
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
@@ -77,6 +57,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sw.js).*)'],
+  // Matcher ignoring `/_next/`, `/api/`, and files with extensions (e.g. .jpg, .png, .svg)
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sw.js|.*\\..*).*)'],
 };
