@@ -3,6 +3,7 @@ import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionaries";
 import CompanyClientPage from "./company-client-page";
 import { Metadata } from "next";
+import Script from "next/script";
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/about/company';
@@ -65,5 +66,56 @@ type CompanyPageProps = {
 export default async function CompanyPage({ params: { lang } }: CompanyPageProps) {
     const dictionary = await getDictionary(lang);
 
-    return <CompanyClientPage dictionary={dictionary} lang={lang} />;
+    const corporationSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Corporation',
+        name: 'Micro Padma Nusantara',
+        alternateName: 'MPN Solutions',
+        url: baseUrl,
+        logo: `${baseUrl}/assets/img/logo.png`,
+        description: dictionary.companyPage.hero.subheadline,
+        slogan: dictionary.header.tagline,
+        address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Jl. Profesor Dr. Insinyur Soetami, Kp. Malangnengah, Cijoro Pasir',
+            addressLocality: 'Rangkasbitung',
+            addressRegion: 'Banten',
+            postalCode: '42316',
+            addressCountry: 'ID',
+        },
+        contactPoint: {
+            '@type': 'ContactPoint',
+            telephone: '+62811144793',
+            contactType: 'Customer Service',
+            email: 'micropadmanusantara@gmail.com'
+        },
+        sameAs: [
+            'https://facebook.com/micropadmanusantara',
+            'https://instagram.com/micropadmanusantara',
+        ],
+        foundingDate: '2023',
+        founder: [
+            {
+                '@type': 'Person',
+                name: 'Wildan J. Belfiore'
+            },
+            {
+                '@type': 'Person',
+                name: 'Raihan Firdaus'
+            }
+        ]
+    };
+
+    return (
+        <>
+            <Script
+                id="corporation-schema"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(corporationSchema),
+                }}
+            />
+            <CompanyClientPage dictionary={dictionary} lang={lang} />
+        </>
+    );
 }
