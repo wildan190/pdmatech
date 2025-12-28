@@ -1,4 +1,3 @@
-
 import { getDictionary } from '@/lib/dictionaries';
 import { Locale, i18n } from '@/i18n.config';
 import WhatsAppButton from '@/components/landing/whatsapp-button';
@@ -171,6 +170,33 @@ export default async function LanguageLayout({
       target: `${baseUrl}/${params.lang}/search?q={search_term_string}`,
       'query-input': 'required name=search_term_string',
     },
+    hasPart: [
+      {
+        '@type': 'SiteNavigationElement',
+        name: dictionary.navigation.aboutUs,
+        url: `${baseUrl}/${params.lang}/about/company`
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        name: dictionary.navigation.ictSolutions,
+        url: `${baseUrl}/${params.lang}/#services`
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        name: dictionary.navigation.program,
+        url: `${baseUrl}/${params.lang}/program/website-1jt`
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        name: dictionary.navigation.insight,
+        url: `${baseUrl}/${params.lang}/insight/brochure`
+      },
+      {
+        '@type': 'SiteNavigationElement',
+        name: dictionary.navigation.contactUs,
+        url: `${baseUrl}/${params.lang}/contact`
+      }
+    ]
   };
 
   return (
