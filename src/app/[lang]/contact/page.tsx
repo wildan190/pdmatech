@@ -14,7 +14,7 @@ const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/contact';
 
 export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const lang = params.lang;
+  const { lang } = params;
   const dictionary = await getDictionary(lang);
   
   const titles: Record<Locale, string> = {
@@ -37,6 +37,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
   const title = titles[lang];
+  const imageUrl = `${baseUrl}/assets/img/contactus/contactus.jpg`;
 
   return {
     title,
@@ -55,16 +56,26 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
       title: `${title} - Micro Padma Nusantara`,
       description: descriptions[lang],
       url: canonicalUrl,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: descriptions[lang],
+        },
+      ],
     },
     twitter: {
+      card: 'summary_large_image',
       title: `${title} - Micro Padma Nusantara`,
       description: descriptions[lang],
+      images: [imageUrl],
     },
   };
 }
 
 export default async function ContactPage({ params }: { params: { lang: Locale }}) {
-    const lang = params.lang;
+    const { lang } = params;
     const dictionary = await getDictionary(lang);
     const pageDict = dictionary.contactPage;
     const companyPageDict = dictionary.companyPage;
