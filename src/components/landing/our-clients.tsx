@@ -20,6 +20,7 @@ const clients = [
   { name: 'Jowoland Construction', logo: '/assets/img/clients/jowoland-construction.svg' },
   { name: 'Hadiwijaya', logo: '/assets/img/clients/hadiwijaya.svg' },
   { name: 'Hadiningrat Corp', logo: '/assets/img/clients/hadiningrat-corp.svg' },
+  { name: 'MAXUMAX', logo: '/assets/img/clients/maxumax.svg' },
 ];
 
 type OurClientsProps = {
