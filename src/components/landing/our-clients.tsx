@@ -1,10 +1,11 @@
+
 'use client';
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Card } from '../ui/card';
 
 const clients = [
   { name: 'Sinar Indah Padma', logo: '/assets/img/clients/sinar-indah-padma.svg' },
@@ -46,31 +47,25 @@ const OurClients = ({ dictionary, lang }: OurClientsProps) => {
             </p>
         </div>
         
-        <div className="relative mt-16 w-full overflow-hidden">
-          <div className="flex animate-marquee-scroll hover:[animation-play-state:paused]">
-            {[...clients, ...clients].map((client, index) => (
-              <div key={`${client.name}-${index}`} className="flex-shrink-0 w-1/5 flex justify-center items-center mx-4">
-                <Image
-                  src={client.logo}
-                  alt={client.name}
-                  width={220}
-                  height={88}
-                  className="h-20 w-auto object-contain text-muted-foreground"
-                />
-              </div>
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-6">
+          {clients.map((client) => (
+              <Card key={client.name} className="p-4 flex justify-center items-center h-28 bg-background transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={client.logo}
+                    alt={client.name}
+                    fill
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+                    className="object-contain"
+                  />
+                </div>
+              </Card>
             ))}
-          </div>
-          <div
-            className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-secondary/50 to-transparent"
-          ></div>
-          <div
-            className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-secondary/50 to-transparent"
-          ></div>
         </div>
         
         <div className="text-center mt-16">
             <Button asChild size="lg">
-                <Link href={`/${lang}/#contact`}>
+                <Link href={`/${lang}/contact`}>
                     {dictionary.cta} <ArrowRight className="ml-2" />
                 </Link>
             </Button>
