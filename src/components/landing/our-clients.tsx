@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Card } from '../ui/card';
+import MaxumaxIcon from '../icons/maxumax-icon';
 
 const clients = [
   { name: 'Sinar Indah Padma', logo: '/assets/img/clients/sinar-indah-padma.svg' },
@@ -21,7 +22,7 @@ const clients = [
   { name: 'Jowoland Construction', logo: '/assets/img/clients/jowoland-construction.svg' },
   { name: 'Hadiwijaya', logo: '/assets/img/clients/hadiwijaya.svg' },
   { name: 'Hadiningrat Corp', logo: '/assets/img/clients/hadiningrat-corp.svg' },
-  { name: 'MAXUMAX', logo: '/assets/img/clients/maxumax.svg' },
+  { name: 'MAXUMAX', logo: <MaxumaxIcon className="w-full h-full object-contain" /> },
 ];
 
 type OurClientsProps = {
@@ -51,13 +52,17 @@ const OurClients = ({ dictionary, lang }: OurClientsProps) => {
           {clients.map((client) => (
               <Card key={client.name} className="p-4 flex justify-center items-center h-28 bg-background transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2">
                 <div className="relative w-full h-full">
-                  <Image
-                    src={client.logo}
-                    alt={client.name}
-                    fill
-                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-                    className="object-contain"
-                  />
+                  {typeof client.logo === 'string' ? (
+                    <Image
+                      src={client.logo}
+                      alt={client.name}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+                      className="object-contain"
+                    />
+                  ) : (
+                    client.logo
+                  )}
                 </div>
               </Card>
             ))}
