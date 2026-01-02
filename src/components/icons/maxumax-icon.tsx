@@ -1,14 +1,82 @@
-import { SVGProps } from "react";
+'use client';
 
-const MaxumaxIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 500 500"
-    {...props}
-  >
-    <path fill="#000" d="M373.9,295.5c0-11.2,8.8-20,20-20c11.2,0,20,8.8,20,20c0,11.2-8.8,20-20,20C382.7,315.5,373.9,306.7,373.9,295.5z"/>
-    <path fill="#000" d="M439.5,233.9c-2.3,0-4.6,0.3-6.8,0.7c-7.1-34.9-38.3-61.3-75.9-61.3c-14,0-27.1,3.8-38.3,10.4v-13.8c0-3.3-2.6-5.9-5.9-5.9h-52.9c-3.3,0-5.9,2.6-5.9,5.9v13.8c-11.2-6.7-24.2-10.4-38.3-10.4c-37.5,0-68.8,26.4-75.9,61.3c-2.2-0.4-4.5-0.7-6.8-0.7c-26.8,0-48.6,21.8-48.6,48.6c0,26.8,21.8,48.6,48.6,48.6h294.4c26.8,0,48.6-21.8,48.6-48.6C488.1,255.7,466.3,233.9,439.5,233.9z M321.3,315.5c-11.2,0-20-8.8-20-20c0-11.2,8.8-20,20-20c11.2,0,20,8.8,20,20C341.3,306.7,332.5,315.5,321.3,315.5z"/>
-  </svg>
-);
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { Card } from '../ui/card';
 
-export default MaxumaxIcon;
+const clients = [
+  { name: 'Sinar Indah Padma', logo: '/assets/img/clients/sinar-indah-padma.svg' },
+  { name: 'Hakarentcar', logo: '/assets/img/clients/hakarentcar.svg' },
+  { name: 'Communic8', logo: '/assets/img/clients/communic8.svg' },
+  { name: 'Liga Mahasiswa', logo: '/assets/img/clients/liga-mahasiswa.svg' },
+  { name: 'Garuda Systrain Interindo', logo: '/assets/img/clients/garuda-systrain-interindo.svg' },
+  { name: 'Huntr.id', logo: '/assets/img/clients/huntr-id.svg' },
+  { name: 'Safarental', logo: '/assets/img/clients/safarental.svg' },
+  { name: 'SyauqiRental', logo: '/assets/img/clients/syauqirental.svg' },
+  { name: 'Bali Pure', logo: '/assets/img/clients/bali-pure.svg' },
+  { name: 'MyPulsa', logo: '/assets/img/clients/mypulsa.svg' },
+  { name: 'Jowoland Construction', logo: '/assets/img/clients/jowoland-construction.svg' },
+  { name: 'Hadiwijaya', logo: '/assets/img/clients/hadiwijaya.svg' },
+  { name: 'Hadiningrat Corp', logo: '/assets/img/clients/hadiningrat-corp.svg' },
+  { name: 'MAXUMAX', logo: <span className="font-bold text-xl text-foreground">MAXUMAX</span> },
+];
+
+type OurClientsProps = {
+  dictionary: {
+    title: string;
+    description: string;
+    cta: string;
+  };
+  lang: string;
+};
+
+const OurClients = ({ dictionary, lang }: OurClientsProps) => {
+
+  return (
+    <section id="our-clients" className="py-20 lg:py-24 bg-secondary/50">
+      <div className="container mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold font-headline">
+            {dictionary.title}
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+            {dictionary.description}
+            </p>
+        </div>
+        
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-6">
+          {clients.map((client) => (
+              <Card key={client.name} className="p-4 flex justify-center items-center h-28 bg-background transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2">
+                <div className="relative w-full h-full flex items-center justify-center">
+                  {typeof client.logo === 'string' ? (
+                    <Image
+                      src={client.logo}
+                      alt={client.name}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+                      className="object-contain"
+                    />
+                  ) : (
+                    client.logo
+                  )}
+                </div>
+              </Card>
+            ))}
+        </div>
+        
+        <div className="text-center mt-16">
+            <Button asChild size="lg">
+                <Link href={`/${lang}/contact`}>
+                    {dictionary.cta} <ArrowRight className="ml-2" />
+                </Link>
+            </Button>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+export default OurClients;

@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Card } from '../ui/card';
-import MaxumaxIcon from '../icons/maxumax-icon';
 
 const clients = [
   { name: 'Sinar Indah Padma', logo: '/assets/img/clients/sinar-indah-padma.svg' },
@@ -22,7 +21,7 @@ const clients = [
   { name: 'Jowoland Construction', logo: '/assets/img/clients/jowoland-construction.svg' },
   { name: 'Hadiwijaya', logo: '/assets/img/clients/hadiwijaya.svg' },
   { name: 'Hadiningrat Corp', logo: '/assets/img/clients/hadiningrat-corp.svg' },
-  { name: 'MAXUMAX', logo: <MaxumaxIcon className="w-full h-full object-contain" /> },
+  { name: 'MAXUMAX', logo: <span className="font-bold text-xl text-foreground">MAXUMAX</span> },
 ];
 
 type OurClientsProps = {
@@ -51,7 +50,7 @@ const OurClients = ({ dictionary, lang }: OurClientsProps) => {
         <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-6">
           {clients.map((client) => (
               <Card key={client.name} className="p-4 flex justify-center items-center h-28 bg-background transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2">
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full flex items-center justify-center">
                   {typeof client.logo === 'string' ? (
                     <Image
                       src={client.logo}
