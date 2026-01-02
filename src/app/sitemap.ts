@@ -20,22 +20,19 @@ const routes = [
   '/insight/brochure',
   '/investor',
   '/program/website-1jt',
+  '/program/website-murah',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const sitemapEntries: MetadataRoute.Sitemap = routes.map((route) => {
-    const alternates: { [key: string]: string } = {};
-    i18n.locales.forEach(locale => {
-      alternates[locale] = `${URL}/${locale}${route}`;
-    });
+  const sitemapEntries: MetadataRoute.Sitemap = [];
 
-    return {
-      url: `${URL}/${i18n.defaultLocale}${route}`,
-      lastModified: new Date(),
-      alternates: {
-        languages: alternates,
-      },
-    };
+  routes.forEach((route) => {
+    i18n.locales.forEach((locale) => {
+      sitemapEntries.push({
+        url: `${URL}/${locale}${route}`,
+        lastModified: new Date(),
+      });
+    });
   });
 
   return sitemapEntries;

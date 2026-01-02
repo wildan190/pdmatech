@@ -43,6 +43,10 @@
         "website1jt": {
             "title": "Website 1JT Program",
             "description": "Get a professional website for your business at an affordable price."
+        },
+        "websiteMurah": {
+            "title": "Affordable Static Website",
+            "description": "Lightning-fast & secure static website under 500K."
         }
     },
     "insightSubMenu": {
@@ -742,6 +746,78 @@
             "description": "Don't miss the opportunity to have a professional website at an unbeatable price. Contact us for a free consultation!",
             "button": "Get Free Consultation",
             "whatsappMessage": "Hello, I'm interested in the IDR 1 million website creation program. Can I get more information?"
+        }
+    },
+    "websiteMurahPage": {
+        "breadcrumb": "Affordable Static Website",
+        "hero": {
+            "title": "Lightning-Fast Static Website Under 500K",
+            "description": "Get a professional, secure, and incredibly fast static website. Perfect for portfolios, landing pages, or a simple business presence, including a free .my.id domain.",
+            "cta": "See Pricing",
+            "imageAlt": "Abstract code on a dark screen, representing a static website."
+        },
+        "features": {
+            "pretitle": "WHY STATIC?",
+            "title": "Speed, Security, and Simplicity",
+            "description": "Static websites offer unparalleled performance and reliability at a very low cost.",
+            "item1": {
+                "title": "Blazing Fast",
+                "description": "Loads almost instantly, providing the best user experience and boosting your SEO score."
+            },
+            "item2": {
+                "title": "Ironclad Security",
+                "description": "With no database, the attack surface is minimal, making it extremely secure."
+            },
+            "item3": {
+                "title": "Low Hosting Costs",
+                "description": "Hosting is very cheap, often free, because the server only needs to send files."
+            },
+            "item4": {
+                "title": "Lightweight & Simple",
+                "description": "No complex backend, making it easy to maintain and incredibly reliable."
+            }
+        },
+        "packages": {
+            "title": "Simple and Transparent Pricing",
+            "description": "Choose your domain and get online in days. All packages include a 1-page static website design.",
+            "cta": "Order Now",
+            "myid": {
+                "price": "IDR 499k",
+                "description": "Most affordable package.",
+                "features": [
+                    "1 Page Static Website",
+                    "Free Domain .my.id (1 year)",
+                    "Free Hosting (1 year)",
+                    "3-Day Delivery"
+                ]
+            },
+            "com": {
+                "price": "IDR 699k",
+                "description": "For a global presence.",
+                "features": [
+                    "1 Page Static Website",
+                    "Custom Domain .com (1 year)",
+                    "Free Hosting (1 year)",
+                    "3-Day Delivery"
+                ]
+            },
+            "id": {
+                "price": "IDR 799k",
+                "description": "For an Indonesian identity.",
+                "features": [
+                    "1 Page Static Website",
+                    "Custom Domain .id (1 year)",
+                    "Free Hosting (1 year)",
+                    "3-Day Delivery"
+                ]
+            },
+            "footerNote": "All prices are one-time fees. Domain and hosting renewal fees apply in the following year."
+        },
+        "cta": {
+            "title": "Ready to Launch Your Super-Fast Website?",
+            "description": "Get your professional online presence up and running in just a few days. Contact us to get started!",
+            "button": "Get Started Now",
+            "whatsappMessage": "Hello, I'm interested in the affordable static website program. I would like to get started."
         }
     }
 }

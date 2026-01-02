@@ -43,6 +43,10 @@
         "website1jt": {
             "title": "Program Website 1 Juta",
             "description": "Dapatkan website profesional untuk bisnis Anda dengan harga terjangkau."
+        },
+        "websiteMurah": {
+            "title": "Website Statis Murah",
+            "description": "Website statis super cepat & aman di bawah 500 ribu."
         }
     },
     "insightSubMenu": {
@@ -742,6 +746,78 @@
             "description": "Jangan lewatkan kesempatan memiliki website profesional dengan harga tak terkalahkan. Hubungi kami untuk konsultasi gratis!",
             "button": "Dapatkan Konsultasi Gratis",
             "whatsappMessage": "Halo, saya tertarik dengan program pembuatan website 1 juta. Boleh minta info lebih lanjut?"
+        }
+    },
+    "websiteMurahPage": {
+        "breadcrumb": "Website Statis Murah",
+        "hero": {
+            "title": "Website Statis Super Cepat di Bawah 500 Ribu",
+            "description": "Dapatkan website profesional yang aman dan sangat cepat. Sempurna untuk portofolio, landing page, atau profil bisnis sederhana, sudah termasuk domain .my.id gratis.",
+            "cta": "Lihat Harga",
+            "imageAlt": "Kode abstrak di layar gelap, merepresentasikan website statis."
+        },
+        "features": {
+            "pretitle": "MENGAPA STATIS?",
+            "title": "Kecepatan, Keamanan, dan Kesederhanaan",
+            "description": "Website statis menawarkan performa dan keandalan tak tertandingi dengan biaya sangat rendah.",
+            "item1": {
+                "title": "Sangat Cepat",
+                "description": "Memuat hampir seketika, memberikan pengalaman pengguna terbaik dan meningkatkan skor SEO Anda."
+            },
+            "item2": {
+                "title": "Keamanan Tingkat Tinggi",
+                "description": "Tanpa database, area serangan menjadi minimal, membuatnya sangat aman."
+            },
+            "item3": {
+                "title": "Biaya Hosting Rendah",
+                "description": "Hosting sangat murah, bahkan seringkali gratis, karena server hanya perlu mengirim file."
+            },
+            "item4": {
+                "title": "Ringan & Sederhana",
+                "description": "Tidak ada backend yang rumit, membuatnya mudah dirawat dan sangat andal."
+            }
+        },
+        "packages": {
+            "title": "Harga Sederhana dan Transparan",
+            "description": "Pilih domain Anda dan online dalam hitungan hari. Semua paket termasuk desain website statis 1 halaman.",
+            "cta": "Pesan Sekarang",
+            "myid": {
+                "price": "Rp 499rb",
+                "description": "Paket paling terjangkau.",
+                "features": [
+                    "Website Statis 1 Halaman",
+                    "Gratis Domain .my.id (1 tahun)",
+                    "Gratis Hosting (1 tahun)",
+                    "Pengerjaan 3 Hari"
+                ]
+            },
+            "com": {
+                "price": "Rp 699rb",
+                "description": "Untuk jangkauan global.",
+                "features": [
+                    "Website Statis 1 Halaman",
+                    "Domain Kustom .com (1 tahun)",
+                    "Gratis Hosting (1 tahun)",
+                    "Pengerjaan 3 Hari"
+                ]
+            },
+            "id": {
+                "price": "Rp 799rb",
+                "description": "Untuk identitas Indonesia.",
+                "features": [
+                    "Website Statis 1 Halaman",
+                    "Domain Kustom .id (1 tahun)",
+                    "Gratis Hosting (1 tahun)",
+                    "Pengerjaan 3 Hari"
+                ]
+            },
+            "footerNote": "Semua harga adalah biaya sekali bayar. Biaya perpanjangan domain dan hosting berlaku di tahun berikutnya."
+        },
+        "cta": {
+            "title": "Siap Meluncurkan Website Super Cepat Anda?",
+            "description": "Miliki kehadiran online profesional Anda dalam beberapa hari saja. Hubungi kami untuk memulai!",
+            "button": "Mulai Sekarang",
+            "whatsappMessage": "Halo, saya tertarik dengan program website statis murah. Saya ingin memulai."
         }
     }
 }

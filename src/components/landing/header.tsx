@@ -66,6 +66,11 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
           href: `/${lang}/program/website-1jt`,
           description: dictionary.programSubMenu.website1jt.description,
       },
+      {
+          title: dictionary.programSubMenu.websiteMurah.title,
+          href: `/${lang}/program/website-murah`,
+          description: dictionary.programSubMenu.websiteMurah.description,
+      }
   ];
 
   const insightComponents = [
@@ -136,7 +141,7 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
              <NavigationMenuItem>
               <NavigationMenuTrigger>{dictionary.navigation.program}</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] lg:grid-cols-1">
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] lg:w-[600px] lg:grid-cols-2">
                   {programComponents.map((component) => (
                     <ListItem
                       key={component.title}
