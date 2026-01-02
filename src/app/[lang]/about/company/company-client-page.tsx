@@ -303,12 +303,10 @@ export default function CompanyClientPage({ dictionary, lang }: CompanyClientPag
           <h2 className="text-3xl font-bold font-headline mb-4">{pageDict.cta.title}</h2>
           <p className="max-w-2xl mx-auto mb-8">{pageDict.cta.description}</p>
           <Button size="lg" variant="secondary" asChild>
-            <Link href={`/${lang}/#contact`}>{pageDict.cta.button}</Link>
+            <Link href={`/${lang}/contact`}>{pageDict.cta.button}</Link>
           </Button>
         </div>
       </section>
     </main>
   );
 }
-
-    

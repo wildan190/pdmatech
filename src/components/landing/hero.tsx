@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import ParallaxImage from '../shared/parallax-image';
+import Link from 'next/link';
 
 type HeroProps = {
     dictionary: any;
@@ -17,8 +18,8 @@ const Hero = ({ dictionary, lang }: HeroProps) => {
       subheadline: dictionary.slide1.subheadline,
       cta1: dictionary.slide1.cta1,
       cta2: dictionary.slide1.cta2,
-      cta1Link: `#services`,
-      cta2Link: `#contact`,
+      cta1Link: `/${lang}/contact`,
+      cta2Link: `/${lang}/contact`,
       imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzYyMDkwMDExfDA&ixlib=rb-4.1.0&q=80&w=1080",
       imageAlt: "Abstract technological background with glowing blue nodes and connections.",
       imageHint: "abstract technology"
@@ -43,12 +44,12 @@ const Hero = ({ dictionary, lang }: HeroProps) => {
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-400">
           <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
-            <a href={heroSlide.cta1Link}>
+            <Link href={heroSlide.cta1Link}>
               {heroSlide.cta1} <ArrowRight className="ml-2" />
-            </a>
+            </Link>
           </Button>
           <Button size="lg" variant="outline" className="bg-black/20 backdrop-blur-sm border-white text-white hover:bg-white/10 hover:text-white" asChild>
-            <a href={heroSlide.cta2Link}>{heroSlide.cta2}</a>
+            <Link href={heroSlide.cta2Link}>{heroSlide.cta2}</Link>
           </Button>
         </div>
       </div>

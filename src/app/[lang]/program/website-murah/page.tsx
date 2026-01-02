@@ -141,7 +141,7 @@ export default async function WebsiteMurahPage({ params }: { params: { lang: Loc
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
                           <BreadcrumbLink asChild>
-                              <Link href={`/${params.lang}/#program`}>{dictionary.navigation.program}</Link>
+                              <Link href={`/${params.lang}/program/website-1jt`}>{dictionary.navigation.program}</Link>
                           </BreadcrumbLink>
                       </BreadcrumbItem>
                       <BreadcrumbSeparator />

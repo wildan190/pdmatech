@@ -166,7 +166,7 @@ export default async function Website1JtPage({ params }: { params: { lang: Local
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
                           <BreadcrumbLink asChild>
-                              <Link href={`/${lang}/#program`}>{dictionary.navigation.program}</Link>
+                              <Link href={`/${lang}/program/website-1jt`}>{dictionary.navigation.program}</Link>
                           </BreadcrumbLink>
                       </BreadcrumbItem>
                       <BreadcrumbSeparator />

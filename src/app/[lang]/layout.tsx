@@ -179,7 +179,7 @@ export default async function LanguageLayout({
       {
         '@type': 'SiteNavigationElement',
         name: dictionary.navigation.ictSolutions,
-        url: `${baseUrl}/${params.lang}/#services`
+        url: `${baseUrl}/${params.lang}/ict-solutions/iot`
       },
       {
         '@type': 'SiteNavigationElement',
