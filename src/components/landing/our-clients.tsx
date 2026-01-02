@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { Card } from '../ui/card';
+import { cn } from '@/lib/utils';
 
 const clients = [
   { name: 'Sinar Indah Padma', logo: '/assets/img/clients/sinar-indah-padma.svg' },
@@ -21,8 +21,38 @@ const clients = [
   { name: 'Jowoland Construction', logo: '/assets/img/clients/jowoland-construction.svg' },
   { name: 'Hadiwijaya', logo: '/assets/img/clients/hadiwijaya.svg' },
   { name: 'Hadiningrat Corp', logo: '/assets/img/clients/hadiningrat-corp.svg' },
-  { name: 'MAXUMAX', logo: <span className="font-bold text-xl text-foreground">MAXUMAX</span> },
+  { name: 'MAXUMAX', logo: <span className="font-bold text-2xl text-foreground whitespace-nowrap">MAXUMAX</span> },
 ];
+
+const ClientLogo = ({ client }: { client: typeof clients[0] }) => (
+    <div className="relative w-40 h-20 flex-shrink-0">
+        {typeof client.logo === 'string' ? (
+            <Image
+                src={client.logo}
+                alt={client.name}
+                fill
+                className="object-contain"
+            />
+        ) : (
+            <div className="flex items-center justify-center h-full">
+                {client.logo}
+            </div>
+        )}
+    </div>
+);
+
+
+const Marquee = ({ children, reverse = false }: { children: React.ReactNode, reverse?: boolean }) => (
+  <div className="flex space-x-16 overflow-hidden">
+      <div className={cn("flex space-x-16 justify-around flex-shrink-0 min-w-full", reverse ? "animate-[marquee_60s_linear_infinite_reverse]" : "animate-[marquee_60s_linear_infinite]")}>
+          {children}
+      </div>
+      <div className={cn("flex space-x-16 justify-around flex-shrink-0 min-w-full", reverse ? "animate-[marquee_60s_linear_infinite_reverse]" : "animate-[marquee_60s_linear_infinite]")}>
+          {children}
+      </div>
+  </div>
+);
+
 
 type OurClientsProps = {
   dictionary: {
@@ -34,6 +64,8 @@ type OurClientsProps = {
 };
 
 const OurClients = ({ dictionary, lang }: OurClientsProps) => {
+  const firstRow = clients.slice(0, Math.ceil(clients.length / 2));
+  const secondRow = clients.slice(Math.ceil(clients.length / 2));
 
   return (
     <section id="our-clients" className="py-20 lg:py-24 bg-secondary/50">
@@ -47,24 +79,18 @@ const OurClients = ({ dictionary, lang }: OurClientsProps) => {
             </p>
         </div>
         
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-6">
-          {clients.map((client) => (
-              <Card key={client.name} className="p-4 flex justify-center items-center h-28 bg-background transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-2">
-                <div className="relative w-full h-full flex items-center justify-center">
-                  {typeof client.logo === 'string' ? (
-                    <Image
-                      src={client.logo}
-                      alt={client.name}
-                      fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-                      className="object-contain"
-                    />
-                  ) : (
-                    client.logo
-                  )}
-                </div>
-              </Card>
-            ))}
+        <div className="relative mt-16 flex flex-col gap-8 overflow-hidden group">
+            <div className="group-hover:[animation-play-state:paused]">
+                <Marquee>
+                    {firstRow.map((client) => <ClientLogo key={client.name} client={client} />)}
+                </Marquee>
+            </div>
+             <div className="group-hover:[animation-play-state:paused]">
+                <Marquee reverse>
+                    {secondRow.map((client) => <ClientLogo key={client.name} client={client} />)}
+                </Marquee>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary/50 via-transparent to-secondary/50 pointer-events-none" />
         </div>
         
         <div className="text-center mt-16">
