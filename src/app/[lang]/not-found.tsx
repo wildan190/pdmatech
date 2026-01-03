@@ -8,7 +8,7 @@ import { i18n, Locale } from '@/i18n.config';
 export default async function NotFound() {
     // Using headers() is not supported during static build.
     // Defaulting to the default locale to prevent build errors.
-    const locale: Locale = i18n.defaultLocale;
+    const locale: Locale = 'en';
 
     const dictionary = await getDictionary(locale);
     const pageDict = dictionary.notFoundPage;
