@@ -99,6 +99,16 @@
             "talents": "Talenta Teknologi",
             "projects": "Proyek"
         },
+        "bestServices": {
+            "pretitle": "LAYANAN TERBAIK",
+            "title": "Proyek Unggulan Kami",
+            "description": "Kami berspesialisasi dalam memberikan solusi berdampak tinggi yang mendorong pertumbuhan dan efisiensi. Berikut adalah beberapa layanan andalan kami.",
+            "webTitle": "Pengembangan Web",
+            "webDescription": "Menciptakan situs web dan aplikasi web yang menakjubkan dan berkinerja tinggi yang memikat pengguna dan memberikan hasil.",
+            "erpTitle": "Solusi ERP & SCM",
+            "erpDescription": "Mengintegrasikan proses bisnis yang kompleks ke dalam sistem terpadu untuk efisiensi maksimum dan visibilitas real-time.",
+            "learnMore": "Pelajari Lebih Lanjut"
+        },
         "ourClients": {
             "title": "Dipercaya oleh Perusahaan Terkemuka",
             "description": "Kami bangga telah berkolaborasi dengan beberapa perusahaan paling terkemuka. Kepercayaan mereka adalah bukti komitmen kami terhadap keunggulan.",
@@ -110,13 +120,13 @@
             "button": "Pelajari Lebih Lanjut Program Kami"
         },
         "services": {
-            "title": "Layanan dan Produk",
+            "title": "Solusi Kami Lainnya",
             "headline": "Solusi yang Memberdayakan Bisnis Anda",
             "subheadline": "Dari kebutuhan sehari-hari hingga inovasi terdepan — kami membangun, menyesuaikan, dan mengamankan ekosistem digital Anda.",
             "iotTitle": "Solusi IoT",
             "iotDescription": "Solusi IoT komprehensif untuk menghubungkan aset Anda dan mendorong wawasan berbasis data.",
-            "enterpriseTitle": "Solusi Enterprise",
-            "enterpriseDescription": "Solusi terukur dan kuat untuk kebutuhan perusahaan skala besar, dari cloud hingga keamanan.",
+            "umkmTitle": "Solusi UMKM",
+            "umkmDescription": "Solusi terjangkau dan efektif untuk usaha kecil dan menengah.",
             "findOutMore": "Cari Tahu Lebih Lanjut"
         },
         "ourTeam": {
@@ -547,18 +557,18 @@
             },
             "passion": {
                 "title": "Semangat Berpusat pada Klien",
-                "description": "Kesuksesan Anda adalah kesuksesan kami. Kami bersemangat untuk memberikan nilai dan membangun kemitraan jangka panjang berdasarkan kepercayaan."
+                "description": "Kesuksesan Anda adalah kesuksesan kami。 Kami bersemangat untuk memberikan nilai dan membangun kemitraan jangka panjang berdasarkan kepercayaan。"
             }
         },
         "openings": {
             "title": "Lowongan Saat Ini",
-            "description": "Kami selalu mencari individu berbakat. Meskipun saat ini tidak ada posisi terbuka, kami akan senang mendengar dari Anda.",
+            "description": "Kami selalu mencari individu berbakat。 Meskipun saat ini tidak ada posisi terbuka, kami akan senang mendengar dari Anda。",
             "notAvailable": "Tidak Ada Posisi yang Tersedia Saat Ini",
-            "checkBack": "Silakan periksa kembali nanti untuk peluang di masa depan."
+            "checkBack": "Silakan periksa kembali nanti untuk peluang di masa depan。"
         },
         "cta": {
             "title": "Tidak Menemukan Peran untuk Anda?",
-            "description": "Kami selalu terbuka untuk terhubung dengan talenta luar biasa. Jika Anda yakin keahlian Anda dapat membuat perbedaan, kirimkan resume Anda!",
+            "description": "Kami selalu terbuka untuk terhubung dengan talenta luar biasa。 Jika Anda yakin keahlian Anda dapat membuat perbedaan, kirimkan resume Anda!",
             "button": "Kirim Resume Anda"
         }
     },
@@ -709,7 +719,7 @@
             "cta": "Pilih Paket",
             "starter": {
                 "price": "Rp 1jt",
-                "description": "Untuk bisnis yang butuh kehadiran digital profesional dengan cepat.",
+                "description": "Untuk bisnis yang butuh kehadiran digital profesional dengan cepat。",
                 "features": [
                     "1 Halaman Website (Landing Page)",
                     "Desain Responsif",
@@ -720,7 +730,7 @@
             },
             "business": {
                 "price": "Rp 3jt",
-                "description": "Pilihan paling populer untuk bisnis yang sedang berkembang.",
+                "description": "Pilihan paling populer untuk bisnis yang sedang berkembang。",
                 "features": [
                     "Hingga 5 Halaman (e.g., Home, About, Services)",
                     "Semua yang ada di Starter",
@@ -731,7 +741,7 @@
             },
             "enterprise": {
                 "price": "Kustom",
-                "description": "Solusi yang dirancang khusus untuk kebutuhan bisnis yang unik dan kompleks.",
+                "description": "Solusi yang dirancang khusus untuk kebutuhan bisnis yang unik dan kompleks。",
                 "features": [
                     "Halaman & Fitur Kustom Tanpa Batas",
                     "Semua yang ada di Business",
@@ -762,28 +772,28 @@
             "description": "Website statis menawarkan performa dan keandalan tak tertandingi dengan biaya sangat rendah.",
             "item1": {
                 "title": "Sangat Cepat",
-                "description": "Memuat hampir seketika, memberikan pengalaman pengguna terbaik dan meningkatkan skor SEO Anda."
+                "description": "Memuat hampir seketika, memberikan pengalaman pengguna terbaik dan meningkatkan skor SEO Anda。"
             },
             "item2": {
                 "title": "Keamanan Tingkat Tinggi",
-                "description": "Tanpa database, area serangan menjadi minimal, membuatnya sangat aman."
+                "description": "Tanpa database, area serangan menjadi minimal, membuatnya sangat aman。"
             },
             "item3": {
                 "title": "Biaya Hosting Rendah",
-                "description": "Hosting sangat murah, bahkan seringkali gratis, karena server hanya perlu mengirim file."
+                "description": "Hosting sangat murah, bahkan seringkali gratis, karena server hanya perlu mengirim file。"
             },
             "item4": {
                 "title": "Ringan & Sederhana",
-                "description": "Tidak ada backend yang rumit, membuatnya mudah dirawat dan sangat andal."
+                "description": "Tidak ada backend yang rumit, membuatnya mudah dirawat dan sangat andal。"
             }
         },
         "packages": {
             "title": "Harga Sederhana dan Transparan",
-            "description": "Pilih domain Anda dan online dalam hitungan hari. Semua paket termasuk desain website statis 1 halaman.",
+            "description": "Pilih domain Anda dan online dalam hitungan hari。 Semua paket termasuk desain website statis 1 halaman。",
             "cta": "Pesan Sekarang",
             "myid": {
                 "price": "Rp 499rb",
-                "description": "Paket paling terjangkau.",
+                "description": "Paket paling terjangkau。",
                 "features": [
                     "Website Statis 1 Halaman",
                     "Gratis Domain .my.id (1 tahun)",
@@ -793,7 +803,7 @@
             },
             "com": {
                 "price": "Rp 699rb",
-                "description": "Untuk jangkauan global.",
+                "description": "Untuk jangkauan global。",
                 "features": [
                     "Website Statis 1 Halaman",
                     "Domain Kustom .com (1 tahun)",
@@ -803,7 +813,7 @@
             },
             "id": {
                 "price": "Rp 799rb",
-                "description": "Untuk identitas Indonesia.",
+                "description": "Untuk identitas Indonesia。",
                 "features": [
                     "Website Statis 1 Halaman",
                     "Domain Kustom .id (1 tahun)",
@@ -811,13 +821,13 @@
                     "Pengerjaan 3 Hari"
                 ]
             },
-            "footerNote": "Semua harga adalah biaya sekali bayar. Biaya perpanjangan domain dan hosting berlaku di tahun berikutnya."
+            "footerNote": "Semua harga adalah biaya sekali bayar。 Biaya perpanjangan domain dan hosting berlaku di tahun berikutnya。"
         },
         "cta": {
             "title": "Siap Meluncurkan Website Super Cepat Anda?",
-            "description": "Miliki kehadiran online profesional Anda dalam beberapa hari saja. Hubungi kami untuk memulai!",
+            "description": "Miliki kehadiran online profesional Anda dalam beberapa hari saja。 Hubungi kami untuk memulai!",
             "button": "Mulai Sekarang",
-            "whatsappMessage": "Halo, saya tertarik dengan program website statis murah. Saya ingin memulai."
+            "whatsappMessage": "Halo, saya tertarik dengan program website statis murah。 Saya ingin memulai。"
         }
     }
 }

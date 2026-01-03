@@ -99,6 +99,16 @@
             "talents": "Technology Talents",
             "projects": "Projects"
         },
+        "bestServices": {
+            "pretitle": "BEST SERVICES",
+            "title": "Our Featured Projects",
+            "description": "We specialize in delivering high-impact solutions that drive growth and efficiency. Here are some of our flagship services.",
+            "webTitle": "Web Development",
+            "webDescription": "Crafting stunning, high-performance websites and web apps that captivate users and deliver results.",
+            "erpTitle": "ERP & SCM Solutions",
+            "erpDescription": "Integrating complex business processes into a unified system for maximum efficiency and real-time visibility.",
+            "learnMore": "Learn More"
+        },
         "ourClients": {
             "title": "Trusted By Leading Companies",
             "description": "We are proud to have collaborated with some of the most respected companies. Their trust is a testament to our commitment to excellence.",
@@ -110,13 +120,13 @@
             "button": "Learn More About Our Programs"
         },
         "services": {
-            "title": "Services and Product",
+            "title": "Our Other Solutions",
             "headline": "Solutions that Power Your Business",
             "subheadline": "From everyday essentials to cutting-edge innovations — we build, customize, and secure your digital ecosystem.",
             "iotTitle": "IoT Solutions",
             "iotDescription": "Comprehensive IoT solutions to connect your assets and drive data-driven insights.",
-            "enterpriseTitle": "Enterprise Solutions",
-            "enterpriseDescription": "Scalable and robust solutions for large-scale enterprise needs, from cloud to security.",
+            "umkmTitle": "UMKM Solutions",
+            "umkmDescription": "Affordable and effective solutions for small and medium businesses.",
             "findOutMore": "Find Out More"
         },
         "ourTeam": {
