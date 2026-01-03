@@ -59,12 +59,12 @@ const Experience = ({ dictionary }: { dictionary: any }) => {
     const experienceData = [
         {
             icon: <Users className="h-10 w-10 text-primary mx-auto" />,
-            value: "10+",
+            value: "12",
             label: dictionary.clients
         },
         {
             icon: <Calendar className="h-10 w-10 text-primary mx-auto" />,
-            value: "5+",
+            value: "6+",
             label: dictionary.years
         },
         {
