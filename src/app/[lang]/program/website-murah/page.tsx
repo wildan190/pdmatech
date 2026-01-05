@@ -105,13 +105,27 @@ export default async function WebsiteMurahPage({ params }: { params: { lang: Loc
 
   const ctaWhatsappUrl = `https://wa.me/62811144793?text=${encodeURIComponent(pageDict.cta.whatsappMessage)}`;
   const canonicalUrl = `${baseUrl}/${params.lang}${path}`;
+  const imageUrl = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdGF0aWMlMjB3ZWJzaXRlJTIwY29kZXxlbnwwfHx8fDE3NjU1NTgzNzd8MA&ixlib=rb-4.1.0&q=80&w=1080";
 
-  const productSchema = {
+  const serviceSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'Service',
     name: pageDict.breadcrumb,
+    image: imageUrl,
     description: pageDict.hero.description,
-    brand: { '@type': 'Brand', name: 'Micro Padma Nusantara' },
+    serviceType: "Static Website Development Service",
+    provider: {
+      '@type': 'Organization',
+      name: 'Micro Padma Nusantara',
+    },
+    areaServed: [
+      {'@type': 'Country', 'name': 'ID'},
+      {'@type': 'Country', 'name': 'SG'},
+      {'@type': 'Country', 'name': 'MY'},
+      {'@type': 'Country', 'name': 'TH'},
+      {'@type': 'Country', 'name': 'VN'},
+      {'@type': 'Country', 'name': 'PH'}
+    ],
     offers: packages.map(pkg => ({
       '@type': 'Offer',
       name: `Static Website with ${pkg.domain} domain`,
@@ -125,9 +139,9 @@ export default async function WebsiteMurahPage({ params }: { params: { lang: Loc
   return (
     <>
       <Script
-        id="product-schema-murah"
+        id="service-schema-murah"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <main className="flex-grow">
         {/* Breadcrumb */}
@@ -156,7 +170,7 @@ export default async function WebsiteMurahPage({ params }: { params: { lang: Loc
         {/* Hero */}
         <section className="relative h-[70vh] flex items-center justify-center text-center overflow-hidden">
             <ParallaxImage
-                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdGF0aWMlMjB3ZWJzaXRlJTIwY29kZXxlbnwwfHx8fDE3NjU1NTgzNzd8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                src={imageUrl}
                 alt={pageDict.hero.imageAlt}
                 data-ai-hint="static website code"
                 priority
@@ -257,3 +271,5 @@ export default async function WebsiteMurahPage({ params }: { params: { lang: Loc
     </>
   );
 }
+
+    

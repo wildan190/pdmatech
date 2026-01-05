@@ -122,16 +122,25 @@ export default async function Website1JtPage({ params }: { params: { lang: Local
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
   const imageUrl = `${baseUrl}/assets/img/cover.png`;
 
-  const productSchema = {
+  const serviceSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'Service',
     name: pageDict.breadcrumb,
     image: imageUrl,
     description: pageDict.hero.description,
-    brand: {
-      '@type': 'Brand',
+    serviceType: "Website Development Service",
+    provider: {
+      '@type': 'Organization',
       name: 'Micro Padma Nusantara',
     },
+     areaServed: [
+      {'@type': 'Country', 'name': 'ID'},
+      {'@type': 'Country', 'name': 'SG'},
+      {'@type': 'Country', 'name': 'MY'},
+      {'@type': 'Country', 'name': 'TH'},
+      {'@type': 'Country', 'name': 'VN'},
+      {'@type': 'Country', 'name': 'PH'}
+    ],
     offers: {
       '@type': 'Offer',
       url: canonicalUrl,
@@ -150,9 +159,9 @@ export default async function Website1JtPage({ params }: { params: { lang: Local
   return (
     <>
       <Script
-        id="product-schema"
+        id="service-schema-1jt"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <main className="flex-grow">
         {/* Breadcrumb */}
@@ -321,3 +330,5 @@ export default async function Website1JtPage({ params }: { params: { lang: Local
     </>
   );
 }
+
+    
