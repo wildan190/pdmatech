@@ -142,6 +142,12 @@ const portfolioData = [
     company: "PT. Hunter Integrasi Bisnis",
     url: "https://huntr.id",
     imageId: "portfolio-huntr"
+  },
+  {
+    name: "MAXUMAX",
+    company: "MAXUMAX Group",
+    url: "https://maxumax.my",
+    imageId: "portfolio-maxumax"
   }
 ];
 
