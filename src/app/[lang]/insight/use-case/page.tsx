@@ -32,9 +32,9 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['use cases', 'case studies', 'digital transformation success stories', 'IoT in manufacturing Indonesia', 'SME digitalization', 'Xapiens ERP', 'business technology impact'],
-    id: ['studi kasus', 'kisah sukses transformasi digital', 'IoT di manufaktur Indonesia', 'digitalisasi UMKM', 'Xapiens ERP', 'dampak teknologi bisnis'],
-    zh: ['用例', '案例研究', '数字化转型成功案例', '印尼制造业物联网', '中小微企业数字化', 'Xapiens ERP', '商业技术影响']
+    en: ['use cases', 'case studies', 'digital transformation success stories', 'IoT in manufacturing Indonesia', 'SME digitalization', 'business technology impact'],
+    id: ['studi kasus', 'kisah sukses transformasi digital', 'IoT di manufaktur Indonesia', 'digitalisasi UMKM', 'dampak teknologi bisnis'],
+    zh: ['用例', '案例研究', '数字化转型成功案例', '印尼制造业物联网', '中小微企业数字化', '商业技术影响']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
