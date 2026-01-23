@@ -89,6 +89,11 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
           href: `/${lang}/insight/brochure`,
           description: dictionary.insightSubMenu.brochure.description,
       },
+      {
+          title: dictionary.insightSubMenu.useCase.title,
+          href: `/${lang}/insight/use-case`,
+          description: dictionary.insightSubMenu.useCase.description,
+      },
   ];
 
   const handleLinkClick = () => {

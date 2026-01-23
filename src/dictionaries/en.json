@@ -61,6 +61,10 @@
         "brochure": {
             "title": "Brochure",
             "description": "Download our company brochure."
+        },
+        "useCase": {
+            "title": "Use Case",
+            "description": "Explore real-world success stories."
         }
     },
     "header": {
@@ -828,6 +832,52 @@
             "description": "Get your professional online presence up and running in just a few days. Contact us to get started!",
             "button": "Get Started Now",
             "whatsappMessage": "Hello, I'm interested in the affordable static website program. I would like to get started."
+        }
+    },
+    "useCasePage": {
+        "breadcrumb": "Use Case",
+        "hero": {
+            "title": "Success Stories: The Real Impact of Our Solutions",
+            "description": "Discover how we help businesses transform challenges into opportunities with tailor-made technology solutions."
+        },
+        "umkm": {
+            "title": "Digitalizing SMEs with Xapiens",
+            "challenge": {
+                "title": "The Challenge",
+                "description": "Indonesian SMEs often struggle with manual, inefficient operational processes, limited market visibility, and difficulty in competing with larger enterprises."
+            },
+            "solution": {
+                "title": "Our Solution",
+                "description": "We implemented Xapiens, an integrated ERP and POS solution, to streamline everything from inventory management and sales processing to financial reporting."
+            },
+            "impact": {
+                "title": "The Impact",
+                "item1": "Operational efficiency increased by up to 40%.",
+                "item2": "Real-time data access for faster, data-driven decision-making."
+            },
+            "cta": "Explore SME Solutions"
+        },
+        "iot": {
+            "title": "Revolutionizing Manufacturing with IoT",
+            "challenge": {
+                "title": "The Challenge",
+                "description": "Manufacturing plants in Indonesia face issues with unexpected machinery downtime, high energy consumption, and a lack of real-time production visibility."
+            },
+            "solution": {
+                "title": "Our Solution",
+                "description": "We deployed a custom Industrial IoT (IIoT) system with sensors on critical machinery to monitor health, predict failures, and track energy usage in real-time."
+            },
+            "impact": {
+                "title": "The Impact",
+                "item1": "Reduced machinery downtime by 30% through predictive maintenance.",
+                "item2": "Lowered energy costs by 15% via optimized machine operations."
+            },
+            "cta": "Explore IoT Solutions"
+        },
+        "cta": {
+            "title": "Ready to Write Your Own Success Story?",
+            "description": "Every challenge is an opportunity for innovation. Let's discuss how we can tailor a solution for your unique business needs.",
+            "button": "Contact Our Experts"
         }
     }
 }

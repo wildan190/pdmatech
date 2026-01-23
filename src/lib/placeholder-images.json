@@ -173,6 +173,24 @@
       "description": "A person using a laptop to search on a job portal website.",
       "imageUrl": "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxqb2IlMjBwb3J0YWwlMjBzZWFyY2h8ZW58MHx8fHwxNzY1NTU4Mzc3fDA&ixlib=rb-4.1.0&q=80&w=600&h=400&fit=crop",
       "imageHint": "job portal"
+    },
+    {
+      "id": "use-case-hero",
+      "description": "An abstract image showing interconnected data points and networks, representing successful implementation.",
+      "imageUrl": "https://images.unsplash.com/photo-1538323333468-f5bab0322384?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdWNjZXNzJTIwbmV0d29ya3xlbnwwfHx8fDE3NjU4NTA3ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "success network"
+    },
+    {
+      "id": "use-case-umkm",
+      "description": "A cheerful small business owner using a POS tablet in their modern cafe.",
+      "imageUrl": "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGJ1c2luZXNzJTIwcG9zfGVufDB8fHx8fDE3NjU4NTA4NDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "small business"
+    },
+    {
+      "id": "use-case-iot",
+      "description": "A high-tech factory with automated robotic arms working on an assembly line.",
+      "imageUrl": "https://images.unsplash.com/photo-1567789884554-0b844b597180?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwYXV0b21hdGlvbnxlbnwwfHx8fDE3NjU4NTA4OTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "industrial automation"
     }
   ]
 }

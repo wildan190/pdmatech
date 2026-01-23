@@ -19,6 +19,7 @@ const Footer = ({ dictionary, lang }: FooterProps) => {
     { href: `/${lang}/insight/news`, label: dictionary.insightSubMenu.news.title },
     { href: `/${lang}/insight/article`, label: dictionary.insightSubMenu.article.title },
     { href: `/${lang}/insight/brochure`, label: dictionary.insightSubMenu.brochure.title },
+    { href: `/${lang}/insight/use-case`, label: dictionary.insightSubMenu.useCase.title },
     { href: `/${lang}/contact`, label: dictionary.navigation.contactUs },
   ];
   

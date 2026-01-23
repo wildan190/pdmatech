@@ -61,6 +61,10 @@
         "brochure": {
             "title": "Brosur",
             "description": "Unduh brosur perusahaan kami."
+        },
+        "useCase": {
+            "title": "Studi Kasus",
+            "description": "Jelajahi kisah sukses di dunia nyata."
         }
     },
     "header": {
@@ -828,6 +832,52 @@
             "description": "Miliki kehadiran online profesional Anda dalam beberapa hari saja。 Hubungi kami untuk memulai!",
             "button": "Mulai Sekarang",
             "whatsappMessage": "Halo, saya tertarik dengan program website statis murah。 Saya ingin memulai。"
+        }
+    },
+    "useCasePage": {
+        "breadcrumb": "Studi Kasus",
+        "hero": {
+            "title": "Kisah Sukses: Dampak Nyata Solusi Kami",
+            "description": "Temukan bagaimana kami membantu bisnis mengubah tantangan menjadi peluang dengan solusi teknologi yang dibuat khusus."
+        },
+        "umkm": {
+            "title": "Digitalisasi UMKM dengan Xapiens",
+            "challenge": {
+                "title": "Tantangan",
+                "description": "UMKM di Indonesia seringkali kesulitan dengan proses operasional yang manual dan tidak efisien, visibilitas pasar yang terbatas, dan kesulitan bersaing dengan perusahaan besar."
+            },
+            "solution": {
+                "title": "Solusi Kami",
+                "description": "Kami mengimplementasikan Xapiens, solusi ERP dan POS terintegrasi, untuk merampingkan segalanya mulai dari manajemen inventaris dan pemrosesan penjualan hingga pelaporan keuangan."
+            },
+            "impact": {
+                "title": "Dampak",
+                "item1": "Efisiensi operasional meningkat hingga 40%.",
+                "item2": "Akses data real-time untuk pengambilan keputusan yang lebih cepat dan berbasis data."
+            },
+            "cta": "Jelajahi Solusi UMKM"
+        },
+        "iot": {
+            "title": "Merevolusi Manufaktur dengan IoT",
+            "challenge": {
+                "title": "Tantangan",
+                "description": "Pabrik manufaktur di Indonesia menghadapi masalah dengan waktu henti mesin yang tidak terduga, konsumsi energi yang tinggi, dan kurangnya visibilitas produksi secara real-time."
+            },
+            "solution": {
+                "title": "Solusi Kami",
+                "description": "Kami menerapkan sistem Industrial IoT (IIoT) kustom dengan sensor pada mesin-mesin kritis untuk memantau kondisi, memprediksi kegagalan, dan melacak penggunaan energi secara real-time."
+            },
+            "impact": {
+                "title": "Dampak",
+                "item1": "Mengurangi waktu henti mesin hingga 30% melalui pemeliharaan prediktif.",
+                "item2": "Menurunkan biaya energi sebesar 15% melalui operasi mesin yang dioptimalkan."
+            },
+            "cta": "Jelajahi Solusi IoT"
+        },
+        "cta": {
+            "title": "Siap Menulis Kisah Sukses Anda Sendiri?",
+            "description": "Setiap tantangan adalah peluang untuk inovasi. Mari diskusikan bagaimana kami dapat menyesuaikan solusi untuk kebutuhan bisnis unik Anda.",
+            "button": "Hubungi Ahli Kami"
         }
     }
 }

@@ -18,6 +18,7 @@ const routes = [
   '/insight/news',
   '/insight/article',
   '/insight/brochure',
+  '/insight/use-case',
   '/investor',
   '/program/website-1jt',
   '/program/website-murah',
