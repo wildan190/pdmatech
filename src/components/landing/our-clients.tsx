@@ -22,6 +22,7 @@ const clients = [
   { name: 'Hadiwijaya', logo: '/assets/img/clients/hadiwijaya.svg' },
   { name: 'Hadiningrat Corp', logo: '/assets/img/clients/hadiningrat-corp.svg' },
   { name: 'MAXUMAX', logo: <span className="font-bold text-2xl text-foreground whitespace-nowrap">MAXUMAX</span> },
+  { name: 'SAXOCELL', logo: <span className="font-bold text-2xl text-foreground whitespace-nowrap">SAXOCELL</span> },
 ];
 
 const ClientLogo = ({ client }: { client: typeof clients[0] }) => (
