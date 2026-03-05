@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useMemo, useRef } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { getNews, createNews, deleteNews } from './actions';
 import { Button } from '@/components/ui/button';
@@ -11,8 +11,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Plus, Trash2, Globe, Upload, AlertCircle, Tag, Key } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-// Load Jodit dynamically to avoid SSR issues
-const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
+// Import Jodit CSS - SANGAT PENTING agar editor tampil benar
+import 'jodit/build/jodit.min.css';
+
+// Load Jodit secara dinamis untuk menghindari masalah SSR di Next.js
+const JoditEditor = dynamic(() => import('jodit-react'), { 
+  ssr: false,
+  loading: () => <div className="h-[400px] w-full bg-secondary/20 animate-pulse rounded-md flex items-center justify-center">Loading Editor...</div>
+});
 
 export default function NewsManagement() {
   const [news, setNews] = useState<any[]>([]);
@@ -23,19 +29,39 @@ export default function NewsManagement() {
   const [content, setContent] = useState('');
   const { toast } = useToast();
 
+  // Konfigurasi lengkap Jodit untuk mendukung Rich Text, Table, List, dan Paste tanpa modal
   const editorConfig = useMemo(() => ({
     readonly: false,
-    placeholder: 'Start writing your news content here...',
-    height: 400,
+    placeholder: 'Mulai tulis konten berita Anda di sini...',
+    height: 450,
+    width: '100%',
+    toolbarButtonSize: "middle",
+    theme: "default",
+    enableDragAndDropFileToEditor: true,
+    saveModeInCookie: false,
+    spellcheck: true,
+    editorCssClass: "prose max-w-none",
+    triggerChangeEvent: true,
+    // Menghilangkan modal "Keep HTML" saat paste
+    askBeforePasteHTML: false,
+    askBeforePasteFromWord: false,
+    defaultActionOnPaste: "insert_as_html",
+    processPasteHTML: true,
+    // Konfigurasi tombol toolbar
     buttons: [
+      'source', '|',
       'bold', 'italic', 'underline', 'strikethrough', '|',
       'ul', 'ol', '|',
       'outdent', 'indent', '|',
       'font', 'fontsize', 'brush', 'paragraph', '|',
       'image', 'table', 'link', '|',
       'align', 'undo', 'redo', '|',
-      'hr', 'eraser', 'fullsize'
+      'hr', 'eraser', 'copyformat', 'fullsize'
     ],
+    // Konfigurasi uploader untuk insert gambar sebagai Base64
+    uploader: {
+      insertImageAsBase64URI: true
+    }
   }), []);
 
   useEffect(() => {
@@ -43,16 +69,21 @@ export default function NewsManagement() {
   }, []);
 
   const loadNews = async () => {
-    const data = await getNews();
-    setNews(data);
-    setLoading(false);
+    try {
+      const data = await getNews();
+      setNews(data);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setFileError(null);
     if (file && file.size > 1024 * 1024) {
-      setFileError("File size exceeds 1MB. Please choose a smaller image.");
+      setFileError("Ukuran file melebihi 1MB. Silakan pilih gambar yang lebih kecil.");
       e.target.value = '';
     }
   };
@@ -60,22 +91,26 @@ export default function NewsManagement() {
   const handleAddNews = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (fileError) return;
+    if (!content || content === '<p><br></p>') {
+      toast({ variant: "destructive", title: "Konten Kosong", description: "Silakan isi konten berita." });
+      return;
+    }
 
     setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
-    formData.append('content', content); // Add Jodit content
+    formData.append('content', content); 
 
     try {
       await createNews(formData);
-      toast({ title: "News Created", description: "Successfully added new insight news." });
+      toast({ title: "Berita Berhasil Dibuat", description: "Artikel wawasan baru telah ditambahkan." });
       setIsDialogOpen(false);
       setContent('');
       loadNews();
     } catch (error: any) {
       toast({ 
         variant: "destructive", 
-        title: "Error", 
-        description: error.message || "Failed to create news." 
+        title: "Gagal", 
+        description: error.message || "Gagal membuat berita." 
       });
     } finally {
       setIsSubmitting(false);
@@ -83,9 +118,9 @@ export default function NewsManagement() {
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Are you sure you want to delete this news item?')) {
+    if (confirm('Apakah Anda yakin ingin menghapus berita ini?')) {
       await deleteNews(id);
-      toast({ title: "News Deleted", description: "Successfully removed the news item." });
+      toast({ title: "Berita Dihapus", description: "Artikel telah dihapus dari sistem." });
       loadNews();
     }
   };
@@ -94,33 +129,33 @@ export default function NewsManagement() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-3xl font-headline font-bold">News Management</h2>
-          <p className="text-muted-foreground">Manage your insight news articles with SEO features.</p>
+          <h2 className="text-3xl font-headline font-bold">Manajemen Berita</h2>
+          <p className="text-muted-foreground">Kelola artikel berita dan wawasan dengan fitur SEO lengkap.</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button className="gap-2">
               <Plus className="w-4 h-4" />
-              Add News Article
+              Tambah Artikel
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-4xl overflow-y-auto max-h-[90vh]">
+          <DialogContent className="max-w-5xl overflow-y-auto max-h-[95vh]">
             <DialogHeader>
-              <DialogTitle>Add New News Article</DialogTitle>
+              <DialogTitle>Buat Artikel Berita Baru</DialogTitle>
             </DialogHeader>
-            <form onSubmit={handleAddNews} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleAddNews} className="space-y-6 pt-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Language</label>
+                  <label className="text-sm font-semibold">Bahasa Konten</label>
                   <select name="lang" className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:ring-2 focus:ring-primary outline-none" required>
-                    <option value="en">English</option>
-                    <option value="id">Indonesia</option>
-                    <option value="zh">中文</option>
+                    <option value="en">English (EN)</option>
+                    <option value="id">Indonesia (ID)</option>
+                    <option value="zh">中文 (ZH)</option>
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium flex items-center gap-2">
-                    <Upload className="w-4 h-4" /> Cover Image (Max 1MB)
+                  <label className="text-sm font-semibold flex items-center gap-2">
+                    <Upload className="w-4 h-4 text-primary" /> Foto Sampul (Maks 1MB)
                   </label>
                   <Input 
                     name="image" 
@@ -130,7 +165,7 @@ export default function NewsManagement() {
                     required 
                   />
                   {fileError && (
-                    <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                    <p className="text-xs text-destructive mt-1 flex items-center gap-1 font-medium">
                       <AlertCircle className="w-3 h-3" /> {fileError}
                     </p>
                   )}
@@ -138,76 +173,77 @@ export default function NewsManagement() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Title</label>
-                <Input name="title" placeholder="News Title" required />
+                <label className="text-sm font-semibold">Judul Artikel</label>
+                <Input name="title" placeholder="Masukkan judul yang menarik..." required />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium flex items-center gap-2">
-                    <Tag className="w-4 h-4" /> Tags (Comma separated)
+                  <label className="text-sm font-semibold flex items-center gap-2">
+                    <Tag className="w-4 h-4 text-primary" /> Tag (Pisahkan dengan koma)
                   </label>
-                  <Input name="tags" placeholder="tech, iot, enterprise" />
+                  <Input name="tags" placeholder="contoh: teknologi, iot, bisnis" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium flex items-center gap-2">
-                    <Key className="w-4 h-4" /> SEO Keywords
+                  <label className="text-sm font-semibold flex items-center gap-2">
+                    <Key className="w-4 h-4 text-primary" /> Kata Kunci SEO
                   </label>
-                  <Input name="keywords" placeholder="Keywords for search engines" />
+                  <Input name="keywords" placeholder="Keyword untuk mesin pencari..." />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Excerpt</label>
-                <Input name="excerpt" placeholder="Short summary for the list view" required />
+                <label className="text-sm font-semibold">Ringkasan (Excerpt)</label>
+                <Input name="excerpt" placeholder="Ringkasan singkat untuk tampilan daftar..." required />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Full Content</label>
-                <div className="border rounded-md overflow-hidden bg-white text-black">
+                <label className="text-sm font-semibold">Konten Utama</label>
+                <div className="border rounded-md overflow-hidden bg-white text-black min-h-[450px]">
                   <JoditEditor
                     value={content}
                     config={editorConfig}
                     onBlur={newContent => setContent(newContent)}
                   />
                 </div>
+                <p className="text-[10px] text-muted-foreground italic">*Gunakan toolbar untuk format teks, tabel, dan gambar.</p>
               </div>
 
-              <Button type="submit" className="w-full" disabled={isSubmitting || !!fileError}>
-                {isSubmitting ? 'Creating...' : 'Create Article'}
+              <Button type="submit" className="w-full h-12 text-lg font-bold" disabled={isSubmitting || !!fileError}>
+                {isSubmitting ? 'Sedang Memproses...' : 'Terbitkan Artikel'}
               </Button>
             </form>
           </DialogContent>
         </Dialog>
       </div>
 
-      <Card>
+      <Card className="shadow-md border-0">
         <CardContent className="p-0">
           <Table>
-            <TableHeader>
+            <TableHeader className="bg-secondary/30">
               <TableRow>
-                <TableHead>Title</TableHead>
-                <TableHead>Language</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="font-bold">Judul Artikel</TableHead>
+                <TableHead className="font-bold">Bahasa</TableHead>
+                <TableHead className="font-bold">Tanggal Terbit</TableHead>
+                <TableHead className="text-right font-bold">Aksi</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {loading ? (
-                <TableRow><TableCell colSpan={4} className="text-center py-10">Loading articles...</TableCell></TableRow>
+                <TableRow><TableCell colSpan={4} className="text-center py-20 text-muted-foreground">Memuat daftar berita...</TableCell></TableRow>
               ) : news.length === 0 ? (
-                <TableRow><TableCell colSpan={4} className="text-center py-10">No news articles found.</TableCell></TableRow>
+                <TableRow><TableCell colSpan={4} className="text-center py-20 text-muted-foreground font-medium">Belum ada berita yang diterbitkan.</TableCell></TableRow>
               ) : (
                 news.map((item) => (
-                  <TableRow key={item._id}>
-                    <TableCell className="font-medium">{item.title}</TableCell>
+                  <TableRow key={item._id} className="hover:bg-secondary/10 transition-colors">
+                    <TableCell className="font-medium max-w-md truncate">{item.title}</TableCell>
                     <TableCell>
-                      <span className="inline-flex items-center gap-1 bg-secondary px-2 py-1 rounded text-xs uppercase font-bold">
+                      <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-2 py-1 rounded text-xs uppercase font-bold border border-primary/20">
                         <Globe className="w-3 h-3" />
                         {item.lang}
                       </span>
                     </TableCell>
-                    <TableCell>{new Date(item.date).toLocaleDateString()}</TableCell>
+                    <TableCell className="text-muted-foreground">{new Date(item.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}</TableCell>
                     <TableCell className="text-right">
                       <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive hover:bg-destructive/10" onClick={() => handleDelete(item._id)}>
                         <Trash2 className="w-4 h-4" />
