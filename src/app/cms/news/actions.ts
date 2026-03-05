@@ -22,7 +22,21 @@ export async function createNews(formData: FormData) {
   const content = formData.get('content') as string;
   const excerpt = formData.get('excerpt') as string;
   const lang = formData.get('lang') as string;
-  const image = formData.get('image') as string || 'https://picsum.photos/seed/news/800/600';
+  const imageFile = formData.get('image') as File;
+
+  let imageData = 'https://picsum.photos/seed/news/800/600';
+
+  // Handle Image Upload
+  if (imageFile && imageFile.size > 0) {
+    // Server-side size validation (1MB)
+    if (imageFile.size > 1024 * 1024) {
+      throw new Error("Image size must be less than 1MB");
+    }
+
+    const bytes = await imageFile.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    imageData = `data:${imageFile.type};base64,${buffer.toString('base64')}`;
+  }
 
   const client = await clientPromise;
   const db = client.db(DATABASE_NAME);
@@ -32,7 +46,7 @@ export async function createNews(formData: FormData) {
     content,
     excerpt,
     lang,
-    image,
+    image: imageData,
     date: new Date().toISOString(),
     slug: title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
   });

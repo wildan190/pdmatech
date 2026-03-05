@@ -8,13 +8,16 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Globe } from 'lucide-react';
+import { Plus, Trash2, Globe, Upload, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function NewsManagement() {
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fileError, setFileError] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -27,13 +30,37 @@ export default function NewsManagement() {
     setLoading(false);
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setFileError(null);
+    if (file) {
+      if (file.size > 1024 * 1024) {
+        setFileError("File size exceeds 1MB. Please choose a smaller image.");
+        e.target.value = ''; // Reset input
+      }
+    }
+  };
+
   const handleAddNews = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (fileError) return;
+
+    setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
-    await createNews(formData);
-    toast({ title: "News Created", description: "Successfully added new insight news." });
-    setIsDialogOpen(false);
-    loadNews();
+    try {
+      await createNews(formData);
+      toast({ title: "News Created", description: "Successfully added new insight news." });
+      setIsDialogOpen(false);
+      loadNews();
+    } catch (error: any) {
+      toast({ 
+        variant: "destructive", 
+        title: "Error", 
+        description: error.message || "Failed to create news." 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleDelete = async (id: string) => {
@@ -58,12 +85,12 @@ export default function NewsManagement() {
               Add News Article
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl">
+          <DialogContent className="max-w-2xl overflow-y-auto max-h-[90vh]">
             <DialogHeader>
               <DialogTitle>Add New News Article</DialogTitle>
             </DialogHeader>
             <form onSubmit={handleAddNews} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Language</label>
                   <select name="lang" className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:ring-2 focus:ring-primary outline-none" required>
@@ -73,8 +100,21 @@ export default function NewsManagement() {
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Image URL (Optional)</label>
-                  <Input name="image" placeholder="https://..." />
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <Upload className="w-4 h-4" /> Cover Image (Max 1MB)
+                  </label>
+                  <Input 
+                    name="image" 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleFileChange}
+                    required 
+                  />
+                  {fileError && (
+                    <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3" /> {fileError}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="space-y-2">
@@ -89,7 +129,9 @@ export default function NewsManagement() {
                 <label className="text-sm font-medium">Content (Markdown supported)</label>
                 <Textarea name="content" className="min-h-[200px]" placeholder="Full article content..." required />
               </div>
-              <Button type="submit" className="w-full">Create Article</Button>
+              <Button type="submit" className="w-full" disabled={isSubmitting || !!fileError}>
+                {isSubmitting ? 'Creating...' : 'Create Article'}
+              </Button>
             </form>
           </DialogContent>
         </Dialog>
