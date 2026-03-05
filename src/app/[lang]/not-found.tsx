@@ -1,15 +1,12 @@
-
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Home, Frown } from 'lucide-react';
 import { getDictionary } from '@/lib/dictionaries';
-import { i18n, Locale } from '@/i18n.config';
+import { Locale } from '@/i18n.config';
 
 export default async function NotFound() {
-    // Using headers() is not supported during static build.
-    // Defaulting to the default locale to prevent build errors.
+    // Defaulting to 'en' for build stability in 404 pages
     const locale: Locale = 'en';
-
     const dictionary = await getDictionary(locale);
     const pageDict = dictionary.notFoundPage;
 

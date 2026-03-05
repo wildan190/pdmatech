@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Plus, Trash2, Globe, Upload, AlertCircle, Tag, Key } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-// Import Jodit CSS - SANGAT PENTING agar editor tampil benar
+// Import Jodit CSS
 import 'jodit/build/jodit.min.css';
 
 // Load Jodit secara dinamis untuk menghindari masalah SSR di Next.js
@@ -29,7 +29,6 @@ export default function NewsManagement() {
   const [content, setContent] = useState('');
   const { toast } = useToast();
 
-  // Konfigurasi lengkap Jodit untuk mendukung Rich Text, Table, List, dan Paste tanpa modal
   const editorConfig = useMemo(() => ({
     readonly: false,
     placeholder: 'Mulai tulis konten berita Anda di sini...',
@@ -42,12 +41,10 @@ export default function NewsManagement() {
     spellcheck: true,
     editorCssClass: "prose max-w-none",
     triggerChangeEvent: true,
-    // Menghilangkan modal "Keep HTML" saat paste
     askBeforePasteHTML: false,
     askBeforePasteFromWord: false,
     defaultActionOnPaste: "insert_as_html",
     processPasteHTML: true,
-    // Konfigurasi tombol toolbar
     buttons: [
       'source', '|',
       'bold', 'italic', 'underline', 'strikethrough', '|',
@@ -58,7 +55,6 @@ export default function NewsManagement() {
       'align', 'undo', 'redo', '|',
       'hr', 'eraser', 'copyformat', 'fullsize'
     ],
-    // Konfigurasi uploader untuk insert gambar sebagai Base64
     uploader: {
       insertImageAsBase64URI: true
     }
