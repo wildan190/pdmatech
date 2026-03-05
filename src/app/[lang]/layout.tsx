@@ -82,7 +82,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
           url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: isId ? 'Logo dan Tagline Micro Padma Nusantara' : (isEn ? 'Micro Padma Nusantara Logo and Tagline' : 'Micro Padma Nusantara 徽标和标语'),
+          alt: isId ? 'Logo dan Tagline Micro Padma Nusantara' : (isEn ? 'Micro Padma Nusantara Logo and Tagline' : 'Micro Padma Nusantara 徽标 and 标语'),
         },
       ],
       locale: isId ? 'id_ID' : (isEn ? 'en_US' : 'zh_CN'),
