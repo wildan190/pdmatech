@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Rss, Newspaper, Calendar, ArrowRight } from "lucide-react";
+import { Rss, Newspaper, Calendar, ArrowRight, Tag } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
@@ -126,9 +126,16 @@ export default async function NewsPage({ params }: { params: { lang: Locale }}) 
                         />
                       </div>
                       <CardHeader>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                          <Calendar className="w-3 h-3" />
-                          {new Date(news.date).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                          <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Calendar className="w-3 h-3" />
+                            {new Date(news.date).toLocaleDateString(lang, { day: 'numeric', month: 'short', year: 'numeric' })}
+                          </div>
+                          {news.tags && news.tags[0] && (
+                            <div className="flex items-center gap-1 text-[10px] uppercase font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">
+                              <Tag className="w-2.5 h-2.5" /> {news.tags[0]}
+                            </div>
+                          )}
                         </div>
                         <CardTitle className="line-clamp-2 leading-tight group-hover:text-primary transition-colors">{news.title}</CardTitle>
                       </CardHeader>
@@ -136,8 +143,10 @@ export default async function NewsPage({ params }: { params: { lang: Locale }}) 
                         <p className="text-sm text-muted-foreground line-clamp-3">{news.excerpt}</p>
                       </CardContent>
                       <CardFooter>
-                        <Button variant="link" className="p-0 h-auto gap-2 group/btn">
-                          {dictionary.common.learnMore} <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                        <Button variant="link" asChild className="p-0 h-auto gap-2 group/btn">
+                          <Link href={`/${lang}/insight/news/${news.slug}`}>
+                            {dictionary.common.learnMore} <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                          </Link>
                         </Button>
                       </CardFooter>
                     </Card>

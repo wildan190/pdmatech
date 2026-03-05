@@ -1,16 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { getNews, createNews, deleteNews } from './actions';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Globe, Upload, AlertCircle } from 'lucide-react';
+import { Plus, Trash2, Globe, Upload, AlertCircle, Tag, Key } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
+// Load Jodit dynamically to avoid SSR issues
+const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
 
 export default function NewsManagement() {
   const [news, setNews] = useState<any[]>([]);
@@ -18,7 +20,23 @@ export default function NewsManagement() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileError, setFileError] = useState<string | null>(null);
+  const [content, setContent] = useState('');
   const { toast } = useToast();
+
+  const editorConfig = useMemo(() => ({
+    readonly: false,
+    placeholder: 'Start writing your news content here...',
+    height: 400,
+    buttons: [
+      'bold', 'italic', 'underline', 'strikethrough', '|',
+      'ul', 'ol', '|',
+      'outdent', 'indent', '|',
+      'font', 'fontsize', 'brush', 'paragraph', '|',
+      'image', 'table', 'link', '|',
+      'align', 'undo', 'redo', '|',
+      'hr', 'eraser', 'fullsize'
+    ],
+  }), []);
 
   useEffect(() => {
     loadNews();
@@ -33,11 +51,9 @@ export default function NewsManagement() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setFileError(null);
-    if (file) {
-      if (file.size > 1024 * 1024) {
-        setFileError("File size exceeds 1MB. Please choose a smaller image.");
-        e.target.value = ''; // Reset input
-      }
+    if (file && file.size > 1024 * 1024) {
+      setFileError("File size exceeds 1MB. Please choose a smaller image.");
+      e.target.value = '';
     }
   };
 
@@ -47,10 +63,13 @@ export default function NewsManagement() {
 
     setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
+    formData.append('content', content); // Add Jodit content
+
     try {
       await createNews(formData);
       toast({ title: "News Created", description: "Successfully added new insight news." });
       setIsDialogOpen(false);
+      setContent('');
       loadNews();
     } catch (error: any) {
       toast({ 
@@ -76,7 +95,7 @@ export default function NewsManagement() {
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-3xl font-headline font-bold">News Management</h2>
-          <p className="text-muted-foreground">Manage your insight news articles.</p>
+          <p className="text-muted-foreground">Manage your insight news articles with SEO features.</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -85,7 +104,7 @@ export default function NewsManagement() {
               Add News Article
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl overflow-y-auto max-h-[90vh]">
+          <DialogContent className="max-w-4xl overflow-y-auto max-h-[90vh]">
             <DialogHeader>
               <DialogTitle>Add New News Article</DialogTitle>
             </DialogHeader>
@@ -117,18 +136,43 @@ export default function NewsManagement() {
                   )}
                 </div>
               </div>
+
               <div className="space-y-2">
                 <label className="text-sm font-medium">Title</label>
                 <Input name="title" placeholder="News Title" required />
               </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <Tag className="w-4 h-4" /> Tags (Comma separated)
+                  </label>
+                  <Input name="tags" placeholder="tech, iot, enterprise" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <Key className="w-4 h-4" /> SEO Keywords
+                  </label>
+                  <Input name="keywords" placeholder="Keywords for search engines" />
+                </div>
+              </div>
+
               <div className="space-y-2">
                 <label className="text-sm font-medium">Excerpt</label>
                 <Input name="excerpt" placeholder="Short summary for the list view" required />
               </div>
+
               <div className="space-y-2">
-                <label className="text-sm font-medium">Content (Markdown supported)</label>
-                <Textarea name="content" className="min-h-[200px]" placeholder="Full article content..." required />
+                <label className="text-sm font-medium">Full Content</label>
+                <div className="border rounded-md overflow-hidden bg-white text-black">
+                  <JoditEditor
+                    value={content}
+                    config={editorConfig}
+                    onBlur={newContent => setContent(newContent)}
+                  />
+                </div>
               </div>
+
               <Button type="submit" className="w-full" disabled={isSubmitting || !!fileError}>
                 {isSubmitting ? 'Creating...' : 'Create Article'}
               </Button>
@@ -152,7 +196,7 @@ export default function NewsManagement() {
               {loading ? (
                 <TableRow><TableCell colSpan={4} className="text-center py-10">Loading articles...</TableCell></TableRow>
               ) : news.length === 0 ? (
-                <TableRow><TableCell colSpan={4} className="text-center py-10">No news articles found. Add your first one!</TableCell></TableRow>
+                <TableRow><TableCell colSpan={4} className="text-center py-10">No news articles found.</TableCell></TableRow>
               ) : (
                 news.map((item) => (
                   <TableRow key={item._id}>
