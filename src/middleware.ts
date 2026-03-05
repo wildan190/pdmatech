@@ -1,4 +1,3 @@
-
 import { NextResponse, type NextRequest } from 'next/server';
 import { i18n } from './i18n.config';
 import { match as matchLocale } from '@formatjs/intl-localematcher';
@@ -29,9 +28,26 @@ export function middleware(request: NextRequest) {
     const newUrl = new URL(`https://${newHost}${pathname}${search}`);
     return NextResponse.redirect(newUrl, 301);
   }
+
+  // Auth protection for CMS
+  if (pathname.startsWith('/cms') && pathname !== '/cms/login') {
+    const session = request.cookies.get('mpn_session')?.value;
+    if (session !== 'authenticated') {
+      return NextResponse.redirect(new URL('/cms/login', request.url));
+    }
+  }
   
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-pathname', pathname);
+
+  // Skip locale redirect for CMS routes
+  if (pathname.startsWith('/cms')) {
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
+  }
 
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`

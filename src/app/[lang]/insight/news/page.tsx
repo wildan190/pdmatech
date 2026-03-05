@@ -1,11 +1,13 @@
-
 import { Metadata } from 'next';
-import { Rss, SearchX } from "lucide-react";
+import { Rss, Newspaper, Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import clientPromise from '@/lib/mongodb';
+import { Button } from '@/components/ui/button';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/news';
@@ -21,16 +23,16 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 
   const descriptions: Record<Locale, string> = {
-    en: 'Our news section is being updated with the latest stories and updates from Micro Padma Nusantara. Please check back soon.',
-    id: 'Bagian berita kami sedang diperbarui dengan cerita dan pembaruan terbaru dari Micro Padma Nusantara. Silakan periksa kembali segera.',
-    zh: '我们的新闻版块正在更新来自 Micro Padma Nusantara 的最新故事和动态。请稍后回来查看。'
+    en: 'Stay updated with the latest ICT and IoT trends, company milestones, and technology innovations from Micro Padma Nusantara.',
+    id: 'Tetap terinformasi dengan tren ICT dan IoT terbaru, tonggak pencapaian perusahaan, dan inovasi teknologi dari Micro Padma Nusantara.',
+    zh: '了解 Micro Padma Nusantara 的最新 ICT 和物联网趋势、公司里程碑和技术创新。'
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
   const title = titles[lang];
 
   return {
-    title,
+    title: `${title} - Micro Padma Nusantara`,
     description: descriptions[lang],
     alternates: {
       canonical: canonicalUrl,
@@ -49,12 +51,30 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 }
 
+async function getNewsFromDB(lang: string) {
+  try {
+    const client = await clientPromise;
+    const db = client.db('mpn_cms');
+    const news = await db.collection('news').find({ lang }).sort({ date: -1 }).toArray();
+    return news.map(item => ({
+      ...item,
+      _id: item._id.toString(),
+    }));
+  } catch (e) {
+    console.error("Failed to fetch news from DB:", e);
+    return [];
+  }
+}
+
 export default async function NewsPage({ params }: { params: { lang: Locale }}) {
   const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.constructionPage;
+  
+  const newsItems = await getNewsFromDB(lang);
+
   return (
-    <main className="flex-grow">
+    <main className="flex-grow bg-background">
        <section className="bg-secondary/50 py-4 border-b">
           <div className="container">
               <Breadcrumb>
@@ -78,9 +98,11 @@ export default async function NewsPage({ params }: { params: { lang: Locale }}) 
       </section>
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-24 text-center">
-        <div className="container">
-            <Rss className="mx-auto h-16 w-16 text-primary mb-4" />
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-secondary/30 to-background">
+        <div className="container text-center">
+            <div className="inline-block p-3 bg-primary/10 rounded-full mb-6">
+                <Rss className="h-8 w-8 text-primary" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.breadcrumb.news}</h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
                 {dictionary.insightSubMenu.news.description}
@@ -91,13 +113,45 @@ export default async function NewsPage({ params }: { params: { lang: Locale }}) 
       {/* Content Section */}
       <section className="pb-20 lg:pb-24">
           <div className="container">
-              <Card className="max-w-3xl mx-auto shadow-none border-dashed">
-                  <CardContent className="p-10 text-center">
-                      <SearchX className="mx-auto h-16 w-16 text-muted-foreground/50 mb-4" />
-                      <h3 className="text-xl font-semibold text-muted-foreground">{dictionary.careerPage.openings.notAvailable}</h3>
-                      <p className="text-muted-foreground mt-2">{pageDict.newsDescription}</p>
-                  </CardContent>
-              </Card>
+              {newsItems.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {newsItems.map((news) => (
+                    <Card key={news._id} className="group overflow-hidden flex flex-col shadow-lg border-0 bg-card hover:shadow-primary/10 transition-shadow">
+                      <div className="relative h-56 w-full overflow-hidden">
+                        <Image 
+                          src={news.image} 
+                          alt={news.title} 
+                          fill 
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <CardHeader>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+                          <Calendar className="w-3 h-3" />
+                          {new Date(news.date).toLocaleDateString(lang, { day: 'numeric', month: 'long', year: 'numeric' })}
+                        </div>
+                        <CardTitle className="line-clamp-2 leading-tight group-hover:text-primary transition-colors">{news.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex-grow">
+                        <p className="text-sm text-muted-foreground line-clamp-3">{news.excerpt}</p>
+                      </CardContent>
+                      <CardFooter>
+                        <Button variant="link" className="p-0 h-auto gap-2 group/btn">
+                          {dictionary.common.learnMore} <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <Card className="max-w-3xl mx-auto shadow-none border-dashed bg-secondary/10">
+                    <CardContent className="p-16 text-center">
+                        <Newspaper className="mx-auto h-16 w-16 text-muted-foreground/30 mb-4" />
+                        <h3 className="text-xl font-semibold text-muted-foreground">{pageDict.newsDescription}</h3>
+                        <p className="text-muted-foreground mt-2 max-w-md mx-auto">Stay tuned for future updates and stories from our innovation journey.</p>
+                    </CardContent>
+                </Card>
+              )}
           </div>
       </section>
     </main>
