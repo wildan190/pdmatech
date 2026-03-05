@@ -11,9 +11,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Plus, Trash2, Globe, Upload, AlertCircle, Tag, Key } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-// Import Jodit CSS
-import 'jodit/build/jodit.min.css';
-
 // Load Jodit secara dinamis untuk menghindari masalah SSR di Next.js
 const JoditEditor = dynamic(() => import('jodit-react'), { 
   ssr: false,
@@ -45,6 +42,10 @@ export default function NewsManagement() {
     askBeforePasteFromWord: false,
     defaultActionOnPaste: "insert_as_html",
     processPasteHTML: true,
+    cleanHTML: {
+      fillEmptyParagraph: false,
+      denyTags: ""
+    },
     buttons: [
       'source', '|',
       'bold', 'italic', 'underline', 'strikethrough', '|',

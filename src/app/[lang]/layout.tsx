@@ -6,7 +6,6 @@ import Footer from '@/components/landing/footer';
 import Script from 'next/script';
 import CookieConsent from '@/components/shared/cookie-consent';
 import { Toaster } from '@/components/ui/toaster';
-import { ReactNode } from 'react';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Newspaper, LayoutDashboard, LogOut, Globe } from 'lucide-react';
+import { Newspaper, LogOut, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function CMSLayout({ children }: { children: React.ReactNode }) {
@@ -23,6 +23,9 @@ export default function CMSLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-background flex">
+      {/* Jodit CSS from CDN to avoid build resolution issues */}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jodit/4.2.47/jodit.min.css" />
+      
       {/* Sidebar */}
       <aside className="w-64 border-r bg-card flex flex-col hidden md:flex">
         <div className="p-6 border-b">
