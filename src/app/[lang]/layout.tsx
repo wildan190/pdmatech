@@ -7,19 +7,7 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import CookieConsent from '@/components/shared/cookie-consent';
 import { Toaster } from '@/components/ui/toaster';
-import { Inter, Space_Grotesk } from 'next/font/google';
 import { ReactNode } from 'react';
-import '../globals.css';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-});
 
 const baseUrl = 'https://mpnsolutions.my.id';
 
@@ -200,24 +188,20 @@ export default async function LanguageLayout({
   };
 
   return (
-    <html lang={params.lang} className={`${inter.variable} ${spaceGrotesk.variable} scroll-smooth`}>
-      <body className="font-body antialiased">
-        <Script
-          id="schema-markup"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify([localBusinessSchema, websiteSchema]),
-          }}
-        />
-        <Header dictionary={dictionary} lang={params.lang} />
-        {children}
-        <WhatsAppButton dictionary={dictionary.whatsapp} />
-        <Footer dictionary={dictionary} lang={params.lang} />
-        <CookieConsent dictionary={dictionary} lang={params.lang} />
-        <Toaster />
-      </body>
-    </html>
+    <>
+      <Script
+        id="schema-markup"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([localBusinessSchema, websiteSchema]),
+        }}
+      />
+      <Header dictionary={dictionary} lang={params.lang} />
+      {children}
+      <WhatsAppButton dictionary={dictionary.whatsapp} />
+      <Footer dictionary={dictionary} lang={params.lang} />
+      <CookieConsent dictionary={dictionary} lang={params.lang} />
+      <Toaster />
+    </>
   );
 }
-
-    
