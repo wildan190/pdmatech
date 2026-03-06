@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { useState, useTransition } from 'react';
+import { useTransition } from 'react';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -66,23 +66,6 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
           title: "Inquiry Sent Successfully",
           description: "We have received your message and will get back to you soon.",
         });
-
-        // Redirect to WhatsApp as well for direct interaction
-        const phoneNumber = '62811144793';
-        const messageText = `
-*New Inquiry from Website*
-
-*Name:* ${values.name}
-*Email:* ${values.email}
-*Company:* ${values.company || '-'}
-*Industry:* ${values.industry || '-'}
-
-*Message:*
-${values.message}
-        `.trim();
-
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
-        window.open(whatsappUrl, '_blank');
         
         form.reset();
       } else {
