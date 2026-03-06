@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import { Calendar, Tag, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -102,9 +103,10 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             <h1 className="text-4xl md:text-5xl font-bold font-headline leading-tight">{news.title}</h1>
           </header>
 
+          {/* Konten Berita dengan styling khusus untuk list dan tabel */}
           <div 
             className="prose prose-lg dark:prose-invert max-w-none prose-primary 
-            prose-headings:font-headline prose-img:rounded-xl prose-a:text-primary"
+            prose-headings:font-headline prose-img:rounded-xl prose-a:text-primary news-content"
             dangerouslySetInnerHTML={{ __html: news.content }}
           />
         </div>

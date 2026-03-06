@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -68,6 +69,31 @@
   }
   section {
     scroll-margin-top: 80px; /* header height */
+  }
+
+  /* Fix for Typography lists when Preflight is on */
+  .prose ul, .news-content ul {
+    list-style-type: disc !important;
+    padding-left: 1.5em !important;
+    margin-bottom: 1em !important;
+  }
+  .prose ol, .news-content ol {
+    list-style-type: decimal !important;
+    padding-left: 1.5em !important;
+    margin-bottom: 1em !important;
+  }
+  .prose li, .news-content li {
+    display: list-item !important;
+    margin-bottom: 0.5em !important;
+  }
+  .prose table, .news-content table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-bottom: 1em !important;
+  }
+  .prose td, .prose th, .news-content td, .news-content th {
+    border: 1px solid hsl(var(--border)) !important;
+    padding: 0.5rem !important;
   }
 }
 
