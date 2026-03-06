@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Newspaper, LogOut, Globe, Mail } from 'lucide-react';
+import { Newspaper, LogOut, Globe, Mail, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function CMSLayout({ children }: { children: React.ReactNode }) {
@@ -19,6 +19,7 @@ export default function CMSLayout({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { name: 'News Management', href: '/cms/news', icon: <Newspaper className="w-4 h-4" /> },
+    { name: 'Article Management', href: '/cms/articles', icon: <FileText className="w-4 h-4" /> },
     { name: 'Inquiries / Leads', href: '/cms/inquiries', icon: <Mail className="w-4 h-4" /> },
   ];
 

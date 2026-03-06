@@ -1,24 +1,28 @@
-
 import { Metadata } from 'next';
-import { Newspaper, SearchX } from "lucide-react";
+import { Newspaper, Calendar, ArrowRight, Tag, Search, FileText } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import clientPromise from '@/lib/mongodb';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { unstable_cache } from 'next/cache';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/article';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const lang = params.lang;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
-  const title = dictionary.constructionPage.breadcrumb.article;
+  const title = dictionary.insightSubMenu.article.title;
   
   const descriptions: Record<Locale, string> = {
-    en: 'Our articles page is currently under construction. Please check back soon for in-depth analysis on ICT, IoT, and business technology trends.',
-    id: 'Halaman artikel kami sedang dalam pembangunan. Silakan periksa kembali segera untuk analisis mendalam tentang tren ICT, IoT, dan teknologi bisnis.',
-    zh: '我们的文章页面正在建设中。请稍后回来查看有关ICT、物联网和商业技术趋势的深入分析。'
+    en: 'Read in-depth articles about ICT, IoT, and digital transformation trends from Micro Padma Nusantara experts.',
+    id: 'Baca artikel mendalam tentang tren ICT, IoT, dan transformasi digital dari para ahli Micro Padma Nusantara.',
+    zh: '阅读来自 Micro Padma Nusantara 专家的有关 ICT、物联网和数字化转型趋势的深入文章。'
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -43,13 +47,58 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 }
 
-export default async function ArticlePage({ params }: { params: { lang: Locale }}) {
-  const lang = params.lang;
+// Caching query dengan unstable_cache
+const getCachedArticles = unstable_cache(
+  async (lang: string, query: string = '') => {
+    try {
+      const client = await clientPromise;
+      const db = client.db('mpn_cms');
+      
+      const filter: any = { lang };
+      if (query) {
+        filter.$or = [
+          { title: { $regex: query, $options: 'i' } },
+          { tags: { $regex: query, $options: 'i' } }
+        ];
+      }
+
+      const articles = await db.collection('articles')
+        .find(filter)
+        .project({ content: 0 }) 
+        .sort({ date: -1 })
+        .limit(12)
+        .toArray();
+
+      return articles.map(item => ({
+        ...item,
+        _id: item._id.toString(),
+      }));
+    } catch (e) {
+      console.error("Failed to fetch articles from DB:", e);
+      return [];
+    }
+  },
+  ['articles-list'],
+  { tags: ['articles'] }
+);
+
+export default async function ArticlePage({ 
+  params, 
+  searchParams 
+}: { 
+  params: Promise<{ lang: Locale }>,
+  searchParams: Promise<{ q?: string }>
+}) {
+  const { lang } = await params;
+  const { q: query = '' } = await searchParams;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.constructionPage;
+  
+  const articleItems = await getCachedArticles(lang, query);
+
   return (
-    <main className="flex-grow">
-      <section className="bg-secondary/50 py-4 border-b">
+    <main className="flex-grow bg-background">
+       <section className="bg-secondary/50 py-4 border-b">
           <div className="container">
               <Breadcrumb>
                   <BreadcrumbList>
@@ -72,26 +121,91 @@ export default async function ArticlePage({ params }: { params: { lang: Locale }
       </section>
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-24 text-center">
-        <div className="container">
-            <Newspaper className="mx-auto h-16 w-16 text-primary mb-4" />
+      <section className="py-16 lg:py-20 bg-gradient-to-b from-secondary/30 to-background">
+        <div className="container text-center">
+            <div className="inline-block p-3 bg-primary/10 rounded-full mb-6">
+                <FileText className="h-8 w-8 text-primary" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.breadcrumb.article}</h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
                 {dictionary.insightSubMenu.article.description}
             </p>
+
+            {/* Search Bar */}
+            <div className="mt-10 max-w-xl mx-auto">
+              <form action={`/${lang}/insight/article`} method="GET" className="relative group">
+                <Input 
+                  name="q"
+                  defaultValue={query}
+                  placeholder={lang === 'id' ? "Cari artikel atau topik..." : "Search articles or topics..."}
+                  className="pl-12 h-14 bg-background border-2 group-focus-within:border-primary transition-all shadow-sm rounded-full"
+                />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 group-focus-within:text-primary transition-colors" />
+                <Button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full h-10">
+                  {lang === 'id' ? 'Cari' : 'Search'}
+                </Button>
+              </form>
+            </div>
         </div>
       </section>
 
       {/* Content Section */}
       <section className="pb-20 lg:pb-24">
           <div className="container">
-              <Card className="max-w-3xl mx-auto shadow-none border-dashed">
-                  <CardContent className="p-10 text-center">
-                      <SearchX className="mx-auto h-16 w-16 text-muted-foreground/50 mb-4" />
-                      <h3 className="text-xl font-semibold text-muted-foreground">{dictionary.careerPage.openings.notAvailable}</h3>
-                      <p className="text-muted-foreground mt-2">{pageDict.description}</p>
-                  </CardContent>
-              </Card>
+              {articleItems.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {articleItems.map((article) => (
+                    <Card key={article._id} className="group overflow-hidden flex flex-col shadow-lg border-0 bg-card hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
+                      <div className="relative h-56 w-full overflow-hidden">
+                        <Image 
+                          src={article.image} 
+                          alt={article.title} 
+                          fill 
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <CardHeader>
+                        <div className="flex flex-wrap items-center gap-3 mb-2">
+                          <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Calendar className="w-3 h-3" />
+                            {new Date(article.date).toLocaleDateString(lang, { day: 'numeric', month: 'short', year: 'numeric' })}
+                          </div>
+                          {article.tags && article.tags[0] && (
+                            <div className="flex items-center gap-1 text-[10px] uppercase font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">
+                              <Tag className="w-2.5 h-2.5" /> {article.tags[0]}
+                            </div>
+                          )}
+                        </div>
+                        <CardTitle className="line-clamp-2 leading-tight group-hover:text-primary transition-colors text-xl">{article.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex-grow">
+                        <p className="text-sm text-muted-foreground line-clamp-3">{article.excerpt}</p>
+                      </CardContent>
+                      <CardFooter>
+                        <Button variant="link" asChild className="p-0 h-auto gap-2 group/btn font-semibold">
+                          <Link href={`/${lang}/insight/article/${article.slug}`}>
+                            {dictionary.common.learnMore} <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                          </Link>
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <Card className="max-w-3xl mx-auto shadow-none border-dashed bg-secondary/10">
+                    <CardContent className="p-16 text-center">
+                        <Newspaper className="mx-auto h-16 w-16 text-muted-foreground/30 mb-4" />
+                        <h3 className="text-xl font-semibold text-muted-foreground">
+                          {query ? (lang === 'id' ? 'Artikel tidak ditemukan' : 'No articles found') : pageDict.description}
+                        </h3>
+                        {query && (
+                          <Button variant="outline" asChild className="mt-6">
+                            <Link href={`/${lang}/insight/article`}>{lang === 'id' ? 'Kembali ke Semua Artikel' : 'Back to All Articles'}</Link>
+                          </Button>
+                        )}
+                    </CardContent>
+                </Card>
+              )}
           </div>
       </section>
     </main>
