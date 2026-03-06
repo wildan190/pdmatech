@@ -14,7 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 // Load Jodit secara dinamis untuk menghindari masalah SSR di Next.js
 const JoditEditor = dynamic(() => import('jodit-react'), { 
   ssr: false,
-  loading: () => <div className="h-[400px] w-full bg-secondary/20 animate-pulse rounded-md flex items-center justify-center">Loading Editor...</div>
+  loading: () => <div className="h-[450px] w-full bg-secondary/20 animate-pulse rounded-md flex items-center justify-center">Loading Editor...</div>
 });
 
 export default function NewsManagement() {
@@ -124,6 +124,15 @@ export default function NewsManagement() {
 
   return (
     <div className="space-y-6">
+      {/* CSS Fix untuk Numerik & List di Jodit (Mengatasi Tailwind Reset) */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .jodit-wysiwyg ul { list-style-type: disc !important; padding-left: 2.5rem !important; margin: 1em 0 !important; }
+        .jodit-wysiwyg ol { list-style-type: decimal !important; padding-left: 2.5rem !important; margin: 1em 0 !important; }
+        .jodit-wysiwyg li { display: list-item !important; }
+        .jodit-wysiwyg table { border-collapse: collapse !important; width: 100% !important; border: 1px solid #ccc !important; }
+        .jodit-wysiwyg td, .jodit-wysiwyg th { border: 1px solid #ccc !important; padding: 8px !important; }
+      `}} />
+
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-3xl font-headline font-bold">Manajemen Berita</h2>
