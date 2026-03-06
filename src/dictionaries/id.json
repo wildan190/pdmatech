@@ -169,6 +169,8 @@
                 "namePlaceholder": "John Doe",
                 "email": "Alamat Email",
                 "emailPlaceholder": "anda@contoh.com",
+                "whatsapp": "Nomor WhatsApp",
+                "whatsappPlaceholder": "misal: 08123456789",
                 "company": "Perusahaan",
                 "companyPlaceholder": "Perusahaan Anda",
                 "industry": "Industri",
@@ -379,7 +381,7 @@
         "overview": {
             "pretitle": "MASA DEPAN TERHUBUNG",
             "title": "Buka Kekuatan Data Real-Time",
-            "description": "Internet of Things (IoT) merevolusi industri dengan menjembatani kesenjangan antara dunia fisik dan digital. Dengan menanamkan sensor dan konektivitas ke dalam peralatan, lingkungan, dan produk Anda, Anda dapat mengumpulkan data real-time yang tak ternilai. Data ini memberdayakan Anda untuk mengotomatiskan proses, memprediksi kegagalan, mengurangi biaya, dan menciptakan layanan baru yang inovatif yang sebelumnya tidak mungkin."
+            "description": "Internet of Things (IoT) merevolusi industri dengan menjembatani kesenjangan antara dunia fisik dan digital. Dengan menanamkan sensor dan konektivitas ke dalam peralatan, lingkungan, dan produk Anda, Anda dapat mengumpulkan data real-time yang tak tertanda. Data ini memberdayakan Anda untuk mengotomatiskan proses, memprediksi kegagalan, mengurangi biaya, dan menciptakan layanan baru yang inovatif yang sebelumnya tidak mungkin."
         },
         "applications": {
             "title": "Aplikasi IoT di Berbagai Industri",
@@ -561,18 +563,18 @@
             },
             "passion": {
                 "title": "Semangat Berpusat pada Klien",
-                "description": "Kesuksesan Anda adalah kesuksesan kami。 Kami bersemangat untuk memberikan nilai dan membangun kemitraan jangka panjang berdasarkan kepercayaan。"
+                "description": "Kesuksesan Anda adalah kesuksesan kami. Kami bersemangat untuk memberikan nilai dan membangun kemitraan jangka panjang berdasarkan kepercayaan."
             }
         },
         "openings": {
             "title": "Lowongan Saat Ini",
-            "description": "Kami selalu mencari individu berbakat。 Meskipun saat ini tidak ada posisi terbuka, kami akan senang mendengar dari Anda。",
+            "description": "Kami selalu mencari individu berbakat. Meskipun saat ini tidak ada posisi terbuka, kami akan senang mendengar dari Anda.",
             "notAvailable": "Tidak Ada Posisi yang Tersedia Saat Ini",
-            "checkBack": "Silakan periksa kembali nanti untuk peluang di masa depan。"
+            "checkBack": "Silakan periksa kembali nanti untuk peluang di masa depan."
         },
         "cta": {
             "title": "Tidak Menemukan Peran untuk Anda?",
-            "description": "Kami selalu terbuka untuk terhubung dengan talenta luar biasa。 Jika Anda yakin keahlian Anda dapat membuat perbedaan, kirimkan resume Anda!",
+            "description": "Kami selalu terbuka untuk terhubung dengan talenta luar biasa. Jika Anda yakin keahlian Anda dapat membuat perbedaan, kirimkan resume Anda!",
             "button": "Kirim Resume Anda"
         }
     },

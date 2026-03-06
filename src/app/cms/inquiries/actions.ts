@@ -1,3 +1,4 @@
+
 'use server';
 
 import clientPromise from '@/lib/mongodb';
@@ -10,6 +11,7 @@ const COLLECTION_NAME = 'inquiries';
 export async function submitInquiry(data: {
   name: string;
   email: string;
+  whatsapp: string;
   company?: string;
   industry?: string;
   message: string;

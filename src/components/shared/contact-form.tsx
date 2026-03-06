@@ -1,3 +1,4 @@
+
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,6 +21,9 @@ const formSchema = z.object({
   }),
   email: z.string().email({
     message: 'Please enter a valid email address.',
+  }),
+  whatsapp: z.string().min(8, {
+    message: 'Please enter a valid WhatsApp number.',
   }),
   company: z.string().optional(),
   industry: z.string().optional(),
@@ -44,6 +48,7 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
     defaultValues: {
       name: '',
       email: '',
+      whatsapp: '',
       company: '',
       industry: '',
       message: '',
@@ -56,6 +61,7 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
       const result = await submitInquiry({
         name: values.name,
         email: values.email,
+        whatsapp: values.whatsapp,
         company: values.company,
         industry: values.industry,
         message: values.message,
@@ -112,18 +118,18 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
                 />
                 <FormField
                     control={form.control}
-                    name="company"
+                    name="whatsapp"
                     render={({ field }) => (
                     <FormItem>
-                        <FormLabel>{dictionary.form.company}</FormLabel>
+                        <FormLabel>{dictionary.form.whatsapp}</FormLabel>
                         <FormControl>
-                        <Input placeholder={dictionary.form.companyPlaceholder} {...field} disabled={isPending} />
+                        <Input placeholder={dictionary.form.whatsappPlaceholder} {...field} disabled={isPending} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
                     )}
                 />
-                    <FormField
+                <FormField
                     control={form.control}
                     name="industry"
                     render={({ field }) => (
@@ -137,6 +143,19 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
                     )}
                 />
                 </div>
+                <FormField
+                    control={form.control}
+                    name="company"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>{dictionary.form.company}</FormLabel>
+                        <FormControl>
+                        <Input placeholder={dictionary.form.companyPlaceholder} {...field} disabled={isPending} />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
                 <FormField
                 control={form.control}
                 name="message"

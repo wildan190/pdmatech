@@ -169,6 +169,8 @@
                 "namePlaceholder": "John Doe",
                 "email": "Email Address",
                 "emailPlaceholder": "you@example.com",
+                "whatsapp": "WhatsApp Number",
+                "whatsappPlaceholder": "e.g., +628123456789",
                 "company": "Company",
                 "companyPlaceholder": "Your Company",
                 "industry": "Industry",
