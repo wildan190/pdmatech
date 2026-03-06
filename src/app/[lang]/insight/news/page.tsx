@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Rss, Newspaper, Calendar, ArrowRight, Tag } from "lucide-react";
+import { Rss, Newspaper, Calendar, ArrowRight, Tag, Search } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
@@ -8,12 +8,13 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import clientPromise from '@/lib/mongodb';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/news';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const lang = params.lang;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   
   const titles: Record<Locale, string> = {
@@ -51,11 +52,27 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 }
 
-async function getNewsFromDB(lang: string) {
+async function getNewsFromDB(lang: string, query: string = '') {
   try {
     const client = await clientPromise;
     const db = client.db('mpn_cms');
-    const news = await db.collection('news').find({ lang }).sort({ date: -1 }).toArray();
+    
+    // Query ringan: Hanya ambil yang diperlukan, batasi 12 item (Pagination ready)
+    const filter: any = { lang };
+    if (query) {
+      filter.$or = [
+        { title: { $regex: query, $options: 'i' } },
+        { tags: { $regex: query, $options: 'i' } }
+      ];
+    }
+
+    const news = await db.collection('news')
+      .find(filter)
+      .project({ content: 0 }) // Optimasi: Jangan ambil konten besar di halaman daftar
+      .sort({ date: -1 })
+      .limit(12)
+      .toArray();
+
     return news.map(item => ({
       ...item,
       _id: item._id.toString(),
@@ -66,12 +83,19 @@ async function getNewsFromDB(lang: string) {
   }
 }
 
-export default async function NewsPage({ params }: { params: { lang: Locale }}) {
-  const lang = params.lang;
+export default async function NewsPage({ 
+  params, 
+  searchParams 
+}: { 
+  params: Promise<{ lang: Locale }>,
+  searchParams: Promise<{ q?: string }>
+}) {
+  const { lang } = await params;
+  const { q: query = '' } = await searchParams;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.constructionPage;
   
-  const newsItems = await getNewsFromDB(lang);
+  const newsItems = await getNewsFromDB(lang, query);
 
   return (
     <main className="flex-grow bg-background">
@@ -98,7 +122,7 @@ export default async function NewsPage({ params }: { params: { lang: Locale }}) 
       </section>
 
       {/* Hero Section */}
-      <section className="py-20 lg:py-24 bg-gradient-to-b from-secondary/30 to-background">
+      <section className="py-16 lg:py-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="container text-center">
             <div className="inline-block p-3 bg-primary/10 rounded-full mb-6">
                 <Rss className="h-8 w-8 text-primary" />
@@ -107,6 +131,27 @@ export default async function NewsPage({ params }: { params: { lang: Locale }}) 
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
                 {dictionary.insightSubMenu.news.description}
             </p>
+
+            {/* Search Bar - Server Component Form */}
+            <div className="mt-10 max-w-xl mx-auto">
+              <form action={`/${lang}/insight/news`} method="GET" className="relative group">
+                <Input 
+                  name="q"
+                  defaultValue={query}
+                  placeholder={lang === 'id' ? "Cari berita atau teknologi..." : "Search news or technology..."}
+                  className="pl-12 h-14 bg-background border-2 group-focus-within:border-primary transition-all shadow-sm rounded-full"
+                />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5 group-focus-within:text-primary transition-colors" />
+                <Button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full h-10">
+                  {lang === 'id' ? 'Cari' : 'Search'}
+                </Button>
+              </form>
+              {query && (
+                <p className="mt-4 text-sm text-muted-foreground animate-in fade-in">
+                  {lang === 'id' ? 'Menampilkan hasil untuk' : 'Showing results for'}: <span className="font-bold text-primary italic">"{query}"</span>
+                </p>
+              )}
+            </div>
         </div>
       </section>
 
@@ -116,7 +161,7 @@ export default async function NewsPage({ params }: { params: { lang: Locale }}) 
               {newsItems.length > 0 ? (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {newsItems.map((news) => (
-                    <Card key={news._id} className="group overflow-hidden flex flex-col shadow-lg border-0 bg-card hover:shadow-primary/10 transition-shadow">
+                    <Card key={news._id} className="group overflow-hidden flex flex-col shadow-lg border-0 bg-card hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
                       <div className="relative h-56 w-full overflow-hidden">
                         <Image 
                           src={news.image} 
@@ -137,13 +182,13 @@ export default async function NewsPage({ params }: { params: { lang: Locale }}) 
                             </div>
                           )}
                         </div>
-                        <CardTitle className="line-clamp-2 leading-tight group-hover:text-primary transition-colors">{news.title}</CardTitle>
+                        <CardTitle className="line-clamp-2 leading-tight group-hover:text-primary transition-colors text-xl">{news.title}</CardTitle>
                       </CardHeader>
                       <CardContent className="flex-grow">
                         <p className="text-sm text-muted-foreground line-clamp-3">{news.excerpt}</p>
                       </CardContent>
                       <CardFooter>
-                        <Button variant="link" asChild className="p-0 h-auto gap-2 group/btn">
+                        <Button variant="link" asChild className="p-0 h-auto gap-2 group/btn font-semibold">
                           <Link href={`/${lang}/insight/news/${news.slug}`}>
                             {dictionary.common.learnMore} <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                           </Link>
@@ -156,8 +201,17 @@ export default async function NewsPage({ params }: { params: { lang: Locale }}) 
                 <Card className="max-w-3xl mx-auto shadow-none border-dashed bg-secondary/10">
                     <CardContent className="p-16 text-center">
                         <Newspaper className="mx-auto h-16 w-16 text-muted-foreground/30 mb-4" />
-                        <h3 className="text-xl font-semibold text-muted-foreground">{pageDict.newsDescription}</h3>
-                        <p className="text-muted-foreground mt-2 max-w-md mx-auto">Stay tuned for future updates and stories from our innovation journey.</p>
+                        <h3 className="text-xl font-semibold text-muted-foreground">
+                          {query ? (lang === 'id' ? 'Berita tidak ditemukan' : 'No news found') : pageDict.newsDescription}
+                        </h3>
+                        <p className="text-muted-foreground mt-2 max-w-md mx-auto">
+                          {query ? (lang === 'id' ? 'Coba gunakan kata kunci lain.' : 'Try using different keywords.') : 'Stay tuned for future updates and stories from our innovation journey.'}
+                        </p>
+                        {query && (
+                          <Button variant="outline" asChild className="mt-6">
+                            <Link href={`/${lang}/insight/news`}>{lang === 'id' ? 'Kembali ke Semua Berita' : 'Back to All News'}</Link>
+                          </Button>
+                        )}
                     </CardContent>
                 </Card>
               )}
