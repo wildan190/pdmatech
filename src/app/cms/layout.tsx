@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Newspaper, LogOut, Globe } from 'lucide-react';
+import { Newspaper, LogOut, Globe, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function CMSLayout({ children }: { children: React.ReactNode }) {
@@ -19,6 +19,7 @@ export default function CMSLayout({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { name: 'News Management', href: '/cms/news', icon: <Newspaper className="w-4 h-4" /> },
+    { name: 'Inquiries / Leads', href: '/cms/inquiries', icon: <Mail className="w-4 h-4" /> },
   ];
 
   return (
@@ -62,12 +63,19 @@ export default function CMSLayout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-grow flex flex-col">
-        <header className="h-16 border-b bg-background flex items-center justify-between px-8 md:hidden">
-           <h1 className="font-headline font-bold text-xl text-primary">MPN CMS</h1>
-           <Button variant="ghost" size="icon" onClick={handleLogout}><LogOut className="w-5 h-5"/></Button>
+      <main className="flex-grow flex flex-col h-screen overflow-hidden">
+        <header className="h-16 border-b bg-background flex items-center justify-between px-8 shrink-0">
+           <div className="flex items-center gap-4">
+              <h1 className="font-headline font-bold text-xl text-primary md:hidden">MPN CMS</h1>
+              <span className="text-sm font-medium text-muted-foreground hidden md:inline-block">
+                {navItems.find(i => pathname.startsWith(item.href))?.name || 'Dashboard'}
+              </span>
+           </div>
+           <div className="flex items-center gap-4">
+              <Button variant="ghost" size="icon" className="md:hidden" onClick={handleLogout}><LogOut className="w-5 h-5"/></Button>
+           </div>
         </header>
-        <div className="p-8 overflow-auto">
+        <div className="p-8 overflow-y-auto">
           {children}
         </div>
       </main>

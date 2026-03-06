@@ -1,15 +1,18 @@
-
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+import { useState, useTransition } from 'react';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
+import { submitInquiry } from '@/app/cms/inquiries/actions';
+import { useToast } from '@/hooks/use-toast';
+import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -33,6 +36,8 @@ type ContactFormProps = {
 }
 
 const ContactForm = ({ dictionary }: ContactFormProps) => {
+  const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -46,9 +51,25 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const phoneNumber = '62811144793';
-    const messageText = `
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    startTransition(async () => {
+      const result = await submitInquiry({
+        name: values.name,
+        email: values.email,
+        company: values.company,
+        industry: values.industry,
+        message: values.message,
+      });
+
+      if (result.success) {
+        toast({
+          title: "Inquiry Sent Successfully",
+          description: "We have received your message and will get back to you soon.",
+        });
+
+        // Redirect to WhatsApp as well for direct interaction
+        const phoneNumber = '62811144793';
+        const messageText = `
 *New Inquiry from Website*
 
 *Name:* ${values.name}
@@ -58,12 +79,20 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
 
 *Message:*
 ${values.message}
-    `.trim();
+        `.trim();
 
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
-    
-    window.open(whatsappUrl, '_blank');
-    form.reset();
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+        window.open(whatsappUrl, '_blank');
+        
+        form.reset();
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Submission Failed",
+          description: "There was an error saving your inquiry. Please try again.",
+        });
+      }
+    });
   }
 
   return (
@@ -79,7 +108,7 @@ ${values.message}
                     <FormItem>
                         <FormLabel>{dictionary.form.name}</FormLabel>
                         <FormControl>
-                        <Input placeholder={dictionary.form.namePlaceholder} {...field} />
+                        <Input placeholder={dictionary.form.namePlaceholder} {...field} disabled={isPending} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -92,7 +121,7 @@ ${values.message}
                     <FormItem>
                         <FormLabel>{dictionary.form.email}</FormLabel>
                         <FormControl>
-                        <Input placeholder={dictionary.form.emailPlaceholder} {...field} />
+                        <Input placeholder={dictionary.form.emailPlaceholder} {...field} disabled={isPending} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -105,7 +134,7 @@ ${values.message}
                     <FormItem>
                         <FormLabel>{dictionary.form.company}</FormLabel>
                         <FormControl>
-                        <Input placeholder={dictionary.form.companyPlaceholder} {...field} />
+                        <Input placeholder={dictionary.form.companyPlaceholder} {...field} disabled={isPending} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -118,7 +147,7 @@ ${values.message}
                     <FormItem>
                         <FormLabel>{dictionary.form.industry}</FormLabel>
                         <FormControl>
-                        <Input placeholder={dictionary.form.industryPlaceholder} {...field} />
+                        <Input placeholder={dictionary.form.industryPlaceholder} {...field} disabled={isPending} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -132,7 +161,7 @@ ${values.message}
                     <FormItem>
                     <FormLabel>{dictionary.form.message}</FormLabel>
                     <FormControl>
-                        <Textarea placeholder={dictionary.form.messagePlaceholder} className="min-h-[120px]" {...field} />
+                        <Textarea placeholder={dictionary.form.messagePlaceholder} className="min-h-[120px]" {...field} disabled={isPending} />
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -147,6 +176,7 @@ ${values.message}
                         <Checkbox
                             checked={field.value}
                             onCheckedChange={field.onChange}
+                            disabled={isPending}
                         />
                     </FormControl>
                     <div className="space-y-1 leading-none">
@@ -156,7 +186,14 @@ ${values.message}
                     </FormItem>
                 )}
                 />
-                <Button type="submit" className="w-full" size="lg">{dictionary.form.submit}</Button>
+                <Button type="submit" className="w-full" size="lg" disabled={isPending}>
+                  {isPending ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Processing...
+                    </>
+                  ) : dictionary.form.submit}
+                </Button>
             </form>
             </Form>
         </CardContent>
