@@ -2,7 +2,7 @@
 
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 const DATABASE_NAME = 'mpn_cms';
 const COLLECTION_NAME = 'news';
@@ -40,7 +40,6 @@ export async function createNews(formData: FormData) {
   const client = await clientPromise;
   const db = client.db(DATABASE_NAME);
   
-  // Basic unique slug logic
   let slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
   const existing = await db.collection(COLLECTION_NAME).findOne({ slug, lang });
   if (existing) {
@@ -59,6 +58,8 @@ export async function createNews(formData: FormData) {
     slug,
   });
 
+  // Revalidate cache
+  revalidateTag('news');
   revalidatePath('/[lang]/insight/news', 'page');
   revalidatePath('/[lang]/insight/news/[slug]', 'page');
   revalidatePath('/cms/news');
@@ -69,6 +70,8 @@ export async function deleteNews(id: string) {
   const db = client.db(DATABASE_NAME);
   await db.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
   
+  // Revalidate cache
+  revalidateTag('news');
   revalidatePath('/[lang]/insight/news', 'page');
   revalidatePath('/[lang]/insight/news/[slug]', 'page');
   revalidatePath('/cms/news');

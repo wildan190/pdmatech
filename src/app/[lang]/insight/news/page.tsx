@@ -9,6 +9,7 @@ import { getDictionary } from '@/lib/dictionaries';
 import clientPromise from '@/lib/mongodb';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { unstable_cache } from 'next/cache';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/news';
@@ -52,36 +53,40 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   };
 }
 
-async function getNewsFromDB(lang: string, query: string = '') {
-  try {
-    const client = await clientPromise;
-    const db = client.db('mpn_cms');
-    
-    // Query ringan: Hanya ambil yang diperlukan, batasi 12 item (Pagination ready)
-    const filter: any = { lang };
-    if (query) {
-      filter.$or = [
-        { title: { $regex: query, $options: 'i' } },
-        { tags: { $regex: query, $options: 'i' } }
-      ];
+// Caching query dengan unstable_cache
+const getCachedNews = unstable_cache(
+  async (lang: string, query: string = '') => {
+    try {
+      const client = await clientPromise;
+      const db = client.db('mpn_cms');
+      
+      const filter: any = { lang };
+      if (query) {
+        filter.$or = [
+          { title: { $regex: query, $options: 'i' } },
+          { tags: { $regex: query, $options: 'i' } }
+        ];
+      }
+
+      const news = await db.collection('news')
+        .find(filter)
+        .project({ content: 0 }) 
+        .sort({ date: -1 })
+        .limit(12)
+        .toArray();
+
+      return news.map(item => ({
+        ...item,
+        _id: item._id.toString(),
+      }));
+    } catch (e) {
+      console.error("Failed to fetch news from DB:", e);
+      return [];
     }
-
-    const news = await db.collection('news')
-      .find(filter)
-      .project({ content: 0 }) // Optimasi: Jangan ambil konten besar di halaman daftar
-      .sort({ date: -1 })
-      .limit(12)
-      .toArray();
-
-    return news.map(item => ({
-      ...item,
-      _id: item._id.toString(),
-    }));
-  } catch (e) {
-    console.error("Failed to fetch news from DB:", e);
-    return [];
-  }
-}
+  },
+  ['news-list'],
+  { tags: ['news'] }
+);
 
 export default async function NewsPage({ 
   params, 
@@ -95,7 +100,7 @@ export default async function NewsPage({
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.constructionPage;
   
-  const newsItems = await getNewsFromDB(lang, query);
+  const newsItems = await getCachedNews(lang, query);
 
   return (
     <main className="flex-grow bg-background">
@@ -132,7 +137,7 @@ export default async function NewsPage({
                 {dictionary.insightSubMenu.news.description}
             </p>
 
-            {/* Search Bar - Server Component Form */}
+            {/* Search Bar */}
             <div className="mt-10 max-w-xl mx-auto">
               <form action={`/${lang}/insight/news`} method="GET" className="relative group">
                 <Input 

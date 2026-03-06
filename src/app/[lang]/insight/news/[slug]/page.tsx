@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next';
 import { Calendar, Tag, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -9,25 +8,38 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import clientPromise from '@/lib/mongodb';
 import { Button } from '@/components/ui/button';
+import { unstable_cache } from 'next/cache';
 
 type NewsDetailPageProps = {
   params: { lang: Locale; slug: string };
 };
 
-async function getNewsBySlug(slug: string, lang: string) {
-  try {
-    const client = await clientPromise;
-    const db = client.db('mpn_cms');
-    return await db.collection('news').findOne({ slug, lang });
-  } catch (e) {
-    console.error("Failed to fetch news detail:", e);
-    return null;
-  }
-}
+// Caching query detail dengan unstable_cache
+const getCachedNewsDetail = unstable_cache(
+  async (slug: string, lang: string) => {
+    try {
+      const client = await clientPromise;
+      const db = client.db('mpn_cms');
+      const news = await db.collection('news').findOne({ slug, lang });
+      if (!news) return null;
+      
+      // Pastikan serializable
+      return {
+        ...news,
+        _id: news._id.toString()
+      };
+    } catch (e) {
+      console.error("Failed to fetch news detail:", e);
+      return null;
+    }
+  },
+  ['news-detail'],
+  { tags: ['news'] }
+);
 
 export async function generateMetadata({ params }: NewsDetailPageProps): Promise<Metadata> {
   const { lang, slug } = params;
-  const news = await getNewsBySlug(slug, lang);
+  const news = await getCachedNewsDetail(slug, lang);
   
   if (!news) return { title: 'Not Found' };
 
@@ -46,7 +58,7 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
 export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   const { lang, slug } = params;
   const dictionary = await getDictionary(lang);
-  const news = await getNewsBySlug(slug, lang);
+  const news = await getCachedNewsDetail(slug, lang);
 
   if (!news) notFound();
 
@@ -103,7 +115,6 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             <h1 className="text-4xl md:text-5xl font-bold font-headline leading-tight">{news.title}</h1>
           </header>
 
-          {/* Konten Berita dengan styling khusus untuk list dan tabel */}
           <div 
             className="prose prose-lg dark:prose-invert max-w-none prose-primary 
             prose-headings:font-headline prose-img:rounded-xl prose-a:text-primary news-content"
