@@ -22,6 +22,8 @@ export default function CMSLayout({ children }: { children: React.ReactNode }) {
     { name: 'Inquiries / Leads', href: '/cms/inquiries', icon: <Mail className="w-4 h-4" /> },
   ];
 
+  const currentNavItem = navItems.find(i => pathname.startsWith(i.href));
+
   return (
     <div className="min-h-screen bg-background flex">
       {/* Jodit CSS from CDN to avoid build resolution issues */}
@@ -68,7 +70,7 @@ export default function CMSLayout({ children }: { children: React.ReactNode }) {
            <div className="flex items-center gap-4">
               <h1 className="font-headline font-bold text-xl text-primary md:hidden">MPN CMS</h1>
               <span className="text-sm font-medium text-muted-foreground hidden md:inline-block">
-                {navItems.find(i => pathname.startsWith(item.href))?.name || 'Dashboard'}
+                {currentNavItem?.name || 'Dashboard'}
               </span>
            </div>
            <div className="flex items-center gap-4">
