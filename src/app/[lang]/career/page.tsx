@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Heart, Lightbulb, TrendingUp, SearchX, Send, Users, Briefcase, MapPin, ArrowRight } from "lucide-react";
+import { Heart, Lightbulb, TrendingUp, SearchX, Send, Users, Briefcase, MapPin, ArrowRight, Award, Settings } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
