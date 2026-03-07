@@ -1,4 +1,3 @@
-
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionaries";
 import CompanyClientPage from "./company-client-page";
@@ -8,10 +7,9 @@ import Script from "next/script";
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/about/company';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const lang = params.lang;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
-  const pageDict = dictionary.companyPage;
   
   const titles: Record<Locale, string> = {
     en: 'Our Company | Micro Padma Nusantara',
@@ -61,11 +59,11 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 
 
 type CompanyPageProps = {
-    params: { lang: Locale }
+    params: Promise<{ lang: Locale }>
 };
 
 export default async function CompanyPage({ params }: CompanyPageProps) {
-    const lang = params.lang;
+    const { lang } = await params;
     const dictionary = await getDictionary(lang);
 
     const corporationSchema = {
@@ -76,7 +74,6 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
         url: baseUrl,
         logo: `${baseUrl}/assets/img/logo.png`,
         description: dictionary.companyPage.hero.subheadline,
-        slogan: dictionary.header.tagline,
         address: {
             '@type': 'PostalAddress',
             streetAddress: 'Jl. Profesor Dr. Insinyur Soetami, Kp. Malangnengah, Cijoro Pasir',

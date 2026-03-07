@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Briefcase, MapPin, Calendar, Award, Settings, DollarSign, ArrowLeft } from "lucide-react";
+import { Briefcase, MapPin, DollarSign, ArrowLeft, Award, Settings } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,7 +12,7 @@ import { ObjectId } from 'mongodb';
 import ApplicationForm from './application-form';
 
 type JobDetailPageProps = {
-  params: { lang: Locale; id: string };
+  params: Promise<{ lang: Locale; id: string }>;
 };
 
 async function getJob(id: string) {
@@ -29,7 +29,8 @@ async function getJob(id: string) {
 }
 
 export async function generateMetadata({ params }: JobDetailPageProps): Promise<Metadata> {
-  const job = await getJob(params.id);
+  const { id } = await params;
+  const job = await getJob(id);
   if (!job) return { title: 'Job Not Found' };
 
   return {
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: JobDetailPageProps): Promise<
 }
 
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
-  const { lang, id } = params;
+  const { lang, id } = await params;
   const dictionary = await getDictionary(lang);
   const job = await getJob(id);
 

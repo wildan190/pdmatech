@@ -12,7 +12,7 @@ import { unstable_cache } from 'next/cache';
 import { getMediaById } from '@/app/cms/media/actions';
 
 type NewsDetailPageProps = {
-  params: { lang: Locale; slug: string };
+  params: Promise<{ lang: Locale; slug: string }>;
 };
 
 const getCachedNewsDetail = unstable_cache(
@@ -43,7 +43,7 @@ const getCachedNewsDetail = unstable_cache(
 );
 
 export async function generateMetadata({ params }: NewsDetailPageProps): Promise<Metadata> {
-  const { lang, slug } = params;
+  const { lang, slug } = await params;
   const news = await getCachedNewsDetail(slug, lang);
   
   if (!news) return { title: 'Not Found' };
@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
 }
 
 export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
-  const { lang, slug } = params;
+  const { lang, slug } = await params;
   const dictionary = await getDictionary(lang);
   const news = await getCachedNewsDetail(slug, lang);
 

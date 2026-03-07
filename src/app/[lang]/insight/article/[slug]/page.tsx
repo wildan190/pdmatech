@@ -12,7 +12,7 @@ import { unstable_cache } from 'next/cache';
 import { getMediaById } from '@/app/cms/media/actions';
 
 type ArticleDetailPageProps = {
-  params: { lang: Locale; slug: string };
+  params: Promise<{ lang: Locale; slug: string }>;
 };
 
 const getCachedArticleDetail = unstable_cache(
@@ -43,7 +43,7 @@ const getCachedArticleDetail = unstable_cache(
 );
 
 export async function generateMetadata({ params }: ArticleDetailPageProps): Promise<Metadata> {
-  const { lang, slug } = params;
+  const { lang, slug } = await params;
   const article = await getCachedArticleDetail(slug, lang);
   
   if (!article) return { title: 'Not Found' };
@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
 }
 
 export default async function ArticleDetailPage({ params }: ArticleDetailPageProps) {
-  const { lang, slug } = params;
+  const { lang, slug } = await params;
   const dictionary = await getDictionary(lang);
   const article = await getCachedArticleDetail(slug, lang);
 

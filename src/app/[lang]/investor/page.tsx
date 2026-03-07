@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BarChart, FileText, Mail, Building, Users, Lightbulb, TrendingUp, SearchX, Download, FileWarning } from "lucide-react";
+import { BarChart, FileText, Mail, Building, Users, Lightbulb, TrendingUp, Download, FileWarning } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
@@ -12,8 +12,8 @@ import { getLatestInvestorResource } from '@/app/cms/investor-relations/actions'
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/investor';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const lang = params.lang;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.investorPage;
   const title = pageDict.breadcrumb;
@@ -25,9 +25,9 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['invest in Indonesian tech', 'ICT investment opportunities', 'IoT startup funding', 'tech investor relations', 'digital transformation Indonesia', 'Micro Padma Nusantara investors'],
-    id: ['investasi teknologi Indonesia', 'peluang investasi ICT', 'pendanaan startup IoT', 'hubungan investor teknologi', 'transformasi digital Indonesia', 'investor Micro Padma Nusantara'],
-    zh: ['投资印尼科技', 'ICT投资机会', '物联网初创公司融资', '科技投资者关系', '印尼数字化转型', 'Micro Padma Nusantara投资者']
+    en: ['invest in Indonesian tech', 'ICT investment opportunities', 'IoT startup funding', 'tech investor relations', 'digital transformation Indonesia', 'Micro Padma Nusantara', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    id: ['investasi teknologi Indonesia', 'peluang investasi ICT', 'pendanaan startup IoT', 'hubungan investor teknologi', 'transformasi digital Indonesia', 'Micro Padma Nusantara', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    zh: ['投资印尼科技', 'ICT投资机会', '物联网初创公司融资', '科技投资者关系', '印尼数字化转型', 'Micro Padma Nusantara', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -57,8 +57,8 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 }
 
-export default async function InvestorPage({ params }: { params: { lang: Locale }}) {
-  const lang = params.lang;
+export default async function InvestorPage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.investorPage;
   const commonDict = dictionary.common;
