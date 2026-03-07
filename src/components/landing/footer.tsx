@@ -1,6 +1,9 @@
+'use client';
 
 import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import clientPromise from '@/lib/mongodb';
 
 type FooterProps = {
     dictionary: any;
@@ -8,6 +11,7 @@ type FooterProps = {
 }
 
 const Footer = ({ dictionary, lang }: FooterProps) => {
+  // In a real scenario we'd use a server action or fetch, but keeping it simple for consistency
   const companyLinks = [
     { href: `/${lang}/about/company`, label: dictionary.aboutUsSubMenu.company.title },
     { href: `/${lang}/about/people`, label: dictionary.aboutUsSubMenu.people.title },

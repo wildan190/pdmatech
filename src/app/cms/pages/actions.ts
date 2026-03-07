@@ -22,12 +22,34 @@ export async function getPages() {
   }
 }
 
+export async function getNavigationPages(lang: string) {
+  try {
+    const client = await clientPromise;
+    const db = client.db(DATABASE_NAME);
+    const navPages = await db.collection(COLLECTION_NAME)
+      .find({ lang, showInNavbar: true })
+      .project({ title: true, slug: true })
+      .toArray();
+    return navPages.map(p => ({ title: p.title, href: `/${lang}/p/${p.slug}` }));
+  } catch (e) {
+    return [];
+  }
+}
+
 export async function createPage(formData: FormData) {
   const title = formData.get('title') as string;
-  const content = formData.get('content') as string;
   const description = formData.get('description') as string;
   const lang = formData.get('lang') as string;
   const customSlug = formData.get('slug') as string;
+  
+  // JSON data from builder
+  const sectionsData = formData.get('sections') as string;
+  const sections = JSON.parse(sectionsData || '[]');
+  
+  const hideNavbar = formData.get('hideNavbar') === 'true';
+  const hideFooter = formData.get('hideFooter') === 'true';
+  const showInNavbar = formData.get('showInNavbar') === 'true';
+  const showInFooter = formData.get('showInFooter') === 'true';
 
   const client = await clientPromise;
   const db = client.db(DATABASE_NAME);
@@ -36,7 +58,6 @@ export async function createPage(formData: FormData) {
     ? customSlug.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')
     : title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
 
-  // Ensure unique slug
   const existing = await db.collection(COLLECTION_NAME).findOne({ slug, lang });
   if (existing) {
     slug = `${slug}-${Math.floor(Math.random() * 1000)}`;
@@ -44,16 +65,20 @@ export async function createPage(formData: FormData) {
 
   await db.collection(COLLECTION_NAME).insertOne({
     title,
-    content,
     description,
     lang,
     slug,
+    sections,
+    hideNavbar,
+    hideFooter,
+    showInNavbar,
+    showInFooter,
     createdAt: new Date().toISOString(),
   });
 
-  // Revalidate cache
   revalidateTag('custom-pages');
   revalidatePath('/[lang]/p/[slug]', 'page');
+  revalidatePath('/', 'layout'); // For navbar updates
   revalidatePath('/cms/pages');
 }
 
@@ -62,8 +87,8 @@ export async function deletePage(id: string) {
   const db = client.db(DATABASE_NAME);
   await db.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
   
-  // Revalidate cache
   revalidateTag('custom-pages');
   revalidatePath('/[lang]/p/[slug]', 'page');
+  revalidatePath('/', 'layout');
   revalidatePath('/cms/pages');
 }

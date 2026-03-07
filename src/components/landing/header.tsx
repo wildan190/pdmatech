@@ -1,15 +1,15 @@
-
 'use client';
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import LanguageSwitcher from './language-switcher';
+import { getNavigationPages } from '@/app/cms/pages/actions';
 
 type HeaderProps = {
     dictionary: any;
@@ -18,6 +18,11 @@ type HeaderProps = {
 
 const Header = ({ dictionary, lang }: HeaderProps) => {
   const [sheetOpen, setSheetOpen] = React.useState(false);
+  const [customPages, setCustomPages] = useState<{title: string, href: string}[]>([]);
+
+  useEffect(() => {
+    getNavigationPages(lang).then(setCustomPages);
+  }, [lang]);
 
   const aboutUsComponents = [
     {
@@ -175,6 +180,16 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
+
+            {/* Dynamic Custom Pages */}
+            {customPages.map(page => (
+              <NavigationMenuItem key={page.href}>
+                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                  <Link href={page.href}>{page.title}</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
+
              <NavigationMenuItem>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                     <Link href={`/${lang}/contact`}>{dictionary.navigation.contactUs}</Link>
@@ -237,6 +252,16 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
                           </div>
                         </AccordionContent>
                       </AccordionItem>
+                      {customPages.length > 0 && (
+                        <AccordionItem value="custom-pages">
+                          <AccordionTrigger className="text-base font-medium">Extra Pages</AccordionTrigger>
+                          <AccordionContent className="pl-4">
+                            <div className="grid gap-3">
+                              {customPages.map(page => <Link key={page.href} href={page.href} className="text-muted-foreground hover:text-foreground" onClick={handleLinkClick}>{page.title}</Link>)}
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      )}
                     </Accordion>
                     <Button asChild className="w-full mt-6">
                         <Link href={`/${lang}/contact`} onClick={handleLinkClick}>{dictionary.navigation.contactUs}</Link>
