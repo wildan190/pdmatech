@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -6,15 +7,14 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Trash2, Upload, FileText, Search, Loader2, Image as ImageIcon } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
+import Swal from 'sweetalert2';
 
 export default function MediaManagement() {
   const [media, setMedia] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { toast } = useToast();
 
   useEffect(() => {
     loadMedia();
@@ -41,10 +41,10 @@ export default function MediaManagement() {
 
     try {
       await uploadToLibrary(formData);
-      toast({ title: "Success", description: "File uploaded to library." });
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'File berhasil diunggah ke pustaka media.' });
       loadMedia();
     } catch (error: any) {
-      toast({ variant: "destructive", title: "Upload Failed", description: error.message });
+      Swal.fire({ icon: 'error', title: 'Gagal', text: error.message || 'Terjadi kesalahan saat mengunggah.' });
     } finally {
       setUploading(false);
       e.target.value = '';
@@ -52,11 +52,24 @@ export default function MediaManagement() {
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Delete this file permanently? This may break posts using this image.')) {
-      const result = await deleteFromLibrary(id);
-      if (result.success) {
-        toast({ title: "Deleted", description: "File removed from library." });
+    const result = await Swal.fire({
+      title: 'Hapus File?',
+      text: "File akan dihapus permanen dan mungkin merusak postingan yang menggunakannya.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (result.isConfirmed) {
+      const res = await deleteFromLibrary(id);
+      if (res.success) {
+        Swal.fire('Terhapus!', 'File telah dihapus dari pustaka.', 'success');
         loadMedia();
+      } else {
+        Swal.fire('Gagal!', 'Terjadi kesalahan sistem.', 'error');
       }
     }
   };

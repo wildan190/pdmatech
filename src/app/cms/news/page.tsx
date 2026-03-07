@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -8,10 +9,10 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Globe, AlertCircle, Tag, Key, Image as ImageIcon } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { Plus, Trash2, Globe, Tag, Key, Image as ImageIcon } from 'lucide-react';
 import MediaPicker from '@/components/cms/media-picker';
 import Image from 'next/image';
+import Swal from 'sweetalert2';
 
 const JoditEditor = dynamic(() => import('jodit-react'), { 
   ssr: false,
@@ -25,7 +26,6 @@ export default function NewsManagement() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [content, setContent] = useState('');
   const [selectedImage, setSelectedImage] = useState<{id: string, data: string} | null>(null);
-  const { toast } = useToast();
 
   const editorConfig = useMemo(() => ({
     readonly: false,
@@ -70,11 +70,11 @@ export default function NewsManagement() {
   const handleAddNews = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!selectedImage) {
-      toast({ variant: "destructive", title: "Error", description: "Please select a cover image." });
+      Swal.fire({ icon: 'error', title: 'Oops...', text: 'Silakan pilih gambar sampul terlebih dahulu.' });
       return;
     }
     if (!content || content === '<p><br></p>') {
-      toast({ variant: "destructive", title: "Error", description: "Content cannot be empty." });
+      Swal.fire({ icon: 'error', title: 'Oops...', text: 'Konten berita tidak boleh kosong.' });
       return;
     }
 
@@ -85,23 +85,38 @@ export default function NewsManagement() {
 
     try {
       await createNews(formData);
-      toast({ title: "Success", description: "News published successfully." });
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Berita telah berhasil diterbitkan.' });
       setIsDialogOpen(false);
       setContent('');
       setSelectedImage(null);
       loadNews();
     } catch (error: any) {
-      toast({ variant: "destructive", title: "Failed", description: error.message });
+      Swal.fire({ icon: 'error', title: 'Gagal', text: error.message || 'Terjadi kesalahan saat menerbitkan berita.' });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Delete this news?')) {
-      await deleteNews(id);
-      toast({ title: "Deleted", description: "News has been removed." });
-      loadNews();
+    const result = await Swal.fire({
+      title: 'Apakah Anda yakin?',
+      text: "Berita yang dihapus tidak dapat dikembalikan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteNews(id);
+        Swal.fire('Terhapus!', 'Berita telah dihapus.', 'success');
+        loadNews();
+      } catch (e) {
+        Swal.fire('Gagal!', 'Tidak dapat menghapus berita.', 'error');
+      }
     }
   };
 

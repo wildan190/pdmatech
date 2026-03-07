@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -8,10 +9,10 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Globe, AlertCircle, Tag, Key, Image as ImageIcon } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { Plus, Trash2, Globe, Tag, Key, Image as ImageIcon } from 'lucide-react';
 import MediaPicker from '@/components/cms/media-picker';
 import Image from 'next/image';
+import Swal from 'sweetalert2';
 
 const JoditEditor = dynamic(() => import('jodit-react'), { 
   ssr: false,
@@ -25,7 +26,6 @@ export default function ArticleManagement() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [content, setContent] = useState('');
   const [selectedImage, setSelectedImage] = useState<{id: string, data: string} | null>(null);
-  const { toast } = useToast();
 
   const editorConfig = useMemo(() => ({
     readonly: false,
@@ -70,11 +70,11 @@ export default function ArticleManagement() {
   const handleAddArticle = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!selectedImage) {
-      toast({ variant: "destructive", title: "Error", description: "Please select a cover image." });
+      Swal.fire({ icon: 'error', title: 'Oops...', text: 'Pilih gambar sampul terlebih dahulu.' });
       return;
     }
     if (!content || content === '<p><br></p>') {
-      toast({ variant: "destructive", title: "Error", description: "Content cannot be empty." });
+      Swal.fire({ icon: 'error', title: 'Oops...', text: 'Isi konten artikel tidak boleh kosong.' });
       return;
     }
 
@@ -85,23 +85,38 @@ export default function ArticleManagement() {
 
     try {
       await createArticle(formData);
-      toast({ title: "Success", description: "Article published successfully." });
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Artikel telah berhasil diterbitkan.' });
       setIsDialogOpen(false);
       setContent('');
       setSelectedImage(null);
       loadArticles();
     } catch (error: any) {
-      toast({ variant: "destructive", title: "Failed", description: error.message });
+      Swal.fire({ icon: 'error', title: 'Gagal', text: error.message || 'Terjadi kesalahan saat menyimpan artikel.' });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Delete this article?')) {
-      await deleteArticle(id);
-      toast({ title: "Deleted", description: "Article removed." });
-      loadArticles();
+    const result = await Swal.fire({
+      title: 'Hapus Artikel?',
+      text: "Data yang dihapus tidak dapat dipulihkan!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteArticle(id);
+        Swal.fire('Terhapus!', 'Artikel telah dihapus.', 'success');
+        loadArticles();
+      } catch (e) {
+        Swal.fire('Gagal!', 'Terjadi kesalahan sistem.', 'error');
+      }
     }
   };
 

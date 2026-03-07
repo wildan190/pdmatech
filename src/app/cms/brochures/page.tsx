@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -7,8 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, FileType, Upload, AlertCircle, FileText, Globe } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { Plus, Trash2, Upload, AlertCircle, FileText, Globe } from 'lucide-react';
+import Swal from 'sweetalert2';
 
 export default function BrochureManagement() {
   const [brochures, setBrochures] = useState<any[]>([]);
@@ -16,7 +17,6 @@ export default function BrochureManagement() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileError, setFileError] = useState<string | null>(null);
-  const { toast } = useToast();
 
   useEffect(() => {
     loadBrochures();
@@ -51,32 +51,46 @@ export default function BrochureManagement() {
 
   const handleAddBrochure = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (fileError) return;
+    if (fileError) {
+      Swal.fire({ icon: 'error', title: 'File Tidak Valid', text: fileError });
+      return;
+    }
 
     setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
 
     try {
       await createBrochure(formData);
-      toast({ title: "Brosur Berhasil Diunggah", description: "Brosur baru telah tersedia untuk publik." });
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Brosur baru telah tersedia untuk publik.' });
       setIsDialogOpen(false);
       loadBrochures();
     } catch (error: any) {
-      toast({ 
-        variant: "destructive", 
-        title: "Gagal", 
-        description: error.message || "Gagal mengunggah brosur." 
-      });
+      Swal.fire({ icon: 'error', title: 'Gagal', text: error.message || "Gagal mengunggah brosur." });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Apakah Anda yakin ingin menghapus brosur ini?')) {
-      await deleteBrochure(id);
-      toast({ title: "Brosur Dihapus", description: "File telah dihapus dari sistem." });
-      loadBrochures();
+    const result = await Swal.fire({
+      title: 'Hapus Brosur?',
+      text: "Tindakan ini tidak dapat dibatalkan.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteBrochure(id);
+        Swal.fire('Terhapus!', 'File telah dihapus dari sistem.', 'success');
+        loadBrochures();
+      } catch (e) {
+        Swal.fire('Gagal!', 'Terjadi kesalahan sistem.', 'error');
+      }
     }
   };
 

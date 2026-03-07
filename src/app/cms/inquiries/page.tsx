@@ -7,13 +7,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Trash2, User, Building, MessageSquare, Clock, Mail, Phone, ExternalLink } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 import { Badge } from '@/components/ui/badge';
+import Swal from 'sweetalert2';
 
 export default function InquiriesManagement() {
   const [inquiries, setInquiries] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
 
   useEffect(() => {
     loadInquiries();
@@ -31,19 +30,30 @@ export default function InquiriesManagement() {
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Are you sure you want to delete this inquiry?')) {
-      const result = await deleteInquiry(id);
-      if (result.success) {
-        toast({ title: "Inquiry Deleted", description: "The lead has been removed." });
+    const result = await Swal.fire({
+      title: 'Hapus Pesan?',
+      text: "Data prospek yang dihapus tidak bisa dikembalikan.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (result.isConfirmed) {
+      const res = await deleteInquiry(id);
+      if (res.success) {
+        Swal.fire('Terhapus!', 'Inquiry telah dihapus.', 'success');
         loadInquiries();
+      } else {
+        Swal.fire('Gagal!', 'Terjadi kesalahan saat menghapus.', 'error');
       }
     }
   };
 
   const formatWhatsAppNumber = (num: string) => {
-    // Remove non-digit characters
     let cleaned = num.replace(/\D/g, '');
-    // Replace leading '0' with '62' if it's likely an Indonesian number
     if (cleaned.startsWith('0')) {
       cleaned = '62' + cleaned.substring(1);
     }

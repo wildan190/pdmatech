@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -8,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Image as ImageIcon, Upload, Search, CheckCircle2, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import Swal from 'sweetalert2';
 
 type MediaPickerProps = {
   onSelect: (mediaId: string, data: string) => void;
@@ -48,9 +50,10 @@ export default function MediaPicker({ onSelect, currentValue }: MediaPickerProps
       if (result.success) {
         loadMedia();
         setSelectedId(result.id);
+        Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Aset berhasil diunggah.', timer: 1500, showConfirmButton: false });
       }
     } catch (error: any) {
-      alert(error.message);
+      Swal.fire({ icon: 'error', title: 'Upload Gagal', text: error.message });
     } finally {
       setUploading(false);
     }

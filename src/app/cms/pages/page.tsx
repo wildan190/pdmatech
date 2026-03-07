@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -8,11 +9,10 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Globe, FileText, Search, ExternalLink, Link as LinkIcon } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { Plus, Trash2, Globe, ExternalLink, Link as LinkIcon } from 'lucide-react';
 import Link from 'next/link';
+import Swal from 'sweetalert2';
 
-// Load Jodit dynamically
 const JoditEditor = dynamic(() => import('jodit-react'), { 
   ssr: false,
   loading: () => <div className="h-[450px] w-full bg-secondary/20 animate-pulse rounded-md flex items-center justify-center">Loading Editor...</div>
@@ -24,7 +24,6 @@ export default function PageManagement() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [content, setContent] = useState('');
-  const { toast } = useToast();
 
   const editorConfig = useMemo(() => ({
     readonly: false,
@@ -75,7 +74,7 @@ export default function PageManagement() {
   const handleAddPage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!content || content === '<p><br></p>') {
-      toast({ variant: "destructive", title: "Konten Kosong", description: "Silakan isi konten halaman." });
+      Swal.fire({ icon: 'warning', title: 'Konten Kosong', text: 'Silakan isi konten halaman sebelum menyimpan.' });
       return;
     }
 
@@ -85,22 +84,37 @@ export default function PageManagement() {
 
     try {
       await createPage(formData);
-      toast({ title: "Halaman Berhasil Dibuat", description: "Halaman baru kini dapat diakses oleh publik." });
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Halaman kustom baru telah dipublikasikan.' });
       setIsDialogOpen(false);
       setContent('');
       loadPages();
     } catch (error: any) {
-      toast({ variant: "destructive", title: "Gagal", description: error.message || "Gagal membuat halaman." });
+      Swal.fire({ icon: 'error', title: 'Gagal', text: error.message || 'Terjadi kesalahan sistem.' });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Apakah Anda yakin ingin menghapus halaman ini secara permanen?')) {
-      await deletePage(id);
-      toast({ title: "Halaman Dihapus", description: "Halaman telah dihapus dari sistem." });
-      loadPages();
+    const result = await Swal.fire({
+      title: 'Hapus Halaman?',
+      text: "Tindakan ini permanen dan tidak bisa dibatalkan.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deletePage(id);
+        Swal.fire('Terhapus!', 'Halaman telah dihapus.', 'success');
+        loadPages();
+      } catch (e) {
+        Swal.fire('Gagal!', 'Tidak dapat menghapus halaman.', 'error');
+      }
     }
   };
 
@@ -211,7 +225,7 @@ export default function PageManagement() {
                             <ExternalLink className="w-4 h-4" />
                           </Link>
                         </Button>
-                        <Button variant="ghost" size="icon" className="text-destructive hover:bg-destructive/10" onClick={() => handleDelete(item._id)}>
+                        <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive hover:bg-destructive/10" onClick={() => handleDelete(item._id)}>
                           <Trash2 className="w-4 h-4" />
                         </Button>
                       </div>

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -8,7 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Plus, Trash2, Upload, AlertCircle, FileText, Globe } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import Swal from 'sweetalert2';
 
 export default function InvestorResourceManagement() {
   const [resources, setResources] = useState<any[]>([]);
@@ -16,7 +17,6 @@ export default function InvestorResourceManagement() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileError, setFileError] = useState<string | null>(null);
-  const { toast } = useToast();
 
   useEffect(() => {
     loadResources();
@@ -51,32 +51,46 @@ export default function InvestorResourceManagement() {
 
   const handleAddResource = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (fileError) return;
+    if (fileError) {
+      Swal.fire({ icon: 'error', title: 'Kesalahan File', text: fileError });
+      return;
+    }
 
     setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
 
     try {
       await createInvestorResource(formData);
-      toast({ title: "Dokumen Berhasil Diunggah", description: "Laporan investor baru telah diterbitkan." });
+      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Laporan investor baru telah diterbitkan.' });
       setIsDialogOpen(false);
       loadResources();
     } catch (error: any) {
-      toast({ 
-        variant: "destructive", 
-        title: "Gagal", 
-        description: error.message || "Gagal mengunggah dokumen." 
-      });
+      Swal.fire({ icon: 'error', title: 'Gagal', text: error.message || "Gagal mengunggah dokumen." });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Apakah Anda yakin ingin menghapus dokumen ini?')) {
-      await deleteInvestorResource(id);
-      toast({ title: "Dokumen Dihapus", description: "File telah dihapus dari sistem." });
-      loadResources();
+    const result = await Swal.fire({
+      title: 'Hapus Dokumen?',
+      text: "Data ini akan hilang dari halaman publik.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteInvestorResource(id);
+        Swal.fire('Terhapus!', 'File telah dihapus dari sistem.', 'success');
+        loadResources();
+      } catch (e) {
+        Swal.fire('Gagal!', 'Terjadi kesalahan sistem.', 'error');
+      }
     }
   };
 
@@ -180,7 +194,7 @@ export default function InvestorResourceManagement() {
                     </TableCell>
                     <TableCell className="text-xs font-mono">{formatSize(item.fileSize)}</TableCell>
                     <TableCell className="text-right">
-                      <Button variant="ghost" size="icon" className="text-destructive hover:bg-destructive/10" onClick={() => handleDelete(item._id)}>
+                      <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive hover:bg-destructive/10" onClick={() => handleDelete(item._id)}>
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     </TableCell>
