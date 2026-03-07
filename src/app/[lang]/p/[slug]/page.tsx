@@ -9,6 +9,14 @@ import clientPromise from '@/lib/mongodb';
 import { unstable_cache } from 'next/cache';
 import { getMediaById } from '@/app/cms/media/actions';
 import ParallaxImage from '@/components/shared/parallax-image';
+import { Button } from '@/components/ui/button';
+import { 
+  Accordion, 
+  AccordionContent, 
+  AccordionItem, 
+  AccordionTrigger 
+} from "@/components/ui/accordion";
+import { cn } from '@/lib/utils';
 
 type CustomPageProps = {
   params: Promise<{ lang: Locale; slug: string }>;
@@ -117,11 +125,46 @@ export default async function DynamicCustomPage({ params }: CustomPageProps) {
 
           {section.type === 'image' && (
             <section className="py-12">
-              <div className="container max-w-5xl mx-auto">
-                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl">
+              <div className="container max-w-5xl mx-auto text-center">
+                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mx-auto">
                   <Image src={section.data.imageData || 'https://picsum.photos/seed/img/1200/800'} alt={section.data.caption} fill className="object-cover" />
                 </div>
                 {section.data.caption && <p className="mt-4 text-center text-muted-foreground italic">{section.data.caption}</p>}
+              </div>
+            </section>
+          )}
+
+          {section.type === 'button' && (
+            <section className="py-12">
+              <div className={cn("container", 
+                section.data.align === 'center' ? 'text-center' : 
+                section.data.align === 'right' ? 'text-right' : 'text-left'
+              )}>
+                <Button size="lg" variant={section.data.variant || 'default'} asChild>
+                  <Link href={section.data.link}>{section.data.text}</Link>
+                </Button>
+              </div>
+            </section>
+          )}
+
+          {section.type === 'faq' && (
+            <section className="py-16 bg-secondary/20">
+              <div className="container max-w-3xl mx-auto">
+                {section.data.title && (
+                  <h2 className="text-3xl font-bold font-headline mb-10 text-center">{section.data.title}</h2>
+                )}
+                <Accordion type="single" collapsible className="w-full space-y-4">
+                  {section.data.items && section.data.items.map((item: any, idx: number) => (
+                    <AccordionItem key={item.id || idx} value={`item-${idx}`} className="bg-background px-6 rounded-lg border shadow-sm">
+                      <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                        {item.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground pt-2 whitespace-pre-wrap">
+                        {item.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </div>
             </section>
           )}

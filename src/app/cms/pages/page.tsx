@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Globe, ExternalLink, Link as LinkIcon, MoveUp, MoveDown, Layout, Type, Image as ImageIcon, CheckCircle2, MonitorOff, Loader2 } from 'lucide-react';
+import { Plus, Trash2, Globe, ExternalLink, Link as LinkIcon, MoveUp, MoveDown, Layout, Type, Image as ImageIcon, CheckCircle2, MonitorOff, Loader2, MousePointer2, MessageSquarePlus, X } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import MediaPicker from '@/components/cms/media-picker';
@@ -70,13 +70,15 @@ export default function PageManagement() {
     }
   };
 
-  const addSection = (type: 'hero' | 'text' | 'image') => {
+  const addSection = (type: 'hero' | 'text' | 'image' | 'button' | 'faq') => {
     const newSection = {
       id: Math.random().toString(36).substr(2, 9),
       type,
       data: type === 'hero' ? { title: '', subtitle: '', imageId: '', imageData: '', cta: '' } :
             type === 'text' ? { content: '' } :
-            { imageId: '', imageData: '', caption: '' }
+            type === 'image' ? { imageId: '', imageData: '', caption: '' } :
+            type === 'button' ? { text: 'Klik Di Sini', link: '#', variant: 'default', align: 'center' } :
+            { title: 'Pertanyaan Umum', items: [{ id: Date.now(), question: '', answer: '' }] }
     };
     setSections([...sections, newSection]);
   };
@@ -95,6 +97,24 @@ export default function PageManagement() {
 
   const updateSectionData = (id: string, newData: any) => {
     setSections(sections.map(s => s.id === id ? { ...s, data: { ...s.data, ...newData } } : s));
+  };
+
+  const handleAddFaqItem = (sectionId: string) => {
+    const section = sections.find(s => s.id === sectionId);
+    const newItems = [...section.data.items, { id: Date.now(), question: '', answer: '' }];
+    updateSectionData(sectionId, { items: newItems });
+  };
+
+  const handleRemoveFaqItem = (sectionId: string, itemId: number) => {
+    const section = sections.find(s => s.id === sectionId);
+    const newItems = section.data.items.filter((i: any) => i.id !== itemId);
+    updateSectionData(sectionId, { items: newItems });
+  };
+
+  const handleUpdateFaqItem = (sectionId: string, itemId: number, field: string, value: string) => {
+    const section = sections.find(s => s.id === sectionId);
+    const newItems = section.data.items.map((i: any) => i.id === itemId ? { ...i, [field]: value } : i);
+    updateSectionData(sectionId, { items: newItems });
   };
 
   const handleAddPage = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -196,7 +216,7 @@ export default function PageManagement() {
                   <h3 className="font-bold border-b pb-2 flex items-center gap-2"><Layout className="w-4 h-4" /> Basic Info</h3>
                   <div className="space-y-2">
                     <Label>Language</Label>
-                    <select name="lang" className="w-full h-10 px-3 rounded-md border text-sm" required>
+                    <select name="lang" className="w-full h-10 px-3 rounded-md border text-sm bg-background" required>
                       <option value="en">English</option>
                       <option value="id">Indonesia</option>
                       <option value="zh">中文</option>
@@ -239,12 +259,14 @@ export default function PageManagement() {
 
               {/* Right Column: Sections Builder */}
               <div className="lg:col-span-2 space-y-6">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between sticky top-0 bg-background z-20 pb-4 border-b">
                   <h3 className="font-bold flex items-center gap-2 text-xl"><Layout className="w-5 h-5 text-primary" /> Page Sections</h3>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     <Button type="button" variant="outline" size="sm" onClick={() => addSection('hero')} className="gap-1"><Layout className="w-3 h-3" /> + Hero</Button>
                     <Button type="button" variant="outline" size="sm" onClick={() => addSection('text')} className="gap-1"><Type className="w-3 h-3" /> + Text</Button>
                     <Button type="button" variant="outline" size="sm" onClick={() => addSection('image')} className="gap-1"><ImageIcon className="w-3 h-3" /> + Image</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => addSection('button')} className="gap-1"><MousePointer2 className="w-3 h-3" /> + Button</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => addSection('faq')} className="gap-1"><MessageSquarePlus className="w-3 h-3" /> + FAQ</Button>
                   </div>
                 </div>
 
@@ -255,15 +277,15 @@ export default function PageManagement() {
                     </div>
                   ) : (
                     sections.map((s, idx) => (
-                      <Card key={s.id} className="relative group overflow-hidden border-2 hover:border-primary/30 transition-colors">
+                      <Card key={s.id} className="relative group overflow-hidden border-2 hover:border-primary/30 transition-colors shadow-sm">
                         <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                           <Button type="button" variant="secondary" size="icon" className="h-7 w-7" onClick={() => moveSection(idx, 'up')}><MoveUp className="w-3 h-3"/></Button>
                           <Button type="button" variant="secondary" size="icon" className="h-7 w-7" onClick={() => moveSection(idx, 'down')}><MoveDown className="w-3 h-3"/></Button>
                           <Button type="button" variant="destructive" size="icon" className="h-7 w-7" onClick={() => removeSection(s.id)}><Trash2 className="w-3 h-3"/></Button>
                         </div>
                         
-                        <CardHeader className="bg-secondary/20 py-2 px-4 flex-row items-center gap-2">
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-primary">{s.type} Section</span>
+                        <CardHeader className="bg-secondary/30 py-2 px-4 flex-row items-center gap-2 border-b">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-primary">{s.type} Section</span>
                         </CardHeader>
                         
                         <CardContent className="p-4 space-y-4">
@@ -317,6 +339,79 @@ export default function PageManagement() {
                                     <Image src={s.data.imageData} alt="Preview" fill className="object-cover" />
                                   </div>
                                 )}
+                              </div>
+                            </div>
+                          )}
+
+                          {s.type === 'button' && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <Label className="text-xs">Button Label</Label>
+                                <Input value={s.data.text} onChange={e => updateSectionData(s.id, { text: e.target.value })} placeholder="e.g. Hubungi Kami" />
+                                <Label className="text-xs">Button Link</Label>
+                                <Input value={s.data.link} onChange={e => updateSectionData(s.id, { link: e.target.value })} placeholder="e.g. /id/contact atau https://..." />
+                              </div>
+                              <div className="space-y-2">
+                                <Label className="text-xs">Alignment</Label>
+                                <select 
+                                  className="w-full h-10 px-3 rounded-md border text-sm bg-background"
+                                  value={s.data.align}
+                                  onChange={e => updateSectionData(s.id, { align: e.target.value })}
+                                >
+                                  <option value="left">Left</option>
+                                  <option value="center">Center</option>
+                                  <option value="right">Right</option>
+                                </select>
+                                <Label className="text-xs mt-2 block">Style Variant</Label>
+                                <select 
+                                  className="w-full h-10 px-3 rounded-md border text-sm bg-background"
+                                  value={s.data.variant}
+                                  onChange={e => updateSectionData(s.id, { variant: e.target.value })}
+                                >
+                                  <option value="default">Primary (Blue)</option>
+                                  <option value="secondary">Secondary (Gray)</option>
+                                  <option value="outline">Outline</option>
+                                </select>
+                              </div>
+                            </div>
+                          )}
+
+                          {s.type === 'faq' && (
+                            <div className="space-y-4">
+                              <div className="space-y-2">
+                                <Label className="text-xs">Section Title</Label>
+                                <Input value={s.data.title} onChange={e => updateSectionData(s.id, { title: e.target.value })} placeholder="FAQ Title..." />
+                              </div>
+                              <div className="space-y-3">
+                                {s.data.items.map((item: any, itemIdx: number) => (
+                                  <div key={item.id} className="p-4 bg-secondary/20 rounded-lg border space-y-2 relative">
+                                    <Button 
+                                      type="button" 
+                                      variant="ghost" 
+                                      size="icon" 
+                                      className="absolute top-1 right-1 h-6 w-6 text-destructive" 
+                                      onClick={() => handleRemoveFaqItem(s.id, item.id)}
+                                    >
+                                      <X className="w-3 h-3" />
+                                    </Button>
+                                    <Label className="text-[10px] font-bold">Question {itemIdx + 1}</Label>
+                                    <Input 
+                                      value={item.question} 
+                                      onChange={e => handleUpdateFaqItem(s.id, item.id, 'question', e.target.value)} 
+                                      placeholder="Pertanyaan..."
+                                    />
+                                    <Label className="text-[10px] font-bold">Answer</Label>
+                                    <textarea 
+                                      className="w-full min-h-[80px] p-2 rounded-md border text-sm bg-background" 
+                                      value={item.answer} 
+                                      onChange={e => handleUpdateFaqItem(s.id, item.id, 'answer', e.target.value)} 
+                                      placeholder="Jawaban..."
+                                    />
+                                  </div>
+                                ))}
+                                <Button type="button" variant="outline" className="w-full gap-2 text-xs" onClick={() => handleAddFaqItem(s.id)}>
+                                  <Plus className="w-3 h-3" /> Add FAQ Item
+                                </Button>
                               </div>
                             </div>
                           )}
