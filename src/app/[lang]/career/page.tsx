@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import Image from "next/image";
 import Link from "next/link";
@@ -14,8 +15,8 @@ import { getJobs } from '@/app/cms/career/actions';
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/career';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const lang = params.lang;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   const title = dictionary.careerPage.breadcrumb;
   
@@ -28,8 +29,8 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 }
 
-export default async function CareerPage({ params }: { params: { lang: Locale }}) {
-  const lang = params.lang;
+export default async function CareerPage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.careerPage;
   const jobs = await getJobs();
@@ -86,6 +87,7 @@ export default async function CareerPage({ params }: { params: { lang: Locale }}
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
                   data-ai-hint={heroImage.imageHint}
+                  priority
               />
           )}
         <div className="absolute inset-0 bg-black/60" />

@@ -14,8 +14,8 @@ import ParallaxImage from '@/components/shared/parallax-image';
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/use-case';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const lang = params.lang;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.useCasePage;
   
@@ -32,9 +32,9 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['use cases', 'case studies', 'digital transformation success stories', 'IoT in manufacturing Indonesia', 'SME digitalization', 'business technology impact'],
-    id: ['studi kasus', 'kisah sukses transformasi digital', 'IoT di manufaktur Indonesia', 'digitalisasi UMKM', 'dampak teknologi bisnis'],
-    zh: ['用例', '案例研究', '数字化转型成功案例', '印尼制造业物联网', '中小微企业数字化', '商业技术影响']
+    en: ['use cases', 'case studies', 'digital transformation success stories', 'IoT in manufacturing Indonesia', 'SME digitalization', 'business technology impact', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    id: ['studi kasus', 'kisah sukses transformasi digital', 'IoT di manufaktur Indonesia', 'digitalisasi UMKM', 'dampak teknologi bisnis', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    zh: ['用例', '案例研究', '数字化转型成功案例', '印尼制造业物联网', '中小微企业数字化', '商业技术影响', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -68,8 +68,8 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 }
 
 
-export default async function UseCasePage({ params }: { params: { lang: Locale }}) {
-  const lang = params.lang;
+export default async function UseCasePage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.useCasePage;
   const heroImage = PlaceHolderImages.find(p => p.id === 'use-case-hero');
@@ -107,6 +107,7 @@ export default async function UseCasePage({ params }: { params: { lang: Locale }
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 data-ai-hint={heroImage.imageHint}
+                priority
             />
         )}
         <div className="absolute inset-0 bg-black/70" />

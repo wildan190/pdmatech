@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -114,6 +115,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ lang:
               src="/assets/img/investor/investor.jpg"
               alt="Business professionals shaking hands, symbolizing a partnership or investment deal."
               data-ai-hint="business agreement"
+              priority
           />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 container text-white">

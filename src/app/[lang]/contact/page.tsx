@@ -13,8 +13,8 @@ import ParallaxImage from '@/components/shared/parallax-image';
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/contact';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const { lang } = params;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   
   const titles: Record<Locale, string> = {
@@ -30,9 +30,9 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['contact ICT company', 'IoT consultation Indonesia', 'get a quote for software', 'Micro Padma Nusantara contact', 'tech support Indonesia', 'business inquiry'],
-    id: ['hubungi perusahaan ICT', 'konsultasi IoT Indonesia', 'dapatkan penawaran software', 'kontak Micro Padma Nusantara', 'dukungan teknis Indonesia', 'permintaan bisnis'],
-    zh: ['联系ICT公司', '印尼物联网咨询', '软件报价', 'Micro Padma Nusantara联系方式', '印尼技术支持', '商务咨询']
+    en: ['contact ICT company', 'IoT consultation Indonesia', 'get a quote for software', 'Micro Padma Nusantara contact', 'tech support Indonesia', 'business inquiry', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    id: ['hubungi perusahaan ICT', 'konsultasi IoT Indonesia', 'dapatkan penawaran software', 'kontak Micro Padma Nusantara', 'dukungan teknis Indonesia', 'permintaan bisnis', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    zh: ['联系ICT公司', '印尼物联网咨询', '软件报价', 'Micro Padma Nusantara联系方式', '印尼技术支持', '商务咨询', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -74,8 +74,8 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 }
 
-export default async function ContactPage({ params }: { params: { lang: Locale }}) {
-    const { lang } = params;
+export default async function ContactPage({ params }: { params: Promise<{ lang: Locale }> }) {
+    const { lang } = await params;
     const dictionary = await getDictionary(lang);
     const pageDict = dictionary.contactPage;
     const companyPageDict = dictionary.companyPage;
@@ -131,6 +131,7 @@ export default async function ContactPage({ params }: { params: { lang: Locale }
               src="/assets/img/contactus/contactus.jpg"
               alt="A person's hands typing on a laptop, signifying communication and getting in touch."
               data-ai-hint="contact communication"
+              priority
           />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 container text-left text-white">

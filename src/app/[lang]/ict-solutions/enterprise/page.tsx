@@ -15,8 +15,8 @@ import Script from 'next/script';
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/enterprise';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const { lang } = params;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   
   const titles: Record<Locale, string> = {
@@ -32,9 +32,9 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['custom enterprise software development Southeast Asia', 'managed IT services for corporations', 'ERP solutions for large business in SEA', 'CRM implementation and support', 'IT support for enterprise business', 'scalable software architecture'],
-    id: ['pengembangan software enterprise kustom Asia Tenggara', 'layanan IT terkelola untuk korporasi', 'solusi ERP untuk bisnis besar', 'implementasi dan dukungan CRM', 'dukungan IT untuk bisnis enterprise', 'arsitektur software terukur'],
-    zh: ['东南亚定制企业软件开发', '企业托管IT服务', '大型企业ERP解决方案', 'CRM实施与支持', '企业业务IT支持', '可扩展软件架构']
+    en: ['custom enterprise software development Southeast Asia', 'managed IT services for corporations', 'ERP solutions for large business in SEA', 'CRM implementation and support', 'IT support for enterprise business', 'scalable software architecture', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    id: ['pengembangan software enterprise kustom Asia Tenggara', 'layanan IT terkelola untuk korporasi', 'solusi ERP untuk bisnis besar', 'implementasi dan dukungan CRM', 'dukungan IT untuk bisnis enterprise', 'arsitektur software terukur', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    zh: ['东南亚定制企业软件开发', '企业托管IT服务', '大型企业ERP解决方案', 'CRM实施与支持', '企业业务IT支持', '可扩展软件架构', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -139,8 +139,8 @@ const whyChooseUsData = (pageDict: any) => [
   }
 ];
 
-export default async function EnterprisePage({ params }: { params: { lang: Locale }}) {
-  const { lang } = params;
+export default async function EnterprisePage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.enterprisePage;
   const serviceList = services(pageDict);
@@ -211,6 +211,7 @@ export default async function EnterprisePage({ params }: { params: { lang: Local
                 src="/assets/img/ict/enterprise.jpg"
                 alt="A bustling, modern data center with rows of servers, symbolizing robust enterprise infrastructure."
                 data-ai-hint="data center"
+                priority
             />
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 container text-white">
@@ -290,7 +291,7 @@ export default async function EnterprisePage({ params }: { params: { lang: Local
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-4">
                   <p className="font-semibold text-primary">{pageDict.whyChooseUs.pretitle}</p>
-                  <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.whyChooseUs.title}</h2>
+                  <h2 className="text-3xl font-bold font-headline">{pageDict.whyChooseUs.title}</h2>
                   <p className="text-muted-foreground text-lg">{pageDict.whyChooseUs.description}</p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

@@ -14,8 +14,8 @@ import ParallaxImage from '@/components/shared/parallax-image';
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/umkm';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const lang = params.lang;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   
   const titles: Record<Locale, string> = {
@@ -31,9 +31,9 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['digital solutions for SMEs in Indonesia', 'UMKM go digital program', 'affordable websites for UMKM', 'lite POS system for small business', 'social media management services Indonesia', 'how to bring my small business online'],
-    id: ['solusi digital untuk UMKM di Indonesia', 'program UMKM go digital', 'website murah untuk UMKM', 'sistem kasir ringan untuk usaha kecil', 'jasa manajemen media sosial Indonesia', 'cara membawa bisnis kecil online'],
-    zh: ['印尼中小企业数字解决方案', 'UMKM数字化计划', '中小微企业实惠网站', '小企业轻量级POS系统', '印尼社交媒体管理服务', '如何让我的小企业上线']
+    en: ['digital solutions for SMEs in Indonesia', 'UMKM go digital program', 'affordable websites for UMKM', 'lite POS system for small business', 'social media management services Indonesia', 'how to bring my small business online', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    id: ['solusi digital untuk UMKM di Indonesia', 'program UMKM go digital', 'website murah untuk UMKM', 'sistem kasir ringan untuk usaha kecil', 'jasa manajemen media sosial Indonesia', 'cara membawa bisnis kecil online', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    zh: ['印尼中小企业数字解决方案', 'UMKM数字化计划', '中小微企业实惠网站', '小企业轻量级POS系统', '印尼社交媒体管理服务', '如何让我的小企业上线', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -108,8 +108,8 @@ const advantagesData = (pageDict: any) => [
   }
 ];
 
-export default async function UmkmPage({ params }: { params: { lang: Locale }}) {
-  const lang = params.lang;
+export default async function UmkmPage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.umkmPage;
   
@@ -150,6 +150,7 @@ export default async function UmkmPage({ params }: { params: { lang: Locale }}) 
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
                   data-ai-hint={heroImage.imageHint}
+                  priority
               />
           )}
         <div className="absolute inset-0 bg-black/60" />

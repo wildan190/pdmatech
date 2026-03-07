@@ -107,6 +107,7 @@ export default function CompanyClientPage({ dictionary, lang }: CompanyClientPag
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 data-ai-hint={heroImage.imageHint}
+                priority
             />
           )}
         <div className="absolute inset-0 bg-black/60" />

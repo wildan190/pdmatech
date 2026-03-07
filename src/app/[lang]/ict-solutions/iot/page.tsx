@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import Image from "next/image";
 import Link from "next/link";
@@ -30,9 +31,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['end-to-end IoT solutions provider Southeast Asia', 'IIoT for manufacturing automation', 'IoT asset tracking and logistics', 'predictive maintenance IoT for industry', 'smart city IoT system integrator SEA', 'custom IoT platform development'],
-    id: ['penyedia solusi IoT end-to-end Asia Tenggara', 'IIoT untuk otomasi manufaktur', 'pelacakan aset dan logistik IoT', 'predictive maintenance IoT untuk industri', 'integrator sistem IoT kota pintar', 'pengembangan platform IoT kustom'],
-    zh: ['东南亚端到端物联网解决方案提供商', '制造业自动化IIoT', '物联网资产跟踪与物流', '工业预测性维护物联网', '智慧城市物联网系统集成商', '定制物联网平台开发']
+    en: ['end-to-end IoT solutions provider Southeast Asia', 'IIoT for manufacturing automation', 'IoT asset tracking and logistics', 'predictive maintenance IoT for industry', 'smart city IoT system integrator SEA', 'custom IoT platform development', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    id: ['penyedia solusi IoT end-to-end Asia Tenggara', 'IIoT untuk otomasi manufaktur', 'pelacakan aset dan logistik IoT', 'predictive maintenance IoT untuk industri', 'integrator sistem IoT kota pintar', 'pengembangan platform IoT kustom', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    zh: ['东南亚端到端物联网解决方案提供商', '制造业自动化IIoT', '物联网资产跟踪与物流', '工业预测性维护物联网', '智慧城市物联网系统集成商', '定制物联网平台开发', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -156,6 +157,7 @@ export default async function IotPage({ params }: { params: Promise<{ lang: Loca
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 data-ai-hint={heroImage.imageHint}
+                priority
             />
           )}
         <div className="absolute inset-0 bg-black/60" />

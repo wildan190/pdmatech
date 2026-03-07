@@ -15,8 +15,8 @@ import Script from 'next/script';
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/ict-solutions/web';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const lang = params.lang;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
 
   const titles: Record<Locale, string> = {
@@ -151,8 +151,8 @@ const portfolioData = [
   }
 ];
 
-export default async function WebPage({ params }: { params: { lang: Locale }}) {
-  const lang = params.lang;
+export default async function WebPage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.webPage;
 
@@ -242,6 +242,7 @@ export default async function WebPage({ params }: { params: { lang: Locale }}) {
                   src={webHeroImage.imageUrl}
                   alt={webHeroImage.description}
                   data-ai-hint={webHeroImage.imageHint}
+                  priority
               />
             )}
           <div className="absolute inset-0 bg-black/60" />
