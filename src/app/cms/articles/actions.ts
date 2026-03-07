@@ -24,18 +24,7 @@ export async function createArticle(formData: FormData) {
   const lang = formData.get('lang') as string;
   const tags = (formData.get('tags') as string || '').split(',').map(t => t.trim()).filter(Boolean);
   const keywords = formData.get('keywords') as string;
-  const imageFile = formData.get('image') as File;
-
-  let imageData = 'https://picsum.photos/seed/article/800/600';
-
-  if (imageFile && imageFile.size > 0) {
-    if (imageFile.size > 1024 * 1024) {
-      throw new Error("Image size must be less than 1MB");
-    }
-    const bytes = await imageFile.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    imageData = `data:${imageFile.type};base64,${buffer.toString('base64')}`;
-  }
+  const imageId = formData.get('imageId') as string;
 
   const client = await clientPromise;
   const db = client.db(DATABASE_NAME);
@@ -53,12 +42,11 @@ export async function createArticle(formData: FormData) {
     lang,
     tags,
     keywords,
-    image: imageData,
+    image: imageId,
     date: new Date().toISOString(),
     slug,
   });
 
-  // Revalidate cache
   revalidateTag('articles');
   revalidatePath('/[lang]/insight/article', 'page');
   revalidatePath('/[lang]/insight/article/[slug]', 'page');
@@ -70,7 +58,6 @@ export async function deleteArticle(id: string) {
   const db = client.db(DATABASE_NAME);
   await db.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
   
-  // Revalidate cache
   revalidateTag('articles');
   revalidatePath('/[lang]/insight/article', 'page');
   revalidatePath('/[lang]/insight/article/[slug]', 'page');

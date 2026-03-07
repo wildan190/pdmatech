@@ -8,10 +8,11 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Globe, Upload, AlertCircle, Tag, Key } from 'lucide-react';
+import { Plus, Trash2, Globe, AlertCircle, Tag, Key, Image as ImageIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import MediaPicker from '@/components/cms/media-picker';
+import Image from 'next/image';
 
-// Load Jodit secara dinamis untuk menghindari masalah SSR di Next.js
 const JoditEditor = dynamic(() => import('jodit-react'), { 
   ssr: false,
   loading: () => <div className="h-[450px] w-full bg-secondary/20 animate-pulse rounded-md flex items-center justify-center">Loading Editor...</div>
@@ -22,8 +23,8 @@ export default function NewsManagement() {
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [fileError, setFileError] = useState<string | null>(null);
   const [content, setContent] = useState('');
+  const [selectedImage, setSelectedImage] = useState<{id: string, data: string} | null>(null);
   const { toast } = useToast();
 
   const editorConfig = useMemo(() => ({
@@ -42,23 +43,13 @@ export default function NewsManagement() {
     askBeforePasteFromWord: false,
     defaultActionOnPaste: "insert_as_html",
     processPasteHTML: true,
-    cleanHTML: {
-      fillEmptyParagraph: false,
-      denyTags: ""
-    },
+    cleanHTML: { fillEmptyParagraph: false, denyTags: "" },
     buttons: [
-      'source', '|',
-      'bold', 'italic', 'underline', 'strikethrough', '|',
-      'ul', 'ol', '|',
-      'outdent', 'indent', '|',
-      'font', 'fontsize', 'brush', 'paragraph', '|',
-      'image', 'table', 'link', '|',
-      'align', 'undo', 'redo', '|',
-      'hr', 'eraser', 'copyformat', 'fullsize'
+      'source', '|', 'bold', 'italic', 'underline', 'strikethrough', '|',
+      'ul', 'ol', '|', 'outdent', 'indent', '|', 'font', 'fontsize', 'brush', 'paragraph', '|',
+      'image', 'table', 'link', '|', 'align', 'undo', 'redo', '|', 'hr', 'eraser', 'copyformat', 'fullsize'
     ],
-    uploader: {
-      insertImageAsBase64URI: true
-    }
+    uploader: { insertImageAsBase64URI: true }
   }), []);
 
   useEffect(() => {
@@ -76,55 +67,46 @@ export default function NewsManagement() {
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    setFileError(null);
-    if (file && file.size > 1024 * 1024) {
-      setFileError("Ukuran file melebihi 1MB. Silakan pilih gambar yang lebih kecil.");
-      e.target.value = '';
-    }
-  };
-
   const handleAddNews = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (fileError) return;
+    if (!selectedImage) {
+      toast({ variant: "destructive", title: "Error", description: "Please select a cover image." });
+      return;
+    }
     if (!content || content === '<p><br></p>') {
-      toast({ variant: "destructive", title: "Konten Kosong", description: "Silakan isi konten berita." });
+      toast({ variant: "destructive", title: "Error", description: "Content cannot be empty." });
       return;
     }
 
     setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
     formData.append('content', content); 
+    formData.append('imageId', selectedImage.id);
 
     try {
       await createNews(formData);
-      toast({ title: "Berita Berhasil Dibuat", description: "Artikel wawasan baru telah ditambahkan." });
+      toast({ title: "Success", description: "News published successfully." });
       setIsDialogOpen(false);
       setContent('');
+      setSelectedImage(null);
       loadNews();
     } catch (error: any) {
-      toast({ 
-        variant: "destructive", 
-        title: "Gagal", 
-        description: error.message || "Gagal membuat berita." 
-      });
+      toast({ variant: "destructive", title: "Failed", description: error.message });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm('Apakah Anda yakin ingin menghapus berita ini?')) {
+    if (confirm('Delete this news?')) {
       await deleteNews(id);
-      toast({ title: "Berita Dihapus", description: "Artikel telah dihapus dari sistem." });
+      toast({ title: "Deleted", description: "News has been removed." });
       loadNews();
     }
   };
 
   return (
     <div className="space-y-6">
-      {/* CSS Fix untuk Numerik & List di Jodit (Mengatasi Tailwind Reset) */}
       <style dangerouslySetInnerHTML={{ __html: `
         .jodit-wysiwyg ul { list-style-type: disc !important; padding-left: 2.5rem !important; margin: 1em 0 !important; }
         .jodit-wysiwyg ol { list-style-type: decimal !important; padding-left: 2.5rem !important; margin: 1em 0 !important; }
@@ -135,24 +117,24 @@ export default function NewsManagement() {
 
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-3xl font-headline font-bold">Manajemen Berita</h2>
-          <p className="text-muted-foreground">Kelola artikel berita dan wawasan dengan fitur SEO lengkap.</p>
+          <h2 className="text-3xl font-headline font-bold">News Management</h2>
+          <p className="text-muted-foreground">Manage announcements and latest updates.</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button className="gap-2">
               <Plus className="w-4 h-4" />
-              Tambah Artikel
+              Add News
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-5xl overflow-y-auto max-h-[95vh]">
             <DialogHeader>
-              <DialogTitle>Buat Artikel Berita Baru</DialogTitle>
+              <DialogTitle>Create New News Article</DialogTitle>
             </DialogHeader>
             <form onSubmit={handleAddNews} className="space-y-6 pt-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold">Bahasa Konten</label>
+                  <label className="text-sm font-semibold">Language</label>
                   <select name="lang" className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:ring-2 focus:ring-primary outline-none" required>
                     <option value="en">English (EN)</option>
                     <option value="id">Indonesia (ID)</option>
@@ -161,50 +143,47 @@ export default function NewsManagement() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold flex items-center gap-2">
-                    <Upload className="w-4 h-4 text-primary" /> Foto Sampul (Maks 1MB)
+                    <ImageIcon className="w-4 h-4 text-primary" /> Cover Image
                   </label>
-                  <Input 
-                    name="image" 
-                    type="file" 
-                    accept="image/*" 
-                    onChange={handleFileChange}
-                    required 
+                  <MediaPicker 
+                    onSelect={(id, data) => setSelectedImage({id, data})} 
+                    currentValue={selectedImage?.id}
                   />
-                  {fileError && (
-                    <p className="text-xs text-destructive mt-1 flex items-center gap-1 font-medium">
-                      <AlertCircle className="w-3 h-3" /> {fileError}
-                    </p>
+                  {selectedImage && (
+                    <div className="mt-2 relative h-20 w-32 rounded border overflow-hidden">
+                      <Image src={selectedImage.data} alt="Preview" fill className="object-cover" />
+                    </div>
                   )}
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold">Judul Artikel</label>
-                <Input name="title" placeholder="Masukkan judul yang menarik..." required />
+                <label className="text-sm font-semibold">Title</label>
+                <Input name="title" placeholder="News title..." required />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold flex items-center gap-2">
-                    <Tag className="w-4 h-4 text-primary" /> Tag (Pisahkan dengan koma)
+                    <Tag className="w-4 h-4 text-primary" /> Tags (Comma separated)
                   </label>
-                  <Input name="tags" placeholder="contoh: teknologi, iot, bisnis" />
+                  <Input name="tags" placeholder="e.g. iot, business" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold flex items-center gap-2">
-                    <Key className="w-4 h-4 text-primary" /> Kata Kunci SEO
+                    <Key className="w-4 h-4 text-primary" /> SEO Keywords
                   </label>
-                  <Input name="keywords" placeholder="Keyword untuk mesin pencari..." />
+                  <Input name="keywords" placeholder="Search keywords..." />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold">Ringkasan (Excerpt)</label>
-                <Input name="excerpt" placeholder="Ringkasan singkat untuk tampilan daftar..." required />
+                <label className="text-sm font-semibold">Summary (Excerpt)</label>
+                <Input name="excerpt" placeholder="Short description for the list view..." required />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold">Konten Utama</label>
+                <label className="text-sm font-semibold">Main Content</label>
                 <div className="border rounded-md overflow-hidden bg-white text-black min-h-[450px]">
                   <JoditEditor
                     value={content}
@@ -212,11 +191,10 @@ export default function NewsManagement() {
                     onBlur={newContent => setContent(newContent)}
                   />
                 </div>
-                <p className="text-[10px] text-muted-foreground italic">*Gunakan toolbar untuk format teks, tabel, dan gambar.</p>
               </div>
 
-              <Button type="submit" className="w-full h-12 text-lg font-bold" disabled={isSubmitting || !!fileError}>
-                {isSubmitting ? 'Sedang Memproses...' : 'Terbitkan Artikel'}
+              <Button type="submit" className="w-full h-12 text-lg font-bold" disabled={isSubmitting}>
+                {isSubmitting ? 'Processing...' : 'Publish News'}
               </Button>
             </form>
           </DialogContent>
@@ -228,17 +206,17 @@ export default function NewsManagement() {
           <Table>
             <TableHeader className="bg-secondary/30">
               <TableRow>
-                <TableHead className="font-bold">Judul Artikel</TableHead>
-                <TableHead className="font-bold">Bahasa</TableHead>
-                <TableHead className="font-bold">Tanggal Terbit</TableHead>
-                <TableHead className="text-right font-bold">Aksi</TableHead>
+                <TableHead className="font-bold">Title</TableHead>
+                <TableHead className="font-bold">Language</TableHead>
+                <TableHead className="font-bold">Date</TableHead>
+                <TableHead className="text-right font-bold">Action</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {loading ? (
-                <TableRow><TableCell colSpan={4} className="text-center py-20 text-muted-foreground">Memuat daftar berita...</TableCell></TableRow>
+                <TableRow><TableCell colSpan={4} className="text-center py-20 text-muted-foreground">Loading news...</TableCell></TableRow>
               ) : news.length === 0 ? (
-                <TableRow><TableCell colSpan={4} className="text-center py-20 text-muted-foreground font-medium">Belum ada berita yang diterbitkan.</TableCell></TableRow>
+                <TableRow><TableCell colSpan={4} className="text-center py-20 text-muted-foreground font-medium">No news published yet.</TableCell></TableRow>
               ) : (
                 news.map((item) => (
                   <TableRow key={item._id} className="hover:bg-secondary/10 transition-colors">

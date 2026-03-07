@@ -9,12 +9,12 @@ import { getDictionary } from '@/lib/dictionaries';
 import clientPromise from '@/lib/mongodb';
 import { Button } from '@/components/ui/button';
 import { unstable_cache } from 'next/cache';
+import { getMediaById } from '@/app/cms/media/actions';
 
 type NewsDetailPageProps = {
   params: { lang: Locale; slug: string };
 };
 
-// Caching query detail dengan unstable_cache
 const getCachedNewsDetail = unstable_cache(
   async (slug: string, lang: string) => {
     try {
@@ -23,10 +23,15 @@ const getCachedNewsDetail = unstable_cache(
       const news = await db.collection('news').findOne({ slug, lang });
       if (!news) return null;
       
-      // Pastikan serializable
+      let imageSrc = news.image;
+      if (news.image && news.image.length === 24 && !news.image.startsWith('data:')) {
+        imageSrc = await getMediaById(news.image) || 'https://picsum.photos/seed/news/800/600';
+      }
+
       return {
         ...news,
-        _id: news._id.toString()
+        _id: news._id.toString(),
+        image: imageSrc
       };
     } catch (e) {
       console.error("Failed to fetch news detail:", e);
@@ -34,7 +39,7 @@ const getCachedNewsDetail = unstable_cache(
     }
   },
   ['news-detail'],
-  { tags: ['news'] }
+  { tags: ['news', 'media'] }
 );
 
 export async function generateMetadata({ params }: NewsDetailPageProps): Promise<Metadata> {

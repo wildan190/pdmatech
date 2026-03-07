@@ -10,6 +10,7 @@ import clientPromise from '@/lib/mongodb';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { unstable_cache } from 'next/cache';
+import { getMediaById } from '@/app/cms/media/actions';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/article';
@@ -47,7 +48,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   };
 }
 
-// Caching query dengan unstable_cache
 const getCachedArticles = unstable_cache(
   async (lang: string, query: string = '') => {
     try {
@@ -69,17 +69,27 @@ const getCachedArticles = unstable_cache(
         .limit(12)
         .toArray();
 
-      return articles.map(item => ({
-        ...item,
-        _id: item._id.toString(),
-      }));
+      const items = [];
+      for (const item of articles) {
+        let imageSrc = item.image;
+        if (item.image && item.image.length === 24 && !item.image.startsWith('data:')) {
+          imageSrc = await getMediaById(item.image) || 'https://picsum.photos/seed/article/800/600';
+        }
+        
+        items.push({
+          ...item,
+          _id: item._id.toString(),
+          image: imageSrc
+        });
+      }
+      return items;
     } catch (e) {
       console.error("Failed to fetch articles from DB:", e);
       return [];
     }
   },
   ['articles-list'],
-  { tags: ['articles'] }
+  { tags: ['articles', 'media'] }
 );
 
 export default async function ArticlePage({ 

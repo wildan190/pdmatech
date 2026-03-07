@@ -10,6 +10,7 @@ import clientPromise from '@/lib/mongodb';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { unstable_cache } from 'next/cache';
+import { getMediaById } from '@/app/cms/media/actions';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/news';
@@ -17,13 +18,8 @@ const path = '/insight/news';
 export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
   const { lang } = await params;
   const dictionary = await getDictionary(lang);
+  const title = dictionary.insightSubMenu.news.title;
   
-  const titles: Record<Locale, string> = {
-    en: 'Latest Tech News & Company Updates',
-    id: 'Berita Teknologi & Informasi Perusahaan Terbaru',
-    zh: '最新科技新闻与公司动态'
-  };
-
   const descriptions: Record<Locale, string> = {
     en: 'Stay updated with the latest ICT and IoT trends, company milestones, and technology innovations from Micro Padma Nusantara.',
     id: 'Tetap terinformasi dengan tren ICT dan IoT terbaru, tonggak pencapaian perusahaan, dan inovasi teknologi dari Micro Padma Nusantara.',
@@ -31,7 +27,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
-  const title = titles[lang];
 
   return {
     title: `${title} - Micro Padma Nusantara`,
@@ -53,7 +48,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   };
 }
 
-// Caching query dengan unstable_cache
 const getCachedNews = unstable_cache(
   async (lang: string, query: string = '') => {
     try {
@@ -75,17 +69,28 @@ const getCachedNews = unstable_cache(
         .limit(12)
         .toArray();
 
-      return news.map(item => ({
-        ...item,
-        _id: item._id.toString(),
-      }));
+      const items = [];
+      for (const item of news) {
+        let imageSrc = item.image;
+        // If image is a reference ID
+        if (item.image && item.image.length === 24 && !item.image.startsWith('data:')) {
+          imageSrc = await getMediaById(item.image) || 'https://picsum.photos/seed/news/800/600';
+        }
+        
+        items.push({
+          ...item,
+          _id: item._id.toString(),
+          image: imageSrc
+        });
+      }
+      return items;
     } catch (e) {
       console.error("Failed to fetch news from DB:", e);
       return [];
     }
   },
   ['news-list'],
-  { tags: ['news'] }
+  { tags: ['news', 'media'] }
 );
 
 export default async function NewsPage({ 
@@ -151,11 +156,6 @@ export default async function NewsPage({
                   {lang === 'id' ? 'Cari' : 'Search'}
                 </Button>
               </form>
-              {query && (
-                <p className="mt-4 text-sm text-muted-foreground animate-in fade-in">
-                  {lang === 'id' ? 'Menampilkan hasil untuk' : 'Showing results for'}: <span className="font-bold text-primary italic">"{query}"</span>
-                </p>
-              )}
             </div>
         </div>
       </section>
@@ -209,9 +209,6 @@ export default async function NewsPage({
                         <h3 className="text-xl font-semibold text-muted-foreground">
                           {query ? (lang === 'id' ? 'Berita tidak ditemukan' : 'No news found') : pageDict.newsDescription}
                         </h3>
-                        <p className="text-muted-foreground mt-2 max-w-md mx-auto">
-                          {query ? (lang === 'id' ? 'Coba gunakan kata kunci lain.' : 'Try using different keywords.') : 'Stay tuned for future updates and stories from our innovation journey.'}
-                        </p>
                         {query && (
                           <Button variant="outline" asChild className="mt-6">
                             <Link href={`/${lang}/insight/news`}>{lang === 'id' ? 'Kembali ke Semua Berita' : 'Back to All News'}</Link>

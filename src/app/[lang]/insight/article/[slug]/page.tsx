@@ -9,6 +9,7 @@ import { getDictionary } from '@/lib/dictionaries';
 import clientPromise from '@/lib/mongodb';
 import { Button } from '@/components/ui/button';
 import { unstable_cache } from 'next/cache';
+import { getMediaById } from '@/app/cms/media/actions';
 
 type ArticleDetailPageProps = {
   params: { lang: Locale; slug: string };
@@ -22,9 +23,15 @@ const getCachedArticleDetail = unstable_cache(
       const article = await db.collection('articles').findOne({ slug, lang });
       if (!article) return null;
       
+      let imageSrc = article.image;
+      if (article.image && article.image.length === 24 && !article.image.startsWith('data:')) {
+        imageSrc = await getMediaById(article.image) || 'https://picsum.photos/seed/article/800/600';
+      }
+
       return {
         ...article,
-        _id: article._id.toString()
+        _id: article._id.toString(),
+        image: imageSrc
       };
     } catch (e) {
       console.error("Failed to fetch article detail:", e);
@@ -32,7 +39,7 @@ const getCachedArticleDetail = unstable_cache(
     }
   },
   ['article-detail'],
-  { tags: ['articles'] }
+  { tags: ['articles', 'media'] }
 );
 
 export async function generateMetadata({ params }: ArticleDetailPageProps): Promise<Metadata> {

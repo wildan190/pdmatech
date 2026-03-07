@@ -24,18 +24,7 @@ export async function createNews(formData: FormData) {
   const lang = formData.get('lang') as string;
   const tags = (formData.get('tags') as string || '').split(',').map(t => t.trim()).filter(Boolean);
   const keywords = formData.get('keywords') as string;
-  const imageFile = formData.get('image') as File;
-
-  let imageData = 'https://picsum.photos/seed/news/800/600';
-
-  if (imageFile && imageFile.size > 0) {
-    if (imageFile.size > 1024 * 1024) {
-      throw new Error("Image size must be less than 1MB");
-    }
-    const bytes = await imageFile.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    imageData = `data:${imageFile.type};base64,${buffer.toString('base64')}`;
-  }
+  const imageId = formData.get('imageId') as string; // Refer to media collection
 
   const client = await clientPromise;
   const db = client.db(DATABASE_NAME);
@@ -53,12 +42,11 @@ export async function createNews(formData: FormData) {
     lang,
     tags,
     keywords,
-    image: imageData,
+    image: imageId, // Storing ID now
     date: new Date().toISOString(),
     slug,
   });
 
-  // Revalidate cache
   revalidateTag('news');
   revalidatePath('/[lang]/insight/news', 'page');
   revalidatePath('/[lang]/insight/news/[slug]', 'page');
@@ -70,7 +58,6 @@ export async function deleteNews(id: string) {
   const db = client.db(DATABASE_NAME);
   await db.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
   
-  // Revalidate cache
   revalidateTag('news');
   revalidatePath('/[lang]/insight/news', 'page');
   revalidatePath('/[lang]/insight/news/[slug]', 'page');
