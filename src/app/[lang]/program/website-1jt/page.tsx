@@ -32,9 +32,9 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['affordable website', 'cheap website', 'website design service', 'landing page service', 'cheap landing page', 'website for smes', 'website for startup', 'cheap website builder'],
-    id: ['jasa website murah', 'website murah', 'website 1 juta', 'landing page murah', 'website company profile', 'jasa landing page', 'website untuk UMKM', 'website untuk startup', 'buat website profesional', 'website builder murah', 'buat landing page murah', 'cara buat website murah', 'website design murah'],
-    zh: ['经济实惠的网站', '便宜网站', '网站设计服务', '登录页面服务', '便宜登录页面', '中小微企业网站', '初创公司网站', '便宜网站建设工具']
+    en: ['affordable website', 'cheap website', 'website design service', 'landing page service', 'cheap landing page', 'website for smes', 'website for startup', 'cheap website builder', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    id: ['jasa website murah', 'website murah', 'website 1 juta', 'landing page murah', 'website company profile', 'jasa landing page', 'website untuk UMKM', 'website untuk startup', 'buat website profesional', 'website builder murah', 'buat landing page murah', 'cara buat website murah', 'website design murah', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    zh: ['经济实惠的网站', '便宜网站', '网站设计服务', '登录页面服务', '便宜登录页面', '中小微企业网站', '初创公司网站', '便宜网站建设工具', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -330,5 +330,3 @@ export default async function Website1JtPage({ params }: { params: { lang: Local
     </>
   );
 }
-
-    

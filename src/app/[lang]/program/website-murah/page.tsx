@@ -31,9 +31,9 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['affordable static website', 'cheap static site', '500k website', 'free .my.id domain', 'fast landing page', 'website under 500k', 'static site generator service'],
-    id: ['website statis murah', 'website 500 ribu', 'jasa website statis', 'landing page cepat', 'website di bawah 500 ribu', 'gratis domain .my.id', 'jasa pembuatan website murah'],
-    zh: ['经济型静态网站', '便宜的静态网站', '50万印尼盾网站', '免费.my.id域名', '快速登录页面', '50万印尼盾以下网站', '静态网站生成器服务']
+    en: ['affordable static website', 'cheap static site', '500k website', 'free .my.id domain', 'fast landing page', 'website under 500k', 'static site generator service', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    id: ['website statis murah', 'website 500 ribu', 'jasa website statis', 'landing page cepat', 'website di bawah 500 ribu', 'gratis domain .my.id', 'jasa pembuatan website murah', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    zh: ['经济型静态网站', '便宜的静态网站', '50万印尼盾网站', '免费.my.id域名', '快速登录页面', '50万印尼盾以下网站', '静态网站生成器服务', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal']
   };
 
   const canonicalUrl = `${baseUrl}/${params.lang}${path}`;
@@ -271,5 +271,3 @@ export default async function WebsiteMurahPage({ params }: { params: { lang: Loc
     </>
   );
 }
-
-    

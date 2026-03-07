@@ -1,3 +1,4 @@
+
 import { getDictionary } from '@/lib/dictionaries';
 import { Locale, i18n } from '@/i18n.config';
 import WhatsAppButton from '@/components/landing/whatsapp-button';
@@ -43,9 +44,9 @@ export async function generateMetadata({ params: { lang } }: { params: { lang: L
   };
   
   const keywords: Record<Locale, string[]> = {
-    en: ['ICT solutions Indonesia', 'IoT company Indonesia', 'enterprise software solutions', 'UMKM digital solutions', 'web development services', 'IT consulting Jakarta', 'technology provider Indonesia', 'Micro Padma Nusantara'],
-    id: ['solusi ICT Indonesia', 'perusahaan IoT Indonesia', 'software enterprise', 'solusi digital UMKM', 'jasa pembuatan website', 'konsultan IT Jakarta', 'penyedia teknologi Indonesia', 'Micro Padma Nusantara'],
-    zh: ['印尼ICT解决方案', '印尼物联网公司', '企业软件解决方案', '中小微企业数字解决方案', '网站开发服务', '雅加达IT咨询', '印尼技术提供商', 'Micro Padma Nusantara']
+    en: ['ICT solutions Indonesia', 'IoT company Indonesia', 'enterprise software solutions', 'UMKM digital solutions', 'web development services', 'IT consulting Jakarta', 'technology provider Indonesia', 'Micro Padma Nusantara', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    id: ['solusi ICT Indonesia', 'perusahaan IoT Indonesia', 'software enterprise', 'solusi digital UMKM', 'jasa pembuatan website', 'konsultan IT Jakarta', 'penyedia teknologi Indonesia', 'Micro Padma Nusantara', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    zh: ['印尼ICT解决方案', '印尼物联网公司', '企业软件解决方案', '中小微企业数字解决方案', '网站开发服务', '雅加达IT咨询', '印尼技术提供商', 'Micro Padma Nusantara', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal']
   };
   
   const ogTitles: Record<Locale, string> = {

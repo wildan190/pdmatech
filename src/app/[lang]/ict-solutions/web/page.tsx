@@ -32,9 +32,9 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   };
 
   const keywords: Record<Locale, string[]> = {
-    en: ['custom web application development SEA', 'e-commerce store development Southeast Asia', 'Next.js and React development agency', 'user-centric website design', 'SEO and performance optimization services', 'website redesign for better UX'],
-    id: ['jasa pengembangan aplikasi web Asia Tenggara', 'pembuatan toko e-commerce Asia Tenggara', 'agensi pengembangan Next.js dan React', 'desain website berpusat pada pengguna', 'jasa optimasi SEO dan performa', 'desain ulang website untuk UX yang lebih baik'],
-    zh: ['东南亚定制Web应用开发', '东南亚电子商务商店开发', 'Next.js和React开发机构', '以用户为中心的网站设计', 'SEO与性能优化服务', '为更好用户体验的网站重新设计']
+    en: ['custom web application development SEA', 'e-commerce store development Southeast Asia', 'Next.js and React development agency', 'user-centric website design', 'SEO and performance optimization services', 'website redesign for better UX', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    id: ['jasa pengembangan aplikasi web Asia Tenggara', 'pembuatan toko e-commerce Asia Tenggara', 'agensi pengembangan Next.js dan React', 'desain website berpusat pada pengguna', 'jasa optimasi SEO dan performa', 'desain ulang website untuk UX yang lebih baik', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal'],
+    zh: ['东南亚定制Web应用开发', '东南亚电子商务商店开发', 'Next.js和React开发机构', '以用户为中心的网站设计', 'SEO与性能优化服务', '为更好用户体验的网站重新设计', 'Bahtera Herbal', 'bahtera herbal', 'rumah sehat bahtera herbal', 'rsbh', 'rs bahtera herbal']
   };
 
   const canonicalUrl = `${baseUrl}/${lang}${path}`;
@@ -224,7 +224,7 @@ export default async function WebPage({ params }: { params: { lang: Locale }}) {
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
-                        <BreadcrumbLink asChild><Link href={`/${lang}/#services`}>{dictionary.navigation.ictSolutions}</Link></BreadcrumbLink>
+                        <BreadcrumbLink asChild><Link href={`/${lang}/ict-solutions/iot`}>{dictionary.navigation.ictSolutions}</Link></BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
@@ -371,7 +371,7 @@ export default async function WebPage({ params }: { params: { lang: Locale }}) {
             <h2 className="text-3xl font-bold font-headline mb-4">{pageDict.cta.title}</h2>
             <p className="max-w-2xl mx-auto mb-8">{pageDict.cta.description}</p>
             <Button size="lg" variant="secondary" asChild>
-              <Link href={`/${lang}/#contact`}>
+              <Link href={`/${lang}/contact`}>
                 {pageDict.cta.button} <ArrowRight className="ml-2"/>
               </Link>
             </Button>
