@@ -1,15 +1,15 @@
-
 import { Metadata } from 'next';
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Lightbulb, TrendingUp, SearchX, Send, Users } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Heart, Lightbulb, TrendingUp, SearchX, Send, Users, Briefcase, MapPin, ArrowRight } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import ParallaxImage from '@/components/shared/parallax-image';
+import { getJobs } from '@/app/cms/career/actions';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/career';
@@ -19,50 +19,21 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   const dictionary = await getDictionary(lang);
   const title = dictionary.careerPage.breadcrumb;
   
-  const descriptions: Record<Locale, string> = {
-    en: 'Join our team of innovators at Micro Padma Nusantara. Explore career opportunities and become part of our mission to shape the future of technology in Indonesia.',
-    id: 'Bergabunglah dengan tim inovator kami di Micro Padma Nusantara. Jelajahi peluang karir dan jadilah bagian dari misi kami untuk membentuk masa depan teknologi di Indonesia.',
-    zh: '加入 Micro Padma Nusantara 的创新团队。探索职业机会，成为我们塑造印度尼西亚技术未来使命的一部分。'
-  };
-
-  const keywords: Record<Locale, string[]> = {
-    en: ['tech jobs Indonesia', 'ICT careers', 'IoT job vacancies', 'software engineer jobs', 'work at Micro Padma Nusantara', 'technology careers Banten'],
-    id: ['lowongan kerja teknologi', 'karir ICT', 'lowongan kerja IoT', 'pekerjaan software engineer', 'karir di Micro Padma Nusantara', 'lowongan kerja Banten'],
-    zh: ['印尼技术工作', 'ICT职业', '物联网职位空缺', '软件工程师职位', '在Micro Padma Nusantara工作', '万丹技术职业']
-  };
-
-  const canonicalUrl = `${baseUrl}/${lang}${path}`;
-
   return {
     title: `${title} at Micro Padma Nusantara`,
-    description: descriptions[lang],
-    keywords: keywords[lang],
+    description: 'Join our team of innovators. Explore job opportunities in ICT and IoT solutions.',
     alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        'en': `${baseUrl}/en${path}`,
-        'id': `${baseUrl}/id${path}`,
-        'zh': `${baseUrl}/zh${path}`,
-        'x-default': `${baseUrl}/en${path}`,
-      },
-    },
-    openGraph: {
-      title: `${title} at Micro Padma Nusantara`,
-      description: descriptions[lang],
-      url: canonicalUrl,
-    },
-    twitter: {
-      title: `${title} at Micro Padma Nusantara`,
-      description: descriptions[lang],
+      canonical: `${baseUrl}/${lang}${path}`,
     },
   };
 }
-
 
 export default async function CareerPage({ params }: { params: { lang: Locale }}) {
   const lang = params.lang;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.careerPage;
+  const jobs = await getJobs();
+  const activeJobs = jobs.filter(j => j.lang === lang);
 
   const companyValues = [
     {
@@ -91,7 +62,6 @@ export default async function CareerPage({ params }: { params: { lang: Locale }}
 
   return (
     <main className="flex-grow">
-      
       {/* Breadcrumb */}
       <section className="bg-secondary/50 py-4 border-b">
         <div className="container">
@@ -159,16 +129,55 @@ export default async function CareerPage({ params }: { params: { lang: Locale }}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-headline">{pageDict.openings.title}</h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              {pageDict.openings.description}
+              We are looking for talented individuals to join our mission.
             </p>
           </div>
-          <Card className="max-w-3xl mx-auto shadow-none border-dashed">
-              <CardContent className="p-10 text-center">
-                  <SearchX className="mx-auto h-16 w-16 text-muted-foreground/50 mb-4" />
-                  <h3 className="text-xl font-semibold text-muted-foreground">{pageDict.openings.notAvailable}</h3>
-                  <p className="text-muted-foreground mt-2">{pageDict.openings.checkBack}</p>
-              </CardContent>
-          </Card>
+          
+          {activeJobs.length > 0 ? (
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              {activeJobs.map((job) => (
+                <Card key={job._id} className="group hover:shadow-xl transition-all border-0 shadow-sm overflow-hidden flex flex-col">
+                  <CardHeader className="bg-background border-b p-6">
+                    <div className="flex justify-between items-start gap-4">
+                      <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+                        <Briefcase className="w-6 h-6" />
+                      </div>
+                      <span className="text-[10px] uppercase font-bold text-primary tracking-widest bg-primary/10 px-2 py-1 rounded">Full Time</span>
+                    </div>
+                    <CardTitle className="mt-4 text-2xl group-hover:text-primary transition-colors">{job.title}</CardTitle>
+                    <p className="text-sm text-muted-foreground font-medium flex items-center gap-1 mt-1">
+                      <MapPin className="w-3 h-3" /> Indonesia (Remote/Hybrid)
+                    </p>
+                  </CardHeader>
+                  <CardContent className="p-6 flex-grow bg-background/50">
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Award className="w-4 h-4 text-primary" /> {job.experience} Experience
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Settings className="w-4 h-4 text-primary" /> {job.skills}
+                      </div>
+                    </div>
+                  </CardContent>
+                  <div className="p-6 pt-0 mt-auto bg-background/50">
+                    <Button className="w-full gap-2 group/btn" asChild>
+                      <Link href={`/${lang}/career/${job._id}`}>
+                        View Details & Apply <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                      </Link>
+                    </Button>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <Card className="max-w-3xl mx-auto shadow-none border-dashed bg-background/50">
+                <CardContent className="p-16 text-center">
+                    <SearchX className="mx-auto h-16 w-16 text-muted-foreground/30 mb-4" />
+                    <h3 className="text-xl font-semibold text-muted-foreground">{pageDict.openings.notAvailable}</h3>
+                    <p className="text-muted-foreground mt-2">{pageDict.openings.checkBack}</p>
+                </CardContent>
+            </Card>
+          )}
         </div>
       </section>
       
@@ -179,7 +188,7 @@ export default async function CareerPage({ params }: { params: { lang: Locale }}
           <h2 className="text-3xl font-bold font-headline mb-4">{pageDict.cta.title}</h2>
           <p className="max-w-2xl mx-auto mb-8">{pageDict.cta.description}</p>
           <Button size="lg" variant="secondary" asChild>
-            <Link href="mailto:micropadmanusantara@gmail.com?subject=Spontaneous%20Application">
+            <Link href="mailto:hrd@mpnsolutions.my.id?subject=Career Inquiry">
               {pageDict.cta.button} <Send className="ml-2"/>
             </Link>
           </Button>
