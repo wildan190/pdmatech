@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Newspaper, LogOut, Globe, Mail, FileText, Layout, BookOpen } from 'lucide-react';
+import { Newspaper, LogOut, Globe, Mail, FileText, Layout, BookOpen, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function CMSLayout({ children }: { children: React.ReactNode }) {
@@ -22,6 +22,7 @@ export default function CMSLayout({ children }: { children: React.ReactNode }) {
     { name: 'Article Management', href: '/cms/articles', icon: <FileText className="w-4 h-4" /> },
     { name: 'Page Management', href: '/cms/pages', icon: <Layout className="w-4 h-4" /> },
     { name: 'Brochure Management', href: '/cms/brochures', icon: <BookOpen className="w-4 h-4" /> },
+    { name: 'Investor Resources', href: '/cms/investor-relations', icon: <BarChart3 className="w-4 h-4" /> },
     { name: 'Inquiries / Leads', href: '/cms/inquiries', icon: <Mail className="w-4 h-4" /> },
   ];
 
