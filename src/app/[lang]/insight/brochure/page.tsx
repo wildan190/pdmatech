@@ -1,15 +1,14 @@
-
 import { Metadata } from 'next';
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Cpu, Layers, Store, Globe, Shield, CheckCircle, Zap, Goal } from "lucide-react";
+import { ArrowRight, Cpu, Layers, Store, Globe, Shield, CheckCircle, Zap, Goal, Download, FileWarning } from "lucide-react";
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
-import PrintButton from '@/components/brochure/print-button';
 import ParallaxImage from '@/components/shared/parallax-image';
+import { getLatestBrochure } from '@/app/cms/brochures/actions';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/insight/brochure';
@@ -20,43 +19,11 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   const pageDict = dictionary.brochurePage;
   const title = pageDict.breadcrumb;
 
-  const descriptions: Record<Locale, string> = {
-    en: 'Explore the official brochure of Micro Padma Nusantara. Discover our innovative ICT and IoT solutions, our mission, and how we empower businesses in Indonesia.',
-    id: 'Jelajahi brosur resmi Micro Padma Nusantara. Temukan solusi ICT dan IoT inovatif kami, misi kami, dan bagaimana kami memberdayakan bisnis di Indonesia.',
-    zh: '浏览 Micro Padma Nusantara 的官方宣传册。了解我们的创新 ICT 和物联网解决方案、我们的使命以及我们如何为印度尼西亚的企业赋能。'
-  };
-
-  const keywords: Record<Locale, string[]> = {
-    en: ['company brochure', 'download ICT brochure', 'IoT solutions PDF', 'Micro Padma Nusantara profile', 'digital transformation services', 'tech company portfolio'],
-    id: ['brosur perusahaan', 'unduh brosur ICT', 'PDF solusi IoT', 'profil Micro Padma Nusantara', 'layanan transformasi digital', 'portofolio perusahaan teknologi'],
-    zh: ['公司宣传册', '下载ICT宣传册', '物联网解决方案PDF', 'Micro Padma Nusantara简介', '数字化转型服务', '科技公司产品组合']
-  };
-
-  const canonicalUrl = `${baseUrl}/${lang}${path}`;
-
   return {
     title,
-    description: descriptions[lang],
-    keywords: keywords[lang],
+    description: 'Explore the official brochure of Micro Padma Nusantara. Discover our innovative ICT and IoT solutions.',
     alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        'en': `${baseUrl}/en${path}`,
-        'id': `${baseUrl}/id${path}`,
-        'zh': `${baseUrl}/zh${path}`,
-        'x-default': `${baseUrl}/en${path}`,
-      },
-    },
-    openGraph: {
-      title: `${title} | Micro Padma Nusantara`,
-      description: descriptions[lang],
-      url: canonicalUrl,
-      type: 'article',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${title} | Micro Padma Nusantara`,
-      description: descriptions[lang],
+      canonical: `${baseUrl}/${lang}${path}`,
     },
   };
 }
@@ -67,6 +34,8 @@ export default async function BrochurePage({ params }: { params: { lang: Locale 
   const pageDict = dictionary.brochurePage;
   const commonDict = dictionary.common;
   const companyDict = dictionary.companyPage;
+
+  const latestBrochure = await getLatestBrochure(lang);
 
   const services = [
     {
@@ -120,7 +89,6 @@ export default async function BrochurePage({ params }: { params: { lang: Locale 
 
   return (
     <main className="flex-grow bg-background">
-      
       {/* Breadcrumb */}
       <section className="bg-secondary/50 py-4 border-b no-print">
         <div className="container">
@@ -143,7 +111,7 @@ export default async function BrochurePage({ params }: { params: { lang: Locale 
       </section>
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center justify-center text-center overflow-hidden">
+      <section className="relative h-[65vh] flex items-center justify-center text-center overflow-hidden">
           <ParallaxImage
               src="/assets/img/home/tech.jpg"
               alt={pageDict.hero.imageAlt}
@@ -152,11 +120,29 @@ export default async function BrochurePage({ params }: { params: { lang: Locale 
           />
         <div className="absolute inset-0 bg-black/70" />
         <div className="relative z-10 container text-white px-4">
-          <h1 className="text-4xl md:text-5xl font-bold font-headline">{pageDict.hero.title}</h1>
-          <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold font-headline leading-tight">{pageDict.hero.title}</h1>
+          <p className="mt-6 text-lg md:text-xl max-w-3xl mx-auto opacity-90">
             {pageDict.hero.description}
           </p>
-           <PrintButton>{pageDict.hero.downloadButton}</PrintButton>
+          
+          <div className="mt-10 flex flex-col items-center gap-4">
+            {latestBrochure ? (
+              <Button size="lg" className="h-14 px-10 text-lg gap-3" asChild>
+                <a href={latestBrochure.fileData} download={latestBrochure.fileName}>
+                  <Download className="w-6 h-6" />
+                  {pageDict.hero.downloadButton}
+                </a>
+              </Button>
+            ) : (
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20">
+                <FileWarning className="w-5 h-5 text-yellow-400" />
+                <span className="text-sm font-medium">Brosur terbaru sedang disiapkan</span>
+              </div>
+            )}
+            {latestBrochure && (
+              <p className="text-xs opacity-60">File PDF: {latestBrochure.fileName}</p>
+            )}
+          </div>
         </div>
       </section>
 
@@ -214,32 +200,6 @@ export default async function BrochurePage({ params }: { params: { lang: Locale 
                   </div>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-       <section className="py-20 lg:py-24 bg-background">
-        <div className="container">
-          <div className="grid lg:grid-cols-3 gap-12 items-center">
-             <div className="lg:col-span-1 space-y-4">
-                <p className="font-semibold text-primary">{companyDict.whyChooseUs.pretitle}</p>
-                <h2 className="text-3xl md:text-4xl font-bold font-headline">{companyDict.whyChooseUs.title}</h2>
-                <p className="text-muted-foreground text-lg">{companyDict.whyChooseUs.description}</p>
-            </div>
-            <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
-              {whyChooseUsData.map((item, index) => (
-                <Card key={index} className="p-6 border-0 shadow-lg hover:shadow-primary/20 transition-shadow bg-secondary/30">
-                  <CardContent className="flex flex-col items-start gap-4 p-0">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      {item.icon}
-                    </div>
-                    <h3 className="font-bold text-xl">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
           </div>
         </div>
       </section>
