@@ -37,7 +37,7 @@ export async function getSearchConsoleData() {
 
   // Fallback to mock data if env vars are missing
   if (!authEmail || !authKey) {
-    console.warn('GSC credentials missing. Returning mock data.');
+    console.warn('GSC credentials missing or incomplete. Returning mock data.');
     return {
       isMock: true,
       performance: [
@@ -77,6 +77,16 @@ export async function getSearchConsoleData() {
     });
 
     const rows = res.data.rows || [];
+    
+    // If API returns no rows but is connected
+    if (rows.length === 0) {
+        return {
+            isMock: false,
+            performance: [],
+            totals: { clicks: 0, impressions: 0, ctr: '0%', position: 0 }
+        };
+    }
+
     const performance = rows.map(r => ({
       day: r.keys?.[0] ? new Date(r.keys[0]).toLocaleDateString('en-US', { weekday: 'short' }) : 'Unknown',
       clicks: r.clicks || 0,
@@ -89,7 +99,7 @@ export async function getSearchConsoleData() {
       position: acc.position + (curr.position || 0)
     }), { clicks: 0, impressions: 0, position: 0 });
 
-    const avgPos = rows.length > 0 ? (totals.position / rows.length).toFixed(1) : 0;
+    const avgPos = (totals.position / rows.length).toFixed(1);
     const ctr = totals.impressions > 0 ? ((totals.clicks / totals.impressions) * 100).toFixed(2) + '%' : '0%';
 
     return {
@@ -103,7 +113,7 @@ export async function getSearchConsoleData() {
       }
     };
   } catch (error) {
-    console.error('GSC API Error:', error);
+    console.error('GSC API Error Details:', error);
     return null;
   }
 }
