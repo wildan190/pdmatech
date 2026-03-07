@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -38,10 +37,22 @@ export default function PageManagement() {
   const editorConfig = useMemo(() => ({
     readonly: false,
     toolbarButtonSize: "middle",
-    buttons: ['bold', 'italic', 'underline', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush', 'paragraph', '|', 'table', 'link', '|', 'undo', 'redo'],
+    theme: "default",
+    enableDragAndDropFileToEditor: true,
+    saveModeInCookie: false,
+    spellcheck: true,
+    editorCssClass: "prose max-w-none",
+    triggerChangeEvent: true,
     askBeforePasteHTML: false,
     askBeforePasteFromWord: false,
-    defaultActionOnPaste: "insert_as_html"
+    defaultActionOnPaste: "insert_as_html",
+    processPasteHTML: true,
+    cleanHTML: { fillEmptyParagraph: false, denyTags: "" },
+    buttons: [
+      'source', '|', 'bold', 'italic', 'underline', 'strikethrough', '|',
+      'ul', 'ol', '|', 'outdent', 'indent', '|', 'font', 'fontsize', 'brush', 'paragraph', '|',
+      'image', 'table', 'link', '|', 'align', 'undo', 'redo', '|', 'hr', 'eraser', 'copyformat', 'fullsize'
+    ],
   }), []);
 
   useEffect(() => {
@@ -95,9 +106,6 @@ export default function PageManagement() {
 
     setIsSubmitting(true);
     
-    // CRITICAL: Strip large imageData (base64) strings before sending to server.
-    // We only store the imageId reference in the database to keep the document small.
-    // The public page fetches the actual image data using the ID.
     const cleanedSections = sections.map(s => {
       if (s.data && s.data.imageData) {
         const { imageData, ...restData } = s.data;
@@ -159,6 +167,14 @@ export default function PageManagement() {
 
   return (
     <div className="space-y-6">
+      <style dangerouslySetInnerHTML={{ __html: `
+        .jodit-wysiwyg ul { list-style-type: disc !important; padding-left: 2.5rem !important; margin: 1em 0 !important; }
+        .jodit-wysiwyg ol { list-style-type: decimal !important; padding-left: 2.5rem !important; margin: 1em 0 !important; }
+        .jodit-wysiwyg li { display: list-item !important; }
+        .jodit-wysiwyg table { border-collapse: collapse !important; width: 100% !important; border: 1px solid #ccc !important; }
+        .jodit-wysiwyg td, .jodit-wysiwyg th { border: 1px solid #ccc !important; padding: 8px !important; }
+      `}} />
+
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-3xl font-headline font-bold">Modular Page Builder</h2>
