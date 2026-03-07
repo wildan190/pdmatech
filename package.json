@@ -46,6 +46,7 @@
     "dotenv": "^16.5.0",
     "firebase": "^11.9.1",
     "genkit": "^1.20.0",
+    "googleapis": "^144.0.0",
     "jodit": "^4.2.47",
     "jodit-react": "^4.1.2",
     "lucide-react": "^0.475.0",

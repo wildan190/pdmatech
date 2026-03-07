@@ -1,3 +1,4 @@
+
 import { NextResponse, type NextRequest } from 'next/server';
 import { i18n } from './i18n.config';
 import { match as matchLocale } from '@formatjs/intl-localematcher';
@@ -34,6 +35,11 @@ export function middleware(request: NextRequest) {
     const session = request.cookies.get('mpn_session')?.value;
     if (session !== 'authenticated') {
       return NextResponse.redirect(new URL('/cms/login', request.url));
+    }
+    
+    // Redirect /cms root to dashboard
+    if (pathname === '/cms') {
+      return NextResponse.redirect(new URL('/cms/dashboard', request.url));
     }
   }
   
