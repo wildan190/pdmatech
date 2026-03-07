@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -8,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Globe, ExternalLink, Link as LinkIcon, MoveUp, MoveDown, Layout, Type, Image as ImageIcon, CheckCircle2, MonitorOff } from 'lucide-react';
+import { Plus, Trash2, Globe, ExternalLink, Link as LinkIcon, MoveUp, MoveDown, Layout, Type, Image as ImageIcon, CheckCircle2, MonitorOff, Loader2 } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import MediaPicker from '@/components/cms/media-picker';
@@ -33,6 +34,15 @@ export default function PageManagement() {
   const [hideFooter, setHideFooter] = useState(false);
   const [showInNavbar, setShowInNavbar] = useState(false);
   const [showInFooter, setShowInFooter] = useState(false);
+
+  const editorConfig = useMemo(() => ({
+    readonly: false,
+    toolbarButtonSize: "middle",
+    buttons: ['bold', 'italic', 'underline', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush', 'paragraph', '|', 'table', 'link', '|', 'undo', 'redo'],
+    askBeforePasteHTML: false,
+    askBeforePasteFromWord: false,
+    defaultActionOnPaste: "insert_as_html"
+  }), []);
 
   useEffect(() => {
     loadPages();
@@ -84,21 +94,35 @@ export default function PageManagement() {
     }
 
     setIsSubmitting(true);
+    
+    // CRITICAL: Strip large imageData (base64) strings before sending to server.
+    // We only store the imageId reference in the database to keep the document small.
+    // The public page fetches the actual image data using the ID.
+    const cleanedSections = sections.map(s => {
+      if (s.data && s.data.imageData) {
+        const { imageData, ...restData } = s.data;
+        return { ...s, data: restData };
+      }
+      return s;
+    });
+
     const formData = new FormData(e.currentTarget);
-    formData.append('sections', JSON.stringify(sections));
+    formData.append('sections', JSON.stringify(cleanedSections));
     formData.append('hideNavbar', hideNavbar.toString());
     formData.append('hideFooter', hideFooter.toString());
     formData.append('showInNavbar', showInNavbar.toString());
     formData.append('showInFooter', showInFooter.toString());
 
     try {
-      await createPage(formData);
-      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Halaman kustom modular telah diterbitkan.' });
-      setIsDialogOpen(false);
-      resetForm();
-      loadPages();
+      const res = await createPage(formData);
+      if (res.success) {
+        Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Halaman kustom modular telah diterbitkan.' });
+        setIsDialogOpen(false);
+        resetForm();
+        loadPages();
+      }
     } catch (error: any) {
-      Swal.fire({ icon: 'error', title: 'Gagal', text: 'Terjadi kesalahan sistem.' });
+      Swal.fire({ icon: 'error', title: 'Gagal', text: error.message || 'Terjadi kesalahan sistem.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -118,13 +142,18 @@ export default function PageManagement() {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
-      confirmButtonText: 'Ya, hapus!'
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal'
     });
 
     if (result.isConfirmed) {
-      await deletePage(id);
-      Swal.fire('Terhapus!', 'Halaman telah dihapus.', 'success');
-      loadPages();
+      try {
+        await deletePage(id);
+        Swal.fire('Terhapus!', 'Halaman telah dihapus.', 'success');
+        loadPages();
+      } catch (e) {
+        Swal.fire('Gagal!', 'Gagal menghapus halaman.', 'error');
+      }
     }
   };
 
@@ -246,9 +275,10 @@ export default function PageManagement() {
                           )}
 
                           {s.type === 'text' && (
-                            <div className="bg-white">
+                            <div className="bg-white rounded-md border overflow-hidden">
                               <JoditEditor 
                                 value={s.data.content} 
+                                config={editorConfig}
                                 onBlur={val => updateSectionData(s.id, { content: val })} 
                               />
                             </div>
@@ -257,6 +287,7 @@ export default function PageManagement() {
                           {s.type === 'image' && (
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                               <div className="md:col-span-1">
+                                <Label className="text-xs mb-2 block">Select Image</Label>
                                 <MediaPicker 
                                   onSelect={(id, data) => updateSectionData(s.id, { imageId: id, imageData: data })} 
                                   currentValue={s.data.imageId}
@@ -266,7 +297,7 @@ export default function PageManagement() {
                                 <Label className="text-xs">Caption / Alt Text</Label>
                                 <Input value={s.data.caption} onChange={e => updateSectionData(s.id, { caption: e.target.value })} placeholder="Keterangan gambar..." />
                                 {s.data.imageData && (
-                                  <div className="relative h-20 w-32 rounded border overflow-hidden mt-2">
+                                  <div className="relative h-32 w-full rounded border overflow-hidden mt-2">
                                     <Image src={s.data.imageData} alt="Preview" fill className="object-cover" />
                                   </div>
                                 )}
@@ -280,7 +311,12 @@ export default function PageManagement() {
                 </div>
 
                 <Button type="submit" className="w-full h-14 text-lg font-bold shadow-xl shadow-primary/20" disabled={isSubmitting}>
-                  {isSubmitting ? 'Publishing...' : 'Publish Modular Page'}
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Publishing...
+                    </>
+                  ) : 'Publish Modular Page'}
                 </Button>
               </div>
             </form>

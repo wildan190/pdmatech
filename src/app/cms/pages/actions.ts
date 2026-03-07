@@ -1,3 +1,4 @@
+
 'use server';
 
 import clientPromise from '@/lib/mongodb';
@@ -37,58 +38,67 @@ export async function getNavigationPages(lang: string) {
 }
 
 export async function createPage(formData: FormData) {
-  const title = formData.get('title') as string;
-  const description = formData.get('description') as string;
-  const lang = formData.get('lang') as string;
-  const customSlug = formData.get('slug') as string;
-  
-  // JSON data from builder
-  const sectionsData = formData.get('sections') as string;
-  const sections = JSON.parse(sectionsData || '[]');
-  
-  const hideNavbar = formData.get('hideNavbar') === 'true';
-  const hideFooter = formData.get('hideFooter') === 'true';
-  const showInNavbar = formData.get('showInNavbar') === 'true';
-  const showInFooter = formData.get('showInFooter') === 'true';
+  try {
+    const title = formData.get('title') as string;
+    const description = formData.get('description') as string;
+    const lang = formData.get('lang') as string;
+    const customSlug = formData.get('slug') as string;
+    
+    // JSON data from builder
+    const sectionsData = formData.get('sections') as string;
+    const sections = JSON.parse(sectionsData || '[]');
+    
+    const hideNavbar = formData.get('hideNavbar') === 'true';
+    const hideFooter = formData.get('hideFooter') === 'true';
+    const showInNavbar = formData.get('showInNavbar') === 'true';
+    const showInFooter = formData.get('showInFooter') === 'true';
 
-  const client = await clientPromise;
-  const db = client.db(DATABASE_NAME);
-  
-  let slug = customSlug 
-    ? customSlug.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')
-    : title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+    const client = await clientPromise;
+    const db = client.db(DATABASE_NAME);
+    
+    let slug = customSlug 
+      ? customSlug.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')
+      : title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
 
-  const existing = await db.collection(COLLECTION_NAME).findOne({ slug, lang });
-  if (existing) {
-    slug = `${slug}-${Math.floor(Math.random() * 1000)}`;
+    const existing = await db.collection(COLLECTION_NAME).findOne({ slug, lang });
+    if (existing) {
+      slug = `${slug}-${Math.floor(Math.random() * 1000)}`;
+    }
+
+    await db.collection(COLLECTION_NAME).insertOne({
+      title,
+      description,
+      lang,
+      slug,
+      sections,
+      hideNavbar,
+      hideFooter,
+      showInNavbar,
+      showInFooter,
+      createdAt: new Date().toISOString(),
+    });
+
+    // Revalidate everything related to pages and navigation
+    revalidateTag('custom-pages');
+    revalidatePath('/', 'layout');
+    return { success: true };
+  } catch (error: any) {
+    console.error("Action error [createPage]:", error);
+    throw new Error(error.message || "Failed to create page");
   }
-
-  await db.collection(COLLECTION_NAME).insertOne({
-    title,
-    description,
-    lang,
-    slug,
-    sections,
-    hideNavbar,
-    hideFooter,
-    showInNavbar,
-    showInFooter,
-    createdAt: new Date().toISOString(),
-  });
-
-  revalidateTag('custom-pages');
-  revalidatePath('/[lang]/p/[slug]', 'page');
-  revalidatePath('/', 'layout'); // For navbar updates
-  revalidatePath('/cms/pages');
 }
 
 export async function deletePage(id: string) {
-  const client = await clientPromise;
-  const db = client.db(DATABASE_NAME);
-  await db.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
-  
-  revalidateTag('custom-pages');
-  revalidatePath('/[lang]/p/[slug]', 'page');
-  revalidatePath('/', 'layout');
-  revalidatePath('/cms/pages');
+  try {
+    const client = await clientPromise;
+    const db = client.db(DATABASE_NAME);
+    await db.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
+    
+    revalidateTag('custom-pages');
+    revalidatePath('/', 'layout');
+    return { success: true };
+  } catch (error) {
+    console.error("Action error [deletePage]:", error);
+    throw new Error("Failed to delete page");
+  }
 }
