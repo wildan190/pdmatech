@@ -1,11 +1,10 @@
-
 import { Metadata } from 'next';
 import { Calendar, Tag, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
-import { Locale } oceanic from '@/i18n.config';
+import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import clientPromise from '@/lib/mongodb';
 import { Button } from '@/components/ui/button';

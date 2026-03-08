@@ -1,10 +1,9 @@
-
 import { Metadata } from 'next';
 import { notFound } from "next/navigation";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import Image from "next/image";
-import { Locale } oceanic from '@/i18n.config';
+import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import clientPromise from '@/lib/mongodb';
 import { unstable_cache } from 'next/cache';
