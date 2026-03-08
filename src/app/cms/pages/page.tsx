@@ -8,9 +8,10 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Edit, Globe, ExternalLink, Layout, Type, Image as ImageIcon, MonitorOff, Loader2, MousePointer2, MessageSquarePlus, X, MoveUp, MoveDown } from 'lucide-react';
+import { Plus, Trash2, Edit, Globe, ExternalLink, Layout, Type, Image as ImageIcon, MonitorOff, Loader2, MousePointer2, MessageSquarePlus, X, MoveUp, MoveDown, Info } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import MediaPicker from '@/components/cms/media-picker';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
@@ -186,6 +187,26 @@ export default function PageManagement() {
     }
   };
 
+  const handleDelete = async (id: string) => {
+    const result = await Swal.fire({
+      title: 'Hapus Halaman?',
+      text: "Seluruh konten halaman ini akan hilang permanen.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, hapus!'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deletePage(id);
+        Swal.fire('Terhapus!', 'Halaman telah dihapus.', 'success');
+        loadPages();
+      } catch (e) {
+        Swal.fire('Gagal!', 'Kesalahan sistem saat menghapus.', 'error');
+      }
+    }
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -236,11 +257,17 @@ export default function PageManagement() {
                     <Switch checked={hideFooter} onCheckedChange={setHideFooter} />
                   </div>
                   <div className="flex items-center justify-between">
-                    <Label>Show in Main Menu</Label>
+                    <div className="space-y-0.5">
+                      <Label>Show in Main Menu</Label>
+                      <p className="text-[10px] text-muted-foreground">Tampilkan otomatis di Navbar</p>
+                    </div>
                     <Switch checked={showInNavbar} onCheckedChange={setShowInNavbar} />
                   </div>
                   <div className="flex items-center justify-between">
-                    <Label>Show in Footer Menu</Label>
+                    <div className="space-y-0.5">
+                      <Label>Show in Footer Menu</Label>
+                      <p className="text-[10px] text-muted-foreground">Tampilkan otomatis di Footer</p>
+                    </div>
                     <Switch checked={showInFooter} onCheckedChange={setShowInFooter} />
                   </div>
                 </div>
@@ -271,18 +298,99 @@ export default function PageManagement() {
                         {s.type === 'hero' && (
                           <div className="grid md:grid-cols-2 gap-4">
                             <div className="space-y-2">
-                              <Label className="text-xs">Title</Label><Input value={s.data.title} onChange={e => updateSectionData(s.id, { title: e.target.value })} />
-                              <Label className="text-xs">Subtitle</Label><Input value={s.data.subtitle} onChange={e => updateSectionData(s.id, { subtitle: e.target.value })} />
+                              <Label className="text-xs">Title</Label>
+                              <Input value={s.data.title} onChange={e => updateSectionData(s.id, { title: e.target.value })} />
+                              <Label className="text-xs">Subtitle</Label>
+                              <Input value={s.data.subtitle} onChange={e => updateSectionData(s.id, { subtitle: e.target.value })} />
                             </div>
                             <div className="space-y-2">
-                              <Label className="text-xs">Background</Label>
+                              <Label className="text-xs">Background Hero</Label>
                               <MediaPicker onSelect={(id, data) => updateSectionData(s.id, { imageId: id, imageData: data })} currentValue={s.data.imageId} />
                               {s.data.imageData && <div className="relative h-20 w-full rounded border mt-2 overflow-hidden"><Image src={s.data.imageData} alt="P" fill className="object-cover" /></div>}
                             </div>
                           </div>
                         )}
                         {s.type === 'text' && <JoditEditor value={s.data.content} config={editorConfig} onBlur={val => updateSectionData(s.id, { content: val })} />}
-                        {/* Render other section types as needed */}
+                        {s.type === 'image' && (
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label className="text-xs">Pilih Gambar</Label>
+                              <MediaPicker onSelect={(id, data) => updateSectionData(s.id, { imageId: id, imageData: data })} currentValue={s.data.imageId} />
+                              <Label className="text-xs">Caption (Opsional)</Label>
+                              <Input value={s.data.caption} onChange={e => updateSectionData(s.id, { caption: e.target.value })} />
+                            </div>
+                            {s.data.imageData && <div className="relative h-32 w-full rounded border overflow-hidden"><Image src={s.data.imageData} alt="P" fill className="object-cover" /></div>}
+                          </div>
+                        )}
+                        {s.type === 'button' && (
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div className="space-y-2">
+                              <Label className="text-xs">Teks Tombol</Label>
+                              <Input value={s.data.text} onChange={e => updateSectionData(s.id, { text: e.target.value })} />
+                            </div>
+                            <div className="space-y-2">
+                              <Label className="text-xs">Link (URL)</Label>
+                              <Input value={s.data.link} onChange={e => updateSectionData(s.id, { link: e.target.value })} />
+                            </div>
+                            <div className="space-y-2">
+                              <Label className="text-xs">Gaya</Label>
+                              <Select value={s.data.variant} onValueChange={v => updateSectionData(s.id, { variant: v })}>
+                                <SelectTrigger><SelectValue /></SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="default">Primary</SelectItem>
+                                  <SelectItem value="secondary">Secondary</SelectItem>
+                                  <SelectItem value="outline">Outline</SelectItem>
+                                  <SelectItem value="ghost">Ghost</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div className="space-y-2">
+                              <Label className="text-xs">Perataan</Label>
+                              <Select value={s.data.align} onValueChange={v => updateSectionData(s.id, { align: v })}>
+                                <SelectTrigger><SelectValue /></SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="left">Kiri</SelectItem>
+                                  <SelectItem value="center">Tengah</SelectItem>
+                                  <SelectItem value="right">Kanan</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          </div>
+                        )}
+                        {s.type === 'faq' && (
+                          <div className="space-y-4">
+                            <div className="space-y-2">
+                              <Label className="text-xs">Judul FAQ (H2)</Label>
+                              <Input value={s.data.title} onChange={e => updateSectionData(s.id, { title: e.target.value })} />
+                            </div>
+                            <div className="space-y-3">
+                              {s.data.items.map((item: any, fIdx: number) => (
+                                <div key={item.id} className="p-4 border rounded-lg bg-secondary/10 relative">
+                                  <Button type="button" variant="ghost" size="icon" className="absolute top-1 right-1 h-6 w-6 text-destructive" onClick={() => {
+                                    const newItems = s.data.items.filter((_: any, i: number) => i !== fIdx);
+                                    updateSectionData(s.id, { items: newItems });
+                                  }}><X className="w-3 h-3"/></Button>
+                                  <div className="space-y-2 pr-6">
+                                    <Input placeholder="Pertanyaan..." value={item.question} onChange={e => {
+                                      const newItems = [...s.data.items];
+                                      newItems[fIdx].question = e.target.value;
+                                      updateSectionData(s.id, { items: newItems });
+                                    }} />
+                                    <textarea placeholder="Jawaban..." className="w-full min-h-[80px] p-2 text-sm rounded-md border bg-background" value={item.answer} onChange={e => {
+                                      const newItems = [...s.data.items];
+                                      newItems[fIdx].answer = e.target.value;
+                                      updateSectionData(s.id, { items: newItems });
+                                    }} />
+                                  </div>
+                                </div>
+                              ))}
+                              <Button type="button" variant="outline" size="sm" className="w-full border-dashed" onClick={() => {
+                                const newItems = [...s.data.items, { id: Date.now(), question: '', answer: '' }];
+                                updateSectionData(s.id, { items: newItems });
+                              }}>+ Tambah Pertanyaan</Button>
+                            </div>
+                          </div>
+                        )}
                       </CardContent>
                     </Card>
                   ))}
@@ -308,6 +416,8 @@ export default function PageManagement() {
           <TableBody>
             {loading ? (
               <TableRow><TableCell colSpan={5} className="text-center py-20">Loading...</TableCell></TableRow>
+            ) : pages.length === 0 ? (
+              <TableRow><TableCell colSpan={5} className="text-center py-20 text-muted-foreground">Belum ada halaman modular.</TableCell></TableRow>
             ) : pages.map((item) => (
               <TableRow key={item._id} className="hover:bg-secondary/10">
                 <TableCell className="font-bold">{item.title}</TableCell>
@@ -324,7 +434,7 @@ export default function PageManagement() {
                   <div className="flex justify-end gap-2">
                     <Button variant="ghost" size="icon" asChild><Link href={`/${item.lang}/p/${item.slug}`} target="_blank"><ExternalLink className="w-4 h-4"/></Link></Button>
                     <Button variant="ghost" size="icon" onClick={() => handleEdit(item)}><Edit className="w-4 h-4" /></Button>
-                    <Button variant="ghost" size="icon" className="text-destructive" onClick={() => deletePage(item._id)}><Trash2 className="w-4 h-4" /></Button>
+                    <Button variant="ghost" size="icon" className="text-destructive" onClick={() => handleDelete(item._id)}><Trash2 className="w-4 h-4" /></Button>
                   </div>
                 </TableCell>
               </TableRow>

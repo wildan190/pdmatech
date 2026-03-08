@@ -140,7 +140,8 @@ export async function deletePage(id: string) {
   try {
     const client = await clientPromise;
     const db = client.db(DATABASE_NAME);
-    await db.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
+    // Explicitly targeting only pages collection
+    await db.collection('pages').deleteOne({ _id: new ObjectId(id) });
     
     revalidateTag('custom-pages');
     revalidatePath('/', 'layout');

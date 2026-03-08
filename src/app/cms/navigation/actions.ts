@@ -52,10 +52,16 @@ export async function saveNavLink(formData: FormData) {
 }
 
 export async function deleteNavLink(id: string) {
-  const client = await clientPromise;
-  const db = client.db(DATABASE_NAME);
-  await db.collection(COLLECTION_NAME).deleteOne({ _id: new ObjectId(id) });
-  revalidatePath('/', 'layout');
+  try {
+    const client = await clientPromise;
+    const db = client.db(DATABASE_NAME);
+    // Explicitly targeting only navigation collection
+    await db.collection('navigation').deleteOne({ _id: new ObjectId(id) });
+    revalidatePath('/', 'layout');
+    return { success: true };
+  } catch (e) {
+    return { success: false };
+  }
 }
 
 export async function reorderNavLinks(ids: string[]) {
