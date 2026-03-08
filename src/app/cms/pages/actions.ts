@@ -43,7 +43,6 @@ export async function createPage(formData: FormData) {
     const lang = formData.get('lang') as string;
     const customSlug = formData.get('slug') as string;
     
-    // JSON data from builder
     const sectionsData = formData.get('sections') as string;
     const sections = JSON.parse(sectionsData || '[]');
     

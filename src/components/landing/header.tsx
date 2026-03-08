@@ -10,6 +10,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import LanguageSwitcher from './language-switcher';
 import { getNavigationPages } from '@/app/cms/pages/actions';
+import { getNavLinks } from '@/app/cms/navigation/actions';
 
 type HeaderProps = {
     dictionary: any;
@@ -19,9 +20,12 @@ type HeaderProps = {
 const Header = ({ dictionary, lang }: HeaderProps) => {
   const [sheetOpen, setSheetOpen] = React.useState(false);
   const [customPages, setCustomPages] = useState<{title: string, href: string}[]>([]);
+  const [manualLinks, setManualLinks] = useState<{title: string, href: string}[]>([]);
 
   useEffect(() => {
+    // Combine dynamic pages and manual links
     getNavigationPages(lang).then(setCustomPages);
+    getNavLinks(lang, 'navbar').then(setManualLinks);
   }, [lang]);
 
   const aboutUsComponents = [
@@ -181,8 +185,8 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
-            {/* Dynamic Custom Pages */}
-            {customPages.map(page => (
+            {/* Combined Manual Links & Dynamic Pages Link */}
+            {[...manualLinks, ...customPages].map(page => (
               <NavigationMenuItem key={page.href}>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                   <Link href={page.href}>{page.title}</Link>
@@ -252,12 +256,12 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
                           </div>
                         </AccordionContent>
                       </AccordionItem>
-                      {customPages.length > 0 && (
+                      {([...manualLinks, ...customPages]).length > 0 && (
                         <AccordionItem value="custom-pages">
-                          <AccordionTrigger className="text-base font-medium">Extra Pages</AccordionTrigger>
+                          <AccordionTrigger className="text-base font-medium">Extra Links</AccordionTrigger>
                           <AccordionContent className="pl-4">
                             <div className="grid gap-3">
-                              {customPages.map(page => <Link key={page.href} href={page.href} className="text-muted-foreground hover:text-foreground" onClick={handleLinkClick}>{page.title}</Link>)}
+                              {[...manualLinks, ...customPages].map(page => <Link key={page.href} href={page.href} className="text-muted-foreground hover:text-foreground" onClick={handleLinkClick}>{page.title}</Link>)}
                             </div>
                           </AccordionContent>
                         </AccordionItem>

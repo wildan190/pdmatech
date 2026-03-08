@@ -1,10 +1,9 @@
-
 'use client';
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Newspaper, LogOut, Globe, Mail, FileText, Layout, BookOpen, BarChart3, Image as ImageIcon, Briefcase, LayoutDashboard } from 'lucide-react';
+import { Newspaper, LogOut, Globe, Mail, FileText, Layout, BookOpen, BarChart3, Image as ImageIcon, Briefcase, LayoutDashboard, Compass } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function CMSLayout({ children }: { children: React.ReactNode }) {
@@ -20,6 +19,7 @@ export default function CMSLayout({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { name: 'Dashboard', href: '/cms/dashboard', icon: <LayoutDashboard className="w-4 h-4" /> },
+    { name: 'Navigation', href: '/cms/navigation', icon: <Compass className="w-4 h-4" /> },
     { name: 'News Management', href: '/cms/news', icon: <Newspaper className="w-4 h-4" /> },
     { name: 'Article Management', href: '/cms/articles', icon: <FileText className="w-4 h-4" /> },
     { name: 'Page Management', href: '/cms/pages', icon: <Layout className="w-4 h-4" /> },
