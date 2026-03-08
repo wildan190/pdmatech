@@ -16,7 +16,7 @@ type ArticleDetailPageProps = {
   params: Promise<{ lang: Locale; slug: string }>;
 };
 
-const getCachedArticleDetail = unstable_cache(
+const getCachedArticleDetail = (slug: string, lang: string) => unstable_cache(
   async (slug: string, lang: string) => {
     try {
       const client = await clientPromise;
@@ -39,9 +39,9 @@ const getCachedArticleDetail = unstable_cache(
       return null;
     }
   },
-  ['article-detail'],
+  [`article-detail-${slug}-${lang}`],
   { tags: ['articles', 'media'] }
-);
+)(slug, lang);
 
 export async function generateMetadata({ params }: ArticleDetailPageProps): Promise<Metadata> {
   const { lang, slug } = await params;
@@ -99,7 +99,14 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
           </Button>
 
           <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl mb-10">
-            <Image src={article.image} alt={article.title} fill className="object-cover" priority />
+            <Image 
+              src={article.image} 
+              alt={article.title} 
+              fill 
+              className="object-cover" 
+              priority 
+              sizes="(max-width: 768px) 100vw, 896px"
+            />
           </div>
 
           <header className="mb-10">

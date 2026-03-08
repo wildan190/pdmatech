@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import Image from "next/image";
-import { Locale } from '@/i18n.config';
+import { Locale } oceanic from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import clientPromise from '@/lib/mongodb';
 import { unstable_cache } from 'next/cache';
@@ -23,7 +23,7 @@ type CustomPageProps = {
   params: Promise<{ lang: Locale; slug: string }>;
 };
 
-const getCachedPageDetail = unstable_cache(
+const getCachedPageDetail = (slug: string, lang: string) => unstable_cache(
   async (slug: string, lang: string) => {
     try {
       const client = await clientPromise;
@@ -77,9 +77,9 @@ const getCachedPageDetail = unstable_cache(
       return null;
     }
   },
-  ['custom-page-detail'],
+  [`custom-page-detail-${slug}-${lang}`],
   { tags: ['custom-pages', 'media'] }
-);
+)(slug, lang);
 
 export async function generateMetadata({ params }: CustomPageProps): Promise<Metadata> {
   const { lang, slug } = await params;
@@ -119,12 +119,17 @@ export default async function DynamicCustomPage({ params }: CustomPageProps) {
         </section>
       )}
 
-      {page.sections && page.sections.map((section: any) => (
+      {page.sections && page.sections.map((section: any, sectionIdx: number) => (
         <div key={section.id}>
           {section.type === 'hero' && (
             <section className="relative h-[60vh] flex items-center justify-center text-center overflow-hidden">
               {section.data.imageData && (
-                <ParallaxImage src={section.data.imageData} alt={section.data.title} priority />
+                <ParallaxImage 
+                  src={section.data.imageData} 
+                  alt={section.data.title} 
+                  priority={sectionIdx === 0} 
+                  sizes="100vw"
+                />
               )}
               <div className="absolute inset-0 bg-black/60" />
               <div className="relative z-10 container text-white px-4">
@@ -149,7 +154,14 @@ export default async function DynamicCustomPage({ params }: CustomPageProps) {
             <section className="py-12">
               <div className="container max-w-5xl mx-auto text-center">
                 <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mx-auto">
-                  <Image src={section.data.imageData || 'https://picsum.photos/seed/img/1200/800'} alt={section.data.caption || 'Image'} fill className="object-cover" />
+                  <Image 
+                    src={section.data.imageData || 'https://picsum.photos/seed/img/1200/800'} 
+                    alt={section.data.caption || 'Image'} 
+                    fill 
+                    className="object-cover" 
+                    priority={sectionIdx === 0}
+                    sizes="(max-width: 1024px) 100vw, 1024px"
+                  />
                 </div>
                 {section.data.caption && <p className="mt-4 text-center text-muted-foreground italic">{section.data.caption}</p>}
               </div>
@@ -176,6 +188,7 @@ export default async function DynamicCustomPage({ params }: CustomPageProps) {
                                               alt="Column image" 
                                               fill 
                                               className="object-cover" 
+                                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                           />
                                       </div>
                                   )}
@@ -195,7 +208,13 @@ export default async function DynamicCustomPage({ params }: CustomPageProps) {
                       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                           {section.data.items.map((item: any, idx: number) => (
                               <div key={idx} className="relative aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
-                                  <Image src={item.imageData} alt="Gallery item" fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                                  <Image 
+                                    src={item.imageData} 
+                                    alt="Gallery item" 
+                                    fill 
+                                    className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                                  />
                               </div>
                           ))}
                       </div>

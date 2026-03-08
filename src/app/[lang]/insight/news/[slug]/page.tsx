@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
-import { Locale } from '@/i18n.config';
+import { Locale } oceanic from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import clientPromise from '@/lib/mongodb';
 import { Button } from '@/components/ui/button';
@@ -16,7 +16,7 @@ type NewsDetailPageProps = {
   params: Promise<{ lang: Locale; slug: string }>;
 };
 
-const getCachedNewsDetail = unstable_cache(
+const getCachedNewsDetail = (slug: string, lang: string) => unstable_cache(
   async (slug: string, lang: string) => {
     try {
       const client = await clientPromise;
@@ -39,9 +39,9 @@ const getCachedNewsDetail = unstable_cache(
       return null;
     }
   },
-  ['news-detail'],
+  [`news-detail-${slug}-${lang}`],
   { tags: ['news', 'media'] }
-);
+)(slug, lang);
 
 export async function generateMetadata({ params }: NewsDetailPageProps): Promise<Metadata> {
   const { lang, slug } = await params;
@@ -99,7 +99,14 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
           </Button>
 
           <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl mb-10">
-            <Image src={news.image} alt={news.title} fill className="object-cover" priority />
+            <Image 
+              src={news.image} 
+              alt={news.title} 
+              fill 
+              className="object-cover" 
+              priority 
+              sizes="(max-width: 768px) 100vw, 896px"
+            />
           </div>
 
           <header className="mb-10">

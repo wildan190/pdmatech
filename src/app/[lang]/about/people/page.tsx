@@ -12,10 +12,9 @@ import { getDictionary } from "@/lib/dictionaries";
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/about/people';
 
-export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
-  const lang = params.lang;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
-  const pageDict = dictionary.peoplePage;
   
   const titles: Record<Locale, string> = {
     en: 'Meet Our Team of ICT & IoT Experts',
@@ -64,8 +63,8 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 }
 
 
-export default async function PeoplePage({ params }: { params: { lang: Locale }}) {
-  const lang = params.lang;
+export default async function PeoplePage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
   const dictionary = await getDictionary(lang);
   const pageDict = dictionary.peoplePage;
 
@@ -143,6 +142,8 @@ export default async function PeoplePage({ params }: { params: { lang: Locale }}
                                       width={leader.width}
                                       height={leader.height}
                                       className="rounded-lg shadow-xl object-contain w-full h-auto"
+                                      priority={index === 0}
+                                      sizes="(max-width: 768px) 100vw, 400px"
                                   />
                               </div>
                               <div className={`${isOdd ? 'md:text-right' : 'md:text-left'}`}>
