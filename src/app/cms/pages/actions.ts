@@ -1,4 +1,3 @@
-
 'use server';
 
 import clientPromise from '@/lib/mongodb';
@@ -76,15 +75,61 @@ export async function createPage(formData: FormData) {
       showInNavbar,
       showInFooter,
       createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     });
 
-    // Revalidate everything related to pages and navigation
     revalidateTag('custom-pages');
     revalidatePath('/', 'layout');
     return { success: true };
   } catch (error: any) {
     console.error("Action error [createPage]:", error);
     throw new Error(error.message || "Failed to create page");
+  }
+}
+
+export async function updatePage(id: string, formData: FormData) {
+  try {
+    const title = formData.get('title') as string;
+    const description = formData.get('description') as string;
+    const lang = formData.get('lang') as string;
+    const slug = formData.get('slug') as string;
+    
+    const sectionsData = formData.get('sections') as string;
+    const sections = JSON.parse(sectionsData || '[]');
+    
+    const hideNavbar = formData.get('hideNavbar') === 'true';
+    const hideFooter = formData.get('hideFooter') === 'true';
+    const showInNavbar = formData.get('showInNavbar') === 'true';
+    const showInFooter = formData.get('showInFooter') === 'true';
+
+    const client = await clientPromise;
+    const db = client.db(DATABASE_NAME);
+    
+    await db.collection(COLLECTION_NAME).updateOne(
+      { _id: new ObjectId(id) },
+      {
+        $set: {
+          title,
+          description,
+          lang,
+          slug,
+          sections,
+          hideNavbar,
+          hideFooter,
+          showInNavbar,
+          showInFooter,
+          updatedAt: new Date().toISOString(),
+        }
+      }
+    );
+
+    revalidateTag('custom-pages');
+    revalidatePath('/', 'layout');
+    revalidatePath(`/[lang]/p/${slug}`, 'page');
+    return { success: true };
+  } catch (error: any) {
+    console.error("Action error [updatePage]:", error);
+    throw new Error(error.message || "Failed to update page");
   }
 }
 

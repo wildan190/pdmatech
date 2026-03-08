@@ -2,19 +2,20 @@
 
 import { useEffect, useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
-import { getPages, createPage, deletePage } from './actions';
+import { getPages, createPage, updatePage, deletePage } from './actions';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Globe, ExternalLink, Link as LinkIcon, MoveUp, MoveDown, Layout, Type, Image as ImageIcon, CheckCircle2, MonitorOff, Loader2, MousePointer2, MessageSquarePlus, X } from 'lucide-react';
+import { Plus, Trash2, Edit, Globe, ExternalLink, Layout, Type, Image as ImageIcon, MonitorOff, Loader2, MousePointer2, MessageSquarePlus, X, MoveUp, MoveDown } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import MediaPicker from '@/components/cms/media-picker';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
 import Image from 'next/image';
+import { getMediaById } from '../media/actions';
 
 const JoditEditor = dynamic(() => import('jodit-react'), { 
   ssr: false,
@@ -26,8 +27,13 @@ export default function PageManagement() {
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
   
-  // Page Settings
+  // Page Fields
+  const [title, setTitle] = useState('');
+  const [slug, setSlug] = useState('');
+  const [description, setDescription] = useState('');
+  const [lang, setLang] = useState('en');
   const [sections, setSections] = useState<any[]>([]);
   const [hideNavbar, setHideNavbar] = useState(false);
   const [hideFooter, setHideFooter] = useState(false);
@@ -68,6 +74,43 @@ export default function PageManagement() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const resetForm = () => {
+    setEditingId(null);
+    setTitle('');
+    setSlug('');
+    setDescription('');
+    setLang('en');
+    setSections([]);
+    setHideNavbar(false);
+    setHideFooter(false);
+    setShowInNavbar(false);
+    setShowInFooter(false);
+  };
+
+  const handleEdit = async (page: any) => {
+    setEditingId(page._id);
+    setTitle(page.title);
+    setSlug(page.slug);
+    setDescription(page.description);
+    setLang(page.lang);
+    setHideNavbar(page.hideNavbar || false);
+    setHideFooter(page.hideFooter || false);
+    setShowInNavbar(page.showInNavbar || false);
+    setShowInFooter(page.showInFooter || false);
+
+    // Resolve image data for sections to show previews in builder
+    const resolvedSections = await Promise.all(page.sections.map(async (s: any) => {
+      if ((s.type === 'hero' || s.type === 'image') && s.data.imageId) {
+        const imageData = await getMediaById(s.data.imageId);
+        return { ...s, data: { ...s.data, imageData } };
+      }
+      return s;
+    }));
+
+    setSections(resolvedSections);
+    setIsDialogOpen(true);
   };
 
   const addSection = (type: 'hero' | 'text' | 'image' | 'button' | 'faq') => {
@@ -117,7 +160,7 @@ export default function PageManagement() {
     updateSectionData(sectionId, { items: newItems });
   };
 
-  const handleAddPage = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (sections.length === 0) {
       Swal.fire({ icon: 'warning', title: 'Halaman Kosong', text: 'Tambahkan setidaknya satu section.' });
@@ -126,6 +169,7 @@ export default function PageManagement() {
 
     setIsSubmitting(true);
     
+    // Cleanup preview data before saving
     const cleanedSections = sections.map(s => {
       if (s.data && s.data.imageData) {
         const { imageData, ...restData } = s.data;
@@ -134,7 +178,11 @@ export default function PageManagement() {
       return s;
     });
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('slug', slug);
+    formData.append('description', description);
+    formData.append('lang', lang);
     formData.append('sections', JSON.stringify(cleanedSections));
     formData.append('hideNavbar', hideNavbar.toString());
     formData.append('hideFooter', hideFooter.toString());
@@ -142,26 +190,21 @@ export default function PageManagement() {
     formData.append('showInFooter', showInFooter.toString());
 
     try {
-      const res = await createPage(formData);
-      if (res.success) {
-        Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Halaman kustom modular telah diterbitkan.' });
-        setIsDialogOpen(false);
-        resetForm();
-        loadPages();
+      if (editingId) {
+        await updatePage(editingId, formData);
+        Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Halaman telah diperbarui.' });
+      } else {
+        await createPage(formData);
+        Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Halaman baru telah diterbitkan.' });
       }
+      setIsDialogOpen(false);
+      resetForm();
+      loadPages();
     } catch (error: any) {
       Swal.fire({ icon: 'error', title: 'Gagal', text: error.message || 'Terjadi kesalahan sistem.' });
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const resetForm = () => {
-    setSections([]);
-    setHideNavbar(false);
-    setHideFooter(false);
-    setShowInNavbar(false);
-    setShowInFooter(false);
   };
 
   const handleDelete = async (id: string) => {
@@ -206,17 +249,23 @@ export default function PageManagement() {
           </DialogTrigger>
           <DialogContent className="max-w-[95vw] w-[1200px] h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>Page Builder</DialogTitle>
+              <DialogTitle>{editingId ? 'Edit Page' : 'Create New Page'}</DialogTitle>
             </DialogHeader>
             
-            <form onSubmit={handleAddPage} className="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-4">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-4">
               {/* Left Column: Settings */}
               <div className="space-y-6 lg:border-r lg:pr-8">
                 <div className="space-y-4">
                   <h3 className="font-bold border-b pb-2 flex items-center gap-2"><Layout className="w-4 h-4" /> Basic Info</h3>
                   <div className="space-y-2">
                     <Label>Language</Label>
-                    <select name="lang" className="w-full h-10 px-3 rounded-md border text-sm bg-background" required>
+                    <select 
+                      name="lang" 
+                      className="w-full h-10 px-3 rounded-md border text-sm bg-background" 
+                      value={lang}
+                      onChange={e => setLang(e.target.value)}
+                      required
+                    >
                       <option value="en">English</option>
                       <option value="id">Indonesia</option>
                       <option value="zh">中文</option>
@@ -224,15 +273,33 @@ export default function PageManagement() {
                   </div>
                   <div className="space-y-2">
                     <Label>Title (H1)</Label>
-                    <Input name="title" placeholder="Halaman Promo..." required />
+                    <Input 
+                      name="title" 
+                      placeholder="Halaman Promo..." 
+                      value={title}
+                      onChange={e => setTitle(e.target.value)}
+                      required 
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label>URL Slug</Label>
-                    <Input name="slug" placeholder="misal: promo-special" />
+                    <Input 
+                      name="slug" 
+                      placeholder="misal: promo-special" 
+                      value={slug}
+                      onChange={e => setSlug(e.target.value)}
+                      required
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label>SEO Description</Label>
-                    <Input name="description" placeholder="Metadata..." required />
+                    <Input 
+                      name="description" 
+                      placeholder="Metadata..." 
+                      value={description}
+                      onChange={e => setDescription(e.target.value)}
+                      required 
+                    />
                   </div>
                 </div>
 
@@ -425,9 +492,9 @@ export default function PageManagement() {
                   {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      Publishing...
+                      {editingId ? 'Updating...' : 'Publishing...'}
                     </>
-                  ) : 'Publish Modular Page'}
+                  ) : editingId ? 'Update Modular Page' : 'Publish Modular Page'}
                 </Button>
               </div>
             </form>
@@ -466,7 +533,12 @@ export default function PageManagement() {
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
                       <Button variant="ghost" size="icon" asChild title="View Live"><Link href={`/${item.lang}/p/${item.slug}`} target="_blank"><ExternalLink className="w-4 h-4"/></Link></Button>
-                      <Button variant="ghost" size="icon" className="text-destructive" onClick={() => handleDelete(item._id)}><Trash2 className="w-4 h-4" /></Button>
+                      <Button variant="ghost" size="icon" className="text-primary hover:text-primary hover:bg-primary/10" onClick={() => handleEdit(item)} title="Edit Page">
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                      <Button variant="ghost" size="icon" className="text-destructive" onClick={() => handleDelete(item._id)} title="Delete Page">
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
                     </div>
                   </TableCell>
                 </TableRow>
