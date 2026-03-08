@@ -40,6 +40,15 @@ const getCachedPageDetail = unstable_cache(
               ...section,
               data: { ...section.data, imageData }
             });
+          } else if (section.type === 'gallery' && section.data.items) {
+              const resolvedItems = await Promise.all(section.data.items.map(async (item: any) => {
+                  const imageData = await getMediaById(item.imageId);
+                  return { ...item, imageData };
+              }));
+              resolvedSections.push({
+                  ...section,
+                  data: { ...section.data, items: resolvedItems }
+              });
           } else {
             resolvedSections.push(section);
           }
@@ -56,7 +65,7 @@ const getCachedPageDetail = unstable_cache(
       return null;
     }
   },
-  ['custom-page-detail'], // Tag name
+  ['custom-page-detail'],
   { tags: ['custom-pages', 'media'] }
 );
 
@@ -74,9 +83,6 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
 export default async function DynamicCustomPage({ params }: CustomPageProps) {
   const { lang, slug } = await params;
   const dictionary = await getDictionary(lang);
-  
-  // Re-fetch using unstable_cache with slug and lang passed as arguments
-  // Next.js handles the keying automatically when arguments are provided
   const page = await getCachedPageDetail(slug, lang);
 
   if (!page) notFound();
@@ -131,11 +137,45 @@ export default async function DynamicCustomPage({ params }: CustomPageProps) {
             <section className="py-12">
               <div className="container max-w-5xl mx-auto text-center">
                 <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mx-auto">
-                  <Image src={section.data.imageData || 'https://picsum.photos/seed/img/1200/800'} alt={section.data.caption} fill className="object-cover" />
+                  <Image src={section.data.imageData || 'https://picsum.photos/seed/img/1200/800'} alt={section.data.caption || 'Image'} fill className="object-cover" />
                 </div>
                 {section.data.caption && <p className="mt-4 text-center text-muted-foreground italic">{section.data.caption}</p>}
               </div>
             </section>
+          )}
+
+          {section.type === 'columns' && (
+              <section className="py-16 md:py-24">
+                  <div className="container">
+                      <div className={cn(
+                          "grid gap-12",
+                          section.data.layout === '2-cols' ? 'md:grid-cols-2' : 'md:grid-cols-3'
+                      )}>
+                          {section.data.columns.map((col: any, idx: number) => (
+                              <div key={idx} className="prose prose-lg dark:prose-invert max-w-none news-content">
+                                  <div dangerouslySetInnerHTML={{ __html: col.content }} />
+                              </div>
+                          ))}
+                      </div>
+                  </div>
+              </section>
+          )}
+
+          {section.type === 'gallery' && (
+              <section className="py-16 md:py-24 bg-secondary/10">
+                  <div className="container">
+                      {section.data.title && (
+                          <h2 className="text-3xl font-bold font-headline mb-12 text-center">{section.data.title}</h2>
+                      )}
+                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                          {section.data.items.map((item: any, idx: number) => (
+                              <div key={idx} className="relative aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
+                                  <Image src={item.imageData} alt="Gallery item" fill className="object-cover transition-transform duration-500 group-hover:scale-110" />
+                              </div>
+                          ))}
+                      </div>
+                  </div>
+              </section>
           )}
 
           {section.type === 'button' && (

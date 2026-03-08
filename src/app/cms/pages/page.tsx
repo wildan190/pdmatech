@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
@@ -8,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Edit, Globe, ExternalLink, Layout, Type, Image as ImageIcon, MonitorOff, Loader2, MousePointer2, MessageSquarePlus, X, MoveUp, MoveDown, Info } from 'lucide-react';
+import { Plus, Trash2, Edit, Globe, ExternalLink, Layout, Type, Image as ImageIcon, MonitorOff, Loader2, MousePointer2, MessageSquarePlus, X, MoveUp, MoveDown, Info, Images, Columns as ColumnsIcon } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -106,6 +107,13 @@ export default function PageManagement() {
         const imageData = await getMediaById(s.data.imageId);
         return { ...s, data: { ...s.data, imageData } };
       }
+      if (s.type === 'gallery' && s.data.items) {
+          const items = await Promise.all(s.data.items.map(async (item: any) => {
+              const imageData = await getMediaById(item.imageId);
+              return { ...item, imageData };
+          }));
+          return { ...s, data: { ...s.data, items } };
+      }
       return s;
     }));
 
@@ -113,7 +121,7 @@ export default function PageManagement() {
     setIsDialogOpen(true);
   };
 
-  const addSection = (type: 'hero' | 'text' | 'image' | 'button' | 'faq') => {
+  const addSection = (type: 'hero' | 'text' | 'image' | 'button' | 'faq' | 'gallery' | 'columns') => {
     const newSection = {
       id: Math.random().toString(36).substr(2, 9),
       type,
@@ -121,7 +129,9 @@ export default function PageManagement() {
             type === 'text' ? { content: '' } :
             type === 'image' ? { imageId: '', imageData: '', caption: '' } :
             type === 'button' ? { text: 'Klik Di Sini', link: '#', variant: 'default', align: 'center' } :
-            { title: 'Pertanyaan Umum', items: [{ id: Date.now(), question: '', answer: '' }] }
+            type === 'faq' ? { title: 'Pertanyaan Umum', items: [{ id: Date.now(), question: '', answer: '' }] } :
+            type === 'gallery' ? { title: 'Galeri Foto', items: [] } :
+            { layout: '2-cols', columns: [{ content: '' }, { content: '' }] }
     };
     setSections([...sections, newSection]);
   };
@@ -150,10 +160,15 @@ export default function PageManagement() {
     }
 
     setIsSubmitting(true);
+    // Cleanup imageData from sections to keep payload light (only IDs stored in DB)
     const cleanedSections = sections.map(s => {
       if (s.data && s.data.imageData) {
         const { imageData, ...restData } = s.data;
         return { ...s, data: restData };
+      }
+      if (s.type === 'gallery' && s.data.items) {
+          const items = s.data.items.map(({ imageData, ...rest }: any) => rest);
+          return { ...s, data: { ...s.data, items } };
       }
       return s;
     });
@@ -280,6 +295,8 @@ export default function PageManagement() {
                     <Button type="button" variant="outline" size="sm" onClick={() => addSection('hero')}>+ Hero</Button>
                     <Button type="button" variant="outline" size="sm" onClick={() => addSection('text')}>+ Text</Button>
                     <Button type="button" variant="outline" size="sm" onClick={() => addSection('image')}>+ Image</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => addSection('columns')}>+ Columns</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => addSection('gallery')}>+ Gallery</Button>
                     <Button type="button" variant="outline" size="sm" onClick={() => addSection('button')}>+ Button</Button>
                     <Button type="button" variant="outline" size="sm" onClick={() => addSection('faq')}>+ FAQ</Button>
                   </div>
@@ -321,6 +338,67 @@ export default function PageManagement() {
                             </div>
                             {s.data.imageData && <div className="relative h-32 w-full rounded border overflow-hidden"><Image src={s.data.imageData} alt="P" fill className="object-cover" /></div>}
                           </div>
+                        )}
+                        {s.type === 'columns' && (
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-4">
+                                    <Label className="text-xs">Layout</Label>
+                                    <Select value={s.data.layout} onValueChange={v => {
+                                        const count = v === '2-cols' ? 2 : 3;
+                                        const newCols = Array.from({length: count}, (_, i) => s.data.columns[i] || {content: ''});
+                                        updateSectionData(s.id, { layout: v, columns: newCols });
+                                    }}>
+                                        <SelectTrigger className="w-40"><SelectValue /></SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="2-cols">2 Kolom</SelectItem>
+                                            <SelectItem value="3-cols">3 Kolom</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {s.data.columns.map((col: any, cIdx: number) => (
+                                        <div key={cIdx} className="space-y-2 border p-3 rounded bg-secondary/5">
+                                            <Label className="text-[10px] font-bold uppercase">Kolom {cIdx+1}</Label>
+                                            <JoditEditor 
+                                                value={col.content} 
+                                                config={{...editorConfig, height: 200}} 
+                                                onBlur={val => {
+                                                    const newCols = [...s.data.columns];
+                                                    newCols[cIdx].content = val;
+                                                    updateSectionData(s.id, { columns: newCols });
+                                                }} 
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                        {s.type === 'gallery' && (
+                            <div className="space-y-4">
+                                <div className="space-y-2">
+                                    <Label className="text-xs">Judul Galeri</Label>
+                                    <Input value={s.data.title} onChange={e => updateSectionData(s.id, { title: e.target.value })} />
+                                </div>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                                    {s.data.items.map((item: any, gIdx: number) => (
+                                        <div key={gIdx} className="relative aspect-square border rounded overflow-hidden group/item">
+                                            <Image src={item.imageData} alt="Gallery" fill className="object-cover" />
+                                            <Button type="button" variant="destructive" size="icon" className="absolute top-1 right-1 h-6 w-6 opacity-0 group-hover/item:opacity-100 transition-opacity" onClick={() => {
+                                                const newItems = s.data.items.filter((_: any, i: number) => i !== gIdx);
+                                                updateSectionData(s.id, { items: newItems });
+                                            }}>
+                                                <X className="w-3 h-3" />
+                                            </Button>
+                                        </div>
+                                    ))}
+                                    <div className="aspect-square flex flex-col items-center justify-center border-2 border-dashed rounded bg-secondary/5">
+                                        <MediaPicker onSelect={(id, data) => {
+                                            const newItems = [...s.data.items, { imageId: id, imageData: data }];
+                                            updateSectionData(s.id, { items: newItems });
+                                        }} />
+                                    </div>
+                                </div>
+                            </div>
                         )}
                         {s.type === 'button' && (
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
