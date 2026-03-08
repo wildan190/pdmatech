@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Edit, Globe, ExternalLink, Layout, Type, Image as ImageIcon, MonitorOff, Loader2, MousePointer2, MessageSquarePlus, X, MoveUp, MoveDown, Info, Images, Columns as ColumnsIcon } from 'lucide-react';
+import { Plus, Trash2, Edit, Globe, ExternalLink, Layout, Type, Image as ImageIcon, MonitorOff, Loader2, MousePointer2, MessageSquarePlus, X, MoveUp, MoveDown, Info, Images, Columns as ColumnsIcon, FileText } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -114,6 +114,16 @@ export default function PageManagement() {
           }));
           return { ...s, data: { ...s.data, items } };
       }
+      if (s.type === 'columns' && s.data.columns) {
+          const columns = await Promise.all(s.data.columns.map(async (col: any) => {
+              if (col.type === 'image' && col.imageId) {
+                  const imageData = await getMediaById(col.imageId);
+                  return { ...col, imageData };
+              }
+              return col;
+          }));
+          return { ...s, data: { ...s.data, columns } };
+      }
       return s;
     }));
 
@@ -131,7 +141,7 @@ export default function PageManagement() {
             type === 'button' ? { text: 'Klik Di Sini', link: '#', variant: 'default', align: 'center' } :
             type === 'faq' ? { title: 'Pertanyaan Umum', items: [{ id: Date.now(), question: '', answer: '' }] } :
             type === 'gallery' ? { title: 'Galeri Foto', items: [] } :
-            { layout: '2-cols', columns: [{ content: '' }, { content: '' }] }
+            { layout: '2-cols', columns: [{ type: 'text', content: '' }, { type: 'text', content: '' }] }
     };
     setSections([...sections, newSection]);
   };
@@ -160,17 +170,20 @@ export default function PageManagement() {
     }
 
     setIsSubmitting(true);
-    // Cleanup imageData from sections to keep payload light (only IDs stored in DB)
+    // Cleanup imageData from sections to keep payload light
     const cleanedSections = sections.map(s => {
-      if (s.data && s.data.imageData) {
-        const { imageData, ...restData } = s.data;
-        return { ...s, data: restData };
+      const section = { ...s };
+      if (section.data && section.data.imageData) {
+        const { imageData, ...restData } = section.data;
+        section.data = restData;
       }
-      if (s.type === 'gallery' && s.data.items) {
-          const items = s.data.items.map(({ imageData, ...rest }: any) => rest);
-          return { ...s, data: { ...s.data, items } };
+      if (section.type === 'gallery' && section.data.items) {
+          section.data.items = section.data.items.map(({ imageData, ...rest }: any) => rest);
       }
-      return s;
+      if (section.type === 'columns' && section.data.columns) {
+          section.data.columns = section.data.columns.map(({ imageData, ...rest }: any) => rest);
+      }
+      return section;
     });
 
     const formData = new FormData();
@@ -224,6 +237,14 @@ export default function PageManagement() {
 
   return (
     <div className="space-y-6">
+      <style dangerouslySetInnerHTML={{ __html: `
+        .jodit-wysiwyg ul { list-style-type: disc !important; padding-left: 2.5rem !important; margin: 1em 0 !important; }
+        .jodit-wysiwyg ol { list-style-type: decimal !important; padding-left: 2.5rem !important; margin: 1em 0 !important; }
+        .jodit-wysiwyg li { display: list-item !important; }
+        .jodit-wysiwyg table { border-collapse: collapse !important; width: 100% !important; border: 1px solid #ccc !important; }
+        .jodit-wysiwyg td, .jodit-wysiwyg th { border: 1px solid #ccc !important; padding: 8px !important; }
+      `}} />
+
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-3xl font-headline font-bold">Modular Page Builder</h2>
@@ -345,7 +366,7 @@ export default function PageManagement() {
                                     <Label className="text-xs">Layout</Label>
                                     <Select value={s.data.layout} onValueChange={v => {
                                         const count = v === '2-cols' ? 2 : 3;
-                                        const newCols = Array.from({length: count}, (_, i) => s.data.columns[i] || {content: ''});
+                                        const newCols = Array.from({length: count}, (_, i) => s.data.columns[i] || { type: 'text', content: '' });
                                         updateSectionData(s.id, { layout: v, columns: newCols });
                                     }}>
                                         <SelectTrigger className="w-40"><SelectValue /></SelectTrigger>
@@ -358,16 +379,65 @@ export default function PageManagement() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                     {s.data.columns.map((col: any, cIdx: number) => (
                                         <div key={cIdx} className="space-y-2 border p-3 rounded bg-secondary/5">
-                                            <Label className="text-[10px] font-bold uppercase">Kolom {cIdx+1}</Label>
-                                            <JoditEditor 
-                                                value={col.content} 
-                                                config={{...editorConfig, height: 200}} 
-                                                onBlur={val => {
-                                                    const newCols = [...s.data.columns];
-                                                    newCols[cIdx].content = val;
-                                                    updateSectionData(s.id, { columns: newCols });
-                                                }} 
-                                            />
+                                            <div className="flex justify-between items-center mb-2">
+                                                <Label className="text-[10px] font-bold uppercase text-primary">Kolom {cIdx+1}</Label>
+                                                <div className="flex gap-2">
+                                                    <Button 
+                                                        type="button" 
+                                                        variant={col.type === 'text' ? 'default' : 'outline'} 
+                                                        size="sm" 
+                                                        className="h-6 text-[10px]"
+                                                        onClick={() => {
+                                                            const newCols = [...s.data.columns];
+                                                            newCols[cIdx] = { ...newCols[cIdx], type: 'text' };
+                                                            updateSectionData(s.id, { columns: newCols });
+                                                        }}
+                                                    >
+                                                        <FileText className="w-3 h-3 mr-1" /> Text
+                                                    </Button>
+                                                    <Button 
+                                                        type="button" 
+                                                        variant={col.type === 'image' ? 'default' : 'outline'} 
+                                                        size="sm" 
+                                                        className="h-6 text-[10px]"
+                                                        onClick={() => {
+                                                            const newCols = [...s.data.columns];
+                                                            newCols[cIdx] = { ...newCols[cIdx], type: 'image' };
+                                                            updateSectionData(s.id, { columns: newCols });
+                                                        }}
+                                                    >
+                                                        <ImageIcon className="w-3 h-3 mr-1" /> Image
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                            
+                                            {col.type === 'text' ? (
+                                                <JoditEditor 
+                                                    value={col.content} 
+                                                    config={{...editorConfig, height: 200}} 
+                                                    onBlur={val => {
+                                                        const newCols = [...s.data.columns];
+                                                        newCols[cIdx].content = val;
+                                                        updateSectionData(s.id, { columns: newCols });
+                                                    }} 
+                                                />
+                                            ) : (
+                                                <div className="space-y-2">
+                                                    <MediaPicker 
+                                                        onSelect={(id, data) => {
+                                                            const newCols = [...s.data.columns];
+                                                            newCols[cIdx] = { ...newCols[cIdx], imageId: id, imageData: data };
+                                                            updateSectionData(s.id, { columns: newCols });
+                                                        }} 
+                                                        currentValue={col.imageId} 
+                                                    />
+                                                    {col.imageData && (
+                                                        <div className="relative aspect-video rounded border overflow-hidden">
+                                                            <Image src={col.imageData} alt="Preview" fill className="object-cover" />
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
                                         </div>
                                     ))}
                                 </div>

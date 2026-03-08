@@ -49,6 +49,18 @@ const getCachedPageDetail = unstable_cache(
                   ...section,
                   data: { ...section.data, items: resolvedItems }
               });
+          } else if (section.type === 'columns' && section.data.columns) {
+              const resolvedColumns = await Promise.all(section.data.columns.map(async (col: any) => {
+                  if (col.type === 'image' && col.imageId) {
+                      const imageData = await getMediaById(col.imageId);
+                      return { ...col, imageData };
+                  }
+                  return col;
+              }));
+              resolvedSections.push({
+                  ...section,
+                  data: { ...section.data, columns: resolvedColumns }
+              });
           } else {
             resolvedSections.push(section);
           }
@@ -148,12 +160,25 @@ export default async function DynamicCustomPage({ params }: CustomPageProps) {
               <section className="py-16 md:py-24">
                   <div className="container">
                       <div className={cn(
-                          "grid gap-12",
+                          "grid gap-12 items-center",
                           section.data.layout === '2-cols' ? 'md:grid-cols-2' : 'md:grid-cols-3'
                       )}>
                           {section.data.columns.map((col: any, idx: number) => (
-                              <div key={idx} className="prose prose-lg dark:prose-invert max-w-none news-content">
-                                  <div dangerouslySetInnerHTML={{ __html: col.content }} />
+                              <div key={idx} className="w-full">
+                                  {col.type === 'text' ? (
+                                      <div className="prose prose-lg dark:prose-invert max-w-none news-content">
+                                          <div dangerouslySetInnerHTML={{ __html: col.content }} />
+                                      </div>
+                                  ) : (
+                                      <div className="relative aspect-square md:aspect-auto md:h-80 w-full rounded-xl overflow-hidden shadow-lg">
+                                          <Image 
+                                              src={col.imageData || 'https://picsum.photos/seed/col/800/600'} 
+                                              alt="Column image" 
+                                              fill 
+                                              className="object-cover" 
+                                          />
+                                      </div>
+                                  )}
                               </div>
                           ))}
                       </div>
