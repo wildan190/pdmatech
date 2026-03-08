@@ -24,7 +24,7 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
 
   useEffect(() => {
     // Combine dynamic pages and manual links
-    getNavigationPages(lang).then(setCustomPages);
+    getNavigationPages(lang, 'navbar').then(setCustomPages);
     getNavLinks(lang, 'navbar').then(setManualLinks);
   }, [lang]);
 

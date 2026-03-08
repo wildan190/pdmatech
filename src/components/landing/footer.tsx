@@ -3,7 +3,8 @@
 import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import clientPromise from '@/lib/mongodb';
+import { getNavLinks } from '@/app/cms/navigation/actions';
+import { getNavigationPages } from '@/app/cms/pages/actions';
 
 type FooterProps = {
     dictionary: any;
@@ -11,7 +12,16 @@ type FooterProps = {
 }
 
 const Footer = ({ dictionary, lang }: FooterProps) => {
-  // In a real scenario we'd use a server action or fetch, but keeping it simple for consistency
+  const [dynamicLinks, setDynamicLinks] = useState<{title: string, href: string}[]>([]);
+  const [customPages, setCustomPages] = useState<{title: string, href: string}[]>([]);
+
+  useEffect(() => {
+    // Load manual footer links from Navigation Management
+    getNavLinks(lang, 'footer').then(setDynamicLinks);
+    // Load pages marked as "Show in Footer"
+    getNavigationPages(lang, 'footer').then(setCustomPages);
+  }, [lang]);
+
   const companyLinks = [
     { href: `/${lang}/about/company`, label: dictionary.aboutUsSubMenu.company.title },
     { href: `/${lang}/about/people`, label: dictionary.aboutUsSubMenu.people.title },
@@ -24,7 +34,6 @@ const Footer = ({ dictionary, lang }: FooterProps) => {
     { href: `/${lang}/insight/article`, label: dictionary.insightSubMenu.article.title },
     { href: `/${lang}/insight/brochure`, label: dictionary.insightSubMenu.brochure.title },
     { href: `/${lang}/insight/use-case`, label: dictionary.insightSubMenu.useCase.title },
-    { href: `/${lang}/contact`, label: dictionary.navigation.contactUs },
   ];
   
   return (
@@ -55,6 +64,10 @@ const Footer = ({ dictionary, lang }: FooterProps) => {
               {companyLinks.map(link => (
                 <li key={link.href}><Link href={link.href} className="hover:text-primary transition-colors">{link.label}</Link></li>
               ))}
+              {/* Combine dynamic pages and dynamic links */}
+              {[...dynamicLinks, ...customPages].map(link => (
+                <li key={link.href}><Link href={link.href} className="hover:text-primary transition-colors">{link.title}</Link></li>
+              ))}
             </ul>
           </div>
           
@@ -65,6 +78,7 @@ const Footer = ({ dictionary, lang }: FooterProps) => {
                 <li key={link.href}><Link href={link.href} className="hover:text-primary transition-colors">{link.label}</Link></li>
               ))}
                <li><Link href={`/${lang}/about/privacy`} className=" hover:text-primary transition-colors">{dictionary.aboutUsSubMenu.privacy.title}</Link></li>
+               <li><Link href={`/${lang}/contact`} className=" hover:text-primary transition-colors">{dictionary.navigation.contactUs}</Link></li>
             </ul>
           </div>
 

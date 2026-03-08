@@ -22,12 +22,16 @@ export async function getPages() {
   }
 }
 
-export async function getNavigationPages(lang: string) {
+export async function getNavigationPages(lang: string, type: 'navbar' | 'footer' = 'navbar') {
   try {
     const client = await clientPromise;
     const db = client.db(DATABASE_NAME);
+    const filter: any = { lang };
+    if (type === 'navbar') filter.showInNavbar = true;
+    if (type === 'footer') filter.showInFooter = true;
+
     const navPages = await db.collection(COLLECTION_NAME)
-      .find({ lang, showInNavbar: true })
+      .find(filter)
       .project({ title: true, slug: true })
       .toArray();
     return navPages.map(p => ({ title: p.title, href: `/${lang}/p/${p.slug}` }));
