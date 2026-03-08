@@ -1,8 +1,9 @@
+
 'use server';
 
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 const DATABASE_NAME = 'mpn_cms';
 const COLLECTION_NAME = 'navigation';
@@ -53,13 +54,20 @@ export async function saveNavLink(formData: FormData) {
 
 export async function deleteNavLink(id: string) {
   try {
+    if (!id || id.length !== 24) return { success: false };
+    
     const client = await clientPromise;
     const db = client.db(DATABASE_NAME);
-    // Explicitly targeting only navigation collection
-    await db.collection('navigation').deleteOne({ _id: new ObjectId(id) });
+    
+    // EXPLICITLY delete only from navigation collection to prevent cross-collection deletion
+    const result = await db.collection('navigation').deleteOne({ _id: new ObjectId(id) });
+    
     revalidatePath('/', 'layout');
-    return { success: true };
+    revalidateTag('custom-pages'); // Force nav update for pages
+    
+    return { success: result.deletedCount > 0 };
   } catch (e) {
+    console.error("Error deleting nav link:", e);
     return { success: false };
   }
 }

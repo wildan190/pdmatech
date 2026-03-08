@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import { notFound } from "next/navigation";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
@@ -30,7 +31,6 @@ const getCachedPageDetail = unstable_cache(
       const page = await db.collection('pages').findOne({ slug, lang });
       if (!page) return null;
       
-      // Resolve image IDs in sections
       const resolvedSections = [];
       if (page.sections) {
         for (const section of page.sections) {
@@ -52,10 +52,11 @@ const getCachedPageDetail = unstable_cache(
         sections: resolvedSections
       };
     } catch (e) {
+      console.error("Error fetching dynamic page:", e);
       return null;
     }
   },
-  ['custom-page-detail'],
+  ['custom-page-detail'], // Tag name
   { tags: ['custom-pages', 'media'] }
 );
 
@@ -73,6 +74,9 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
 export default async function DynamicCustomPage({ params }: CustomPageProps) {
   const { lang, slug } = await params;
   const dictionary = await getDictionary(lang);
+  
+  // Re-fetch using unstable_cache with slug and lang passed as arguments
+  // Next.js handles the keying automatically when arguments are provided
   const page = await getCachedPageDetail(slug, lang);
 
   if (!page) notFound();
