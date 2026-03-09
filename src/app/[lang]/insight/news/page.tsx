@@ -72,7 +72,6 @@ const getCachedNews = unstable_cache(
       const items = [];
       for (const item of news) {
         let imageSrc = item.image;
-        // If image is a reference ID
         if (item.image && item.image.length === 24 && !item.image.startsWith('data:')) {
           imageSrc = await getMediaById(item.image) || 'https://picsum.photos/seed/news/800/600';
         }
@@ -89,7 +88,7 @@ const getCachedNews = unstable_cache(
       return [];
     }
   },
-  ['news-list'],
+  ['news-list-key'], // Singleton key
   { tags: ['news', 'media'] }
 );
 

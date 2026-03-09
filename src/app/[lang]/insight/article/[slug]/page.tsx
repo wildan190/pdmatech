@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next';
 import { Calendar, Tag, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -16,7 +15,8 @@ type ArticleDetailPageProps = {
   params: Promise<{ lang: Locale; slug: string }>;
 };
 
-const getCachedArticleDetail = (slug: string, lang: string) => unstable_cache(
+// Fixed singleton cache pattern
+const getArticleDetail = unstable_cache(
   async (slug: string, lang: string) => {
     try {
       const client = await clientPromise;
@@ -39,13 +39,13 @@ const getCachedArticleDetail = (slug: string, lang: string) => unstable_cache(
       return null;
     }
   },
-  [`article-detail-${slug}-${lang}`],
+  ['article-detail-item'], // Base key
   { tags: ['articles', 'media'] }
-)(slug, lang);
+);
 
 export async function generateMetadata({ params }: ArticleDetailPageProps): Promise<Metadata> {
   const { lang, slug } = await params;
-  const article = await getCachedArticleDetail(slug, lang);
+  const article = await getArticleDetail(slug, lang);
   
   if (!article) return { title: 'Not Found' };
 
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
 export default async function ArticleDetailPage({ params }: ArticleDetailPageProps) {
   const { lang, slug } = await params;
   const dictionary = await getDictionary(lang);
-  const article = await getCachedArticleDetail(slug, lang);
+  const article = await getArticleDetail(slug, lang);
 
   if (!article) notFound();
 

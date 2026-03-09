@@ -22,7 +22,8 @@ type CustomPageProps = {
   params: Promise<{ lang: Locale; slug: string }>;
 };
 
-const getCachedPageDetail = (slug: string, lang: string) => unstable_cache(
+// Fixed singleton cache pattern
+const getPageDetail = unstable_cache(
   async (slug: string, lang: string) => {
     try {
       const client = await clientPromise;
@@ -76,13 +77,13 @@ const getCachedPageDetail = (slug: string, lang: string) => unstable_cache(
       return null;
     }
   },
-  [`custom-page-detail-${slug}-${lang}`],
+  ['custom-page-detail'], // Base key
   { tags: ['custom-pages', 'media'] }
-)(slug, lang);
+);
 
 export async function generateMetadata({ params }: CustomPageProps): Promise<Metadata> {
   const { lang, slug } = await params;
-  const page = await getCachedPageDetail(slug, lang);
+  const page = await getPageDetail(slug, lang);
   if (!page) return { title: 'Page Not Found' };
 
   return {
@@ -94,7 +95,7 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
 export default async function DynamicCustomPage({ params }: CustomPageProps) {
   const { lang, slug } = await params;
   const dictionary = await getDictionary(lang);
-  const page = await getCachedPageDetail(slug, lang);
+  const page = await getPageDetail(slug, lang);
 
   if (!page) notFound();
 

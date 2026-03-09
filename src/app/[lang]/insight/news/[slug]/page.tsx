@@ -15,7 +15,8 @@ type NewsDetailPageProps = {
   params: Promise<{ lang: Locale; slug: string }>;
 };
 
-const getCachedNewsDetail = (slug: string, lang: string) => unstable_cache(
+// Fixed singleton cache pattern
+const getNewsDetail = unstable_cache(
   async (slug: string, lang: string) => {
     try {
       const client = await clientPromise;
@@ -38,13 +39,13 @@ const getCachedNewsDetail = (slug: string, lang: string) => unstable_cache(
       return null;
     }
   },
-  [`news-detail-${slug}-${lang}`],
+  ['news-detail-item'], // Base key
   { tags: ['news', 'media'] }
-)(slug, lang);
+);
 
 export async function generateMetadata({ params }: NewsDetailPageProps): Promise<Metadata> {
   const { lang, slug } = await params;
-  const news = await getCachedNewsDetail(slug, lang);
+  const news = await getNewsDetail(slug, lang);
   
   if (!news) return { title: 'Not Found' };
 
@@ -63,7 +64,7 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
 export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   const { lang, slug } = await params;
   const dictionary = await getDictionary(lang);
-  const news = await getCachedNewsDetail(slug, lang);
+  const news = await getNewsDetail(slug, lang);
 
   if (!news) notFound();
 
