@@ -51,9 +51,10 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
   if (!news) return { title: 'Not Found' };
 
   const canonicalUrl = `${baseUrl}/${lang}/insight/news/${slug}`;
+  const ogImageUrl = news.image;
 
   return {
-    title: `${news.title} | Micro Padma Nusantara`,
+    title: news.title,
     description: news.excerpt,
     keywords: news.keywords || '',
     alternates: {
@@ -63,7 +64,7 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
       title: news.title,
       description: news.excerpt,
       url: canonicalUrl,
-      images: news.image ? [{ url: news.image }] : [],
+      images: ogImageUrl ? [{ url: ogImageUrl, width: 1200, height: 630, alt: news.title }] : [],
       type: 'article',
       siteName: 'Micro Padma Nusantara',
     },
@@ -71,7 +72,7 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
       card: 'summary_large_image',
       title: news.title,
       description: news.excerpt,
-      images: news.image ? [news.image] : [],
+      images: ogImageUrl ? [ogImageUrl] : [],
     },
   };
 }

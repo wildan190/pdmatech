@@ -51,9 +51,10 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
   if (!article) return { title: 'Not Found' };
 
   const canonicalUrl = `${baseUrl}/${lang}/insight/article/${slug}`;
+  const ogImageUrl = article.image;
 
   return {
-    title: `${article.title} | Micro Padma Nusantara`,
+    title: article.title,
     description: article.excerpt,
     keywords: article.keywords || '',
     alternates: {
@@ -63,7 +64,7 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
       title: article.title,
       description: article.excerpt,
       url: canonicalUrl,
-      images: article.image ? [{ url: article.image }] : [],
+      images: ogImageUrl ? [{ url: ogImageUrl, width: 1200, height: 630, alt: article.title }] : [],
       type: 'article',
       siteName: 'Micro Padma Nusantara',
     },
@@ -71,7 +72,7 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
       card: 'summary_large_image',
       title: article.title,
       description: article.excerpt,
-      images: article.image ? [article.image] : [],
+      images: ogImageUrl ? [ogImageUrl] : [],
     },
   };
 }

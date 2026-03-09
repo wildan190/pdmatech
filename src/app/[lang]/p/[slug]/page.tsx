@@ -78,7 +78,7 @@ const getPageDetail = unstable_cache(
       return null;
     }
   },
-  ['custom-page-detail'],
+  ['custom-page-detail-item'], // Unique key for item
   { tags: ['custom-pages', 'media'] }
 );
 
@@ -89,13 +89,33 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
 
   const canonicalUrl = `${baseUrl}/${lang}/p/${slug}`;
   
-  // Find first eligible image for OG from sections
-  const ogImage = page.sections?.find((s: any) => 
-    (s.type === 'hero' || s.type === 'image') && s.data.imageData
-  )?.data.imageData;
+  // Scans for the first available image in the page content to use as OG image
+  let ogImageUrl = null;
+  if (page.sections) {
+    for (const section of page.sections) {
+      // Priority 1: Hero or Image section
+      if ((section.type === 'hero' || section.type === 'image') && section.data.imageData) {
+        ogImageUrl = section.data.imageData;
+        break;
+      }
+      // Priority 2: Gallery section (first item)
+      if (section.type === 'gallery' && section.data.items?.[0]?.imageData) {
+        ogImageUrl = section.data.items[0].imageData;
+        break;
+      }
+      // Priority 3: Columns section (first column if it's an image)
+      if (section.type === 'columns' && section.data.columns) {
+        const imgCol = section.data.columns.find((c: any) => c.type === 'image' && c.imageData);
+        if (imgCol) {
+          ogImageUrl = imgCol.imageData;
+          break;
+        }
+      }
+    }
+  }
 
   return {
-    title: `${page.title} | Micro Padma Nusantara`,
+    title: page.title,
     description: page.description,
     alternates: {
       canonical: canonicalUrl,
@@ -104,7 +124,7 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
       title: page.title,
       description: page.description,
       url: canonicalUrl,
-      images: ogImage ? [{ url: ogImage }] : [],
+      images: ogImageUrl ? [{ url: ogImageUrl, width: 1200, height: 630, alt: page.title }] : [],
       type: 'website',
       siteName: 'Micro Padma Nusantara',
     },
@@ -112,7 +132,7 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
       card: 'summary_large_image',
       title: page.title,
       description: page.description,
-      images: ogImage ? [ogImage] : [],
+      images: ogImageUrl ? [ogImageUrl] : [],
     },
   };
 }
