@@ -22,7 +22,8 @@ type CustomPageProps = {
   params: Promise<{ lang: Locale; slug: string }>;
 };
 
-// Fixed singleton cache pattern
+const baseUrl = 'https://mpnsolutions.my.id';
+
 const getPageDetail = unstable_cache(
   async (slug: string, lang: string) => {
     try {
@@ -77,7 +78,7 @@ const getPageDetail = unstable_cache(
       return null;
     }
   },
-  ['custom-page-detail'], // Base key
+  ['custom-page-detail'],
   { tags: ['custom-pages', 'media'] }
 );
 
@@ -86,9 +87,33 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
   const page = await getPageDetail(slug, lang);
   if (!page) return { title: 'Page Not Found' };
 
+  const canonicalUrl = `${baseUrl}/${lang}/p/${slug}`;
+  
+  // Find first eligible image for OG from sections
+  const ogImage = page.sections?.find((s: any) => 
+    (s.type === 'hero' || s.type === 'image') && s.data.imageData
+  )?.data.imageData;
+
   return {
     title: `${page.title} | Micro Padma Nusantara`,
     description: page.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: page.title,
+      description: page.description,
+      url: canonicalUrl,
+      images: ogImage ? [{ url: ogImage }] : [],
+      type: 'website',
+      siteName: 'Micro Padma Nusantara',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: page.title,
+      description: page.description,
+      images: ogImage ? [ogImage] : [],
+    },
   };
 }
 
@@ -154,14 +179,16 @@ export default async function DynamicCustomPage({ params }: CustomPageProps) {
             <section className="py-12">
               <div className="container max-w-5xl mx-auto text-center">
                 <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mx-auto">
-                  <Image 
-                    src={section.data.imageData || 'https://picsum.photos/seed/img/1200/800'} 
-                    alt={section.data.caption || 'Image'} 
-                    fill 
-                    className="object-cover" 
-                    priority={sectionIdx === 0}
-                    sizes="(max-width: 1024px) 100vw, 1024px"
-                  />
+                  {section.data.imageData && (
+                    <Image 
+                      src={section.data.imageData} 
+                      alt={section.data.caption || 'Image'} 
+                      fill 
+                      className="object-cover" 
+                      priority={sectionIdx === 0}
+                      sizes="(max-width: 1024px) 100vw, 1024px"
+                    />
+                  )}
                 </div>
                 {section.data.caption && <p className="mt-4 text-center text-muted-foreground italic">{section.data.caption}</p>}
               </div>
@@ -183,13 +210,15 @@ export default async function DynamicCustomPage({ params }: CustomPageProps) {
                                       </div>
                                   ) : (
                                       <div className="relative aspect-square md:aspect-auto md:h-80 w-full rounded-xl overflow-hidden shadow-lg">
-                                          <Image 
-                                              src={col.imageData || 'https://picsum.photos/seed/col/800/600'} 
-                                              alt="Column image" 
-                                              fill 
-                                              className="object-cover" 
-                                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                          />
+                                          {col.imageData && (
+                                            <Image 
+                                                src={col.imageData} 
+                                                alt="Column image" 
+                                                fill 
+                                                className="object-cover" 
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            />
+                                          )}
                                       </div>
                                   )}
                               </div>
@@ -208,13 +237,15 @@ export default async function DynamicCustomPage({ params }: CustomPageProps) {
                       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                           {section.data.items.map((item: any, idx: number) => (
                               <div key={idx} className="relative aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
-                                  <Image 
-                                    src={item.imageData} 
-                                    alt="Gallery item" 
-                                    fill 
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110" 
-                                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                                  />
+                                  {item.imageData && (
+                                    <Image 
+                                      src={item.imageData} 
+                                      alt="Gallery item" 
+                                      fill 
+                                      className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                                    />
+                                  )}
                               </div>
                           ))}
                       </div>

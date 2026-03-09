@@ -15,7 +15,8 @@ type NewsDetailPageProps = {
   params: Promise<{ lang: Locale; slug: string }>;
 };
 
-// Fixed singleton cache pattern
+const baseUrl = 'https://mpnsolutions.my.id';
+
 const getNewsDetail = unstable_cache(
   async (slug: string, lang: string) => {
     try {
@@ -39,7 +40,7 @@ const getNewsDetail = unstable_cache(
       return null;
     }
   },
-  ['news-detail-item'], // Base key
+  ['news-detail-item'],
   { tags: ['news', 'media'] }
 );
 
@@ -49,14 +50,28 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
   
   if (!news) return { title: 'Not Found' };
 
+  const canonicalUrl = `${baseUrl}/${lang}/insight/news/${slug}`;
+
   return {
     title: `${news.title} | Micro Padma Nusantara`,
     description: news.excerpt,
     keywords: news.keywords || '',
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: news.title,
       description: news.excerpt,
-      images: [{ url: news.image }],
+      url: canonicalUrl,
+      images: news.image ? [{ url: news.image }] : [],
+      type: 'article',
+      siteName: 'Micro Padma Nusantara',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: news.title,
+      description: news.excerpt,
+      images: news.image ? [news.image] : [],
     },
   };
 }
