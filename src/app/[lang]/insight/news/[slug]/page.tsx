@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import { Calendar, Tag, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -33,6 +34,7 @@ const getNewsDetail = unstable_cache(
       return {
         ...news,
         _id: news._id.toString(),
+        imageId: news.image, // Keep the original ID for OG tags
         image: imageSrc
       };
     } catch (e) {
@@ -51,7 +53,12 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
   if (!news) return { title: 'Not Found' };
 
   const canonicalUrl = `${baseUrl}/${lang}/insight/news/${slug}`;
-  const ogImageUrl = news.image;
+  
+  // Resolve OG Image URL: Use the proxy API if it's a database ID
+  let ogImageUrl = news.image;
+  if (news.imageId && news.imageId.length === 24 && !news.imageId.startsWith('http')) {
+    ogImageUrl = `${baseUrl}/api/media/${news.imageId}`;
+  }
 
   return {
     title: news.title,

@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import { notFound } from "next/navigation";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
@@ -78,7 +79,7 @@ const getPageDetail = unstable_cache(
       return null;
     }
   },
-  ['custom-page-detail-item'], // Unique key for item
+  ['custom-page-detail-item'],
   { tags: ['custom-pages', 'media'] }
 );
 
@@ -89,30 +90,30 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
 
   const canonicalUrl = `${baseUrl}/${lang}/p/${slug}`;
   
-  // Scans for the first available image in the page content to use as OG image
-  let ogImageUrl = null;
+  // Find the first image ID to use for OG image
+  let ogImageId = null;
   if (page.sections) {
     for (const section of page.sections) {
-      // Priority 1: Hero or Image section
-      if ((section.type === 'hero' || section.type === 'image') && section.data.imageData) {
-        ogImageUrl = section.data.imageData;
+      if ((section.type === 'hero' || section.type === 'image') && section.data.imageId) {
+        ogImageId = section.data.imageId;
         break;
       }
-      // Priority 2: Gallery section (first item)
-      if (section.type === 'gallery' && section.data.items?.[0]?.imageData) {
-        ogImageUrl = section.data.items[0].imageData;
+      if (section.type === 'gallery' && section.data.items?.[0]?.imageId) {
+        ogImageId = section.data.items[0].imageId;
         break;
       }
-      // Priority 3: Columns section (first column if it's an image)
       if (section.type === 'columns' && section.data.columns) {
-        const imgCol = section.data.columns.find((c: any) => c.type === 'image' && c.imageData);
+        const imgCol = section.data.columns.find((c: any) => c.type === 'image' && c.imageId);
         if (imgCol) {
-          ogImageUrl = imgCol.imageData;
+          ogImageId = imgCol.imageId;
           break;
         }
       }
     }
   }
+
+  // Resolve absolute URL for the image
+  const ogImageUrl = ogImageId ? `${baseUrl}/api/media/${ogImageId}` : `${baseUrl}/assets/img/home/og-image.jpg`;
 
   return {
     title: page.title,
