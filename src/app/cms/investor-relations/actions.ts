@@ -87,3 +87,22 @@ export async function getLatestInvestorResource(lang: string) {
     return null;
   }
 }
+
+export async function getInvestorResourcesByLang(lang: string) {
+  try {
+    const client = await clientPromise;
+    const db = client.db(DATABASE_NAME);
+    const resources = await db.collection(COLLECTION_NAME)
+      .find({ lang })
+      .sort({ createdAt: -1 })
+      .toArray();
+    
+    return resources.map(item => ({
+      ...item,
+      _id: item._id.toString(),
+    }));
+  } catch (e) {
+    console.error("Failed to fetch investor resources for lang:", lang, e);
+    return [];
+  }
+}

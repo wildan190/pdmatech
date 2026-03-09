@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -8,7 +7,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
 import ParallaxImage from '@/components/shared/parallax-image';
-import { getLatestInvestorResource } from '@/app/cms/investor-relations/actions';
+import { getInvestorResourcesByLang } from '@/app/cms/investor-relations/actions';
 
 const baseUrl = 'https://mpnsolutions.my.id';
 const path = '/investor';
@@ -64,7 +63,7 @@ export default async function InvestorPage({ params }: { params: Promise<{ lang:
   const pageDict = dictionary.investorPage;
   const commonDict = dictionary.common;
 
-  const latestResource = await getLatestInvestorResource(lang);
+  const resources = await getInvestorResourcesByLang(lang);
 
   const whyInvestData = [
     {
@@ -169,29 +168,31 @@ export default async function InvestorPage({ params }: { params: Promise<{ lang:
               <h2 className="text-3xl font-bold font-headline">{pageDict.resources.title}</h2>
                <p className="text-muted-foreground mt-2 max-w-xl mx-auto md:mx-0">{pageDict.resources.description}</p>
                
-               <div className="mt-8">
-                  {latestResource ? (
-                    <Card className="border-primary/20 bg-background shadow-lg overflow-hidden group">
-                      <CardContent className="p-0">
-                        <div className="p-6 flex items-center justify-between gap-4">
-                          <div className="flex items-center gap-4">
-                            <div className="p-3 bg-primary/10 rounded-lg">
-                              <FileText className="w-6 h-6 text-primary" />
+               <div className="mt-8 space-y-4">
+                  {resources.length > 0 ? (
+                    resources.map((res) => (
+                      <Card key={res._id} className="border-primary/20 bg-background shadow-lg overflow-hidden group">
+                        <CardContent className="p-0">
+                          <div className="p-6 flex items-center justify-between gap-4">
+                            <div className="flex items-center gap-4">
+                              <div className="p-3 bg-primary/10 rounded-lg">
+                                <FileText className="w-6 h-6 text-primary" />
+                              </div>
+                              <div className="text-left">
+                                <p className="font-bold text-lg line-clamp-1">{res.title}</p>
+                                <p className="text-xs text-muted-foreground uppercase tracking-wider">{res.fileName}</p>
+                              </div>
                             </div>
-                            <div className="text-left">
-                              <p className="font-bold text-lg line-clamp-1">{latestResource.title}</p>
-                              <p className="text-xs text-muted-foreground uppercase tracking-wider">{latestResource.fileName}</p>
-                            </div>
+                            <Button asChild size="lg" className="gap-2">
+                              <a href={res.fileData} download={res.fileName}>
+                                <Download className="w-5 h-5" />
+                                Download
+                              </a>
+                            </Button>
                           </div>
-                          <Button asChild size="lg" className="gap-2">
-                            <a href={latestResource.fileData} download={latestResource.fileName}>
-                              <Download className="w-5 h-5" />
-                              Download
-                            </a>
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+                    ))
                   ) : (
                     <Card className="border-dashed bg-transparent">
                       <CardContent className="p-10 text-center">
