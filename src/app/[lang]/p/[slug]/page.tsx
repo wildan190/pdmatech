@@ -25,8 +25,8 @@ type CustomPageProps = {
 
 const baseUrl = 'https://mpnsolutions.my.id';
 
-const getPageDetail = unstable_cache(
-  async (slug: string, lang: string) => {
+const getPageDetail = (slug: string, lang: string) => unstable_cache(
+  async () => {
     try {
       const client = await clientPromise;
       const db = client.db('mpn_cms');
@@ -79,9 +79,9 @@ const getPageDetail = unstable_cache(
       return null;
     }
   },
-  ['custom-page-detail-item'],
+  [`custom-page-detail-${slug}-${lang}`],
   { tags: ['custom-pages', 'media'] }
-);
+)();
 
 export async function generateMetadata({ params }: CustomPageProps): Promise<Metadata> {
   const { lang, slug } = await params;
@@ -90,7 +90,6 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
 
   const canonicalUrl = `${baseUrl}/${lang}/p/${slug}`;
   
-  // Find the first image ID to use for OG image
   let ogImageId = null;
   if (page.sections) {
     for (const section of page.sections) {
@@ -112,7 +111,6 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
     }
   }
 
-  // Resolve absolute URL for the image
   const ogImageUrl = ogImageId ? `${baseUrl}/api/media/${ogImageId}` : `${baseUrl}/assets/img/home/og-image.jpg`;
 
   return {
@@ -125,7 +123,7 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
       title: page.title,
       description: page.description,
       url: canonicalUrl,
-      images: ogImageUrl ? [{ url: ogImageUrl, width: 1200, height: 630, alt: page.title }] : [],
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: page.title }],
       type: 'website',
       siteName: 'Micro Padma Nusantara',
     },
@@ -133,7 +131,7 @@ export async function generateMetadata({ params }: CustomPageProps): Promise<Met
       card: 'summary_large_image',
       title: page.title,
       description: page.description,
-      images: ogImageUrl ? [ogImageUrl] : [],
+      images: [ogImageUrl],
     },
   };
 }

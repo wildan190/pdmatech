@@ -18,8 +18,8 @@ type ArticleDetailPageProps = {
 
 const baseUrl = 'https://mpnsolutions.my.id';
 
-const getArticleDetail = unstable_cache(
-  async (slug: string, lang: string) => {
+const getArticleDetail = (slug: string, lang: string) => unstable_cache(
+  async () => {
     try {
       const client = await clientPromise;
       const db = client.db('mpn_cms');
@@ -34,7 +34,7 @@ const getArticleDetail = unstable_cache(
       return {
         ...article,
         _id: article._id.toString(),
-        imageId: article.image, // Keep the original ID for OG tags
+        imageId: article.image,
         image: imageSrc
       };
     } catch (e) {
@@ -42,9 +42,9 @@ const getArticleDetail = unstable_cache(
       return null;
     }
   },
-  ['article-detail-item'],
+  [`article-detail-${slug}-${lang}`],
   { tags: ['articles', 'media'] }
-);
+)();
 
 export async function generateMetadata({ params }: ArticleDetailPageProps): Promise<Metadata> {
   const { lang, slug } = await params;
@@ -54,7 +54,6 @@ export async function generateMetadata({ params }: ArticleDetailPageProps): Prom
 
   const canonicalUrl = `${baseUrl}/${lang}/insight/article/${slug}`;
   
-  // Resolve OG Image URL: Use the proxy API if it's a database ID
   let ogImageUrl = article.image;
   if (article.imageId && article.imageId.length === 24 && !article.imageId.startsWith('http')) {
     ogImageUrl = `${baseUrl}/api/media/${article.imageId}`;

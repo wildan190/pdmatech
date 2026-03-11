@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import { Rss, Newspaper, Calendar, ArrowRight, Tag, Search } from "lucide-react";
 import Link from "next/link";
@@ -48,8 +49,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   };
 }
 
-const getCachedNews = unstable_cache(
-  async (lang: string, query: string = '') => {
+const getCachedNews = (lang: string, query: string = '') => unstable_cache(
+  async () => {
     try {
       const client = await clientPromise;
       const db = client.db('mpn_cms');
@@ -88,9 +89,9 @@ const getCachedNews = unstable_cache(
       return [];
     }
   },
-  ['news-list-key'], // Singleton key
+  [`news-list-${lang}-${query}`],
   { tags: ['news', 'media'] }
-);
+)();
 
 export default async function NewsPage({ 
   params, 
