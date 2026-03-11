@@ -6,6 +6,7 @@ import Footer from '@/components/landing/footer';
 import Script from 'next/script';
 import CookieConsent from '@/components/shared/cookie-consent';
 import { Toaster } from '@/components/ui/toaster';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const baseUrl = 'https://mpnsolutions.my.id';
 
@@ -89,6 +90,7 @@ export default async function LanguageLayout({
       <Footer dictionary={dictionary} lang={params.lang} />
       <CookieConsent dictionary={dictionary} lang={params.lang} />
       <Toaster />
+      <SpeedInsights />
     </>
   );
 }

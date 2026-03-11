@@ -10,6 +10,7 @@ import CookieConsent from '@/components/shared/cookie-consent';
 import { Toaster } from '@/components/ui/toaster';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import { ReactNode } from 'react';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -27,7 +28,8 @@ export async function generateStaticParams() {
     return i18n.locales.map(locale => ({ lang: locale }))
 }
 
-export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+  const { lang } = await params;
   const isEn = lang === 'en';
   const isId = lang === 'id';
 
@@ -184,6 +186,7 @@ export default async function LanguageLayout({
         <Footer dictionary={dictionary} lang={params.lang} />
         <CookieConsent dictionary={dictionary} lang={params.lang} />
         <Toaster />
+        <SpeedInsights />
       </body>
     </html>
   );
