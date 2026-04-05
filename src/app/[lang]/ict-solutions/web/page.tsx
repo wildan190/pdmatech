@@ -144,6 +144,12 @@ const portfolioData = [
     imageId: "portfolio-huntr"
   },
   {
+    name: "mitrabawang.id",
+    company: "Supplier Distributor Bawang",
+    url: "https://mitrabawang.id",
+    imageId: "portfolio-mitrabawang"
+  },
+  {
     name: "MAXUMAX",
     company: "MAXUMAX Group",
     url: "https://maxumax.my",

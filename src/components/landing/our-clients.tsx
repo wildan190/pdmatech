@@ -14,6 +14,7 @@ const clients = [
   { name: 'Liga Mahasiswa', logo: '/assets/img/clients/liga-mahasiswa.svg' },
   { name: 'Garuda Systrain Interindo', logo: '/assets/img/clients/garuda-systrain-interindo.svg' },
   { name: 'Huntr.id', logo: '/assets/img/clients/huntr-id.svg' },
+  { name: 'mitrabawang.id', logo: <span className="font-bold text-2xl text-foreground whitespace-nowrap">mitrabawang.id</span> },
   { name: 'Safarental', logo: '/assets/img/clients/safarental.svg' },
   { name: 'SyauqiRental', logo: '/assets/img/clients/syauqirental.svg' },
   { name: 'Bali Pure', logo: '/assets/img/clients/bali-pure.svg' },
