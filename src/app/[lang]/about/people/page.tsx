@@ -138,12 +138,14 @@ export default async function PeoplePage({ params }: { params: Promise<{ lang: L
                               <div className={`relative w-full max-w-md mx-auto ${isOdd ? 'md:order-last' : ''}`}>
                                   <Image
                                       src={leader.image}
-                                      alt={`Portrait of ${leader.name}`}
+                                      alt={`${leader.name}, ${leader.title} at Micro Padma Nusantara - ICT & IoT Solutions`}
                                       width={leader.width}
                                       height={leader.height}
                                       className="rounded-lg shadow-xl object-contain w-full h-auto"
                                       priority={index === 0}
                                       sizes="(max-width: 768px) 100vw, 400px"
+                                      quality={90}
+                                      decoding="async"
                                   />
                               </div>
                               <div className={`${isOdd ? 'md:text-right' : 'md:text-left'}`}>
