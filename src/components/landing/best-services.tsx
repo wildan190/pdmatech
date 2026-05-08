@@ -56,8 +56,8 @@ const BestServices = ({ dictionary, lang }: BestServicesProps) => {
                   <div className="opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-screen transition-all duration-500 ease-in-out mt-2">
                       <p className="text-white/80 text-sm mb-4">{solution.description}</p>
                       <Button variant="secondary" asChild>
-                          <Link href={solution.href}>
-                              {dictionary.learnMore} <ArrowRight className="ml-2 h-4 w-4" />
+                          <Link href={solution.href} title={`Learn more about ${solution.title}`}>
+                              Learn more about {solution.title} <ArrowRight className="ml-2 h-4 w-4" />
                           </Link>
                       </Button>
                   </div>

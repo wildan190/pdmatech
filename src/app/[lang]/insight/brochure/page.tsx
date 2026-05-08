@@ -193,8 +193,8 @@ export default async function BrochurePage({ params }: { params: { lang: Locale 
                   </CardContent>
                   <div className="mt-6 w-full no-print">
                      <Button variant="outline" asChild className="w-full">
-                        <Link href={service.href}>
-                            {commonDict.learnMore} <ArrowRight className="ml-2 h-4 w-4" />
+                        <Link href={service.href} title={`Learn more about ${service.title}`}>
+                            Learn more about {service.title} <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                      </Button>
                   </div>

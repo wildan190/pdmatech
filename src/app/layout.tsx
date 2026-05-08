@@ -14,6 +14,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  title: 'Micro Padma Nusantara - ICT & IoT Solutions Indonesia',
+  description: 'Leading ICT and IoT solutions provider in Indonesia. Transform your business with innovative technology for enterprises, SMEs, and digital transformation.',
   metadataBase: new URL('https://mpnsolutions.my.id'),
   robots: {
     index: true,
@@ -28,6 +30,27 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'your-google-verification-code', // Replace with actual code from Google Search Console
+  },
+  openGraph: {
+    title: 'Micro Padma Nusantara - ICT & IoT Solutions Indonesia',
+    description: 'Leading ICT and IoT solutions provider in Indonesia. Transform your business with innovative technology.',
+    url: 'https://mpnsolutions.my.id',
+    siteName: 'Micro Padma Nusantara',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Micro Padma Nusantara - ICT & IoT Solutions Indonesia',
+    description: 'Leading ICT and IoT solutions provider in Indonesia.',
+  },
+  alternates: {
+    canonical: 'https://mpnsolutions.my.id',
+    languages: {
+      'en': 'https://mpnsolutions.my.id/en',
+      'id': 'https://mpnsolutions.my.id/id',
+      'zh': 'https://mpnsolutions.my.id/zh',
+    },
   },
 };
 
