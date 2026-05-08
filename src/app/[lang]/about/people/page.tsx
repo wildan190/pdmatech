@@ -72,7 +72,7 @@ export default async function PeoplePage({ params }: { params: Promise<{ lang: L
     {
         name: pageDict.leaders.wildan.name,
         title: pageDict.leaders.wildan.title,
-        image: "/assets/img/about/me.png",
+        image: "/assets/img/about/wildan-ceo.webp",
         bio: pageDict.leaders.wildan.bio,
         width: 800,
         height: 800
@@ -80,7 +80,7 @@ export default async function PeoplePage({ params }: { params: Promise<{ lang: L
     {
         name: pageDict.leaders.raihan.name,
         title: pageDict.leaders.raihan.title,
-        image: "/assets/img/about/rei.jpg",
+        image: "/assets/img/about/business-solution-manager.webp",
         bio: pageDict.leaders.raihan.bio,
         width: 800,
         height: 1000

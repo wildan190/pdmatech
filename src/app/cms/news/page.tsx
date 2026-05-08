@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Plus, Trash2, Globe, Tag, Key, Image as ImageIcon } from 'lucide-react';
 import MediaPicker from '@/components/cms/media-picker';
 import Image from 'next/image';
@@ -145,6 +145,7 @@ export default function NewsManagement() {
           <DialogContent className="max-w-5xl overflow-y-auto max-h-[95vh]">
             <DialogHeader>
               <DialogTitle>Create New News Article</DialogTitle>
+              <DialogDescription className="hidden">Form to create or edit news articles with title, content, and media</DialogDescription>
             </DialogHeader>
             <form onSubmit={handleAddNews} className="space-y-6 pt-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { getMediaLibrary, uploadToLibrary } from '@/app/cms/media/actions';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Image as ImageIcon, Upload, Search, CheckCircle2, Loader2 } from 'lucide-react';
@@ -88,6 +88,7 @@ export default function MediaPicker({ onSelect, currentValue }: MediaPickerProps
       <DialogContent className="max-w-4xl max-h-[85vh] flex flex-col">
         <DialogHeader>
           <DialogTitle>Media Library</DialogTitle>
+          <DialogDescription className="hidden">Select or upload media files for your content</DialogDescription>
         </DialogHeader>
         
         <div className="flex flex-col md:flex-row gap-4 mb-4">

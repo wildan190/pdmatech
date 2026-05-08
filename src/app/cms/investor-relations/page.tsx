@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Plus, Trash2, Upload, AlertCircle, FileText, Globe } from 'lucide-react';
 import Swal from 'sweetalert2';
 
@@ -119,6 +119,7 @@ export default function InvestorResourceManagement() {
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle>Unggah Laporan Investor (PDF)</DialogTitle>
+              <DialogDescription className="hidden">Upload investor report documents in PDF format</DialogDescription>
             </DialogHeader>
             <form onSubmit={handleAddResource} className="space-y-6 pt-4">
               <div className="space-y-2">

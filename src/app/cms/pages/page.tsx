@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Plus, Trash2, Edit, Globe, ExternalLink, Layout, Type, Image as ImageIcon, MonitorOff, Loader2, MousePointer2, MessageSquarePlus, X, MoveUp, MoveDown, Info, Images, Columns as ColumnsIcon, FileText } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
@@ -255,7 +255,10 @@ export default function PageManagement() {
             <Button className="gap-2"><Plus className="w-4 h-4" /> Create New Page</Button>
           </DialogTrigger>
           <DialogContent className="max-w-[95vw] w-[1200px] h-[90vh] overflow-y-auto">
-            <DialogHeader><DialogTitle>{editingId ? 'Edit Page' : 'Create New Page'}</DialogTitle></DialogHeader>
+            <DialogHeader>
+              <DialogTitle>{editingId ? 'Edit Page' : 'Create New Page'}</DialogTitle>
+              <DialogDescription className="hidden">Form to create or edit a modular page with sections and content</DialogDescription>
+            </DialogHeader>
             <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-4">
               <div className="space-y-6 lg:border-r lg:pr-8">
                 <div className="space-y-4">

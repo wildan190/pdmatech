@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Trash2, Edit, MoveUp, MoveDown, Globe, ExternalLink, Menu, LayoutPanelTop } from 'lucide-react';
 import Swal from 'sweetalert2';
@@ -79,7 +79,10 @@ export default function NavigationManagement() {
               <Button className="gap-2"><Plus className="w-4 h-4" /> Add Link</Button>
             </DialogTrigger>
             <DialogContent>
-              <DialogHeader><DialogTitle>{editingLink ? 'Edit Link' : 'Add New Link'}</DialogTitle></DialogHeader>
+              <DialogHeader>
+                <DialogTitle>{editingLink ? 'Edit Link' : 'Add New Link'}</DialogTitle>
+                <DialogDescription className="hidden">Form to add or edit navigation menu items</DialogDescription>
+              </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-4 pt-4">
                 <div className="space-y-2">
                   <label className="text-sm font-bold">Label</label>

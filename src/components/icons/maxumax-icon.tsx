@@ -20,6 +20,7 @@ const clients = [
   { name: 'Jowoland Construction', logo: '/assets/img/clients/jowoland-construction.svg' },
   { name: 'Hadiwijaya', logo: '/assets/img/clients/hadiwijaya.svg' },
   { name: 'Hadiningrat Corp', logo: '/assets/img/clients/hadiningrat-corp.svg' },
+  { name: 'Jayatama Borepile', logo: '/assets/img/clients/jayatama-borepile.svg' },
   { name: 'MAXUMAX', logo: <span className="font-bold text-xl text-foreground">MAXUMAX</span> },
 ];
 
