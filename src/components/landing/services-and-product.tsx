@@ -1,1 +1,1 @@
-/src/components/landing/other-solutions.tsx
+export { default } from './other-solutions';

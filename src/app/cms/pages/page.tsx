@@ -3,7 +3,14 @@
 
 import { useEffect, useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
+import type { Jodit } from 'jodit';
 import { getPages, createPage, updatePage, deletePage } from './actions';
+
+type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -44,7 +51,7 @@ export default function PageManagement() {
 
   const editorConfig = useMemo(() => ({
     readonly: false,
-    toolbarButtonSize: "middle",
+    toolbarButtonSize: 'middle' as const,
     theme: "default",
     enableDragAndDropFileToEditor: true,
     saveModeInCookie: false,
@@ -60,8 +67,8 @@ export default function PageManagement() {
       'source', '|', 'bold', 'italic', 'underline', 'strikethrough', '|',
       'ul', 'ol', '|', 'outdent', 'indent', '|', 'font', 'fontsize', 'brush', 'paragraph', '|',
       'image', 'table', 'link', '|', 'align', 'undo', 'redo', '|', 'hr', 'eraser', 'copyformat', 'fullsize'
-    ],
-  }), []);
+    ] as const
+  }) as any, []);
 
   useEffect(() => {
     loadPages();
@@ -417,7 +424,7 @@ export default function PageManagement() {
                                             {col.type === 'text' ? (
                                                 <JoditEditor 
                                                     value={col.content} 
-                                                    config={{...editorConfig, height: 200}} 
+                                                    config={{...editorConfig, height: 200} as any} 
                                                     onBlur={val => {
                                                         const newCols = [...s.data.columns];
                                                         newCols[cIdx].content = val;

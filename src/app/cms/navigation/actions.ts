@@ -16,7 +16,7 @@ export async function getNavLinks(lang: string, type: 'navbar' | 'footer') {
       .find({ lang, type })
       .sort({ order: 1 })
       .toArray();
-    return links.map(l => ({ ...l, _id: l._id.toString() }));
+    return links.map(l => ({ title: l.title as string, href: l.href as string }));
   } catch (e) {
     return [];
   }

@@ -34,7 +34,7 @@ export async function getNavigationPages(lang: string, type: 'navbar' | 'footer'
       .find(filter)
       .project({ title: true, slug: true })
       .toArray();
-    return navPages.map(p => ({ title: p.title, href: `/${lang}/p/${p.slug}` }));
+    return navPages.map(p => ({ title: p.title as string, href: `/${lang}/p/${p.slug as string}` }));
   } catch (e) {
     return [];
   }

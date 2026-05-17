@@ -45,7 +45,6 @@ export const metadata: Metadata = {
     description: 'Leading ICT and IoT solutions provider in Indonesia.',
   },
   alternates: {
-    canonical: 'https://mpnsolutions.my.id',
     languages: {
       'en': 'https://mpnsolutions.my.id/en',
       'id': 'https://mpnsolutions.my.id/id',

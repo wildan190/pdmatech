@@ -1,8 +1,7 @@
-
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 import { i18n } from '@/i18n.config';
 
-const URL = 'https://mpnsolutions.my.id';
+const BASE_URL = 'https://mpnsolutions.my.id';
 
 const routes: Array<{
   path: string;
@@ -29,13 +28,20 @@ const routes: Array<{
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date('2024-01-01');
+  const lastModified = new Date();
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
+  // Validasi i18n.locales
+  const locales = i18n?.locales || ['en', 'id', 'zh'];
+
   routes.forEach(({ path, priority, changeFrequency }) => {
-    i18n.locales.forEach((locale) => {
+    locales.forEach((locale) => {
+      // Bangun URL dengan benar: BASE_URL/locale/path
+      const pathname = path ? `/${locale}${path}` : `/${locale}`;
+      const url = new URL(pathname, BASE_URL).toString();
+
       sitemapEntries.push({
-        url: `${URL}/${locale}${path}`,
+        url: url.replace(/\/$/, ''), // Hapus trailing slash untuk konsistensi
         lastModified,
         changeFrequency,
         priority,

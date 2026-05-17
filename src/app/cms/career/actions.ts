@@ -3,6 +3,7 @@
 import clientPromise from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 import { revalidatePath, revalidateTag } from 'next/cache';
+import type { CareerJob, CareerApplication } from '@/types/mongodb';
 
 const DATABASE_NAME = 'mpn_cms';
 const JOBS_COLLECTION = 'jobs';
@@ -10,7 +11,7 @@ const APPS_COLLECTION = 'applications';
 
 // --- JOB MANAGEMENT ---
 
-export async function getJobs() {
+export async function getJobs(): Promise<CareerJob[]> {
   try {
     const client = await clientPromise;
     const db = client.db(DATABASE_NAME);
@@ -18,7 +19,7 @@ export async function getJobs() {
     return jobs.map(item => ({
       ...item,
       _id: item._id.toString(),
-    }));
+    } as CareerJob));
   } catch (e) {
     return [];
   }

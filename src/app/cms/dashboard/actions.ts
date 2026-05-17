@@ -94,13 +94,13 @@ export async function getSearchConsoleData() {
     }));
 
     const totals = rows.reduce((acc, curr) => ({
-      clicks: acc.clicks + (curr.clicks || 0),
-      impressions: acc.impressions + (curr.impressions || 0),
-      position: acc.position + (curr.position || 0)
+      clicks: (acc.clicks || 0) + (curr.clicks || 0),
+      impressions: (acc.impressions || 0) + (curr.impressions || 0),
+      position: (acc.position || 0) + (curr.position || 0)
     }), { clicks: 0, impressions: 0, position: 0 });
 
-    const avgPos = (totals.position / rows.length).toFixed(1);
-    const ctr = totals.impressions > 0 ? ((totals.clicks / totals.impressions) * 100).toFixed(2) + '%' : '0%';
+    const avgPos = ((totals.position || 0) / rows.length).toFixed(1);
+    const ctr = (totals.impressions || 0) > 0 ? (((totals.clicks || 0) / (totals.impressions || 0)) * 100).toFixed(2) + '%' : '0%';
 
     return {
       isMock: false,

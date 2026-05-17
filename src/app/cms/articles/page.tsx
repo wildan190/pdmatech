@@ -3,7 +3,9 @@
 
 import { useEffect, useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
+import type { Jodit } from 'jodit';
 import { getArticles, createArticle, deleteArticle } from './actions';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -32,7 +34,7 @@ export default function ArticleManagement() {
     placeholder: 'Mulai tulis konten artikel Anda di sini...',
     height: 450,
     width: '100%',
-    toolbarButtonSize: "middle",
+    toolbarButtonSize: 'middle' as const,
     theme: "default",
     enableDragAndDropFileToEditor: true,
     saveModeInCookie: false,
@@ -48,9 +50,9 @@ export default function ArticleManagement() {
       'source', '|', 'bold', 'italic', 'underline', 'strikethrough', '|',
       'ul', 'ol', '|', 'outdent', 'indent', '|', 'font', 'fontsize', 'brush', 'paragraph', '|',
       'image', 'table', 'link', '|', 'align', 'undo', 'redo', '|', 'hr', 'eraser', 'copyformat', 'fullsize'
-    ],
+    ] as const,
     uploader: { insertImageAsBase64URI: true }
-  }), []);
+  } as any), []);
 
   useEffect(() => {
     loadArticles();

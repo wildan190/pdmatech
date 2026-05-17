@@ -31,7 +31,6 @@ pathname: '/**',
     ],
   },
   compiler: {
-    browserslist: '> 0.5%, not dead, not op_mini all',
   },
 };
 

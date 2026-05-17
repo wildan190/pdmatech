@@ -3,7 +3,14 @@
 
 import { useEffect, useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
+import type { Jodit } from 'jodit';
 import { getNews, createNews, deleteNews } from './actions';
+
+type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -27,30 +34,30 @@ export default function NewsManagement() {
   const [content, setContent] = useState('');
   const [selectedImage, setSelectedImage] = useState<{id: string, data: string} | null>(null);
 
-  const editorConfig = useMemo(() => ({
+  const editorConfig = useMemo(() => (({
     readonly: false,
     placeholder: 'Mulai tulis konten berita Anda di sini...',
     height: 450,
     width: '100%',
-    toolbarButtonSize: "middle",
-    theme: "default",
+    toolbarButtonSize: 'middle' as const,
+    theme: 'default',
     enableDragAndDropFileToEditor: true,
     saveModeInCookie: false,
     spellcheck: true,
-    editorCssClass: "prose max-w-none",
+    editorCssClass: 'prose max-w-none',
     triggerChangeEvent: true,
     askBeforePasteHTML: false,
     askBeforePasteFromWord: false,
-    defaultActionOnPaste: "insert_as_html",
+    defaultActionOnPaste: 'insert_as_html',
     processPasteHTML: true,
-    cleanHTML: { fillEmptyParagraph: false, denyTags: "" },
+    cleanHTML: { fillEmptyParagraph: false, denyTags: '' },
     buttons: [
       'source', '|', 'bold', 'italic', 'underline', 'strikethrough', '|',
       'ul', 'ol', '|', 'outdent', 'indent', '|', 'font', 'fontsize', 'brush', 'paragraph', '|',
       'image', 'table', 'link', '|', 'align', 'undo', 'redo', '|', 'hr', 'eraser', 'copyformat', 'fullsize'
-    ],
+    ] as const,
     uploader: { insertImageAsBase64URI: true }
-  }), []);
+  }) as any), []);
 
   useEffect(() => {
     loadNews();

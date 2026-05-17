@@ -2,7 +2,14 @@
 
 import { useEffect, useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
+import type { Jodit } from 'jodit';
 import { getJobs, createJob, deleteJob, getApplications, deleteApplication } from './actions';
+
+type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -29,9 +36,9 @@ export default function CareerManagement() {
     readonly: false,
     placeholder: 'Write the job description and requirements...',
     height: 350,
-    toolbarButtonSize: "middle",
-    buttons: ['bold', 'italic', 'underline', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush', 'paragraph', '|', 'table', 'link', '|', 'undo', 'redo']
-  }), []);
+    toolbarButtonSize: 'middle' as const,
+    buttons: ['bold', 'italic', 'underline', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush', 'paragraph', '|', 'table', 'link', '|', 'undo', 'redo'] as const
+  }) as DeepPartial<Jodit['options']>, []);
 
   useEffect(() => {
     loadData();

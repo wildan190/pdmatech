@@ -1,5 +1,6 @@
 import { getDictionary } from '@/lib/dictionaries';
 import { Locale, i18n } from '@/i18n.config';
+import { Metadata } from 'next';
 import WhatsAppButton from '@/components/landing/whatsapp-button';
 import Header from '@/components/landing/header';
 import Footer from '@/components/landing/footer';
@@ -9,6 +10,22 @@ import { Toaster } from '@/components/ui/toaster';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const baseUrl = 'https://mpnsolutions.my.id';
+
+export async function generateMetadata({ params }: { params: { lang: Locale } }): Promise<Metadata> {
+  const canonicalUrl = `${baseUrl}/${params.lang}`;
+  const languages = i18n.locales.reduce<Record<string, string>>((acc, locale) => {
+    acc[locale] = `${baseUrl}/${locale}`;
+    return acc;
+  }, {});
+
+  return {
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: canonicalUrl,
+      languages,
+    },
+  };
+}
 
 export async function generateStaticParams() {
     return i18n.locales.map(locale => ({ lang: locale }))
