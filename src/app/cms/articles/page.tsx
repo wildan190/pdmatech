@@ -4,14 +4,14 @@
 import { useEffect, useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import type { Jodit } from 'jodit';
-import { getArticles, createArticle, deleteArticle } from './actions';
+import { getArticles, createArticle, updateArticle, deleteArticle } from './actions';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Globe, Tag, Key, Image as ImageIcon } from 'lucide-react';
+import { Plus, Trash2, Globe, Tag, Key, Image as ImageIcon, Edit3 } from 'lucide-react';
 import MediaPicker from '@/components/cms/media-picker';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
@@ -28,6 +28,13 @@ export default function ArticleManagement() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [content, setContent] = useState('');
   const [selectedImage, setSelectedImage] = useState<{id: string, data: string} | null>(null);
+  const [currentImageId, setCurrentImageId] = useState<string | null>(null);
+  const [editingArticle, setEditingArticle] = useState<any | null>(null);
+  const [lang, setLang] = useState('en');
+  const [title, setTitle] = useState('');
+  const [tags, setTags] = useState('');
+  const [keywords, setKeywords] = useState('');
+  const [excerpt, setExcerpt] = useState('');
 
   const editorConfig = useMemo(() => ({
     readonly: false,
@@ -69,12 +76,47 @@ export default function ArticleManagement() {
     }
   };
 
-  const handleAddArticle = async (e: React.FormEvent<HTMLFormElement>) => {
+  const resetForm = () => {
+    setEditingArticle(null);
+    setLang('en');
+    setTitle('');
+    setTags('');
+    setKeywords('');
+    setExcerpt('');
+    setContent('');
+    setSelectedImage(null);
+    setCurrentImageId(null);
+    setIsSubmitting(false);
+  };
+
+  const openArticleDialog = (article?: any) => {
+    if (!article) {
+      resetForm();
+      setIsDialogOpen(true);
+      return;
+    }
+
+    setEditingArticle(article);
+    setLang(article.lang || 'en');
+    setTitle(article.title || '');
+    setTags((article.tags || []).join(', '));
+    setKeywords(article.keywords || '');
+    setExcerpt(article.excerpt || '');
+    setContent(article.content || '');
+    setSelectedImage(null);
+    setCurrentImageId(article.image || null);
+    setIsDialogOpen(true);
+  };
+
+  const handleSaveArticle = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!selectedImage) {
+
+    const imageId = selectedImage?.id || currentImageId;
+    if (!imageId) {
       Swal.fire({ icon: 'error', title: 'Oops...', text: 'Pilih gambar sampul terlebih dahulu.' });
       return;
     }
+
     if (!content || content === '<p><br></p>') {
       Swal.fire({ icon: 'error', title: 'Oops...', text: 'Isi konten artikel tidak boleh kosong.' });
       return;
@@ -82,15 +124,24 @@ export default function ArticleManagement() {
 
     setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
-    formData.append('content', content); 
-    formData.append('imageId', selectedImage.id);
+    formData.append('content', content);
+    formData.append('imageId', imageId);
+
+    if (editingArticle) {
+      formData.append('id', editingArticle._id);
+    }
 
     try {
-      await createArticle(formData);
-      Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Artikel telah berhasil diterbitkan.' });
+      if (editingArticle) {
+        await updateArticle(formData);
+        Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Artikel telah berhasil diperbarui.' });
+      } else {
+        await createArticle(formData);
+        Swal.fire({ icon: 'success', title: 'Berhasil', text: 'Artikel telah berhasil diterbitkan.' });
+      }
+
       setIsDialogOpen(false);
-      setContent('');
-      setSelectedImage(null);
+      resetForm();
       loadArticles();
     } catch (error: any) {
       Swal.fire({ icon: 'error', title: 'Gagal', text: error.message || 'Terjadi kesalahan saat menyimpan artikel.' });
@@ -137,22 +188,32 @@ export default function ArticleManagement() {
           <h2 className="text-3xl font-headline font-bold">Article Management</h2>
           <p className="text-muted-foreground">Manage technical insights and educational content.</p>
         </div>
-        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <Dialog open={isDialogOpen} onOpenChange={(open) => {
+          if (!open) resetForm();
+          setIsDialogOpen(open);
+        }}>
           <DialogTrigger asChild>
-            <Button className="gap-2">
+            <Button className="gap-2" onClick={() => openArticleDialog()}>
               <Plus className="w-4 h-4" />
               Add Article
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-5xl overflow-y-auto max-h-[95vh]">
             <DialogHeader>
-              <DialogTitle>Create New Insight Article</DialogTitle>
+              <DialogTitle>{editingArticle ? 'Edit Insight Article' : 'Create New Insight Article'}</DialogTitle>
             </DialogHeader>
-            <form onSubmit={handleAddArticle} className="space-y-6 pt-4">
+            <form onSubmit={handleSaveArticle} className="space-y-6 pt-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold">Language</label>
-                  <select name="lang" className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:ring-2 focus:ring-primary outline-none" required>
+                  <select
+                    name="lang"
+                    aria-label="Language"
+                    value={lang}
+                    onChange={(event) => setLang(event.target.value)}
+                    className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:ring-2 focus:ring-primary outline-none"
+                    required
+                  >
                     <option value="en">English (EN)</option>
                     <option value="id">Indonesia (ID)</option>
                     <option value="zh">中文 (ZH)</option>
@@ -162,13 +223,18 @@ export default function ArticleManagement() {
                   <label className="text-sm font-semibold flex items-center gap-2">
                     <ImageIcon className="w-4 h-4 text-primary" /> Cover Image
                   </label>
-                  <MediaPicker 
-                    onSelect={(id, data) => setSelectedImage({id, data})} 
-                    currentValue={selectedImage?.id}
+                  <MediaPicker
+                    onSelect={(id, data) => setSelectedImage({ id, data })}
+                    currentValue={selectedImage?.id || currentImageId || ''}
                   />
-                  {selectedImage && (
+                  {(selectedImage || currentImageId) && (
                     <div className="mt-2 relative h-20 w-32 rounded border overflow-hidden">
-                      <Image src={selectedImage.data} alt="Preview" fill className="object-cover" />
+                      <Image
+                        src={selectedImage?.data ?? `/api/media/${currentImageId}`}
+                        alt="Preview"
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                   )}
                 </div>
@@ -176,7 +242,13 @@ export default function ArticleManagement() {
 
               <div className="space-y-2">
                 <label className="text-sm font-semibold">Title</label>
-                <Input name="title" placeholder="Article title..." required />
+                <Input
+                  name="title"
+                  value={title}
+                  onChange={(event) => setTitle(event.target.value)}
+                  placeholder="Article title..."
+                  required
+                />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -184,19 +256,35 @@ export default function ArticleManagement() {
                   <label className="text-sm font-semibold flex items-center gap-2">
                     <Tag className="w-4 h-4 text-primary" /> Tags (Comma separated)
                   </label>
-                  <Input name="tags" placeholder="e.g. tech, education" />
+                  <Input
+                    name="tags"
+                    value={tags}
+                    onChange={(event) => setTags(event.target.value)}
+                    placeholder="e.g. tech, education"
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold flex items-center gap-2">
                     <Key className="w-4 h-4 text-primary" /> SEO Keywords
                   </label>
-                  <Input name="keywords" placeholder="Keywords..." />
+                  <Input
+                    name="keywords"
+                    value={keywords}
+                    onChange={(event) => setKeywords(event.target.value)}
+                    placeholder="Keywords..."
+                  />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label className="text-sm font-semibold">Summary (Excerpt)</label>
-                <Input name="excerpt" placeholder="Short summary..." required />
+                <Input
+                  name="excerpt"
+                  value={excerpt}
+                  onChange={(event) => setExcerpt(event.target.value)}
+                  placeholder="Short summary..."
+                  required
+                />
               </div>
 
               <div className="space-y-2">
@@ -211,7 +299,7 @@ export default function ArticleManagement() {
               </div>
 
               <Button type="submit" className="w-full h-12 text-lg font-bold" disabled={isSubmitting}>
-                {isSubmitting ? 'Processing...' : 'Publish Article'}
+                {isSubmitting ? 'Processing...' : editingArticle ? 'Update Article' : 'Publish Article'}
               </Button>
             </form>
           </DialogContent>
@@ -245,7 +333,15 @@ export default function ArticleManagement() {
                       </span>
                     </TableCell>
                     <TableCell className="text-muted-foreground">{new Date(item.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}</TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right space-x-2">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="text-primary hover:text-primary/80 hover:bg-primary/10"
+                        onClick={() => openArticleDialog(item)}
+                      >
+                        <Edit3 className="w-4 h-4" />
+                      </Button>
                       <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive hover:bg-destructive/10" onClick={() => handleDelete(item._id)}>
                         <Trash2 className="w-4 h-4" />
                       </Button>

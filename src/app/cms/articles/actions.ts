@@ -53,6 +53,48 @@ export async function createArticle(formData: FormData) {
   revalidatePath('/cms/articles');
 }
 
+export async function updateArticle(formData: FormData) {
+  const id = formData.get('id') as string;
+  const title = formData.get('title') as string;
+  const content = formData.get('content') as string;
+  const excerpt = formData.get('excerpt') as string;
+  const lang = formData.get('lang') as string;
+  const tags = (formData.get('tags') as string || '').split(',').map(t => t.trim()).filter(Boolean);
+  const keywords = formData.get('keywords') as string;
+  const imageId = formData.get('imageId') as string;
+
+  if (!id) {
+    throw new Error('Article ID is required to update.');
+  }
+
+  const client = await clientPromise;
+  const db = client.db(DATABASE_NAME);
+
+  const updatePayload: any = {
+    title,
+    content,
+    excerpt,
+    lang,
+    tags,
+    keywords,
+    date: new Date().toISOString(),
+  };
+
+  if (imageId) {
+    updatePayload.image = imageId;
+  }
+
+  await db.collection(COLLECTION_NAME).updateOne(
+    { _id: new ObjectId(id) },
+    { $set: updatePayload }
+  );
+
+  revalidateTag('articles');
+  revalidatePath('/[lang]/insight/article', 'page');
+  revalidatePath('/[lang]/insight/article/[slug]', 'page');
+  revalidatePath('/cms/articles');
+}
+
 export async function deleteArticle(id: string) {
   const client = await clientPromise;
   const db = client.db(DATABASE_NAME);
