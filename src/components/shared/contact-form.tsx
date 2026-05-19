@@ -27,7 +27,6 @@ const formSchema = z.object({
   }),
   company: z.string().optional(),
   industry: z.string().optional(),
-  projectStatus: z.string().optional(),
   message: z.string().min(10, {
     message: 'Message must be at least 10 characters.',
   }),
@@ -52,7 +51,6 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
       whatsapp: '',
       company: '',
       industry: '',
-      projectStatus: '',
       message: '',
       agreement: false,
     },
@@ -66,7 +64,6 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
         whatsapp: values.whatsapp,
         company: values.company,
         industry: values.industry,
-        projectStatus: values.projectStatus,
         message: values.message,
       });
 
@@ -163,36 +160,6 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
                         <FormMessage />
                     </FormItem>
                     )}
-                />
-                <FormField
-                  control={form.control}
-                  name="projectStatus"
-                  render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{dictionary.form.haveProject || 'Do you have a project?'}</FormLabel>
-                    <FormControl>
-                    <select
-                      aria-label={dictionary.form.haveProject || 'Do you have a project?'}
-                      value={field.value || ''}
-                      onChange={(e) => field.onChange(e.target.value)}
-                      className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:ring-2 focus:ring-primary outline-none"
-                      disabled={isPending}
-                    >
-                      <option value="">{dictionary.form.haveProjectPlaceholder || 'Select an option'}</option>
-                      {(dictionary.form.haveProjectOptions || [
-                        'Yes, ready to start',
-                        'Yes, in planning',
-                        'No, just exploring',
-                        'Looking for consultation',
-                        'Other'
-                      ]).map((opt: string) => (
-                        <option key={opt} value={opt}>{opt}</option>
-                      ))}
-                    </select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                  )}
                 />
                 </div>
                 <FormField

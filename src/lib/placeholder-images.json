@@ -105,7 +105,7 @@
     {
       "id": "iot-hero",
       "description": "A futuristic cityscape with glowing data streams connecting buildings, representing a smart city powered by IoT.",
-      "imageUrl": "https://images.unsplash.com/photo-1518621336496-3d47a0a19490?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFydCUyMGNpdHklMjBuZXR3b3JrfGVufDB8fHx8MTc2NDg4ODUwNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/assets/img/ict/iot.jpg",
       "imageHint": "smart city"
     },
     {
@@ -177,7 +177,7 @@
     {
       "id": "use-case-hero",
       "description": "An abstract image showing interconnected data points and networks, representing successful implementation.",
-      "imageUrl": "https://images.unsplash.com/photo-1538323333468-f5bab0322384?ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdWNjZXNzJTIwbmV0d29ya3xlbnwwfHx8fDE3NjU4NTA3ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/assets/img/home/tech.jpg",
       "imageHint": "success network"
     },
     {
