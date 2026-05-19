@@ -178,6 +178,15 @@
                 "message": "Your Message",
                 "messagePlaceholder": "Tell us about your project...",
                 "agreement": "I agree to provide my personal data to Micro Padma Nusantara and have read the <a href='/en/about/privacy' class='underline' target='_blank'>Privacy Policy</a>. Furthermore, I am willing to be contacted by Micro Padma Nusantara through my personal communication media in accordance with the information I provide.",
+                "haveProject": "Do You Have a Project?",
+                "haveProjectPlaceholder": "Select an option",
+                "haveProjectOptions": [
+                    "Yes, ready to start",
+                    "Yes, in planning",
+                    "No, just exploring",
+                    "Looking for consultation",
+                    "Other"
+                ],
                 "submit": "Start Your Transformation"
             }
         }

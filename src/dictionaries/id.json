@@ -175,6 +175,15 @@
                 "companyPlaceholder": "Perusahaan Anda",
                 "industry": "Industri",
                 "industryPlaceholder": "misalnya, Teknologi, Keuangan",
+                "haveProject": "Apakah Anda Punya Proyek?",
+                "haveProjectPlaceholder": "Pilih opsi",
+                "haveProjectOptions": [
+                    "Ya, siap memulai",
+                    "Ya, dalam perencanaan",
+                    "Tidak, hanya mencari informasi",
+                    "Mencari konsultasi",
+                    "Lainnya"
+                ],
                 "message": "Pesan Anda",
                 "messagePlaceholder": "Ceritakan tentang proyek Anda...",
                 "agreement": "Saya setuju untuk memberikan data pribadi saya kepada Micro Padma Nusantara dan telah membaca <a href='/id/about/privacy' class='underline' target='_blank'>Kebijakan Privasi</a>. Selanjutnya, saya bersedia dihubungi oleh Micro Padma Nusantara melalui media komunikasi pribadi saya sesuai dengan informasi yang saya berikan.",

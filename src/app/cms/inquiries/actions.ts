@@ -14,6 +14,7 @@ export async function submitInquiry(data: {
   whatsapp: string;
   company?: string;
   industry?: string;
+  projectStatus?: string;
   message: string;
 }) {
   try {
