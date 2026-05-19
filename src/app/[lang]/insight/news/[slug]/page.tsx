@@ -197,5 +197,6 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
         </div>
       </article>
     </main>
+    </>
   );
 }
