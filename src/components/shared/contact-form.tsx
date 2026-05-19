@@ -139,7 +139,26 @@ const ContactForm = ({ dictionary }: ContactFormProps) => {
                     <FormItem>
                         <FormLabel>{dictionary.form.industry}</FormLabel>
                         <FormControl>
-                        <Input placeholder={dictionary.form.industryPlaceholder} {...field} disabled={isPending} />
+                        <select
+                            aria-label={dictionary.form.industry || 'Industry'}
+                            value={field.value || ''}
+                            onChange={(e) => field.onChange(e.target.value)}
+                            className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:ring-2 focus:ring-primary outline-none"
+                            disabled={isPending}
+                        >
+                            <option value="">{dictionary.form.industryPlaceholder || 'Select an industry'}</option>
+                            {(dictionary.form.industryOptions || [
+                                'Technology',
+                                'Finance',
+                                'Healthcare',
+                                'Manufacturing',
+                                'Retail',
+                                'Education',
+                                'Other'
+                            ]).map((opt: string) => (
+                                <option key={opt} value={opt}>{opt}</option>
+                            ))}
+                        </select>
                         </FormControl>
                         <FormMessage />
                     </FormItem>

@@ -174,7 +174,18 @@
                 "company": "Perusahaan",
                 "companyPlaceholder": "Perusahaan Anda",
                 "industry": "Industri",
-                "industryPlaceholder": "misalnya, Teknologi, Keuangan",
+                "industryPlaceholder": "Pilih industri",
+                "industryOptions": [
+                    "Teknologi",
+                    "Keuangan",
+                    "Kesehatan",
+                    "Manufaktur",
+                    "Ritel",
+                    "Pendidikan",
+                    "Pemerintahan",
+                    "Nirlaba",
+                    "Lainnya"
+                ],
                 "haveProject": "Apakah Anda Punya Proyek?",
                 "haveProjectPlaceholder": "Pilih opsi",
                 "haveProjectOptions": [
