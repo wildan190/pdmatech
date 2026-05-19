@@ -1,5 +1,6 @@
 
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Calendar, Tag, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -90,8 +91,46 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
 
   if (!news) notFound();
 
+  const canonicalUrl = `${baseUrl}/${lang}/insight/news/${slug}`;
+  let ogImageUrl = news.image;
+  if (news.imageId && news.imageId.length === 24 && !news.imageId.startsWith('http')) {
+    ogImageUrl = `${baseUrl}/api/media/${news.imageId}`;
+  }
+
+  const newsSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: news.title,
+    description: news.excerpt,
+    image: ogImageUrl ? [ogImageUrl] : [],
+    author: {
+      '@type': 'Organization',
+      name: 'Micro Padma Nusantara',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Micro Padma Nusantara',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/assets/img/home/og-image.jpg`,
+      },
+    },
+    datePublished: news.date,
+    dateModified: news.date,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+  };
+
   return (
-    <main className="flex-grow bg-background pb-20">
+    <>
+      <Script
+        id="news-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsSchema) }}
+      />
+      <main className="flex-grow bg-background pb-20">
       <section className="bg-secondary/50 py-4 border-b">
         <div className="container">
           <Breadcrumb>

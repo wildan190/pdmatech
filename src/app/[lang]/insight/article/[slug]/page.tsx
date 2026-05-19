@@ -1,5 +1,6 @@
 
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Calendar, Tag, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -90,8 +91,46 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
 
   if (!article) notFound();
 
+  const canonicalUrl = `${baseUrl}/${lang}/insight/article/${slug}`;
+  let ogImageUrl = article.image;
+  if (article.imageId && article.imageId.length === 24 && !article.imageId.startsWith('http')) {
+    ogImageUrl = `${baseUrl}/api/media/${article.imageId}`;
+  }
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.excerpt,
+    image: ogImageUrl ? [ogImageUrl] : [],
+    author: {
+      '@type': 'Organization',
+      name: 'Micro Padma Nusantara',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Micro Padma Nusantara',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/assets/img/home/og-image.jpg`,
+      },
+    },
+    datePublished: article.date,
+    dateModified: article.date,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+  };
+
   return (
-    <main className="flex-grow bg-background pb-20">
+    <>
+      <Script
+        id="article-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <main className="flex-grow bg-background pb-20">
       <section className="bg-secondary/50 py-4 border-b">
         <div className="container">
           <Breadcrumb>
