@@ -24,6 +24,9 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
       canonical: canonicalUrl,
       languages,
     },
+    other: {
+      'llms': '/llms.txt',
+    },
   };
 }
 

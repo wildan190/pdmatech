@@ -15,6 +15,10 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         crawlDelay: 0,
       },
+      {
+        userAgent: ['GPTBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web', 'PerplexityBot'],
+        allow: '/',
+      },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
     host: baseUrl,

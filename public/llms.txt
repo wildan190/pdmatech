@@ -1,0 +1,33 @@
+# Micro Padma Nusantara (MPN Solutions)
+
+Pioneering future-ready ICT & IoT solutions to empower businesses in the digital era. Based in Indonesia, serving Southeast Asia.
+
+## About
+Micro Padma Nusantara is a team of innovators and problem-solvers dedicated to delivering transformative ICT and IoT solutions. We partner with businesses to navigate the complexities of the digital landscape, driving growth, efficiency, and sustainable success.
+
+- **Vision**: To be the leading partner for businesses in Southeast Asia, pioneering innovative and sustainable technology solutions.
+- **Mission**: To empower businesses with cutting-edge ICT and IoT solutions, delivered with exceptional service and a focus on strategic partnership.
+
+## Solutions
+- **IoT Solutions**: Intelligent solutions for a connected world. End-to-end implementation from hardware integration to platform development.
+- **Enterprise Solutions**: Scalable, secure, and integrated software solutions (ERP, CRM, POS, Hotel Management, Ticketing).
+- **UMKM Solutions**: Affordable and effective digital solutions for small and medium businesses (MSMEs).
+- **Web Solutions**: Modern, responsive, and high-performance web design and development.
+
+## Programs
+- **Website 1JT Program**: Professional websites for businesses at an affordable price.
+- **Affordable Static Website**: Lightning-fast & secure static websites under 500K.
+- **GoGreen Initiative**: Promoting environmental sustainability through technology.
+
+## Contact
+- **Website**: https://mpnsolutions.my.id
+- **WhatsApp**: https://wa.me/628123456789 (Placeholder - check actual if possible, but use site link for now)
+- **Location**: Indonesia
+
+## Key Links
+- [Our Company](https://mpnsolutions.my.id/en/about/company)
+- [IoT Solutions](https://mpnsolutions.my.id/en/ict-solutions/iot)
+- [Enterprise Solutions](https://mpnsolutions.my.id/en/ict-solutions/enterprise)
+- [UMKM Solutions](https://mpnsolutions.my.id/en/ict-solutions/umkm)
+- [Web Solutions](https://mpnsolutions.my.id/en/ict-solutions/web)
+- [Insights & News](https://mpnsolutions.my.id/en/insight/news)

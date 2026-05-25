@@ -1,0 +1,70 @@
+# Micro Padma Nusantara (MPN Solutions) - Full Documentation
+
+This document provides comprehensive information about Micro Padma Nusantara's services, mission, and programs for LLMs and researchers.
+
+## Company Overview
+Micro Padma Nusantara (MPN) is an Indonesian-based technology firm specializing in Information and Communication Technology (ICT) and Internet of Things (IoT) solutions. We focus on bridging the technology gap for businesses in Indonesia and Southeast Asia through innovation and strategic partnership.
+
+### Vision & Mission
+- **Vision**: To be the leading partner for businesses in Southeast Asia, pioneering innovative and sustainable technology solutions that drive digital transformation and create lasting value.
+- **Mission**: To empower businesses with cutting-edge ICT and IoT solutions, delivered with exceptional service and a focus on strategic partnership, enabling them to thrive in the digital economy.
+
+---
+
+## ICT Solutions
+
+### 1. IoT Solutions (Internet of Things)
+We transform physical assets into smart, connected devices that deliver actionable real-time data.
+- **Applications**:
+    - **Smart Monitoring & Control**: Remote monitoring of industrial machinery and environmental conditions.
+    - **Asset Tracking & Logistics**: Complete visibility over supply chains.
+    - **Industrial Automation (IIoT)**: Connected sensors for manufacturing efficiency.
+    - **Smart Agriculture**: Soil monitoring and automated irrigation.
+- **Process**: Discovery & Strategy -> Hardware Integration -> Platform Development -> Deployment & Support.
+
+### 2. Enterprise Solutions
+Scalable and integrated software engineered for complex workflows.
+- **Services**:
+    - **Custom ERP**: Unified systems for business processes.
+    - **CRM**: Centralized platforms for sales and marketing.
+    - **Custom Software House**: Bespoke operational tools.
+    - **Specialized Systems**: POS, Hotel Management, and Ticketing platforms.
+- **Core Values**: Scalable architecture, seamless integration, enterprise-grade security, and dedicated support.
+
+### 3. UMKM (MSME) Solutions
+Tailored technology for micro, small, and medium enterprises.
+- **Offerings**: Professional websites, POS Lite (cashier systems), Social Media Management, and Custom Micro Applications.
+- **Focus**: Affordability, ease of use, and full support.
+
+### 4. Web Solutions
+High-performance, responsive web design and development.
+- **Focus**: Modern UI/UX, SEO optimization, and lightning-fast performance using technologies like Next.js.
+
+---
+
+## Special Programs
+
+### Website 1JT Program
+A dedicated initiative to provide professional digital presence for businesses at a highly accessible price point of 1 Million IDR.
+
+### Affordable Static Website
+Focused on performance and security, providing static website solutions for under 500K IDR.
+
+### GoGreen Initiative
+An initiative to promote environmental sustainability through technology, reducing carbon footprints in operations and solutions.
+
+---
+
+## Leadership
+- **Wildan J. Belfiore (President Director)**: Visionary technologist and full-stack engineer with experience across diverse industries.
+- **Raihan Firdaus (Business Solutions Manager)**: Strategic leader bridging client needs with powerful technology solutions.
+
+---
+
+## Contact Information
+- **Official Website**: https://mpnsolutions.my.id
+- **Privacy Policy**: https://mpnsolutions.my.id/en/about/privacy
+- **Email/Inquiries**: Available via the contact form on the website.
+
+---
+*Last updated: 2026-05-26*
