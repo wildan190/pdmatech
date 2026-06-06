@@ -24,7 +24,6 @@ const routes: Array<{
   { path: '/insight/use-case', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/investor', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/program/website-1jt', priority: 0.7, changeFrequency: 'monthly' },
-  { path: '/program/website-murah', priority: 0.7, changeFrequency: 'monthly' },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

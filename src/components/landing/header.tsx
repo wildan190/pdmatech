@@ -75,11 +75,6 @@ const Header = ({ dictionary, lang }: HeaderProps) => {
           href: `/${lang}/program/website-1jt`,
           description: dictionary.programSubMenu.website1jt.description,
       },
-      {
-          title: dictionary.programSubMenu.websiteMurah.title,
-          href: `/${lang}/program/website-murah`,
-          description: dictionary.programSubMenu.websiteMurah.description,
-      }
   ];
 
   const insightComponents = [
